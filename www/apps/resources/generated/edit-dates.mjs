@@ -1,7 +1,7 @@
 export const generatedEditDates = {
   "app/commerce-modules/auth/auth-providers/emailpass/page.mdx": "2025-01-13T11:31:35.361Z",
   "app/commerce-modules/auth/auth-providers/page.mdx": "2024-10-08T07:27:21.859Z",
-  "app/commerce-modules/auth/authentication-route/page.mdx": "2025-01-13T11:31:17.572Z",
+  "app/commerce-modules/auth/authentication-route/page.mdx": "2025-03-04T09:13:45.919Z",
   "app/commerce-modules/auth/examples/page.mdx": "2024-10-15T15:02:13.794Z",
   "app/commerce-modules/auth/module-options/page.mdx": "2025-01-07T12:47:35.073Z",
   "app/commerce-modules/auth/page.mdx": "2025-01-09T13:41:05.476Z",
@@ -2108,7 +2108,7 @@ export const generatedEditDates = {
   "app/admin-components/layouts/two-column/page.mdx": "2024-10-07T11:16:10.092Z",
   "app/admin-components/components/forms/page.mdx": "2024-10-09T12:48:04.229Z",
   "app/commerce-modules/auth/reset-password/page.mdx": "2025-02-26T11:18:00.391Z",
-  "app/storefront-development/customers/reset-password/page.mdx": "2024-12-19T16:32:00.724Z",
+  "app/storefront-development/customers/reset-password/page.mdx": "2025-03-04T09:15:25.662Z",
   "app/commerce-modules/api-key/links-to-other-modules/page.mdx": "2025-01-06T11:19:22.450Z",
   "app/commerce-modules/cart/extend/page.mdx": "2024-12-25T12:48:59.149Z",
   "app/commerce-modules/cart/links-to-other-modules/page.mdx": "2025-01-06T11:19:35.593Z",
