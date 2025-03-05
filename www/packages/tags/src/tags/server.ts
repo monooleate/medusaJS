@@ -10,5 +10,9 @@ export const server = [
   {
     "title": "Implement Custom Line Item Pricing in Medusa",
     "path": "https://docs.medusajs.com/resources/examples/guides/custom-item-price"
+  },
+  {
+    "title": "Implement Quote Management",
+    "path": "https://docs.medusajs.com/resources/examples/guides/quote-management"
   }
 ]

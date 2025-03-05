@@ -37,6 +37,11 @@ export const examplesSidebar = [
             title: "Custom Item Price",
             path: "/examples/guides/custom-item-price",
           },
+          {
+            type: "link",
+            title: "Quote Management",
+            path: "/examples/guides/quote-management",
+          },
         ],
       },
       {

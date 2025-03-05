@@ -1,5 +1,5 @@
 ---
-sidebar_title: "Quote Management"
+sidebar_label: "Implement Quote Management"
 tags:
     - cart
     - order
@@ -41,11 +41,13 @@ In this guide, you'll learn how to implement quote management in Medusa.
 
 When you install a Medusa application, you get a fully-fledged commerce platform with a framework for customization. The Medusa application's commerce features are built around [commerce modules](../../../commerce-modules/page.mdx) which are available out-of-the-box.
 
-By default, the Medusa application supports a cart and order system. However, you can extend the application to support quote management. Quote management allows customers to request a quote for a set of products, and facilitates the negotiation process between the customer and the merchant. Quote management is useful in my use cases, including B2B stores.
+By default, the Medusa application provides standard commerce features for orders and carts. However, Medusa's customization capabilities facilitate extending existing features to implement quote-management features.
+
+By building quote management features, you allow customers to request a quote for a set of products and, once the merchant and customer reach an agreement, you create an order for that quote. Quote management is useful in many use cases, including B2B stores.
 
 <Note title="Tip">
 
-This guide is based on the [B2B starter](https://github.com/medusajs/b2b-starter-medusa) explaining how to implement some of its quote management features. You can refer to the B2B starter for more details on other features.
+This guide is based on the [B2B starter](https://github.com/medusajs/b2b-starter-medusa) explaining how to implement some of its quote management features. You can refer to the B2B starter for other features not covered in this guide.
 
 </Note>
 
@@ -54,26 +56,25 @@ This guide is based on the [B2B starter](https://github.com/medusajs/b2b-starter
 By following this guide, you'll add the following features to Medusa:
 
 1. Customers can request a quote for a set of products.
-2. Merchants can manage quotes in the Medusa Admin dashboard. They can reject a quote or send a counter-offer, and they can make edits to product prices and quantities.
-3. Customers can accept or reject a quote, once it's been sent by the merchant.
+2. Merchants can manage quotes in the Medusa Admin dashboard. They can reject a quote or send a counter-offer, and they can make edits to item prices and quantities.
+3. Customers can accept or reject a quote once it's been sent by the merchant.
 4. Once the customer accepts a quote, it's converted to an order in Medusa.
 
-To implement these features, you'll be customizing the Medusa backend and the Medusa Admin dashboard.
+![Diagram showcasing the features summary](https://res.cloudinary.com/dza7lstvk/image/upload/v1741173690/Medusa%20Resources/quote-management-summary_xd319j.jpg)
+
+To implement these features, you'll be customizing the Medusa server and the Medusa Admin dashboard.
 
 You can follow this guide whether you're new to Medusa or an advanced Medusa developer.
-
-// TODO add image
 
 <CardList items={[
   {
     href: "https://github.com/medusajs/examples/tree/main/quote-management",
-    title: "Custom Item Price Example Repository",
-    text: "Find the full code for this recipe example in this repository.",
+    title: "Quote Management Repository",
+    text: "Find the full code for this guide in this repository.",
     icon: Github,
   },
   {
-    // TODO: Update this link
-    href: "https://res.cloudinary.com/dza7lstvk/raw/upload/v1738246728/OpenApi/Custom_Item_Price_gdfnl3.yaml",
+    href: "https://res.cloudinary.com/dza7lstvk/raw/upload/v1741171875/OpenApi/quote-management_tbk552.yml",
     title: "OpenApi Specs for Postman",
     text: "Import this OpenApi Specs file into tools like Postman.",
     icon: PlaySolid,
@@ -127,9 +128,9 @@ Check out the [troubleshooting guides](../../../troubleshooting/create-medusa-ap
 
 ## Step 2: Add Quote Module
 
-In Medusa, you build custom features in a [module](!docs!/learn/fundamentals/modules). A module is a reusable package with functionalities related to a single feature or domain. Medusa integrates the module into your application without implications or side effects on your setup.
+In Medusa, you can build custom features in a [module](!docs!/learn/fundamentals/modules). A module is a reusable package with functionalities related to a single feature or domain. Medusa integrates the module into your application without implications or side effects on your setup.
 
-In the module, you define the data models necessary for a feature and the logic to manage these data models. Later, you can build commerce flows around your module, and link its data models to other modules' data models, such as orders and carts.
+In the module, you define the data models necessary for a feature and the logic to manage these data models. Later, you can build commerce flows around your module and link its data models to other modules' data models, such as orders and carts.
 
 In this step, you'll build a Quote Module that defines the necessary data model to store quotes.
 
@@ -161,8 +162,17 @@ So, start by creating the `Quote` data model. Create the file `src/modules/quote
 
 ![Diagram showcasing the directory structure after adding the quote model](https://res.cloudinary.com/dza7lstvk/image/upload/v1741074453/Medusa%20Resources/quote-2_lh012l.jpg)
 
-```ts title="src/modules/quote/models/quote.ts"
-import { model } from "@medusajs/framework/utils";
+export const quoteModelHighlights = [
+  ["12", "id", "A unique identifier for the quote."],
+  ["13", "status", "The status of the quote."],
+  ["16", "customer_id", "The ID of the customer who requested the quote."],
+  ["17", "draft_order_id", "The ID of the draft order created for the quote."],
+  ["18", "order_change_id", "The ID of the order change created for the quote."],
+  ["19", "cart_id", "The ID of the cart that the quote was created from."],
+]
+
+```ts title="src/modules/quote/models/quote.ts" highlights={quoteModelHighlights}
+import { model } from "@medusajs/framework/utils"
 
 export enum QuoteStatus {
   PENDING_MERCHANT = "pending_merchant",
@@ -184,7 +194,9 @@ export const Quote = model.define("quote", {
 })
 ```
 
-You define the `Quote` data model with the following properties:
+You define the `Quote` data model using the `model.define` method of the DML. It accepts the data model's table name as a first parameter, and the model's schema object as a second parameter.
+
+`Quote` has the following properties:
 
 - `id`: A unique identifier for the quote.
 - `status`: The status of the quote, which can be one of the following:
@@ -195,18 +207,24 @@ You define the `Quote` data model with the following properties:
     - `merchant_rejected`: The merchant has rejected the quote.
 - `customer_id`: The ID of the customer who requested the quote. You'll later learn how to link this to a customer record.
 - `draft_order_id`: The ID of the draft order created for the quote. You'll later learn how to link this to an order record.
-- `order_change_id`: The ID of the order change created for the quote. An [order change](../../../commerce-modules/order/order-change/page.mdx) is a record of changes made to an order, such as price or quantity updates of the order's items. You'll later learn how to link this to an order change record.
+- `order_change_id`: The ID of the order change created for the quote. An [order change](../../../commerce-modules/order/order-change/page.mdx) is a record of changes made to an order, such as price or quantity updates of the order's items. These changes are later applied to the order. You'll later learn how to link this to an order change record.
 - `cart_id`: The ID of the cart that the quote was created from. The cart will hold the items that the customer wants a quote for. You'll later learn how to link this to a cart record.
+
+<Note>
+
+Learn more about defining data model properties in the [Property Types documentation](/learn/fundamentals/data-models/property-types).
+
+</Note>
 
 ### Create Module's Service
 
-You now have the necessary data models in the Quote Module, but you need to define the logic to manage these data models. You do this by creating a service in the module.
+You now have the necessary data model in the Quote Module, but you need to define the logic to manage it. You do this by creating a service in the module.
 
 A service is a TypeScript or JavaScript class that the module exports. In the service's methods, you can connect to the database, allowing you to manage your data models, or connect to a third-party service, which is useful if you're integrating with external services.
 
 <Note>
 
-Learn more about data models in [this documentation](!docs!/learn/fundamentals/modules#2-create-service).
+Learn more about services in [this documentation](!docs!/learn/fundamentals/modules#2-create-service).
 
 </Note>
 
@@ -215,14 +233,14 @@ To create the Quote Module's service, create the file `src/modules/quote/service
 ![Directory structure after adding the service](https://res.cloudinary.com/dza7lstvk/image/upload/v1741075946/Medusa%20Resources/quote-4_hg4bnr.jpg)
 
 ```ts title="src/modules/quote/service.ts"
-import { MedusaService } from "@medusajs/framework/utils";
-import { Quote } from "./models/quote";
+import { MedusaService } from "@medusajs/framework/utils"
+import { Quote } from "./models/quote"
 
 class QuoteModuleService extends MedusaService({ 
   Quote, 
 }) {}
 
-export default QuoteModuleService;
+export default QuoteModuleService
 ```
 
 The `QuoteModuleService` extends `MedusaService` from the Modules SDK which generates a class with data-management methods for your module's data models. This saves you time on implementing Create, Read, Update, and Delete (CRUD) methods.
@@ -246,14 +264,14 @@ So, create the file `src/modules/quote/index.ts` with the following content:
 ![Directory structure after adding the module definition](https://res.cloudinary.com/dza7lstvk/image/upload/v1741076106/Medusa%20Resources/quote-5_ngitn1.jpg)
 
 ```ts title="src/modules/quote/index.ts"
-import { Module } from "@medusajs/framework/utils";
-import QuoteModuleService from "./service";
+import { Module } from "@medusajs/framework/utils"
+import QuoteModuleService from "./service"
 
-export const QUOTE_MODULE = "quote";
+export const QUOTE_MODULE = "quote"
 
 export default Module(QUOTE_MODULE, { 
-  service: QuoteModuleService
-});
+  service: QuoteModuleService,
+})
 ```
 
 You use the `Module` function from the Modules SDK to create the module's definition. It accepts two parameters:
@@ -308,15 +326,15 @@ Then, to reflect these migrations on the database, run the following command:
 npx medusa db:migrate
 ```
 
-The table of the Quote Module's data model are now created in the database.
+The table for the `Quote` data model is now created in the database.
 
 ---
 
 ## Step 3: Define Links to Other Modules
 
-When you defined the Quote Module's data models, you added properties that store the ID of records managed by other modules. For example, the `customer_id` property in the `Quote` data model stores the ID of a customer, who is managed by the [Customer Module](../../../commerce-modules/customer/page.mdx).
+When you defined the `Quote` data model, you added properties that store the ID of records managed by other modules. For example, the `customer_id` property stores the ID of the customer that requested the quote, but customers are managed by the [Customer Module](../../../commerce-modules/customer/page.mdx).
 
-As mentioned before, Medusa integrates modules into your application without implications or side effects. Medusa maintains this by isolating modules from one another. This means you can't directly create relationships between data models in your module and data models in other modules.
+Medusa integrates modules into your application without implications or side effects by isolating modules from one another. This means you can't directly create relationships between data models in your module and data models in other modules.
 
 Instead, Medusa provides the mechanism to define links between data models, and retrieve and manage linked records while maintaining module isolation. Links are useful to define associations between data models in different modules, or extend a model in another module to associate custom properties with it.
 
@@ -326,7 +344,7 @@ To learn more about module isolation, refer to the [Module Isolation documentati
 
 </Note>
 
-In this step, you'll define the following links between the Quote Module's data models and data models in other modules:
+In this step, you'll define the following links between the Quote Module's data model and data models in other modules:
 
 1. `Quote` \<\> `Cart` data model of the [Cart Module](../../../commerce-modules/cart/page.mdx): link quotes to the carts they were created from.
 2. `Quote` \<\> `Customer` data model of the [Customer Module](../../../commerce-modules/customer/page.mdx): link quotes to the customers who requested them.
@@ -335,11 +353,17 @@ In this step, you'll define the following links between the Quote Module's data 
 
 ### Define Quote \<\> Cart Link
 
-You define links between data models in a TypeScript or JavaScript file under the `src/links` directory. So, to define the link between the `Quote` and `Cart` data models, create the file `src/links/quote-cart.ts` with the following content:
+You can define links between data models in a TypeScript or JavaScript file under the `src/links` directory. So, to define the link between the `Quote` and `Cart` data models, create the file `src/links/quote-cart.ts` with the following content:
 
 ![Directory structure after adding the quote-cart link](https://res.cloudinary.com/dza7lstvk/image/upload/v1741077395/Medusa%20Resources/quote-7_xrvodi.jpg)
 
-```ts title="src/links/quote-cart.ts"
+export const quoteCartHighlights = [
+  ["7", "linkable", "Link configurations of the Quote Module's data models."],
+  ["8", "field", "Specify the property that holds the ID of the linked record."],
+  ["12", "readOnly", "Indicate that the link can only be used to retrieve linked records."],
+]
+
+```ts title="src/links/quote-cart.ts" highlights={quoteCartHighlights}
 import { defineLink } from "@medusajs/framework/utils"
 import QuoteModule from "../modules/quote"
 import CartModule from "@medusajs/medusa/cart"
@@ -347,18 +371,18 @@ import CartModule from "@medusajs/medusa/cart"
 export default defineLink(
   {
     ...QuoteModule.linkable.quote,
-    field: "cart_id"
+    field: "cart_id",
   },
   CartModule.linkable.cart,
   {
-    readOnly: true
+    readOnly: true,
   }
 )
 ```
 
 You define a link using the `defineLink` function from the Modules SDK. It accepts three parameters:
 
-1. An object indicating the first data model part of the link. A module has a special `linkable` property that contains link configurations for its data models. So, you can pass the link configurations for the `Quote` data model from the `QuoteModule` module, specifying that the `cart_id` property holds the ID of the linked record.
+1. An object indicating the first data model part of the link. A module has a special `linkable` property that contains link configurations for its data models. So, you can pass the link configurations for the `Quote` data model from the `QuoteModule` module, specifying that its `cart_id` property holds the ID of the linked record.
 2. An object indicating the second data model part of the link. You pass the link configurations for the `Cart` data model from the `CartModule` module.
 3. An optional object with additional configurations for the link. By default, Medusa creates a table in the database to represent the link you define. However, when you only want to retrieve the linked records without managing and storing the links, you can set the `readOnly` option to `true`.
 
@@ -378,16 +402,16 @@ import CustomerModule from "@medusajs/medusa/customer"
 export default defineLink(
   {
     ...QuoteModule.linkable.quote,
-    field: "customer_id"
+    field: "customer_id",
   },
   CustomerModule.linkable.customer,
   {
-    readOnly: true
+    readOnly: true,
   }
 )
 ```
 
-You define the link between the `Quote` and `Customer` data models in the same way as the `Quote` \<\> `Cart` link. In the first object parameter of `defineLink`, you pass the linkable configurations of the `Quote` data model, specifying the `customer_id` property as the link field. In the second object parameter, you pass the linkable configurations of the `Customer` data model from the Customer Module. You also configure the link to be read-only.
+You define the link between the `Quote` and `Customer` data models in the same way as the `Quote` and `Cart` link. In the first object parameter of `defineLink`, you pass the linkable configurations of the `Quote` data model, specifying the `customer_id` property as the link field. In the second object parameter, you pass the linkable configurations of the `Customer` data model from the Customer Module. You also configure the link to be read-only.
 
 ### Define Quote \<\> OrderChange Link
 
@@ -403,11 +427,11 @@ import OrderModule from "@medusajs/medusa/order"
 export default defineLink(
   {
     ...QuoteModule.linkable.quote,
-    field: "order_change_id"
+    field: "order_change_id",
   },
   OrderModule.linkable.orderChange,
   {
-    readOnly: true
+    readOnly: true,
   }
 )
 ```
@@ -428,14 +452,14 @@ import OrderModule from "@medusajs/medusa/order"
 export default defineLink(
   {
     ...QuoteModule.linkable.quote,
-    field: "draft_order_id"
+    field: "draft_order_id",
   },
   {
     ...OrderModule.linkable.order.id,
     alias: "draft_order",
   },
   {
-    readOnly: true
+    readOnly: true,
   }
 )
 ```
@@ -448,9 +472,9 @@ You've finished creating the links that allow you to retrieve data related to qu
 
 ---
 
-## Step 4: Implement Create Quote Flow
+## Step 4: Implement Create Quote Workflow
 
-You're now ready to start implementing quote-management features. The first one you'll implement is the ability for customers to request a quote for a set of products.
+You're now ready to start implementing quote-management features. The first one you'll implement is the ability for customers to request a quote for a set of items in their cart.
 
 To build custom commerce features in Medusa, you create a [workflow](!docs!/learn/fundamentals/workflows). A workflow is a series of queries and actions, called steps, that complete a task. You construct a workflow like you construct a function, but it's a special function that allows you to track its executions' progress, define roll-back logic, and configure other advanced features. Then, you execute the workflow from other customizations, such as in an endpoint.
 
@@ -504,6 +528,7 @@ The workflow will have the following steps:
       }
     ]
   }}
+  hideLegend
 />
 
 The first four steps are provided by Medusa in its `@medusajs/medusa/core-flows` package. So, you only need to implement the `createQuotesStep` step.
@@ -516,10 +541,17 @@ To create a step, create the file `src/workflows/steps/create-quotes.ts` with th
 
 ![Directory structure after adding the create-quotes step](https://res.cloudinary.com/dza7lstvk/image/upload/v1741085446/Medusa%20Resources/quote-13_tv9i23.jpg)
 
-```ts title="src/workflows/steps/create-quotes.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk";
-import { QUOTE_MODULE } from "../../modules/quote";
-import QueryModuleService from "../../modules/quote/service";
+export const createQuotesStepHighlights = [
+  ["15", "container", "Resolve the Quote Module's service from the Medusa container."],
+  ["19", "createQuotes", "Create the quotes using the generated method."],
+  ["22", "quotes", "Return the quotes as the step's output."],
+  ["23", "map", "Pass the quote IDs to the compensation function."]
+]
+
+```ts title="src/workflows/steps/create-quotes.ts" highlights={createQuotesStepHighlights}
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { QUOTE_MODULE } from "../../modules/quote"
+import QueryModuleService from "../../modules/quote/service"
 
 type StepInput = {
   draft_order_id: string;
@@ -533,16 +565,16 @@ export const createQuotesStep = createStep(
   async (input: StepInput, { container }) => {
     const quoteModuleService: QueryModuleService = container.resolve(
       QUOTE_MODULE
-    );
+    )
 
-    const quotes = await quoteModuleService.createQuotes(input);
+    const quotes = await quoteModuleService.createQuotes(input)
 
     return new StepResponse(
       quotes,
       quotes.map((quote) => quote.id)
-    );
-  },
-);
+    )
+  }
+)
 ```
 
 You create a step with `createStep` from the Workflows SDK. It accepts two parameters:
@@ -563,7 +595,7 @@ A step function must return a `StepResponse` instance. The `StepResponse` constr
 
 #### Add Compensation to Step
 
-A step can have a compensation function that undoes the actions performed in a step. Then, if an error occurs during the workflow's execution, the compensation function of each step that ran before the error is called to roll back the changes. This mechanism ensures data consistency in your application, especially as you integrate external systems.
+A step can have a compensation function that undoes the actions performed in a step. Then, if an error occurs during the workflow's execution, the compensation functions of executed steps are called to roll back the changes. This mechanism ensures data consistency in your application, especially as you integrate external systems.
 
 To add a compensation function to a step, pass it as a third-parameter to `createStep`:
 
@@ -577,11 +609,11 @@ export const createQuotesStep = createStep(
     
     const quoteModuleService: QueryModuleService = container.resolve(
       QUOTE_MODULE
-    );
+    )
 
-    await quoteModuleService.deleteQuotes(quoteIds);
+    await quoteModuleService.deleteQuotes(quoteIds)
   }
-);
+)
 ```
 
 The compensation function accepts two parameters:
@@ -597,21 +629,26 @@ You can now create the workflow using the steps provided by Medusa and your cust
 
 To create the workflow, create the file `src/workflows/create-request-for-quote.ts` with the following content:
 
-```ts title="src/workflows/create-request-for-quote.ts"
+export const createRequestForQuoteHighlights = [
+  ["25", "useQueryGraphStep", "Retrieve the cart's details."],
+  ["46", "useQueryGraphStep", "Retrieve the customer's details."]
+]
+
+```ts title="src/workflows/create-request-for-quote.ts" highlights={createRequestForQuoteHighlights} collapsibleLines="1-20" expandButtonLabel="Show Imports"
 import {
   beginOrderEditOrderWorkflow,
   createOrderWorkflow,
   CreateOrderWorkflowInput,
   useQueryGraphStep,
-} from "@medusajs/medusa/core-flows";
-import { OrderStatus } from "@medusajs/framework/utils";
+} from "@medusajs/medusa/core-flows"
+import { OrderStatus } from "@medusajs/framework/utils"
 import {
   createWorkflow,
   transform,
   WorkflowResponse,
-} from "@medusajs/workflows-sdk";
-import { CreateOrderLineItemDTO } from "@medusajs/framework/types";
-import { createQuotesStep } from "./steps/create-quotes";
+} from "@medusajs/workflows-sdk"
+import { CreateOrderLineItemDTO } from "@medusajs/framework/types"
+import { createQuotesStep } from "./steps/create-quotes"
 
 type WorkflowInput = {
   cart_id: string;
@@ -640,17 +677,17 @@ export const createRequestForQuoteWorkflow = createWorkflow(
       filters: { id: input.cart_id },
       options: {
         throwIfKeyNotFound: true,
-      }
-    });
+      },
+    })
 
     const { data: customers } = useQueryGraphStep({
       entity: "customer",
       fields: ["id", "customer"],
       filters: { id: input.customer_id },
       options: {
-        throwIfKeyNotFound: true
-      }
-    }).config({ name: "customer-query" });
+        throwIfKeyNotFound: true,
+      },
+    }).config({ name: "customer-query" })
 
     // TODO create order
   }
@@ -661,7 +698,13 @@ You create a workflow using `createWorkflow` from the Workflows SDK. It accepts 
 
 It accepts as a second parameter a constructor function, which is the workflow's implementation. The function can accept input, which in this case is an object having the ID of the customer requesting the quote, and the ID of their cart.
 
-In the workflow's constructor function, you use the `useQueryGraphStep` helper to retrieve the cart and customer records using the IDs passed as an input. The `useQueryGraphStep` helper uses [Query](!docs!/learn/fundamentals/module-links/query) that allows you to retrieve data across modules.
+In the workflow's constructor function, you use `useQueryGraphStep` to retrieve the cart and customer details using the IDs passed as an input to the workflow.
+
+<Note title="Tip">
+
+`useQueryGraphStep` uses [Query](!docs!/learn/fundamentals/module-links/query), whic allows you to retrieve data across modules. For example, in the above snippet you're retrieving the cart's promotions, which are managed in the [Promotion Module](../../../commerce-modules/promotion/page.mdx), by passing `promotions.code` to the `fields` array.
+
+</Note>
 
 Next, you want to create the draft order for the quote. Replace the `TODO` in the workflow with the following:
 
@@ -680,19 +723,19 @@ const orderInput = transform({ carts, customers }, ({ carts, customers }) => {
     promo_codes: carts[0].promotions?.map((promo) => promo?.code),
     currency_code: carts[0].currency_code,
     shipping_methods: carts[0].shipping_methods || [],
-  } as CreateOrderWorkflowInput;
-});
+  } as CreateOrderWorkflowInput
+})
 
 const draftOrder = createOrderWorkflow.runAsStep({
   input: orderInput,
-});
+})
 
 // TODO create order change
 ```
 
-You first prepare the order's details using `transform` from the Workflows SDK. In the workflow constructor, you can't manipulate data directly as Medusa creates an internal representation of the workflow's constructor before these data actually have a value. So, Medusa provides utilities like `transform` to manipulate data instead. You can learn more in the [transform variables](!docs!/learn/fundamentals/workflows/variable-manipulation) documentation.
+You first prepare the order's details using `transform` from the Workflows SDK. Since Medusa creates an internal representation of the workflow's constructor before any data actually has a value, you can't manipulate data directly in the function. So, Medusa provides utilities like `transform` to manipulate data instead. You can learn more in the [transform variables](!docs!/learn/fundamentals/workflows/variable-manipulation) documentation.
 
-Then, you create the draft order using the `createOrderWorkflow` workflow which you imported from `@medusajs/medusa/core-flows`. The workflow creates an returns the created order.
+Then, you create the draft order using the `createOrderWorkflow` workflow which you imported from `@medusajs/medusa/core-flows`. The workflow creates and returns the created order.
 
 After that, you want to create an order change for the draft order. This will allow the admin later to make edits to the draft order, such as updating the prices or quantities of the items in the order.
 
@@ -705,17 +748,17 @@ const orderEditInput = transform({ draftOrder }, ({ draftOrder }) => {
     description: "",
     internal_note: "",
     metadata: {},
-  };
-});
+  }
+})
 
 const changeOrder = beginOrderEditOrderWorkflow.runAsStep({
   input: orderEditInput,
-});
+})
 
 // TODO create quote
 ```
 
-You prepare the order change's details using `transform` and then create the order change using the `beginOrderEditOrderWorkflow` workflow.
+You prepare the order change's details using `transform` and then create the order change using the `beginOrderEditOrderWorkflow` workflow which is provided by Medusa.
 
 Finally, you want to create the quote for the customer and return it. Replace the last `TODO` with the following:
 
@@ -735,10 +778,10 @@ const quoteData = transform({
 })
 
 const quotes = createQuotesStep([
-  quoteData
+  quoteData,
 ])
 
-return new WorkflowResponse({ quote: quotes[0] });
+return new WorkflowResponse({ quote: quotes[0] })
 ```
 
 Similar to before, you prepare the quote's details using `transform`. Then, you create the quote using the `createQuotesStep` you implemented earlier.
@@ -751,7 +794,7 @@ In the next step, you'll learn how to execute the workflow when a customer reque
 
 ## Step 5: Create Quote API Route
 
-Now that you have the logic to create a quote for a customer, you need to expose it so that frontend clients, such as a storefront, can use it. You do this by creating an [API route](!docs!/learn/fundamentals/api-route).
+Now that you have the logic to create a quote for a customer, you need to expose it so that frontend clients, such as a storefront, can use it. You do this by creating an [API route](!docs!/learn/fundamentals/api-routes).
 
 An API Route is an endpoint that exposes commerce features to external applications and clients, such as storefronts. You'll create an API route at the path `/store/customers/me/quotes` that executes the workflow from the previous step.
 
@@ -771,15 +814,20 @@ To create the API route, create the file `src/api/store/customers/me/quotes/rout
 
 ![Directory structure after adding the store/quotes route](https://res.cloudinary.com/dza7lstvk/image/upload/v1741086995/Medusa%20Resources/quote-14_meo0yo.jpg)
 
-```ts title="src/api/store/customers/me/quotes/route.ts"
+export const createQuoteApiHighlights = [
+  ["20", "createRequestForQuoteWorkflow", "Execute the workflow to create a quote."],
+  ["33", "query", "Use Query to retrieve the quote."]
+]
+
+```ts title="src/api/store/customers/me/quotes/route.ts" highlights={createQuoteApiHighlights} collapsibleLines="1-9" expandButtonLabel="Show Imports"
 import {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http";
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
+} from "@medusajs/framework/http"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 import { 
-  createRequestForQuoteWorkflow
-} from "../../../../../workflows/create-request-for-quote";
+  createRequestForQuoteWorkflow,
+} from "../../../../../workflows/create-request-for-quote"
 
 type CreateQuoteType = {
   cart_id: string;
@@ -796,11 +844,11 @@ export const POST = async (
       ...req.validatedBody,
       customer_id: req.auth_context.actor_id,
     },
-  });
+  })
 
   const query = req.scope.resolve(
     ContainerRegistrationKeys.QUERY
-  );
+  )
 
   const {
     data: [quote],
@@ -811,10 +859,10 @@ export const POST = async (
       filters: { id: createdQuote.id },
     },
     { throwIfKeyNotFound: true }
-  );
+  )
 
-  return res.json({ quote });
-};
+  return res.json({ quote })
+}
 ```
 
 Since you export a `POST` function in this file, you're exposing a `POST` API route at `/store/customers/me/quotes`. The route handler function accepts two parameters:
@@ -834,21 +882,21 @@ You use Query to retrieve the Quote with its fields and linked records, which yo
 
 ### Add Validation Schema
 
-The API route accepts the cart ID as a parameter. So, it's important to validate that it's actually passed in the request body of a request before executing its route handler. You can do this by specifying a validation schema in a middleware for the API route.
+The API route accepts the cart ID as a request body parameter. So, it's important to validate the body of a request before executing the route's handler. You can do this by specifying a validation schema in a middleware for the API route.
 
 In Medusa, you create validation schemas using [Zod](https://zod.dev/) in a TypeScript file under the `src/api` directory. So, create the file `src/api/store/validators.ts` with the following content:
 
 ![Directory structure after adding the validators file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741089363/Medusa%20Resources/quote-15_iy6jem.jpg)
 
 ```ts title="src/api/store/validators.ts"
-import { z } from "zod";
+import { z } from "zod"
 
 export type CreateQuoteType = z.infer<typeof CreateQuote>;
 export const CreateQuote = z
   .object({
     cart_id: z.string().min(1),
   })
-  .strict();
+  .strict()
 ```
 
 You define a `CreateQuote` schema using Zod that specifies the `cart_id` parameter as a required string.
@@ -858,12 +906,12 @@ You also export a type inferred from the schema. So, go back to `src/api/store/c
 ```ts title="src/api/store/customers/me/quotes/route.ts"
 // other imports...
 // add the following import
-import { CreateQuoteType } from "../../../validators";
+import { CreateQuoteType } from "../../../validators"
 
 // remove CreateQuoteType definition
 
-// keep type argument the same
 export const POST = async (
+  // keep type argument the same
   req: AuthenticatedMedusaRequest<CreateQuoteType>,
   res: MedusaResponse
 ) => {
@@ -881,56 +929,47 @@ Learn more about middleware in the [Middlewares documentation](!docs!/learn/fund
 
 </Note>
 
-Middlewares are created in the `src/api/middlewares.ts` file. However, as you'll add multiple middlewares for store and admin routes, you'll create the store middlewares in the `src/api/store/middlewares.ts` file then import them in `src/api/middlewares.ts`.
-
-So, create the file `src/api/store/middlewares.ts` with the following content:
+Middlewares are created in the `src/api/middlewares.ts` file. So create the file `src/api/middlewares.ts` with the following content:
 
 ![Directory structure after adding the store middlewares file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741089625/Medusa%20Resources/quote-16_oryolz.jpg)
 
-```ts title="src/api/store/middlewares.ts"
-import { MiddlewareRoute } from "@medusajs/medusa";
-import { CreateQuote } from "./validators";
-import { validateAndTransformBody } from "@medusajs/framework/http";
+```ts title="src/api/middlewares.ts"
+import { 
+  defineMiddlewares, 
+  validateAndTransformBody,
+} from "@medusajs/framework/http"
+import { CreateQuote } from "./store/validators"
 
-export const storeQuotesMiddlewares: MiddlewareRoute[] = [
-  {
-    method: ["POST"],
-    matcher: "/store/customers/me/quotes",
-    middlewares: [
-      validateAndTransformBody(CreateQuote),
-    ],
-  },
-]
+export default defineMiddlewares({
+  routes: [
+    {
+      method: ["POST"],
+      matcher: "/store/customers/me/quotes",
+      middlewares: [
+        validateAndTransformBody(CreateQuote),
+      ],
+    },
+  ],
+})
 ```
 
-You export an array of middleware route objects, each indicating a route and the applied middlewares on it. The object can have one of the following properties:
+To export the middlewares, you use the `defineMiddlewares` function. It accepts an object having a `routes` property, whose value is an array of middleware route objects. Each middleware route object has the following properties:
 
 - `method`: The HTTP methods the middleware applies to, which is in this case `POST`.
 - `matcher`: The path of the route the middleware applies to.
 - `middlewares`: An array of middleware functions to apply to the route. In this case, you apply the `validateAndTransformBody` middleware, which accepts a Zod schema as a parameter and validates that a request's body matches the schema. If not, it throws and returns an error.
 
-You'll now import the middleware in the `src/api/middlewares.ts` file. Create the file `src/api/middlewares.ts` with the following content:
-
-```ts title="src/api/middlewares.ts"
-import { defineMiddlewares } from "@medusajs/framework/http";
-import { storeQuotesMiddlewares } from "./store/middlewares";
-
-export default defineMiddlewares({
-  routes: [
-    ...storeQuotesMiddlewares
-  ]
-})
-```
-
-To export the middlewares in the `src/api/middlewares.ts` file, you use the `defineMiddlewares` function. It accepts an array of middleware route objects, which you import from the store middlewares file.
-
-Moving forward, any middleware you only need to add middlewares to `src/api/store/middlewares.ts`.
-
 ### Specify Quote Fields to Retrieve
 
 In the route handler you just created, you specified what fields to retrieve in a quote using the `req.queryConfig.fields` property. The `req.queryConfig` field holds query configurations indicating the default fields to retrieve when using Query to return data in a request. This is useful to unify the returned data structure across different routes, or to allow clients to specify the fields they want to retrieve.
 
-To add the query configurations, you'll first create a file that exports the default fields to retrieve for a quote, then apply them in a `validateAndTransformQuery` middleware.
+To add the Query configurations, you'll first create a file that exports the default fields to retrieve for a quote, then apply them in a `validateAndTransformQuery` middleware.
+
+<Note>
+
+Learn more about configuring Query for requests in the [Request Query Configurations documentation](!docs!/learn/fundamentals/module-links/query#request-query-configurations).
+
+</Note>
 
 Create the file `src/api/store/customers/me/quotes/query-config.ts` with the following content:
 
@@ -979,31 +1018,37 @@ export const quoteFields = [
   "*draft_order.items.detail",
   "*draft_order.payment_collections",
   "*order_change.actions",
-];
+]
 
-export const retrieveQuoteTransformQueryConfig = {
+export const retrieveStoreQuoteQueryConfig = {
   defaults: quoteFields,
   isList: false,
-};
+}
 
-export const listQuotesTransformQueryConfig = {
+export const listStoreQuoteQueryConfig = {
   defaults: quoteFields,
   isList: true,
-};
+}
 ```
 
 You export two objects:
 
-- `retrieveQuoteTransformQueryConfig`: Specifies the default fields to retrieve for a single quote.
-- `listQuotesTransformQueryConfig`: Specifies the default fields to retrieve for a list of quotes, which you'll use later.
+- `retrieveStoreQuoteQueryConfig`: Specifies the default fields to retrieve for a single quote.
+- `listStoreQuoteQueryConfig`: Specifies the default fields to retrieve for a list of quotes, which you'll use later.
 
 Notice that in the fields retrieved, you specify linked records such as `customer` and `draft_order`. You can do this because you've defined links between the `Quote` data model and these data models previously.
+
+<Note>
+
+For simplicity, this guide will apply the `listStoreQuoteQueryConfig` to all routes starting with `/store/customers/me/quotes`. However, you should instead apply `retrieveStoreQuoteQueryConfig` to routes that retrieve a single quote, and `listStoreQuoteQueryConfig` to routes that retrieve a list of quotes.
+
+</Note>
 
 Next, you'll define a Zod schema that allows client applications to specify the fields they want to retrieve in a quote as a query parameter. In `src/api/store/validators.ts`, add the following schema:
 
 ```ts title="src/api/store/validators.ts"
 // other imports...
-import { createFindParams } from "@medusajs/medusa/api/utils/validators";
+import { createFindParams } from "@medusajs/medusa/api/utils/validators"
 
 // ...
 
@@ -1019,36 +1064,36 @@ You create a `GetQuoteParams` schema using the `createFindParams` utility from M
 - `fields`: The fields to retrieve in a quote.
 - `limit`: The maximum number of quotes to retrieve. This is useful for routes that return a list of quotes.
 - `offset`: The number of quotes to skip before retrieving the next set of quotes. This is useful for routes that return a list of quotes.
+- `order`: The fields to sort the quotes by either in ascending or descending order. This is useful for routes that return a list of quotes.
 
-Finally, you'll apply these query configurations in a middleware. So, add the following middleware in `src/api/store/middlewares.ts` to the list of middlewares applied on `/store/customers/me/quotes`:
+Finally, you'll apply these Query configurations in a middleware. So, add the following middleware in `src/api/middlewares.ts`:
 
 ```ts title="src/api/store/middlewares.ts"
 // other imports...
-import {
-  listQuotesTransformQueryConfig,
-  retrieveQuoteTransformQueryConfig,
-} from "./customers/me/quotes/query-config";
-import { validateAndTransformQuery } from "@medusajs/framework/http";
+import { GetQuoteParams } from "./store/validators"
+import { validateAndTransformQuery } from "@medusajs/framework/http"
+import { listStoreQuoteQueryConfig } from "./store/customers/me/quotes/query-config"
 
-export const storeQuotesMiddlewares: MiddlewareRoute[] = [
-  {
-    method: ["POST"],
-    matcher: "/store/customers/me/quotes",
-    middlewares: [
-      // ...
-      validateAndTransformQuery(
-        GetQuoteParams,
-        retrieveQuoteTransformQueryConfig
-      ),
-    ],
-  },
-]
+export default defineMiddlewares({
+  routes: [
+    // ...
+    {
+      matcher: "/store/customers/me/quotes*",
+      middlewares: [
+        validateAndTransformQuery(
+          GetQuoteParams, 
+          listStoreQuoteQueryConfig
+        ),
+      ],
+    },
+  ],
+})
 ```
 
-The `validateAndTransformQuery` middleware that Medusa provides accepts two parameters:
+You apply the `validateAndTransformQuery` middleware on all routes starting with `/store/customers/me/quotes`. The `validateAndTransformQuery` middleware that Medusa provides accepts two parameters:
 
 1. A Zod schema that specifies how to validate the query parameters of incoming requests.
-2. A query configuration object that specifies the default fields to retrieve in the response, which you defined in the `query-config.ts` file.
+2. A Query configuration object that specifies the default fields to retrieve in the response, which you defined in the `query-config.ts` file.
 
 The create quote route is now ready to be used by clients to create quotes for customers.
 
@@ -1076,9 +1121,9 @@ To retrieve the publishable API key from the Medusa Admin, refer to [this user g
 
 #### Retrieve Customer Authentication Token
 
-As mentioned before, the API route you added requires the customer to be authenticated. So, you'll first register a customer, then retrieve their authentication token to use in the request.
+As mentioned before, the API route you added requires the customer to be authenticated. So, you'll first create a customer, then retrieve their authentication token to use in the request.
 
-Before registering the customer, retrieve a registration token using the [Retrieve Registration JWT Token API route](!api!/store#auth_postactor_typeauth_provider_register):
+Before creating the customer, retrieve a registration token using the [Retrieve Registration JWT Token API route](!api!/store#auth_postactor_typeauth_provider_register):
 
 ```bash
 curl -X POST 'http://localhost:9000/auth/customer/emailpass/register' \
@@ -1107,7 +1152,8 @@ Make sure to replace:
 
 - `{token}` with the registration token you received from the previous request.
 - `{your_publishable_api_key}` with the publishable API key you retrieved from the Medusa Admin.
-- If you changed the email in the first request, make sure to change it here as well.
+
+Also, if you changed the email in the first request, make sure to change it here as well.
 
 The customer is now registered. Lastly, you need to retrieve its authenticated token by sending a request to the [Authenticate Customer API route](!api!/store#auth_postactor_typeauth_provider):
 
@@ -1122,7 +1168,7 @@ curl -X POST 'http://localhost:9000/auth/customer/emailpass' \
 
 Copy the returned token to use it in the next requests.
 
-#### Create Customer Cart
+#### Create Cart
 
 The customer needs a cart with an item before creating the quote.
 
@@ -1155,7 +1201,7 @@ Make sure to replace:
 
 This will create and return a cart. Copy its ID for the next request.
 
-You need the ID of a product variant to add to the cart. You can retrieve a product variant ID using the [List Products API route](!api!/store#products_getproducts):
+You now need to add a product variant to the cart. You can retrieve a product variant ID using the [List Products API route](!api!/store#products_getproducts):
 
 ```bash
 curl 'http://localhost:9000/store/products' \
@@ -1184,9 +1230,22 @@ Make sure to replace:
 - `{id}` with the cart ID you retrieved previously.
 - `{token}` with the authentication token you retrieved previously.
 - `{your_publishable_api_key}` with the publishable API key you retrieved from the Medusa Admin.
-- `{variant_id}` with the product variant ID you retrieved previously.
+- `{variant_id}` with the product variant ID you retrieved in the previous request.
 
 This adds the product variant to the cart. You can now use the cart to create a quote.
+
+<Note>
+
+For more accurate totals and processing of the quote's draft order, you should:
+
+- Add shipping and billing addresses by [updating the cart](!api!/store#carts_postcartsid).
+- [Choose a shipping method](!api!/store#carts_postcartsidshippingmethods) for the cart.
+- [Create a payment collection](!api!/store#payment-collections_postpaymentcollections) for the cart.
+- [Initialize payment session](!api!/store#payment-collections_postpaymentcollectionsidpaymentsessions) in the payment collection.
+
+You can also learn how to build a checkout experience in a storefront by following [this storefront development guide](../../../storefront-development/checkout/page.mdx). It's not specific to quote management, so you'll need to change the last step to create a quote instead of an order.
+
+</Note>
 
 #### Create Quote
 
@@ -1224,28 +1283,34 @@ To create the API route, create the file `src/api/admin/quotes/route.ts` with th
 
 ![Directory structure after adding the admin quotes route](https://res.cloudinary.com/dza7lstvk/image/upload/v1741094735/Medusa%20Resources/quote-18_uvwqt6.jpg)
 
-```ts title="src/api/admin/quotes/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
+export const listQuotesHighlights = [
+  ["10", "metadata", "Holds pagination parameters of the Query result."],
+  ["10", "query", "Retrieve the list of quotes."],
+  ["12", "req.queryConfig", "Pass the configured Query configurations for selected fields and pagination."]
+]
+
+```ts title="src/api/admin/quotes/route.ts" highlights={listQuotesHighlights}
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 
 export const GET = async (
   req: MedusaRequest,
   res: MedusaResponse
 ) => {
-  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY);
+  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
 
   const { data: quotes, metadata } = await query.graph({
     entity: "quote",
     ...req.queryConfig,
-  });
+  })
 
   res.json({
     quotes,
     count: metadata!.count,
     offset: metadata!.skip,
     limit: metadata!.take,
-  });
-};
+  })
+}
 ```
 
 You export a `GET` function in this file, which exposes a `GET` API route at `/admin/quotes`.
@@ -1312,20 +1377,26 @@ export const quoteFields = [
   "*draft_order.items.variant.product",
   "*draft_order.items.detail",
   "*order_change.actions",
-];
+]
 
-export const retrieveQuoteTransformQueryConfig = {
+export const retrieveAdminQuoteQueryConfig = {
   defaults: quoteFields,
   isList: false,
-};
+}
 
-export const listQuotesTransformQueryConfig = {
+export const listAdminQuoteQueryConfig = {
   defaults: quoteFields,
   isList: true,
-};
+}
 ```
 
-You export two objects: `retrieveQuoteTransformQueryConfig` and `listQuotesTransformQueryConfig`, which specify the default fields to retrieve for a single quote and a list of quotes, respectively.
+You export two objects: `retrieveAdminQuoteQueryConfig` and `listAdminQuoteQueryConfig`, which specify the default fields to retrieve for a single quote and a list of quotes, respectively.
+
+<Note>
+
+For simplicity, this guide will apply the `listAdminQuoteQueryConfig` to all routes starting with `/admin/quotes`. However, you should instead apply `retrieveAdminQuoteQueryConfig` to routes that retrieve a single quote, and `listAdminQuoteQueryConfig` to routes that retrieve a list of quotes.
+
+</Note>
 
 Next, you'll define a Zod schema that allows client applications to specify the fields to retrieve and pagination fields as a query parameter. Create the file `src/api/admin/validators.ts` with the following content:
 
@@ -1334,14 +1405,13 @@ Next, you'll define a Zod schema that allows client applications to specify the 
 ```ts title="src/api/admin/validators.ts"
 import {
   createFindParams,
-} from "@medusajs/medusa/api/utils/validators";
-import { z } from "zod";
+} from "@medusajs/medusa/api/utils/validators"
 
 export const AdminGetQuoteParams = createFindParams({
   limit: 15,
   offset: 0,
 })
-  .strict();
+  .strict()
 ```
 
 You define the `AdminGetQuoteParams` schema using the `createFindParams` utility from Medusa. The schema allows clients to specify query parameters such as:
@@ -1349,60 +1419,48 @@ You define the `AdminGetQuoteParams` schema using the `createFindParams` utility
 - `fields`: The fields to retrieve in a quote.
 - `limit`: The maximum number of quotes to retrieve.
 - `offset`: The number of quotes to skip before retrieving the next set of quotes.
+- `order`: The fields to sort the quotes by either in ascending or descending order.
 
-Finally, you need to apply the `validateAndTransformQuery` middleware on this route. Similar to what you did with the store route, you'll create a middlewares file for admin route, then import it in `src/api/middlewares.ts`.
-
-Create the file `src/api/admin/middlewares.ts` with the following content:
-
-![Directory structure after adding the admin middlewares file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741095962/Medusa%20Resources/quote-21_wgss4u.jpg)
-
-```ts title="src/api/admin/middlewares.ts"
-import { validateAndTransformQuery } from "@medusajs/framework";
-import { MiddlewareRoute } from "@medusajs/medusa";
-import { AdminGetQuoteParams } from "./validators";
-import { listQuotesTransformQueryConfig } from "./query-config";
-
-export const adminQuotesMiddlewares: MiddlewareRoute[] = [
-  {
-    method: ["GET"],
-    matcher: "/admin/quotes*",
-    middlewares: [
-      validateAndTransformQuery(
-        AdminGetQuoteParams,
-        listQuotesTransformQueryConfig
-      ),
-    ],
-  },
-]
-```
-
-You export an array of middleware route objects, with one middleware applied to routes starting with `/admin/quotes` when a `GET` request is received. The middleware applies the `validateAndTransformQuery` middleware, which validates the query parameters and sets the Query configurations based on the defaults you defined and the passed query parameters.
-
-Lastly, import the `adminQuotesMiddlewares` in `src/api/middlewares.ts` to apply it to the admin routes:
+Finally, you need to apply the `validateAndTransformQuery` middleware on this route. So, add the following to `src/api/middlewares.ts`:
 
 ```ts title="src/api/middlewares.ts"
 // other imports...
-import { adminQuotesMiddlewares } from "./admin/quotes/middlewares";
+import { AdminGetQuoteParams } from "./admin/quotes/validators"
+import { listAdminQuoteQueryConfig } from "./admin/quotes/query-config"
 
 export default defineMiddlewares({
   routes: [
     // ...
-    ...adminQuotesMiddlewares,
-  ]
+    {
+      matcher: "/admin/quotes*",
+      middlewares: [
+        validateAndTransformQuery(
+          AdminGetQuoteParams,
+          listAdminQuoteQueryConfig
+        ),
+      ],
+    },
+  ],
 })
 ```
 
-You can now add admin middlewares in the `src/api/admin/middlewares.ts` file, and they'll be applied as expected.
+You add the `validateAndTransformQuery` middleware to all routes starting with `/admin/quotes`. It validates the query parameters and sets the Query configurations based on the defaults you defined and the passed query parameters.
 
 Your API route is now ready for use. You'll test it in the next step by customizing the Medusa Admin dashboard to display the quotes.
 
 ---
 
-## Step 7: Add Quotes Route in Medusa Admin
+## Step 7: List Quotes Route in Medusa Admin
 
 Now that you have the API route to retrieve the list of quotes, you want to show these quotes to the admin user in the Medusa Admin dashboard. The Medusa Admin is customizable, allowing you to add new pages as UI routes.
 
 A UI route is a React component that specifies the content to be shown in a new page in the Medusa Admin dashboard. You'll create a UI route to display the list of quotes in the Medusa Admin.
+
+<Note>
+
+Learn more about UI routes in the [UI Routes documentation](!docs!/learn/fundamentals/admin/ui-routes).
+
+</Note>
 
 ### Configure JS SDK
 
@@ -1444,7 +1502,7 @@ import {
   FindParams,
   PaginatedResponse,
   StoreCart,
-} from "@medusajs/framework/types";
+} from "@medusajs/framework/types"
 
 export type AdminQuote = {
   id: string;
@@ -1482,7 +1540,7 @@ You'll use these types in the rest of the customizations.
 
 ### Create useQuotes Hook
 
-When sending requests to the Medusa server, it's recommended to use [Tanstack Query](https://tanstack.com/query/latest), allowing you to benefit from its caching and data fetching capabilities.
+When sending requests to the Medusa server from your admin customizations, it's recommended to use [Tanstack Query](https://tanstack.com/query/latest), allowing you to benefit from its caching and data fetching capabilities.
 
 So, you'll create a `useQuotes` hook that uses Tanstack Query and the JS SDK to fetch the list of quotes from the Medusa server.
 
@@ -1491,17 +1549,17 @@ Create the file `src/admin/hooks/quotes.tsx` with the following content:
 ![Directory structure after adding the hooks quotes file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741098244/Medusa%20Resources/quote-24_apdpem.jpg)
 
 ```ts title="src/admin/hooks/quotes.tsx"
-import { ClientHeaders, FetchError } from "@medusajs/js-sdk";
+import { ClientHeaders, FetchError } from "@medusajs/js-sdk"
 import {
   QuoteQueryParams,
   AdminQuotesResponse,
-} from "../types";
+} from "../types"
 import {
   QueryKey,
   useQuery,
   UseQueryOptions,
-} from "@tanstack/react-query";
-import { sdk } from "../lib/sdk";
+} from "@tanstack/react-query"
+import { sdk } from "../lib/sdk"
 
 export const useQuotes = (
   query: QuoteQueryParams,
@@ -1516,21 +1574,21 @@ export const useQuotes = (
     sdk.client.fetch<AdminQuotesResponse>(`/admin/quotes`, {
       query,
       headers,
-    });
+    })
 
   const { data, ...rest } = useQuery({
     ...options,
     queryFn: () => fetchQuotes(query)!,
     queryKey: ["quote", "list"],
-  });
+  })
 
-  return { ...data, ...rest };
-};
+  return { ...data, ...rest }
+}
 ```
 
-You define a `useQuotes` hook that accepts query parameters and optional options as a parameter. In the hook, it uses the JS SDK's `client.fetch` method to retrieve the quotes from the `/admin/quotes` route.
+You define a `useQuotes` hook that accepts query parameters and optional options as a parameter. In the hook, you use the JS SDK's `client.fetch` method to retrieve the quotes from the `/admin/quotes` route.
 
-The hook returns the fetched data from the Medusa server. You'll use this hook in the UI route.
+You return the fetched data from the Medusa server. You'll use this hook in the UI route.
 
 ### Create Quotes UI Route
 
@@ -1543,34 +1601,34 @@ So, to add the UI route at `/quotes` in the Medusa Admin, create the file `src/a
 ![Directory structure after adding the Quotes UI route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741099122/Medusa%20Resources/quote-26_qrqzut.jpg)
 
 ```tsx title="src/admin/routes/quotes/page.tsx"
-import { defineRouteConfig } from "@medusajs/admin-sdk";
-import { DocumentText } from "@medusajs/icons";
+import { defineRouteConfig } from "@medusajs/admin-sdk"
+import { DocumentText } from "@medusajs/icons"
 import { 
   Container, createDataTableColumnHelper, DataTable, 
-  DataTablePaginationState, Heading, Toaster, useDataTable
-} from "@medusajs/ui";
-import { useNavigate } from "react-router-dom";
-import { useQuotes } from "../../hooks/quotes";
-import { AdminQuote } from "../../types";
-import { useState } from "react";
+  DataTablePaginationState, Heading, Toaster, useDataTable,
+} from "@medusajs/ui"
+import { useNavigate } from "react-router-dom"
+import { useQuotes } from "../../hooks/quotes"
+import { AdminQuote } from "../../types"
+import { useState } from "react"
 
 const Quotes = () => {
   // TODO implement page content
-};
+}
 
 export const config = defineRouteConfig({
   label: "Quotes",
   icon: DocumentText,
-});
+})
 
-export default Quotes;
+export default Quotes
 ```
 
 The route file must export a React component that implements the content of the page. To show a link to the route in the sidebar, you can also export a configuation object created with `defineRouteConfig` that specifies the label and icon of the route in the Medusa Admin sidebar.
 
 In the `Quotes` component, you'll show a table of quotes using the [DataTable component](!ui!/components/data-table) from Medusa UI. This componet requires you first define the columns of the table.
 
-Add in the same file and before the `Quotes` component the following:
+To define the table's columns, add in the same file and before the `Quotes` component the following:
 
 ```tsx title="src/admin/routes/quotes/page.tsx"
 const StatusTitles: Record<string, string> = {
@@ -1579,7 +1637,7 @@ const StatusTitles: Record<string, string> = {
   merchant_rejected: "Merchant Rejected",
   pending_merchant: "Pending Merchant",
   pending_customer: "Pending Customer",
-};
+}
 
 const columnHelper = createDataTableColumnHelper<AdminQuote>()
 
@@ -1602,7 +1660,8 @@ const columns = [
   }),
   columnHelper.accessor("draft_order.total", {
     header: "Total",
-    cell: ({ getValue, row }) => `${row.original.draft_order.currency_code.toUpperCase()} ${getValue()}`
+    cell: ({ getValue, row }) => 
+      `${row.original.draft_order.currency_code.toUpperCase()} ${getValue()}`,
   }),
   columnHelper.accessor("created_at", {
     header: "Created At",
@@ -1614,7 +1673,8 @@ const columns = [
 You use the `createDataTableColumnHelper` utility to create a function that allows you to define the columns of the table. Then, you create a `columns` array variable that defines the following columns:
 
 1. `ID`: The display ID of the quote's draft order.
-2. `Status`: The status of the quote. Here, you use an object to map the status to a human-readable title. The `cell` property of the second object passed to the `columnHelper.accessor` function allows you to customize how the cell is rendered.
+2. `Status`: The status of the quote. Here, you use an object to map the status to a human-readable title.
+    - The `cell` property of the second object passed to the `columnHelper.accessor` function allows you to customize how the cell is rendered.
 3. `Email`: The email of the customer.
 4. `First Name`: The first name of the customer.
 5. `Company Name`: The company name of the customer.
@@ -1632,6 +1692,7 @@ const Quotes = () => {
     pageSize: 15,
     pageIndex: 0,
   })
+
   const {
     quotes = [],
     count,
@@ -1677,19 +1738,19 @@ const Quotes = () => {
       </Container>
       <Toaster />
     </>
-  );
-};
+  )
+}
 ```
 
 In the component, you use the `useQuotes` hook to fetch the quotes from the Medusa server. You pass the following query parameters in the request:
 
 - `limit` and `offset`: Pagination fields to specify the current page and the number of quotes to retrieve. These are based on the `pagination` state variable, which will be managed by the `DataTable` component.
-- `fields`: The fields to retrieve in the response. You specify the total amount of the draft order and the customer of the draft order. Since you prefix the fields with `+` and `*`, the fields are retrieved along with the default fields specified in the query configurations.
+- `fields`: The fields to retrieve in the response. You specify the total amount of the draft order and the customer of the draft order. Since you prefix the fields with `+` and `*`, the fields are retrieved along with the default fields specified in the Query configurations.
 - `order`: The order in which to retrieve the quotes. Here, you retrieve the quotes in descending order of their creation date.
 
 Next, you use the `useDataTable` hook to create a table instance with the columns you defined. You pass the fetched quotes to the `DataTable` component, along with configurations related to pagination and loading.
 
-Notice that as part of the `useDataTable` configurtions you naviagte to the `/quotes/:id` UI route when a row is clicked. You'll create that route in a later step.
+Notice that as part of the `useDataTable` configurations you naviagte to the `/quotes/:id` UI route when a row is clicked. You'll create that route in a later step.
 
 Finally, you render the `DataTable` component to display the quotes in a table.
 
@@ -1705,7 +1766,7 @@ npm run dev
 
 Then, open the Medusa Admin dashboard at `http://localhost:9000/app` and login using the credentials you set up earlier.
 
-You'll find a "Quotes" sidebar item. If you click on it, it will show you the table of Quotes.
+You'll find a "Quotes" sidebar item. If you click on it, it will show you the table of quotes.
 
 ![Quotes table in Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1741099952/Medusa%20Resources/Screenshot_2025-03-04_at_4.52.17_PM_nqxyfq.png)
 
@@ -1713,7 +1774,7 @@ You'll find a "Quotes" sidebar item. If you click on it, it will show you the ta
 
 ## Step 8: Retrieve Quote API Route
 
-Next, you'll add an admin API route to retrieve a single quote. You'll use this route in the next step to add a UI route to manage a quote.
+Next, you'll add an admin API route to retrieve a single quote. You'll use this route in the next step to add a UI route to view a quote's details. You'll later expand on that UI route to allow the admin to manage the quote.
 
 To add the API route, create the file `src/api/admin/quotes/[id]/route.ts` with the following content:
 
@@ -1723,15 +1784,15 @@ To add the API route, create the file `src/api/admin/quotes/[id]/route.ts` with 
 import type {
   AuthenticatedMedusaRequest,
   MedusaResponse,
-} from "@medusajs/framework/http";
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
+} from "@medusajs/framework/http"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 
 export const GET = async (
   req: AuthenticatedMedusaRequest,
   res: MedusaResponse
 ) => {
-  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY);
-  const { id } = req.params;
+  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
+  const { id } = req.params
 
   const {
     data: [quote],
@@ -1739,18 +1800,18 @@ export const GET = async (
     {
       entity: "quote",
       filters: { id },
-      ...req.queryConfig,
+      fields: req.queryConfig.fields,
     },
     { throwIfKeyNotFound: true }
-  );
+  )
 
-  res.json({ quote });
-};
+  res.json({ quote })
+}
 ```
 
 You export a `GET` route handler, which will create a `GET` API route at `/admin/quotes/:id`.
 
-In the route handler, you resolve Query and use it to retrieve the quote. You pass the ID in the path parameter as a filter in Query. You also pass the query configuration fields, which are the same as the ones you've configured before, to retrieve the default fields and specified fields in the query parameter.
+In the route handler, you resolve Query and use it to retrieve the quote. You pass the ID in the path parameter as a filter in Query. You also pass the query configuration fields, which are the same as the ones you've configured before, to retrieve the default fields and the fields specified in the query parameter.
 
 <Note title="Tip">
 
@@ -1762,15 +1823,17 @@ You'll test this route in the next step as you create the UI route for a single 
 
 ---
 
-## Step 9: Single Quote UI Route
+## Step 9: Quote Details UI Route
 
 In the Quotes List UI route, you configured the data table to navigate to a quote's page when you click on it in the table. Now that you have the API route to retrieve a single quote, you'll create the UI route that shows a quote's details.
+
+![Preview of the quote details page in Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1741158359/Medusa%20Resources/Screenshot_2025-03-05_at_9.05.45_AM_wfmb5w.png)
 
 Before you create the UI route, you need to create the hooks necessary to retrieve data from the Medusa server, and some components that will show the different elements of the page.
 
 ### Add Hooks
 
-The first hook you'll add is a hook that will retrieve a single quote using the API route you added in the previous step.
+The first hook you'll add is a hook that will retrieve a quote using the API route you added in the previous step.
 
 In `src/api/admin/hooks/quote.tsx`, add the following:
 
@@ -1798,33 +1861,97 @@ export const useQuote = (
     sdk.client.fetch<AdminQuoteResponse>(`/admin/quotes/${id}`, {
       query,
       headers,
-    });
+    })
 
   const { data, ...rest } = useQuery({
     queryFn: () => fetchQuote(id, query),
     queryKey: ["quote", id],
     ...options,
-  });
+  })
 
-  return { ...data, ...rest };
-};
+  return { ...data, ...rest }
+}
 ```
 
 You define a `useQuote` hook that accepts the quote's ID and optional query parameters and options as parameters. In the hook, you use the JS SDK's `client.fetch` method to retrieve the quotes from the `/admin/quotes/:id` route.
 
 The hook returns the fetched data from the Medusa server. You'll use this hook later in the UI route.
 
+In addition, you'll need a hook to retrieve a preview of the quote's draft order. An order preview includes changes or edits to be applied on an order's items, such as changes in prices and quantities. Medusa already provides a [Get Order Preview API route](!api!/admin#orders_getordersidpreview) that you can use to retrieve the preview.
+
+To create the hook, create the file `src/admin/hooks/order-preview.tsx` with the following content:
+
+![Directory structure after adding the order preview hook file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741157692/Medusa%20Resources/quote-32_tb1tqw.jpg)
+
+```tsx title="src/admin/hooks/order-preview.tsx"
+import { HttpTypes } from "@medusajs/framework/types"
+import { FetchError } from "@medusajs/js-sdk"
+import { QueryKey, useQuery, UseQueryOptions } from "@tanstack/react-query"
+import { sdk } from "../lib/sdk"
+
+export const orderPreviewQueryKey = "custom_orders"
+
+export const useOrderPreview = (
+  id: string,
+  query?: HttpTypes.AdminOrderFilters,
+  options?: Omit<
+    UseQueryOptions<
+      HttpTypes.AdminOrderPreviewResponse,
+      FetchError,
+      HttpTypes.AdminOrderPreviewResponse,
+      QueryKey
+    >,
+    "queryFn" | "queryKey"
+  >
+) => {
+  const { data, ...rest } = useQuery({
+    queryFn: async () => sdk.admin.order.retrievePreview(id, query),
+    queryKey: [orderPreviewQueryKey, id],
+    ...options,
+  })
+
+  return { ...data, ...rest }
+}
+```
+
+You add a `useOrderPreview` hook that accepts as parameters the order's ID, query parameters, and options. In the hook, you use the JS SDK's `admin.order.retrievePreview` method to retrieve the order preview and return it.
+
+You'll use this hook later in the quote's details page.
+
+### Add formatAmount Utility
+
+In the quote's details page, you'll display the amounts of the items in the quote. To format the amounts, you'll create a utility function that formats the amount based on the currency code.
+
+Create the file `src/admin/utils/format-amount.ts` with the following content:
+
+![Directory structure after adding the format amount utility file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741157986/Medusa%20Resources/quote-33_k5sa9q.jpg)
+
+```ts title="src/admin/utils/format-amount.ts"
+export const formatAmount = (amount: number, currency_code: string) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency_code,
+  }).format(amount)
+}
+```
+
+You define a `formatAmount` function that accepts an amount and a currency code as parameters. The function uses the `Intl.NumberFormat` API to format the amount as a currency based on the currency code.
+
+You'll use this function in the UI route and its components.
+
 ### Create Amount Component
 
-In the quote's UI route, you want to display changes in amounts for items and totals. This is useful as you later add the capability to edit an item's price and quantity.
+In the quote's details page, you want to display changes in amounts for items and totals. This is useful as you later add the capability to edit the price and quantity of items.
+
+![Diagram showcasing where this component will be in the page](https://res.cloudinary.com/dza7lstvk/image/upload/v1741183186/Medusa%20Resources/amount-highlighted_havznm.png)
 
 To display changes in an amount, you'll create an `Amount` component and re-use it where necessary. So, create the file `src/admin/components/amount.tsx` with the following content:
 
 ![Directory structure after adding the amount component](https://res.cloudinary.com/dza7lstvk/image/upload/v1741101819/Medusa%20Resources/quote-28_iwukg2.jpg)
 
 ```tsx title="src/admin/components/amount.tsx"
-import { clx } from "@medusajs/ui";
-import { formatAmount } from "../utils/format-amount";
+import { clx } from "@medusajs/ui"
+import { formatAmount } from "../utils/format-amount"
 
 type AmountProps = {
   currencyCode: string;
@@ -1849,10 +1976,10 @@ export const Amount = ({
     )
   }
 
-  const formatted = formatAmount(amount, currencyCode);
-  const originalAmountPresent = typeof originalAmount === "number";
-  const originalAmountDiffers = originalAmount !== amount;
-  const shouldShowAmountDiff = originalAmountPresent && originalAmountDiffers;
+  const formatted = formatAmount(amount, currencyCode)
+  const originalAmountPresent = typeof originalAmount === "number"
+  const originalAmountDiffers = originalAmount !== amount
+  const shouldShowAmountDiff = originalAmountPresent && originalAmountDiffers
 
   return (
     <div
@@ -1879,18 +2006,20 @@ export const Amount = ({
         </>
       )}
     </div>
-  );
-};
+  )
+}
 ```
 
 In this component, you show the current amount of an item and, if it has been changed, you show previous amount as well.
 
-You'll use this component in other components when you want to display any amount.
+You'll use this component in other components whenever you want to display any amount that can be changed.
 
 
 ### Create QuoteItems Component
 
 In the quote's UI route, you want to display the details of the items in the quote. You'll create a separate component that you'll use within the UI route.
+
+![Screenshot showcasing where this component will be in the page](https://res.cloudinary.com/dza7lstvk/image/upload/v1741183303/Medusa%20Resources/item-highlighted-cropped_ddyikt.png)
 
 Create the file `src/admin/components/quote-items.tsx` with the following content:
 
@@ -1901,10 +2030,10 @@ import {
   AdminOrder,
   AdminOrderLineItem,
   AdminOrderPreview,
-} from "@medusajs/framework/types";
-import { Badge, Text } from "@medusajs/ui";
-import { useMemo } from "react";
-import { Amount } from "./amount-cell";
+} from "@medusajs/framework/types"
+import { Badge, Text } from "@medusajs/ui"
+import { useMemo } from "react"
+import { Amount } from "./amount-cell"
 
 export const QuoteItem = ({
   item,
@@ -1919,7 +2048,7 @@ export const QuoteItem = ({
   const isItemUpdated = useMemo(
     () => !!item.actions?.find((a) => a.action === "ITEM_UPDATE"),
     [item]
-  );
+  )
 
   return (
     <div
@@ -1991,11 +2120,11 @@ export const QuoteItem = ({
         />
       </div>
     </div>
-  );
-};
+  )
+}
 ```
 
-You first define the component for a single quote item. In the component, you show the item's title, variant SKU, and quantity. You also use the `Amount` component to show the item's current and previous amounts.
+You first define the component for one quote item. In the component, you show the item's title, variant SKU, and quantity. You also use the `Amount` component to show the item's current and previous amounts.
 
 Next, add to the same file the `QuoteItems` component:
 
@@ -2008,8 +2137,8 @@ export const QuoteItems = ({
   preview: AdminOrderPreview;
 }) => {
   const itemsMap = useMemo(() => {
-    return new Map(order.items.map((item) => [item.id, item]));
-  }, [order]);
+    return new Map(order.items.map((item) => [item.id, item]))
+  }, [order])
 
   return (
     <div>
@@ -2021,12 +2150,2105 @@ export const QuoteItems = ({
             originalItem={itemsMap.get(item.id)}
             currencyCode={order.currency_code}
           />
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
 ```
 
 In this component, you loop over the order's items and show each of them using the `QuoteItem` component.
 
+### Create TotalsBreakdown Component
+
+Another component you'll need in the quote's UI route is a component that breaks down the totals of the quote's draft order, such as its discount or shipping totals.
+
+![Screenshot showcasing where this component will be in the page](https://res.cloudinary.com/dza7lstvk/image/upload/v1741183481/Medusa%20Resources/totals-highlighted_hpxier.png)
+
+Create the file `src/admin/components/totals-breakdown.tsx` with the following content:
+
+![Directory structure after adding the totals breakdown component](https://res.cloudinary.com/dza7lstvk/image/upload/v1741155757/Medusa%20Resources/quote-30_de0kjq.jpg)
+
+```tsx title="src/admin/components/totals-breakdown.tsx"
+import { AdminOrder } from "@medusajs/framework/types"
+import { Text } from "@medusajs/ui"
+import { ReactNode } from "react"
+import { formatAmount } from "../utils/format-amount"
+
+export const Total = ({
+  label,
+  value,
+  secondaryValue,
+  tooltip,
+}: {
+  label: string;
+  value: string | number;
+  secondaryValue: string;
+  tooltip?: ReactNode;
+}) => (
+  <div className="grid grid-cols-3 items-center">
+    <Text size="small" leading="compact">
+      {label} {tooltip}
+    </Text>
+    <div className="text-right">
+      <Text size="small" leading="compact">
+        {secondaryValue}
+      </Text>
+    </div>
+
+    <div className="text-right">
+      <Text size="small" leading="compact">
+        {value}
+      </Text>
+    </div>
+  </div>
+)
+```
+
+You first define the `Total` component, which breaksdown a total item, such as discount. You'll use this component to breakdown the different totals in the `TotalsBreakdown` component.
+
+Add the `TotalsBreakdown` component after the `Total` component:
+
+```tsx title="src/admin/components/totals-breakdown.tsx"
+export const TotalsBreakdown = ({ order }: { order: AdminOrder }) => {
+  return (
+    <div className="text-ui-fg-subtle flex flex-col gap-y-2 px-6 py-4">
+      <Total
+        label="Discounts"
+        secondaryValue=""
+        value={
+          order.discount_total > 0
+            ? `- ${formatAmount(order.discount_total, order.currency_code)}`
+            : "-"
+        }
+      />
+      {(order.shipping_methods || [])
+        .sort((m1, m2) =>
+          (m1.created_at as string).localeCompare(m2.created_at as string)
+        )
+        .map((sm, i) => {
+          return (
+            <div key={i}>
+              <Total
+                key={sm.id}
+                label={"Shipping"}
+                secondaryValue={sm.name}
+                value={formatAmount(sm.total, order.currency_code)}
+              />
+            </div>
+          )
+        })}
+    </div>
+  )
+}
+```
+
+In this component, you show the different totals of the quote's draft order, such as discounts and shipping totals. You use the `Total` component to show each total item.
+
+### Create Quote Details UI Route
+
+You can now create the UI route that will show a quote's details in the Medusa Admin.
+
+Create the file `src/admin/routes/quote/[id]/page.tsx` with the following content:
+
+![Diagram showcasing the directory structure after adding the quote details UI route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741157385/Medusa%20Resources/quote-31_grwlon.jpg)
+
+export const quotesDetailsHighlights = [
+  ["21", "useQuote", "Retrieve the quote's details from the Medusa server."],
+  ["26", "useOrderPreview", "Retrieve the preview of the quote's draft order."]
+]
+
+```tsx title="src/admin/routes/quote/[id]/page.tsx" highlights={quotesDetailsHighlights}
+import { CheckCircleSolid } from "@medusajs/icons"
+import {
+  Button,
+  Container,
+  Heading,
+  Text,
+  Toaster,
+} from "@medusajs/ui"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { useOrderPreview } from "../../../hooks/order-preview"
+import { 
+  useQuote, 
+} from "../../../hooks/quotes"
+import { QuoteItems } from "../../../components/quote-items"
+import { TotalsBreakdown } from "../../../components/totals-breakdown"
+import { formatAmount } from "../../../utils/format-amount"
+
+const QuoteDetails = () => {
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const { quote, isLoading } = useQuote(id!, {
+    fields:
+      "*draft_order.customer",
+  })
+
+  const { order: preview, isLoading: isPreviewLoading } = useOrderPreview(
+    quote?.draft_order_id!,
+    {},
+    { enabled: !!quote?.draft_order_id }
+  )
+
+  if (isLoading || !quote) {
+    return <></>
+  }
+
+  if (isPreviewLoading) {
+    return <></>
+  }
+
+  if (!isPreviewLoading && !preview) {
+    throw "preview not found"
+  }
+
+  // TODO render content
+}
+
+export default QuoteDetails
+```
+
+The `QuoteDetails` component will render the content of the quote's details page. So far, you retrieve the quote and its preview using the hooks you created earlier. You also render empty components or an error message if the data is still loading or not found.
+
+To add the rendered content, replace the `TODO` with the following:
+
+```tsx title="src/admin/routes/quote/[id]/page.tsx"
+return (
+  <div className="flex flex-col gap-y-3">
+    <div className="flex flex-col gap-x-4 lg:flex-row xl:items-start">
+      <div className="flex w-full flex-col gap-y-3">
+        {quote.status === "accepted" && (
+          <Container className="divide-y divide-dashed p-0">
+            <div className="flex items-center justify-between px-6 py-4">
+              <Text className="txt-compact-small">
+                <CheckCircleSolid className="inline-block mr-2 text-green-500 text-lg" />
+                Quote accepted by customer. Order is ready for processing.
+              </Text>
+
+              <Button
+                size="small"
+                onClick={() => navigate(`/orders/${quote.draft_order_id}`)}
+              >
+                View Order
+              </Button>
+            </div>
+          </Container>
+        )}
+
+        <Container className="divide-y divide-dashed p-0">
+          <div className="flex items-center justify-between px-6 py-4">
+            <Heading level="h2">Quote Summary</Heading>
+          </div>
+          <QuoteItems order={quote.draft_order} preview={preview!} />
+          <TotalsBreakdown order={quote.draft_order} />
+          <div className=" flex flex-col gap-y-2 px-6 py-4">
+            <div className="text-ui-fg-base flex items-center justify-between">
+              <Text
+                weight="plus"
+                className="text-ui-fg-subtle"
+                size="small"
+                leading="compact"
+              >
+                Original Total
+              </Text>
+              <Text
+                weight="plus"
+                className="text-ui-fg-subtle"
+                size="small"
+                leading="compact"
+              >
+                {formatAmount(quote.draft_order.total, quote.draft_order.currency_code)}
+              </Text>
+            </div>
+      
+            <div className="text-ui-fg-base flex items-center justify-between">
+              <Text
+                className="text-ui-fg-subtle text-semibold"
+                size="small"
+                leading="compact"
+                weight="plus"
+              >
+                Quote Total
+              </Text>
+              <Text
+                className="text-ui-fg-subtle text-bold"
+                size="small"
+                leading="compact"
+                weight="plus"
+              >
+                {formatAmount(preview!.summary.current_order_total, quote.draft_order.currency_code)}
+              </Text>
+            </div>
+          </div>
+
+          {/* TODO add actions later */}
+        </Container>
+
+      </div>
+
+      <div className="mt-2 flex w-full max-w-[100%] flex-col gap-y-3 xl:mt-0 xl:max-w-[400px]">
+        <Container className="divide-y p-0">
+          <div className="flex items-center justify-between px-6 py-4">
+            <Heading level="h2">Customer</Heading>
+          </div>
+
+          <div className="text-ui-fg-subtle grid grid-cols-2 items-start px-6 py-4">
+            <Text size="small" weight="plus" leading="compact">
+              Email
+            </Text>
+
+            <Link
+              className="text-sm text-pretty text-blue-500"
+              to={`/customers/${quote.draft_order?.customer?.id}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {quote.draft_order?.customer?.email}
+            </Link>
+          </div>
+        </Container>
+      </div>
+    </div>
+
+    <Toaster />
+  </div>
+)
+```
+
+You first check if the quote has been accepted by the customer, and show a banner to view the created order if so.
+
+Next, you use the `QuoteItems` and `TotalsBreakdown` components that you created to show the quote's items and totals. You also show the original and current totals of the quote, where the original total is the total of the draft order before any changes are made to its items.
+
+Finally, you show the customer's email and a link to view their details.
+
+### Test Quote Details UI Route
+
+To test the quote details UI route, start the Medusa application:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, open the Medusa Admin dashboard at `http://localhost:9000/app` and login using the credentials you set up earlier.
+
+Next, click on Quotes in the sidebar, which will open the list of quotes UI route you created earlier. Click on one of the quotes to view its details page.
+
+On the quote's details page, you can see the quote's items, its totals, and the customer's details. In the next steps, you'll add management features to the page.
+
+![Quote details page in Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1741158359/Medusa%20Resources/Screenshot_2025-03-05_at_9.05.45_AM_wfmb5w.png)
+
+---
+
+## Step 10: Add Merchant Reject Quote Feature
+
+After the merchant or admin views the quote, they can choose to either reject it, send the quote back to the customer to review it, or make changes to the quote's prices and quantities.
+
+In this step, you'll implement the functionality to reject a quote from the quote's details page. This will include:
+
+1. Implementing the workflow to reject a quote.
+2. Adding the API route to reject a quote that uses the workflow.
+3. Add a hook in admin customizations that sends a request to the reject quote API route.
+4. Add a button to reject the quote in the quote's details page.
+
+### Implement Merchant Reject Quote Workflow
+
+To reject a quote, you'll need to create a workflow that will handle the rejection process. The workflow has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "merchantRejectQuoteWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the quote's details.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "validateQuoteNotAccepted",
+        description: "Validate that the quote isn't already accepted by the customer.",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "updateQuoteStatusStep",
+        description: "Update the quote's status to `merchant_rejected`.",
+        depth: 1
+      }
+    ]
+  }}
+  hideLegend
+/>
+
+As mentioned before, the `useQueryGraphStep` is provided by Medusa's `@medusajs/medusa/core-flows` package. So, you'll only implement the remaining steps.
+
+#### validateQuoteNotAccepted
+
+The second step of the merchant rejection workflow ensures that a quote isn't already accepted, as it can't be rejected afterwards.
+
+To create the step, create the file `src/workflows/steps/validate-quote-not-accepted.ts` with the following content:
+
+![Diagram showcasing the directory structure after adding the validate quote rejection step file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741159537/Medusa%20Resources/quote-34_mtcxwa.jpg)
+
+```ts title="src/workflows/steps/validate-quote-not-accepted.ts"
+import { MedusaError } from "@medusajs/framework/utils"
+import { createStep } from "@medusajs/framework/workflows-sdk"
+import { InferTypeOf } from "@medusajs/framework/types"
+import { Quote, QuoteStatus } from "../../modules/quote/models/quote"
+
+type StepInput = {
+  quote: InferTypeOf<typeof Quote>
+}
+
+export const validateQuoteNotAccepted = createStep(
+  "validate-quote-not-accepted",
+  async function ({ quote }: StepInput) {
+    if (quote.status === QuoteStatus.ACCEPTED) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        `Quote is already accepted by customer`
+      )
+    }
+  }
+)
+```
+
+You create a step that accepts a quote as an input and throws an error if the quote's status is `accepted`, as you can't reject a quote that has been accepted by the customer.
+
+#### updateQuoteStatusStep
+
+In the last step of the workflow, you'll change the workflow's status to `merchant_rejected`. So, you'll create a step that can be used to update a quote's status.
+
+Create the file `src/workflows/steps/update-quotes.ts` with the following content:
+
+![Diagram showcasing the directory structure after adding the update quotes step file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741159754/Medusa%20Resources/quote-35_moaulz.jpg)
+
+```ts title="src/workflows/steps/update-quotes.ts"
+import { StepResponse, createStep } from "@medusajs/framework/workflows-sdk"
+import { QUOTE_MODULE } from "../../modules/quote"
+import { QuoteStatus } from "../../modules/quote/models/quote"
+import QuoteModuleService from "../../modules/quote/service"
+
+type StepInput = {
+  id: string;
+  status?: QuoteStatus;
+}[]
+
+export const updateQuotesStep = createStep(
+  "update-quotes",
+  async (data: StepInput, { container }) => {
+    const quoteModuleService: QuoteModuleService = container.resolve(
+      QUOTE_MODULE
+    )
+
+    const dataBeforeUpdate = await quoteModuleService.listQuotes(
+      { id: data.map((d) => d.id) }
+    )
+
+    const updatedQuotes = await quoteModuleService.updateQuotes(data)
+
+    return new StepResponse(updatedQuotes, {
+      dataBeforeUpdate,
+    })
+  },
+  async (revertInput, { container }) => {
+    if (!revertInput) {
+      return
+    }
+
+    const quoteModuleService: QuoteModuleService = container.resolve(
+      QUOTE_MODULE
+    )
+
+    await quoteModuleService.updateQuotes(
+      revertInput.dataBeforeUpdate
+    )
+  }
+)
+```
+
+This step accepts an array of quotes to update their status. In the step function, you resolve the Quote Module's service. Then, you retrieve the quotes' original data so that you can pass them to the compensation function. Finally, you update the quotes' data and return the updated quotes.
+
+In the compensation function, you resolve the Quote Module's service and update the quotes with their original data.
+
+#### Implement Workflow
+
+You can now implement the merchant-rejection workflow. Create the file `src/workflows/merchant-reject-quote.ts` with the following content:
+
+![Diagram showcasing the directory structure after adding the merchant reject quote workflow file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741159969/Medusa%20Resources/quote-36_l1ffxm.jpg)
+
+export const merchantRejectionWorkflowHighlights = [
+  ["15", "useQueryGraphStep", "Retrieve the quote's details."],
+  ["24", "validateQuoteNotAccepted", "Validate that the quote isn't already accepted by the customer."],
+  ["29", "updateQuotesStep", "Update the quote's status to `merchant_rejected`."]
+]
+
+```ts title="src/workflows/merchant-reject-quote.ts" highlights={merchantRejectionWorkflowHighlights}
+import { useQueryGraphStep } from "@medusajs/core-flows"
+import { createWorkflow } from "@medusajs/workflows-sdk"
+import { QuoteStatus } from "../modules/quote/models/quote"
+import { validateQuoteNotAccepted } from "./steps/validate-quote-not-accepted"
+import { updateQuotesStep } from "./steps/update-quotes"
+
+type WorkflowInput = {
+  quote_id: string;
+}
+
+export const merchantRejectQuoteWorkflow = createWorkflow(
+  "merchant-reject-quote-workflow",
+  (input: WorkflowInput) => {
+    // @ts-ignore
+    const { data: quotes } = useQueryGraphStep({
+      entity: "quote",
+      fields: ["id", "status"],
+      filters: { id: input.quote_id },
+      options: {
+        throwIfKeyNotFound: true,
+      },
+    })
+
+    validateQuoteNotAccepted({ 
+      // @ts-ignore
+      quote: quotes[0],
+    })
+
+    updateQuotesStep([
+      {
+        id: input.quote_id,
+        status: QuoteStatus.MERCHANT_REJECTED,
+      },
+    ])
+  }
+)
+```
+
+You create a workflow that accepts the ID of a quote to reject. In the workflow, you:
+
+1. Use the `useQueryGraphStep` to retrieve the quote's details.
+2. Validate that the quote isn't already accepted using the `validateQuoteNotAccepted`.
+3. Update the quote's status to `merchant_rejected` using the `updateQuotesStep`.
+
+You'll use this workflow next in an API route that allows a merchant to reject a quote.
+
+### Add Admin Reject Quote API Route
+
+You'll now add the API route that allows a merchant to reject a quote. The route will use the `merchantRejectQuoteWorkflow` you created in the previous step.
+
+Create the file `src/api/admin/quotes/[id]/reject/route.ts` with the following content:
+
+![Diagram showcasing the directory structure after adding the reject quote API route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741160251/Medusa%20Resources/quote-37_jwlfcw.jpg)
+
+```ts title="src/api/admin/quotes/[id]/reject/route.ts"
+import type {
+  AuthenticatedMedusaRequest,
+  MedusaResponse,
+} from "@medusajs/framework/http"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { merchantRejectQuoteWorkflow } from "../../../../../workflows/merchant-reject-quote"
+
+export const POST = async (
+  req: AuthenticatedMedusaRequest,
+  res: MedusaResponse
+) => {
+  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
+  const { id } = req.params
+
+  await merchantRejectQuoteWorkflow(req.scope).run({
+    input: {
+      quote_id: id,
+    },
+  })
+
+  const {
+    data: [quote],
+  } = await query.graph(
+    {
+      entity: "quote",
+      filters: { id },
+      fields: req.queryConfig.fields,
+    },
+    { throwIfKeyNotFound: true }
+  )
+
+  res.json({ quote })
+}
+```
+
+You create a `POST` route handler, which will expose a `POST` API route at `/admin/quotes/:id/reject`. In the route handler, you run the `merchantRejectQuoteWorkflow` with the quote's ID as input. You then retrieve the updated quote using Query and return it in the response.
+
+Notice that you can pass `req.queryConfig.fields` to the `query.graph` method because you've applied the `validateAndTransformQuery` middleware before to all routes starting with `/admin/quotes`.
+
+### Add Reject Quote Hook
+
+Now that you have the API route, you can add a React hook in the admin customizations that sends a request to the route to reject a quote.
+
+In `src/admin/hooks/quotes.tsx` add the following new hook:
+
+```tsx title="src/admin/hooks/quotes.tsx"
+// other imports...
+import {
+  useMutation,
+  UseMutationOptions,
+} from "@tanstack/react-query"
+
+// ...
+
+export const useRejectQuote = (
+  id: string,
+  options?: UseMutationOptions<AdminQuoteResponse, FetchError, void>
+) => {
+  const queryClient = useQueryClient()
+
+  const rejectQuote = async (id: string) =>
+    sdk.client.fetch<AdminQuoteResponse>(`/admin/quotes/${id}/reject`, {
+      method: "POST",
+    })
+
+  return useMutation({
+    mutationFn: () => rejectQuote(id),
+    onSuccess: (data: AdminQuoteResponse, variables: any, context: any) => {
+      queryClient.invalidateQueries({
+        queryKey: [orderPreviewQueryKey, id],
+      })
+
+      queryClient.invalidateQueries({
+        queryKey: ["quote", id],
+      })
+
+      queryClient.invalidateQueries({
+        queryKey: ["quote", "list"],
+      })
+
+      options?.onSuccess?.(data, variables, context)
+    },
+    ...options,
+  })
+}
+```
+
+You add a `useRejectQuote` hook that accepts the quote's ID and optional options as parameters. In the hook, you use the `useMutation` hook to define the mutation action that sends a request to the reject quote API route.
+
+When the mutation is invoked, the hook sends a request to the API route to reject the quote, then invalidates all data related to the quote in the query client, which will trigger a re-fetch of the data.
+
+### Add Reject Quote Button
+
+Finally, you can add a button to the quote's details page that allows a merchant to reject the quote.
+
+In `src/admin/routes/quote/[id]/page.tsx`, add the following imports:
+
+```tsx title="src/admin/routes/quote/[id]/page.tsx"
+import {
+  toast,
+  usePrompt,
+} from "@medusajs/ui"
+import { useEffect, useState } from "react"
+import { 
+  useRejectQuote, 
+} from "../../../hooks/quotes"
+```
+
+Then, in the `QuoteDetails` component, add the following after the `useOrderPreview` hook usage:
+
+```tsx title="src/admin/routes/quote/[id]/page.tsx"
+const prompt = usePrompt()
+const { mutateAsync: rejectQuote, isPending: isRejectingQuote } =
+  useRejectQuote(id!)
+const [showRejectQuote, setShowRejectQuote] = useState(false)
+
+useEffect(() => {
+  if (
+    ["customer_rejected", "merchant_rejected", "accepted"].includes(
+      quote?.status!
+    )
+  ) {
+    setShowRejectQuote(false)
+  } else {
+    setShowRejectQuote(true)
+  }
+}, [quote])
+
+const handleRejectQuote = async () => {
+  const res = await prompt({
+    title: "Reject quote?",
+    description:
+      "You are about to reject this customer's quote. Do you want to continue?",
+    confirmText: "Continue",
+    cancelText: "Cancel",
+    variant: "confirmation",
+  })
+
+  if (res) {
+    await rejectQuote(void 0, {
+      onSuccess: () =>
+        toast.success("Successfully rejected customer's quote"),
+      onError: (e) => toast.error(e.message),
+    })
+  }
+}
+```
+
+First, you initialize the following variables:
+
+1. `prompt`: A function that you'll use to show a confirmation pop-up when the merchant tries to reject the quote. The `usePrompt` hook is available from the Medusa UI package.
+2. `rejectQuote` and `isRejectingQuote`: both are returned by the `useRejectQuote` hook. The `rejectQuote` function invokes the mutation, rejecting the quote; `isRejectingQuote` is a boolean that indicates if the mutation is in progress.
+3. `showRejectQuote`: A boolean that indicates whether the "Reject Quote" button should be shown. The button is shown if the quote's status is not `customer_rejected`, `merchant_rejected`, or `accepted`. This state variable is changed based on the quote's status in the `useEffect` hook.
+
+You also define a `handleRejectQuote` function that will be called when the merchant clicks the reject quote button. The function shows a confirmation pop-up using the `prompt` function. If the user confirms the action, the function calls the `rejectQuote` function to reject the quote.
+
+Finally, find the `TODO` in the `return` statement and replace it with the following:
+
+```tsx title="src/admin/routes/quote/[id]/page.tsx"
+<div className="bg-ui-bg-subtle flex items-center justify-end gap-x-2 rounded-b-xl px-4 py-4">
+  {showRejectQuote && (
+    <Button
+      size="small"
+      variant="secondary"
+      onClick={() => handleRejectQuote()}
+      disabled={isRejectingQuote}
+    >
+      Reject Quote
+    </Button>
+  )}
+</div>
+```
+
+In this code snippet, you show the reject quote button if the `showRejectQuote` state is `true`. When the button is clicked, you call the `handleRejectQuote` function to reject the quote.
+
+### Test Reject Quote Feature
+
+To test the reject quote feature, start the Medusa application:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, open the Medusa Admin dashboard at `http://localhost:9000/app` and login using the credentials you set up earlier.
+
+Next, open a quote's details page. You'll find a new "Reject Quote" button. If you click on it and confirm rejecting the quote, the quote will be rejected, and a success message will be shown.
+
+![Quote details page with reject quote button in Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1741161544/Medusa%20Resources/Screenshot_2025-03-05_at_9.58.41_AM_xzdv6k.png)
+
+---
+
+## Step 11: Add Merchant Send Quote Feature
+
+Another action that a merchant can take on a quote is to send the quote back to the customer for review. The customer can then reject or accept the quote, which would convert it to an order.
+
+In this step, you'll implement the functionality to send a quote back to the customer for review. This will include:
+
+1. Implementing the workflow to send a quote back to the customer.
+2. Adding the API route to send a quote back to the customer that uses the workflow.
+3. Add a hook in admin customizations that sends a request to the send quote API route.
+4. Add a button to send the quote back to the customer in the quote's details page.
+
+### Implement Merchant Send Quote Workflow
+
+You'll implement the logic of sending the quote in a workflow. The workflow has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "merchantSendQuoteWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the quote's details.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "validateQuoteNotAccepted",
+        description: "Validate that the quote isn't already accepted by the customer.",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "updateQuoteStatusStep",
+        description: "Update the quote's status to `pending_customer`.",
+        depth: 1
+      }
+    ]
+  }}
+  hideLegend
+/>
+
+All the steps are available for use, so you can implement the workflow directly.
+
+Create the file `src/workflows/merchant-send-quote.ts` with the following content:
+
+![Directory structure after adding the merchant send quote workflow file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741162342/Medusa%20Resources/quote-38_n4ksr0.jpg)
+
+export const sendQuoteHighlights = [
+  ["15", "useQueryGraphStep", "Retrieve the quote's details."],
+  ["24", "validateQuoteNotAccepted", "Validate that the quote isn't already accepted by the customer."],
+  ["29", "updateQuotesStep", "Update the quote's status to `pending_customer`."]
+]
+
+```ts title="src/workflows/merchant-send-quote.ts" highlights={sendQuoteHighlights}
+import { useQueryGraphStep } from "@medusajs/core-flows"
+import { createWorkflow } from "@medusajs/workflows-sdk"
+import { QuoteStatus } from "../modules/quote/models/quote"
+import { updateQuotesStep } from "./steps/update-quotes"
+import { validateQuoteNotAccepted } from "./steps/validate-quote-not-accepted"
+
+type WorkflowInput = {
+  quote_id: string;
+}
+
+export const merchantSendQuoteWorkflow = createWorkflow(
+  "merchant-send-quote-workflow",
+  (input: WorkflowInput) => {
+    // @ts-ignore
+    const { data: quotes } = useQueryGraphStep({
+      entity: "quote",
+      fields: ["id", "status"],
+      filters: { id: input.quote_id },
+      options: {
+        throwIfKeyNotFound: true,
+      },
+    })
+
+    validateQuoteNotAccepted({
+      // @ts-ignore
+      quote: quotes[0],
+    })
+
+    updateQuotesStep([
+      {
+        id: input.quote_id,
+        status: QuoteStatus.PENDING_CUSTOMER,
+      },
+    ])
+  }
+)
+```
+
+You create a workflow that accepts the ID of a quote to send back to the customer. In the workflow, you:
+
+1. Use the `useQueryGraphStep` to retrieve the quote's details.
+2. Validate that the quote can be sent back to the customer using the `validateQuoteNotAccepted` step.
+3. Update the quote's status to `pending_customer` using the `updateQuotesStep`.
+
+You'll use this workflow next in an API route that allows a merchant to send a quote back to the customer.
+
+### Add Send Quote API Route
+
+You'll now add the API route that allows a merchant to send a quote back to the customer. The route will use the `merchantSendQuoteWorkflow` you created in the previous step.
+
+Create the file `src/api/admin/quotes/[id]/send/route.ts` with the following content:
+
+![Directory structure after adding the send quote API route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741162497/Medusa%20Resources/quote-39_us1jbh.jpg)
+
+```ts title="src/api/admin/quotes/[id]/send/route.ts"
+import type {
+  AuthenticatedMedusaRequest,
+  MedusaResponse,
+} from "@medusajs/framework/http"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { 
+  merchantSendQuoteWorkflow,
+} from "../../../../../workflows/merchant-send-quote"
+
+export const POST = async (
+  req: AuthenticatedMedusaRequest,
+  res: MedusaResponse
+) => {
+  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
+  const { id } = req.params
+
+  await merchantSendQuoteWorkflow(req.scope).run({
+    input: {
+      quote_id: id,
+    },
+  })
+
+  const {
+    data: [quote],
+  } = await query.graph(
+    {
+      entity: "quote",
+      filters: { id },
+      fields: req.queryConfig.fields,
+    },
+    { throwIfKeyNotFound: true }
+  )
+
+  res.json({ quote })
+}
+```
+
+You create a `POST` route handler, which will expose a `POST` API route at `/admin/quotes/:id/send`. In the route handler, you run the `merchantSendQuoteWorkflow` with the quote's ID as input. You then retrieve the updated quote using Query and return it in the response.
+
+Notice that you can pass `req.queryConfig.fields` to the `query.graph` method because you've applied the `validateAndTransformQuery` middleware before to all routes starting with `/admin/quotes`.
+
+### Add Send Quote Hook
+
+Now that you have the API route, you can add a React hook in the admin customizations that sends a request to the quote send API route.
+
+In `src/admin/hooks/quotes.tsx` add the new hook:
+
+```tsx title="src/admin/hooks/quotes.tsx"
+export const useSendQuote = (
+  id: string,
+  options?: UseMutationOptions<AdminQuoteResponse, FetchError, void>
+) => {
+  const queryClient = useQueryClient()
+
+  const sendQuote = async (id: string) =>
+    sdk.client.fetch<AdminQuoteResponse>(`/admin/quotes/${id}/send`, {
+      method: "POST",
+    })
+
+  return useMutation({
+    mutationFn: () => sendQuote(id),
+    onSuccess: (data: any, variables: any, context: any) => {
+      queryClient.invalidateQueries({
+        queryKey: [orderPreviewQueryKey, id],
+      })
+
+      queryClient.invalidateQueries({
+        queryKey: ["quote", id],
+      })
+
+      queryClient.invalidateQueries({
+        queryKey: ["quote", "list"],
+      })
+
+      options?.onSuccess?.(data, variables, context)
+    },
+    ...options,
+  })
+}
+```
+
+You add a `useSendQuote` hook that accepts the quote's ID and optional options as parameters. In the hook, you use the `useMutation` hook to define the mutation action that sends a request to the send quote API route.
+
+When the mutation is invoked, the hook sends a request to the send quote API route, then invalidates all data related to the quote in the query client, which will trigger a re-fetch of the data.
+
+### Add Send Quote Button
+
+Finally, you can add a button to the quote's details page that allows a merchant to send the quote back to the customer for review.
+
+First, add the following import to the `src/admin/routes/quote/[id]/page.tsx` file:
+
+```tsx title="src/admin/routes/quote/[id]/page.tsx"
+import { 
+  useSendQuote,
+} from "../../../hooks/quotes"
+```
+
+Then, after the `useRejectQuote` hook usage, add the following:
+
+```tsx title="src/admin/routes/quote/[id]/page.tsx"
+const { mutateAsync: sendQuote, isPending: isSendingQuote } = useSendQuote(
+  id!
+)
+const [showSendQuote, setShowSendQuote] = useState(false)
+```
+
+You initialize the following variables:
+
+1. `sendQuote` and `isSendingQuote`: Data returned by the `useSendQuote` hook. The `sendQuote` function invokes the mutation, sending the quote back to the customer; `isSendingQuote` is a boolean that indicates if the mutation is in progress.
+2. `showSendQuote`: A boolean that indicates whether the "Send Quote" button should be shown. 
+
+Next, update the existing `useEffect` hook to change `showSendQuote` based on the quote's status:
+
+```tsx title="src/admin/routes/quote/[id]/page.tsx"
+useEffect(() => {
+  if (["pending_merchant", "customer_rejected"].includes(quote?.status!)) {
+    setShowSendQuote(true)
+  } else {
+    setShowSendQuote(false)
+  }
+
+  if (
+    ["customer_rejected", "merchant_rejected", "accepted"].includes(
+      quote?.status!
+    )
+  ) {
+    setShowRejectQuote(false)
+  } else {
+    setShowRejectQuote(true)
+  }
+}, [quote])
+```
+
+The `useEffect` hook now updates both the `showSendQuote` and `showRejectQuote` states based on the quote's status. The "Send Quote" button is hidden if the quote's status is not `pending_merchant` or `customer_rejected`.
+
+Then, after the `handleRejectQuote` function, add the following `handleSendQuote` function:
+
+```tsx title="src/admin/routes/quote/[id]/page.tsx"
+const handleSendQuote = async () => {
+  const res = await prompt({
+    title: "Send quote?",
+    description:
+      "You are about to send this quote to the customer. Do you want to continue?",
+    confirmText: "Continue",
+    cancelText: "Cancel",
+    variant: "confirmation",
+  })
+
+  if (res) {
+    await sendQuote(
+      void 0,
+      {
+        onSuccess: () => toast.success("Successfully sent quote to customer"),
+        onError: (e) => toast.error(e.message),
+      }
+    )
+  }
+}
+```
+
+You define a `handleSendQuote` function that will be called when the merchant clicks the "Send Quote" button. The function shows a confirmation pop-up using the `prompt` hook. If the user confirms the action, the function calls the `sendQuote` function to send the quote back to the customer.
+
+Finally, add the following after the reject quote button in the `return` statement:
+
+```tsx title="src/admin/routes/quote/[id]/page.tsx"
+{showSendQuote && (
+  <Button
+    size="small"
+    variant="secondary"
+    onClick={() => handleSendQuote()}
+    disabled={isSendingQuote || isRejectingQuote}
+  >
+    Send Quote
+  </Button>
+)}
+```
+
+In this code snippet, you show the "Send Quote" button if the `showSendQuote` state is `true`. When the button is clicked, you call the `handleSendQuote` function to send the quote back to the customer.
+
+### Test Send Quote Feature
+
+To test the send quote feature, start the Medusa application:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, open the Medusa Admin dashboard at `http://localhost:9000/app` and login using the credentials you set up earlier.
+
+Next, open a quote's details page. You'll find a new "Send Quote" button. If you click on it and confirm sending the quote, the quote will be sent back to the customer, and a success message will be shown.
+
+<Note>
+
+You'll later add the feature to update the quote item's details before sending the quote back to the customer.
+
+</Note>
+
+![Quote details page with send quote button in Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1741162950/Medusa%20Resources/Screenshot_2025-03-05_at_10.22.11_AM_sjuipg.png)
+
+---
+
+## Step 12: Add Customer Preview Order API Route
+
+When the merchant sends back the quote to the customer, you want to show the customer the details of the quote and the order that would be created if they accept the quote. This helps the customer decide whether to accept or reject the quote (which you'll implement next).
+
+In this step, you'll add the API route that allows a customer to preview a quote's order.
+
+To create the API route, create the file `src/api/store/customers/me/quotes/[id]/preview/route.ts` with the following content:
+
+![Directory structure after adding the customer preview order API route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741163145/Medusa%20Resources/quote-40_lmcgve.jpg)
+
+```ts title="src/api/store/customers/me/quotes/[id]/preview/route.ts"
+import type {
+  AuthenticatedMedusaRequest,
+  MedusaResponse,
+} from "@medusajs/framework/http"
+import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
+
+export const GET = async (
+  req: AuthenticatedMedusaRequest,
+  res: MedusaResponse
+) => {
+  const { id } = req.params
+  const query = req.scope.resolve(
+    ContainerRegistrationKeys.QUERY
+  )
+
+  const {
+    data: [quote],
+  } = await query.graph(
+    {
+      entity: "quote",
+      filters: { id },
+      fields: req.queryConfig.fields,
+    },
+    { throwIfKeyNotFound: true }
+  )
+
+  const orderModuleService = req.scope.resolve(
+    Modules.ORDER
+  )
+
+  const preview = await orderModuleService.previewOrderChange(
+    quote.draft_order_id
+  )
+
+  res.status(200).json({
+    quote: {
+      ...quote,
+      order_preview: preview,
+    },
+  })
+}
+```
+
+You create a `GET` route handler, which will expose a `GET` API route at `/store/customers/me/quotes/:id/preview`. In the route handler, you retrieve the quote's details using Query, then preview the order that would be created from the quote using the `previewOrderChange` method from the Order Module's service. Finally, you return the quote and its order preview in the response.
+
+Notice that you're using the `req.queryConfig.fields` object in the `query.graph` method because you've applied the `validateAndTransformQuery` middleware before to all routes starting with `/store/customers/me/quotes`.
+
+### Test Customer Preview Order API Route
+
+To test the customer preview order API route, start the Medusa application:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, grab the ID of a quote placed by a customer that you have their [authentication token](#retrieve-customer-authentication-token). You can find the quote ID in the URL when viewing the quote's details page in the Medusa Admin dashboard.
+
+Finally, send the following request to get a preview of the customer's quote and order:
+
+```bash
+curl 'http://localhost:9000/store/customers/me/quotes/{quote_id}/preview' \
+-H 'x-publishable-api-key: {your_publishable_api_key}' \
+-H 'Authorization: Bearer {token}'
+```
+
+Make sure to replace:
+
+- `{quote_id}` with the ID of the quote you want to preview.
+- `{your_publishable_api_key}` with [your publishable API key](#retrieve-publishable-api-key).
+- `{token}` with the customer's authentication token.
+
+You'll receive in the response the quote's details with the order preview. You can show the customer these details in the storefront.
+
+---
+
+## Step 13: Add Customer Reject Quote Feature
+
+After the customer previews the quote and its order, they can choose to reject the quote. When the customer rejects the quote, the quote's status is changed to `customer_rejected`. The merchant will still be able to update the quote and send it back to the customer for review.
+
+In this step, you'll implement the functionality to reject a quote from the customer's perspective. This will include:
+
+1. Implementing the workflow to reject a quote as a customer.
+2. Adding the API route to allow customers to reject a quote using the workflow.
+
+### Implement Customer Reject Quote Workflow
+
+To reject a quote from the customer's perspective, you'll need to create a workflow that will handle the rejection process. The workflow has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "customerRejectQuoteWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the quote's details.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "validateQuoteNotAccepted",
+        description: "Validate that the quote isn't already accepted by the customer.",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "updateQuoteStatusStep",
+        description: "Update the quote's status to `customer_rejected`.",
+        depth: 1
+      }
+    ]
+  }}
+  hideLegend
+/>
+
+All the steps are available for use, so you can implement the workflow directly.
+
+Create the file `src/workflows/customer-reject-quote.ts` with the following content:
+
+![Directory structure after adding the customer reject quote workflow file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741164371/Medusa%20Resources/quote-41_fgpqhz.jpg)
+
+export const customerRejectQuoteHighlights = [
+  ["16", "useQueryGraphStep", "Retrieve the quote's details."],
+  ["25", "validateQuoteNotAccepted", "Validate that the quote isn't already accepted by the customer."],
+  ["30", "updateQuotesStep", "Update the quote's status to `customer_rejected`."]
+]
+
+```ts title="src/workflows/customer-reject-quote.ts" highlights={customerRejectQuoteHighlights}
+import { useQueryGraphStep } from "@medusajs/core-flows"
+import { createWorkflow } from "@medusajs/workflows-sdk"
+import { QuoteStatus } from "../modules/quote/models/quote"
+import { updateQuotesStep } from "./steps/update-quotes"
+import { validateQuoteNotAccepted } from "./steps/validate-quote-not-accepted"
+
+type WorkflowInput = {
+  quote_id: string;
+  customer_id: string;
+}
+
+export const customerRejectQuoteWorkflow = createWorkflow(
+  "customer-reject-quote-workflow",
+  (input: WorkflowInput) => {
+    // @ts-ignore
+    const { data: quotes } = useQueryGraphStep({
+      entity: "quote",
+      fields: ["id", "status"],
+      filters: { id: input.quote_id, customer_id: input.customer_id },
+      options: {
+        throwIfKeyNotFound: true,
+      },
+    })
+
+    validateQuoteNotAccepted({ 
+      // @ts-ignore
+      quote: quotes[0],
+    })
+
+    updateQuotesStep([
+      {
+        id: input.quote_id,
+        status: QuoteStatus.CUSTOMER_REJECTED,
+      },
+    ])
+  }
+)
+```
+
+You create a workflow that accepts the IDs of the quote to reject and the customer rejecting it. In the workflow, you:
+
+1. Use the `useQueryGraphStep` to retrieve the quote's details. Notice that you pass the IDs of the quote and the customer as filters to ensure that the quote belongs to the customer. 
+2. Validate that the quote isn't already accepted using the `validateQuoteNotAccepted` step.
+3. Update the quote's status to `customer_rejected` using the `updateQuotesStep`.
+
+You'll use this workflow next in an API route that allows a customer to reject a quote.
+
+### Add Customer Reject Quote API Route
+
+You'll now add the API route that allows a customer to reject a quote. The route will use the `customerRejectQuoteWorkflow` you created in the previous step.
+
+Create the file `src/api/store/customers/me/quotes/[id]/reject/route.ts` with the following content:
+
+![Directory structure after adding the customer reject quote API route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741164538/Medusa%20Resources/quote-42_bryo2z.jpg)
+
+```ts title="src/api/store/customers/me/quotes/[id]/reject/route.ts"
+import type { 
+  AuthenticatedMedusaRequest, 
+  MedusaResponse,
+} from "@medusajs/framework/http"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { 
+  customerRejectQuoteWorkflow,
+} from "../../../../../../../workflows/customer-reject-quote"
+
+export const POST = async (
+  req: AuthenticatedMedusaRequest,
+  res: MedusaResponse
+) => {
+  const { id } = req.params
+  const query = req.scope.resolve(
+    ContainerRegistrationKeys.QUERY
+  )
+
+  await customerRejectQuoteWorkflow(req.scope).run({
+    input: {
+      quote_id: id,
+      customer_id: req.auth_context.actor_id,
+    },
+  })
+
+  const {
+    data: [quote],
+  } = await query.graph(
+    {
+      entity: "quote",
+      filters: { id },
+      fields: req.queryConfig.fields,
+    },
+    { throwIfKeyNotFound: true }
+  )
+
+  return res.json({ quote })
+}
+```
+
+You create a `POST` route handler, which will expose a `POST` API route at `/store/customers/me/quotes/:id/reject`. In the route handler, you run the `customerRejectQuoteWorkflow` with the quote's ID as input. You then retrieve the updated quote using Query and return it in the response.
+
+Notice that you can pass `req.queryConfig.fields` to the `query.graph` method because you've applied the `validateAndTransformQuery` middleware before to all routes starting with `/store/customers/me/quotes`.
+
+### Test Customer Reject Quote Feature
+
+To test the customer reject quote feature, start the Medusa application:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, send a request to reject a quote for the authenticated customer:
+
+```bash
+curl 'http://localhost:9000/store/customers/me/quotes/{quote_id}/reject' \
+-H 'x-publishable-api-key: {your_publishable_api_key}' \
+-H 'Authorization: Bearer {token}'
+```
+
+Make sure to replace:
+
+- `{quote_id}` with the ID of the quote you want to reject.
+- `{your_publishable_api_key}` with [your publishable API key](#retrieve-publishable-api-key).
+- `{token}` with the customer's [authentication token](#retrieve-customer-authentication-token).
+
+After sending the request, the quote will be rejected, and the updated quote will be returned in the response. You can also view the quote from the Medusa Admin dashboard, where you'll find its status has changed.
+
+---
+
+## Step 14: Add Customer Accept Quote Feature
+
+The customer alternatively can choose to accept a quote after previewing it. When the customer accepts a quote, the quote's draft order should become an order whose payment can be processed and items fulfilled. No further changes can be made on the quote after it's accepted.
+
+In this step, you'll implement the functionality to allow a customer to accept a quote. This will include:
+
+1. Implementing the workflow to accept a quote as a customer.
+2. Adding the API route to allow customers to accept a quote using the workflow.
+
+### Implement Customer Accept Quote Workflow
+
+You'll implement the quote acceptance logic in a workflow. The workflow has the following steps:
+
+<WorkflowDiagram
+  workflow={{
+    name: "customerAcceptQuoteWorkflow",
+    steps: [
+      {
+        type: "step",
+        name: "useQueryGraphStep",
+        description: "Retrieve the quote's details.",
+        link: "/references/helper-steps/useQueryGraphStep",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "validateQuoteCanAcceptStep",
+        description: "Validate that the quote can be accepted.",
+        depth: 1
+      },
+      {
+        type: "step",
+        name: "updateQuotesStep",
+        description: "Update the quote's status to `accepted`.",
+        depth: 1
+      },
+      {
+        type: "workflow",
+        name: "confirmOrderEditRequestWorkflow",
+        description: "Confirm the changes made on the draft order, such as changes to item quantities and prices.",
+        link: "!resources!/references/medusa-workflows/confirmOrderEditRequestWorkflow",
+        depth: 1
+      },
+      {
+        type: "workflow",
+        name: "updateOrderWorkflow",
+        description: "Update the draft order to change its status and convert it into an order.",
+        link: "!resources!/references/medusa-workflows/updateOrderWorkflow",
+        depth: 1
+      }
+    ]
+  }}
+  hideLegend
+/>
+
+You only need to implement the `validateQuoteCanAcceptStep` step before implementing the workflow, as the other steps are already available for use.
+
+#### validateQuoteCanAcceptStep
+
+In the `validateQuoteCanAcceptStep`, you'll validate whether the customer can accept the quote. The customer can only accept a quote if the quote's status is `pending_customer`, meaning the merchant sent the quote back to the customer for review.
+
+Create the file `src/workflows/steps/validate-quote-can-accept.ts` with the following content:
+
+![Directory structure after adding the validate quote can accept step file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741165829/Medusa%20Resources/quote-43_cxc3qi.jpg)
+
+```ts title="src/workflows/steps/validate-quote-can-accept.ts"
+import { MedusaError } from "@medusajs/framework/utils"
+import { createStep } from "@medusajs/framework/workflows-sdk"
+import { InferTypeOf } from "@medusajs/framework/types"
+import { Quote, QuoteStatus } from "../../modules/quote/models/quote"
+
+type StepInput = {
+  quote: InferTypeOf<typeof Quote>
+}
+
+export const validateQuoteCanAcceptStep = createStep(
+  "validate-quote-can-accept",
+  async function ({ quote }: StepInput) {
+    if (quote.status !== QuoteStatus.PENDING_CUSTOMER) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        `Cannot accept quote when quote status is ${quote.status}`
+      )
+    }
+  }
+)
+```
+
+You create a step that accepts a quote as input. In the step function, you throw an error if the quote's status is not `pending_customer`.
+
+#### Implement Workflow
+
+You can now implement the workflow that accepts a quote for a customer. Create the file `src/workflows/customer-accept-quote.ts` with the following content:
+
+![Directory structure after adding the customer accept quote workflow file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741166025/Medusa%20Resources/quote-44_c09ts9.jpg)
+
+export const customerAcceptQuoteHighlights = [
+  ["21", "useQueryGraphStep", "Retrieve the quote's details."],
+  ["30", "validateQuoteCanAcceptStep", "Validate that the quote can be accepted."],
+  ["35", "updateQuotesStep", "Update the quote's status to `accepted`."],
+  ["40", "confirmOrderEditRequestWorkflow", "Confirm the changes made on the draft order, such as changes to item quantities and prices."],
+  ["47", "updateOrderWorkflow", "Update the draft order to change its status and convert it into an order."]
+]
+
+```ts title="src/workflows/customer-accept-quote.ts" highlights={customerAcceptQuoteHighlights}
+import {
+  confirmOrderEditRequestWorkflow,
+  updateOrderWorkflow,
+  useQueryGraphStep,
+} from "@medusajs/core-flows"
+import { OrderStatus } from "@medusajs/framework/utils"
+import { createWorkflow } from "@medusajs/workflows-sdk"
+import { validateQuoteCanAcceptStep } from "./steps/validate-quote-can-accept"
+import { QuoteStatus } from "../modules/quote/models/quote"
+import { updateQuotesStep } from "./steps/update-quotes"
+
+type WorkflowInput = {
+  quote_id: string;
+  customer_id: string;
+};
+
+export const customerAcceptQuoteWorkflow = createWorkflow(
+  "customer-accept-quote-workflow",
+  (input: WorkflowInput) => {
+    // @ts-ignore
+    const { data: quotes } = useQueryGraphStep({
+      entity: "quote",
+      fields: ["id", "draft_order_id", "status"],
+      filters: { id: input.quote_id, customer_id: input.customer_id },
+      options: {
+        throwIfKeyNotFound: true,
+      },
+    })
+
+    validateQuoteCanAcceptStep({ 
+      // @ts-ignore
+      quote: quotes[0],
+    })
+
+    updateQuotesStep([{ 
+      id: input.quote_id, 
+      status: QuoteStatus.ACCEPTED,
+    }])
+
+    confirmOrderEditRequestWorkflow.runAsStep({
+      input: {
+        order_id: quotes[0].draft_order_id,
+        confirmed_by: input.customer_id,
+      },
+    })
+
+    updateOrderWorkflow.runAsStep({
+      input:{ 
+        id: quotes[0].draft_order_id,
+        // @ts-ignore
+        status: OrderStatus.PENDING,
+        is_draft_order: false,
+      },
+    })
+  }
+)
+```
+
+You create a workflow that accepts the IDs of the quote to accept and the customer accepting it. In the workflow, you:
+
+1. Use the `useQueryGraphStep` to retrieve the quote's details. You pass the IDs of the quotes and the customer as filters to ensure that the quote belongs to the customer.
+2. Validate that the quote can be accepted using the `validateQuoteCanAcceptStep`.
+3. Update the quote's status to `accepted` using the `updateQuotesStep`.
+4. Confirm the changes made on the draft order using the `confirmOrderEditRequestWorkflow` executed as a step. This is useful when you soon add the admin functionality to edit the quote items. Any changes that the admin has made will be applied on the draft order using this step.
+5. Update the draft order to change its status and convert it into an order using the `updateOrderWorkflow` executed as a step.
+
+You'll use this workflow next in an API route that allows a customer to accept a quote.
+
+### Add Customer Accept Quote API Route
+
+You'll now add the API route that allows a customer to accept a quote. The route will use the `customerAcceptQuoteWorkflow` you created in the previous step.
+
+Create the file `src/api/store/customers/me/quotes/[id]/accept/route.ts` with the following content:
+
+![Directory structure after adding the customer accept quote API route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741166543/Medusa%20Resources/quote-45_y8zprn.jpg)
+
+```ts title="src/api/store/customers/me/quotes/[id]/accept/route.ts"
+import type {
+  AuthenticatedMedusaRequest,
+  MedusaResponse,
+} from "@medusajs/framework/http"
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { 
+  customerAcceptQuoteWorkflow,
+} from "../../../../../../../workflows/customer-accept-quote"
+
+export const POST = async (
+  req: AuthenticatedMedusaRequest,
+  res: MedusaResponse
+) => {
+  const query = req.scope.resolve(ContainerRegistrationKeys.QUERY)
+  const { id } = req.params
+
+  await customerAcceptQuoteWorkflow(req.scope).run({
+    input: {
+      quote_id: id,
+      customer_id: req.auth_context.actor_id,
+    },
+  })
+
+  const {
+    data: [quote],
+  } = await query.graph(
+    {
+      entity: "quote",
+      filters: { id },
+      fields: req.queryConfig.fields,
+    },
+    { throwIfKeyNotFound: true }
+  )
+
+  return res.json({ quote })
+}
+```
+
+You create a `POST` route handler, which will expose a `POST` API route at `/store/customers/me/quotes/:id/accept`. In the route handler, you run the `customerAcceptQuoteWorkflow` with the quote's ID as input. You then retrieve the updated quote using Query and return it in the response.
+
+Notice that you can pass `req.queryConfig.fields` to the `query.graph` method because you've applied the `validateAndTransformQuery` middleware before to all routes starting with `/store/customers/me/quotes`.
+
+### Test Customer Accept Quote Feature
+
+To test the customer accept quote feature, start the Medusa application:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, send a request to accept a quote for the authenticated customer:
+
+```bash
+curl 'http://localhost:9000/store/customers/me/quotes/{quote_id}/accept' \
+-H 'x-publishable-api-key: {your_publishable_api_key}' \
+-H 'Authorization: Bearer {token}'
+```
+
+Make sure to replace:
+
+- `{quote_id}` with the ID of the quote you want to accept.
+- `{your_publishable_api_key}` with [your publishable API key](#retrieve-publishable-api-key).
+- `{token}` with the customer's [authentication token](#retrieve-customer-authentication-token).
+
+After sending the request, the quote will be accepted, and the updated quote will be returned in the response.
+
+You can also view the quote from the Medusa Admin dashboard, where you'll find its status has changed. The quote will also have an order, which you can view in the Orders page or using the "View Order" button on the quote's details page.
+
+![View order button on quote's details page in Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1741166844/Medusa%20Resources/Screenshot_2025-03-05_at_11.27.02_AM_s90rqh.png)
+
+---
+
+## Step 15: Edit Quote Items UI Route
+
+The last feature you'll add is allowing merchants or admin users to make changes to the quote's items. This includes updating the item's quantity and price.
+
+Since you're using an [order change](../../../commerce-modules/order/order-change/page.mdx) to manage edits to the quote's draft orders, you don't need to implement customizations on the server side, such as adding workflows or API routes. Instead, you'll only add a new UI route in the Medusa Admin that uses the [Order Edit API routes](!api!/admin#order-edits) to provide the functionality to edit the quote's items.
+
+<Note>
+
+Order changes also allow you to add or remove items from the quote. However, for simplicity, this guide only covers how to update the item's quantity and price. Refer to the [Order Change](../../../commerce-modules/order/order-change/page.mdx) documentation to learn more.
+
+</Note>
+
+![Edit quote items page in Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1741169659/Medusa%20Resources/Screenshot_2025-03-05_at_12.14.05_PM_ufvkqb.png)
+
+In this step, you'll add a new UI route to manage the quote's items. This will include:
+
+1. Adding hooks to send requests to [Medusa's Order Edits API routes](!api!/admin#order-edits).
+2. Implement the components you'll use within the UI route.
+3. Add the new UI route to the Medusa Admin.
+
+### Intermission: Order Editing Overview
+
+Before you start implementing the customizations, let's take a look at how order editing works in Medusa.
+
+When the admin wants to edit an order's items, Medusa creates an order change. You've already implemented this part on quote creation.
+
+Then, when the admin makes an edit to an item, Medusa saves that edit but without applying it to the order or finalizing the edit. This allows the admin to make multiple edits before finalizing the changes.
+
+Once the admin is finished editing, they can confirm the order edit, which finalizes it to later be applied on the order. You've already implemented applying the order edit on the order when the customer accepts the quote.
+
+So, you still need two implement two aspects: updating the quote items, and confirming the order edit. You'll implement these in the next steps.
+
+### Add Hooks
+
+To implement the edit quote items functionality, you'll need two hooks:
+
+1. A hook that updates a quote item's quantity and price using the Order Edits API routes.
+2. A hook that confirms the edit of the items using the Order Edits API routes.
+
+#### Update Quote Item Hook
+
+The first hook updates an item's quantity and price using the Order Edits API routes. You'll use this whenever an admin updates an item's quantity or price.
+
+In `src/admin/hooks/quotes.tsx`, add the following hook:
+
+```tsx title="src/admin/hooks/quotes.tsx"
+// other imports...
+import { HttpTypes } from "@medusajs/framework/types"
+
+// ...
+
+export const useUpdateQuoteItem = (
+  id: string,
+  options?: UseMutationOptions<
+    HttpTypes.AdminOrderEditPreviewResponse,
+    FetchError,
+    UpdateQuoteItemParams
+  >
+) => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: ({
+      itemId,
+      ...payload
+    }: UpdateQuoteItemParams) => {
+      return sdk.admin.orderEdit.updateOriginalItem(id, itemId, payload)
+    },
+    onSuccess: (data: any, variables: any, context: any) => {
+      queryClient.invalidateQueries({
+        queryKey: [orderPreviewQueryKey, id],
+      })
+
+      options?.onSuccess?.(data, variables, context)
+    },
+    ...options,
+  })
+}
+```
+
+You create a `useUpdateQuoteItem` hook that accepts the quote's ID and optional options as parameters. In the hook, you use the `useMutation` hook to define the mutation action that updates an item's quantity and price using the `sdk.admin.orderEdit.updateOriginalItem` method.
+
+When the mutation is invoked, the hook invalidates the quote's data in the query client, which will trigger a re-fetch of the data.
+
+#### Confirm Order Edit Hook
+
+Next, you'll add a hook that confirms the order edit. This hook will be used when the admin is done editing the quote's items. As mentioned earlier, confirming the order edit doesn't apply the changes to the order but finalizes the edit.
+
+In `src/admin/hooks/quotes.tsx`, add the following hook:
+
+```tsx title="src/admin/hooks/quotes.tsx"
+export const useConfirmQuote = (
+  id: string,
+  options?: UseMutationOptions<
+    HttpTypes.AdminOrderEditPreviewResponse,
+    FetchError,
+    void
+  >
+) => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: () => sdk.admin.orderEdit.request(id),
+    onSuccess: (data: any, variables: any, context: any) => {
+      queryClient.invalidateQueries({
+        queryKey: [orderPreviewQueryKey, id],
+      })
+
+      options?.onSuccess?.(data, variables, context)
+    },
+    ...options,
+  })
+}
+```
+
+You create a `useConfirmQuote` hook that accepts the quote's ID and optional options as parameters. In the hook, you use the `useMutation` hook to define the mutation action that confirms the order edit using the `sdk.admin.orderEdit.request` method.
+
+When the mutation is invoked, the hook invalidates the quote's data in the query client, which will trigger a re-fetch of the data.
+
+Now that you have the necessary hooks, you can use them in the UI route and its components.
+
+### Add ManageItem Component
+
+The UI route will show the list of items to the admin user and allows them to update the item's quantity and price. So, you'll create a component that allows the admin to manage a single item's details. You'll later use this component for each item in the quote.
+
+![Screenshot of the manage item component in Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1741186495/Medusa%20Resources/manage-item-highlight_ouffnu.png)
+
+Create the file `src/admin/components/manage-item.tsx` with the following content:
+
+![Directory structure after adding the manage item component file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741168152/Medusa%20Resources/quote-46_yxanj7.jpg)
+
+```tsx
+import { AdminOrder, AdminOrderPreview } from "@medusajs/framework/types"
+import {
+  Badge,
+  CurrencyInput,
+  Hint,
+  Input,
+  Label,
+  Text,
+  toast,
+} from "@medusajs/ui"
+import { useMemo } from "react"
+import {
+  useUpdateQuoteItem,
+} from "../hooks/quotes"
+import { Amount } from "./amount"
+
+type ManageItemProps = {
+  originalItem: AdminOrder["items"][0];
+  item: AdminOrderPreview["items"][0];
+  currencyCode: string;
+  orderId: string;
+};
+
+export function ManageItem({
+  originalItem,
+  item,
+  currencyCode,
+  orderId,
+}: ManageItemProps) {
+  const { mutateAsync: updateItem } = useUpdateQuoteItem(orderId)
+
+  const isItemUpdated = useMemo(
+    () => !!item.actions?.find((a) => a.action === "ITEM_UPDATE"),
+    [item]
+  )
+
+  const onUpdate = async ({
+    quantity,
+    unit_price,
+  }: {
+    quantity?: number;
+    unit_price?: number;
+  }) => {
+    if (
+      typeof quantity === "number" &&
+      quantity <= item.detail.fulfilled_quantity
+    ) {
+      toast.error("Quantity should be greater than the fulfilled quantity")
+      return
+    }
+
+    try {
+      await updateItem({
+        quantity,
+        unit_price,
+        itemId: item.id,
+      })
+    } catch (e) {
+      toast.error((e as any).message)
+    }
+  }
+  
+  // TODO render the item's details and input fields
+}
+```
+
+You define a `ManageItem` component that accepts the following props:
+
+- `originalItem`: The original item details from the quote. This is the item's details before any edits.
+- `item`: The item's details from the quote's order preview. This is the item's details which may have been edited.
+- `currencyCode`: The currency code of the quote's draft order.
+- `orderId`: The ID of the quote's draft order.
+
+In the component, you define the following variables:
+
+- `updateItem`: The `mutateAsync` function returned by the `useUpdateQuoteItem` hook. This function updates the item's quantity and price using Medusa's Order Edits API routes.
+- `isItemUpdated`: A boolean that indicates whether the item has been updated.
+
+You also define an `onUpdate` function that will be called when the admin updates the item's quantity or price. The function sends a request to update the item's quantity and price using the `updateItem` function. If the quantity is less than or equal to the fulfilled quantity, you show an error message.
+
+Next, you'll add a return statement to show the item's details and allow the admin to update the item's quantity and price. Replace the `TODO` with the following:
+
+```tsx title="src/admin/components/manage-item.tsx"
+return (
+  <div
+    key={item.quantity}
+    className="bg-ui-bg-subtle shadow-elevation-card-rest my-2 rounded-xl "
+  >
+    <div className="flex flex-col items-center gap-x-2 gap-y-2 p-3 text-sm md:flex-row">
+      <div className="flex flex-1 items-center justify-between">
+        <div className="flex flex-row items-center gap-x-3">
+
+          <div className="flex flex-col">
+            <div>
+              <Text className="txt-small" as="span" weight="plus">
+                {item.title}{" "}
+              </Text>
+
+              {item.variant_sku && <span>({item.variant_sku})</span>}
+            </div>
+            <Text as="div" className="text-ui-fg-subtle txt-small">
+              {item.product_title}
+            </Text>
+          </div>
+        </div>
+
+        {isItemUpdated && (
+            <Badge
+              size="2xsmall"
+              rounded="full"
+              color="orange"
+              className="mr-1"
+            >
+              Modified
+            </Badge>
+        )}
+      </div>
+
+      <div className="flex flex-1 justify-between">
+        <div className="flex flex-grow items-center gap-2">
+          <Input
+            className="bg-ui-bg-base txt-small w-[67px] rounded-lg [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            type="number"
+            disabled={item.detail.fulfilled_quantity === item.quantity}
+            min={item.detail.fulfilled_quantity}
+            defaultValue={item.quantity}
+            onBlur={(e) => {
+              const val = e.target.value
+              const quantity = val === "" ? null : Number(val)
+
+              if (quantity) {
+                onUpdate({ quantity })
+              }
+            }}
+          />
+          <Text className="txt-small text-ui-fg-subtle">
+            Quantity
+          </Text>
+        </div>
+
+        <div className="text-ui-fg-subtle txt-small mr-2 flex flex-shrink-0">
+          <Amount
+            currencyCode={currencyCode}
+            amount={item.total}
+            originalAmount={originalItem?.total}
+          />
+        </div>
+      </div>
+    </div>
+
+    <div className="grid grid-cols-1 gap-2 p-3 md:grid-cols-2">
+      <div className="flex flex-col gap-y-1">
+        <Label>Price</Label>
+        <Hint className="!mt-1">
+          Override the unit price of this product
+        </Hint>
+      </div>
+
+      <div className="flex items-center gap-1">
+        <div className="flex-grow">
+          <CurrencyInput
+            symbol={currencyCode}
+              code={currencyCode}
+            defaultValue={item.unit_price}
+            type="numeric"
+            min={0}
+            onBlur={(e) => {
+              onUpdate({
+                unit_price: parseFloat(e.target.value),
+                quantity: item.quantity,
+              })
+            }}
+            className="bg-ui-bg-field-component hover:bg-ui-bg-field-component-hover"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+)
+```
+
+You show the item's title, product title, and variant SKU. If the item has been updated, you show a "Modified" badge.
+
+You also show input fields for the quantity and price of the item, allowing the admin to update the item's quantity and price. Once the admin updates the quantity or price, the `onUpdate` function is called to send a request to update the item's details.
+
+### Add ManageQuoteForm Component
+
+Next, you'll add the form component that shows the list of items in the quote and allows the admin to manage each item. You'll use the `ManageItem` component you created in the previous step for each item in the quote.
+
+![Screenshot of the manage quote form in the Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1741186643/Medusa%20Resources/manage-quote-form-highlight_pfyee5.png)
+
+Create the file `src/admin/components/manage-quote-form.tsx` with the following content:
+
+![Directory structure after adding the manage quote form component file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741168581/Medusa%20Resources/quote-47_f5kamq.jpg)
+
+```tsx title="src/admin/components/manage-quote-form.tsx"
+import { AdminOrder } from "@medusajs/framework/types"
+import { Button, Heading, toast } from "@medusajs/ui"
+import { useConfirmQuote } from "../hooks/quotes"
+import { formatAmount } from "../utils/format-amount"
+import { useOrderPreview } from "../hooks/order-preview"
+import { useNavigate, useParams } from "react-router-dom"
+import { useMemo } from "react"
+import { ManageItem } from "./manage-item"
+
+type ReturnCreateFormProps = {
+  order: AdminOrder;
+};
+
+export const ManageQuoteForm = ({ order }: ReturnCreateFormProps) => {
+  const { order: preview } = useOrderPreview(order.id)
+  const navigate = useNavigate()
+  const { id: quoteId } = useParams()
+
+  const { mutateAsync: confirmQuote, isPending: isRequesting } =
+    useConfirmQuote(order.id)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      await confirmQuote()
+      navigate(`/quotes/${quoteId}`)
+
+      toast.success("Successfully updated quote")
+    } catch (e) {
+      toast.error("Error", {
+        description: (e as any).message,
+      })
+    }
+  }
+  
+    const originalItemsMap = useMemo(() => {
+      return new Map(order.items.map((item) => [item.id, item]))
+    }, [order])
+
+  if (!preview) {
+    return <></>
+  }
+
+  // TODO render form
+}
+```
+
+You define a `ManageQuoteForm` component that accepts the quote's draft order as a prop. In the component, you retrieve the preview of that order. The preview holds any edits made on the order's items.
+
+You also define the `confirmQuote` function using the `useConfirmQuote` hook. This function confirms the order edit, finalizing the changes made on the order's items.
+
+Then, you define the `handleSubmit` function that will be called when the admin submits the form. The function confirms the order edit using the `confirmQuote` function and navigates the admin back to the quote's details page.
+
+Next, you'll add a return statement to show the edit form for the quote's items. Replace the `TODO` with the following:
+
+```tsx title="src/admin/components/manage-quote-form.tsx"
+return (
+  <form onSubmit={handleSubmit} className="flex h-full flex-col p-4 gap-2">
+    <div>
+      <div className="mb-3 mt-8 flex items-center justify-between">
+        <Heading level="h2">Items</Heading>
+      </div>
+
+      {preview.items.map((item) => (
+        <ManageItem
+          key={item.id}
+          originalItem={originalItemsMap.get(item.id)!}
+          item={item}
+          orderId={order.id}
+          currencyCode={order.currency_code}
+        />
+      ))}
+    </div>
+
+    <div className="mt-8 border-y border-dotted py-4">
+      <div className="mb-2 flex items-center justify-between">
+        <span className="txt-small text-ui-fg-subtle">
+          Current Total
+        </span>
+
+        <span className="txt-small text-ui-fg-subtle">
+          {formatAmount(order.total, order.currency_code)}
+        </span>
+      </div>
+
+      <div className="mb-2 flex items-center justify-between">
+        <span className="txt-small text-ui-fg-subtle">
+          New Total
+        </span>
+
+        <span className="txt-small text-ui-fg-subtle">
+          {formatAmount(preview.total, order.currency_code)}
+        </span>
+      </div>
+    </div>
+
+    <div className="flex w-full items-center justify-end gap-x-4">
+      <div className="flex items-center justify-end gap-x-2">
+        <Button
+          key="submit-button"
+          type="submit"
+          variant="primary"
+          size="small"
+          disabled={isRequesting}
+        >
+          Confirm Edit
+        </Button>
+      </div>
+    </div>
+  </form>
+)
+```
+
+You use the `ManageItem` component to show each item in the quote and allow the admin to update the item's quantity and price. You also show the updated total amount of the quote and a button to confirm the order edit.
+
+You'll use this component next in the UI route that allows the admin to edit the quote's items.
+
+### Implement UI Route
+
+Finally, you'll add the UI route that allows the admin to edit the quote's items. The route will use the `ManageQuoteForm` component you created in the previous step.
+
+Create the file `src/admin/routes/quotes/[id]/manage/page.tsx` with the following content:
+
+![Directory structure after adding the edit quote items UI route file](https://res.cloudinary.com/dza7lstvk/image/upload/v1741168993/Medusa%20Resources/quote-48_roangs.jpg)
+
+```tsx title="src/admin/routes/quotes/[id]/manage/page.tsx"
+import { useParams } from "react-router-dom"
+import { useQuote } from "../../../../hooks/quotes"
+import { Container, Heading, Toaster } from "@medusajs/ui"
+import { ManageQuoteForm } from "../../../../components/manage-quote-form"
+
+const QuoteManage = () => {
+  const { id } = useParams()
+  const { quote, isLoading } = useQuote(id!, {
+    fields:
+      "*draft_order.customer",
+  })
+
+  if (isLoading) {
+    return <></>
+  }
+
+  if (!quote) {
+    throw "quote not found"
+  }
+
+  return (
+    <>
+      <Container className="divide-y p-0">
+        <Heading className="flex items-center justify-between px-6 py-4">
+          Manage Quote
+        </Heading>
+
+        <ManageQuoteForm order={quote.draft_order} />
+      </Container>
+      <Toaster />
+    </>
+  )
+}
+
+export default QuoteManage
+```
+
+You define a `QuoteManage` component that will show the form to manage the quote's items in the Medusa Admin dashboard.
+
+In the component, you first retrieve the quote's details using the `useQuote` hook. Then, you show the `ManageQuoteForm` component, passing the quote's draft order as a prop.
+
+### Add Manage Button to Quote Details Page
+
+To allow the admin to access the manage page you just added, you'll add a new button on the quote's details page that links to the manage page.
+
+In `src/admin/routes/quotes/[id]/page.tsx`, add the following variable definition after the `showSendQuote` variable:
+
+```tsx title="src/admin/routes/quotes/[id]/page.tsx"
+const [showManageQuote, setShowManageQuote] = useState(false)
+```
+
+This variable will be used to show or hide the manage quote button.
+
+Then, update the existing `useEffect` hook to the following:
+
+```tsx title="src/admin/routes/quotes/[id]/page.tsx"
+useEffect(() => {
+  if (["pending_merchant", "customer_rejected"].includes(quote?.status!)) {
+    setShowSendQuote(true)
+  } else {
+    setShowSendQuote(false)
+  }
+
+  if (
+    ["customer_rejected", "merchant_rejected", "accepted"].includes(
+      quote?.status!
+    )
+  ) {
+    setShowRejectQuote(false)
+  } else {
+    setShowRejectQuote(true)
+  }
+
+  if (![
+    "pending_merchant",
+    "customer_rejected",
+    "merchant_rejected",
+  ].includes(quote?.status!)) {
+    setShowManageQuote(false)
+  } else {
+    setShowManageQuote(true)
+  }
+}, [quote])
+```
+
+The `showManageQuote` variable is now updated based on the quote's status, where you only show it if the quote is pending the merchant's action, or if it has been rejected by either the customer or merchant.
+
+Finally, add the following button component after the `Send Quote` button:
+
+```tsx title="src/admin/routes/quotes/[id]/page.tsx"
+{showManageQuote && (
+  <Button
+    size="small"
+    variant="secondary"
+    onClick={() => navigate(`/quotes/${quote.id}/manage`)}
+  >
+    Manage Quote
+  </Button>
+)}
+```
+
+The Manage Quote button is now shown if the `showManageQuote` variable is `true`. When clicked, it navigates the admin to the manage quote page.
+
+### Test Edit Quote Items UI Route
+
+To test the edit quote items UI route, start the Medusa application:
+
+```bash npm2yarn
+npm run dev
+```
+
+Then, open the Medusa Admin dashboard at `http://localhost:9000/admin`. Open a quote's details page whose status is either `pending_merchant`, `merchant_rejected` or `customer_rejected`. You'll find a new "Manage Quote" button.
+
+![Manage Quote button on quote's details page in Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1741169567/Medusa%20Resources/Screenshot_2025-03-05_at_12.12.21_PM_c5fhsp.png)
+
+Click on the button, and you'll be taken to the manage quote page where you can update the quote's items. Try to update the items' quantities or price. Then, once you're done, click the "Confirm Edit" button to finalize the changes.
+
+![Edit quote items page in Medusa Admin](https://res.cloudinary.com/dza7lstvk/image/upload/v1741169659/Medusa%20Resources/Screenshot_2025-03-05_at_12.14.05_PM_ufvkqb.png)
+
+The changes can now be previewed from the quote's details page. The customer can also see these changes using the preview API route you created earlier. Once the customer accepts the quote, the changes will be applied to the order.
+
+---
+
+## Next Steps
+
+You've now implemented quote management features in Medusa. There's still more that you can implement to enhance the quote management experience:
+
+- Refer to the [B2B starter](https://github.com/medusajs/b2b-starter-medusa) for more quote-management related features, including how to add or remove items from a quote, and how to allow messages between the customer and the merchant.
+- To build a storefront, refer to the [Storefront development guide](../../../storefront-development/page.mdx). You can also add to the storefront features related to quote-management using the APIs you implemented in this guide.
+
+If you're new to Medusa, check out the [main documentation](!docs!/learn), where you'll get a more in-depth learning of all the concepts you've used in this guide and more.
+
+To learn more about the commerce features that Medusa provides, check out Medusa's [Commerce Modules](../../../commerce-modules/page.mdx).
+
+You can also check out other guides such as [deployment](../../../deployment/page.mdx) and [integration](../../../integrations/page.mdx) guides.
