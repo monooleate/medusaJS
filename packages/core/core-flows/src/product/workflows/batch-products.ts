@@ -11,6 +11,7 @@ import {
   createWorkflow,
   parallelize,
   transform,
+  when,
 } from "@medusajs/framework/workflows-sdk"
 import { createProductsWorkflow } from "./create-products"
 import { deleteProductsWorkflow } from "./delete-products"
@@ -24,6 +25,22 @@ export interface BatchProductWorkflowInput
     CreateProductWorkflowInputDTO,
     UpdateProductWorkflowInputDTO
   > {}
+
+const conditionallyCreateProducts = (input: BatchProductWorkflowInput) =>
+  when({ input }, ({ input }) => !!input.create?.length).then(() =>
+    createProductsWorkflow.runAsStep({ input: { products: input.create! } })
+  )
+
+const conditionallyUpdateProducts = (input: BatchProductWorkflowInput) =>
+  when({ input }, ({ input }) => !!input.update?.length).then(() =>
+    updateProductsWorkflow.runAsStep({ input: { products: input.update! } })
+  )
+
+const conditionallyDeleteProducts = (input: BatchProductWorkflowInput) =>
+  when({ input }, ({ input }) => !!input.delete?.length).then(() =>
+    deleteProductsWorkflow.runAsStep({ input: { ids: input.delete! } })
+  )
+
 
 export const batchProductsWorkflowId = "batch-products"
 /**
@@ -82,22 +99,16 @@ export const batchProductsWorkflow = createWorkflow(
     input: WorkflowData<BatchProductWorkflowInput>
   ): WorkflowResponse<BatchWorkflowOutput<ProductTypes.ProductDTO>> => {
     const res = parallelize(
-      createProductsWorkflow.runAsStep({
-        input: { products: input.create ?? [] },
-      }),
-      updateProductsWorkflow.runAsStep({
-        input: { products: input.update ?? [] },
-      }),
-      deleteProductsWorkflow.runAsStep({
-        input: { ids: input.delete ?? [] },
-      })
+      conditionallyCreateProducts(input),
+      conditionallyUpdateProducts(input),
+      conditionallyDeleteProducts(input)
     )
 
     return new WorkflowResponse(
       transform({ res, input }, (data) => {
         return {
-          created: data.res[0],
-          updated: data.res[1],
+          created: data.res[0] ?? [],
+          updated: data.res[1] ?? [],
           deleted: data.input.delete ?? [],
         }
       })
