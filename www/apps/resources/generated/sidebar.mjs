@@ -7163,6 +7163,14 @@ export const generatedSidebar = [
                         "loaded": true,
                         "isPathHref": true,
                         "type": "ref",
+                        "title": "draftOrder",
+                        "path": "https://docs.medusajs.com/resources/references/js-sdk/admin/draftOrder",
+                        "children": []
+                      },
+                      {
+                        "loaded": true,
+                        "isPathHref": true,
+                        "type": "ref",
                         "title": "exchange",
                         "path": "https://docs.medusajs.com/resources/references/js-sdk/admin/exchange",
                         "children": []
@@ -25099,46 +25107,6 @@ export const generatedSidebar = [
             ]
           }
         ]
-      }
-    ]
-  },
-  {
-    "loaded": true,
-    "isPathHref": true,
-    "type": "category",
-    "title": "Other",
-    "children": [
-      {
-        "loaded": true,
-        "isPathHref": true,
-        "type": "sub-category",
-        "title": "Contribution Guidelines",
-        "children": [
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/contribution-guidelines/docs",
-            "title": "Docs",
-            "children": []
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/contribution-guidelines/admin-translations",
-            "title": "Admin Translations",
-            "children": []
-          }
-        ]
-      },
-      {
-        "loaded": true,
-        "isPathHref": true,
-        "type": "link",
-        "path": "/usage",
-        "title": "Usage",
-        "children": []
       }
     ]
   }
