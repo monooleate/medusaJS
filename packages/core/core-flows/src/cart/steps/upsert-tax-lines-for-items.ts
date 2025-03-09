@@ -4,6 +4,8 @@ import {
   CreateShippingMethodTaxLineDTO,
   ICartModuleService,
   ItemTaxLineDTO,
+  LineItemTaxLineDTO,
+  ShippingMethodTaxLineDTO,
   ShippingTaxLineDTO,
 } from "@medusajs/framework/types"
 import { Modules, promiseAll } from "@medusajs/framework/utils"
@@ -27,7 +29,7 @@ export interface SetTaxLinesForItemsStepInput {
   shipping_tax_lines: ShippingTaxLineDTO[]
 }
 
-export const setTaxLinesForItemsStepId = "set-tax-lines-for-items"
+export const upsertTaxLinesForItemsStepId = "set-tax-lines-for-items"
 /**
  * This step sets the tax lines of shipping methods and line items in a cart.
  *
@@ -38,7 +40,7 @@ export const setTaxLinesForItemsStepId = "set-tax-lines-for-items"
  * :::
  *
  * @example
- * const data = setTaxLinesForItemsStep({
+ * const data = upsertTaxLinesForItemsStep({
  *   // retrieve the details of the cart from another workflow
  *   // or in another step using the Cart Module's service
  *   cart,
@@ -58,8 +60,8 @@ export const setTaxLinesForItemsStepId = "set-tax-lines-for-items"
  *   }]
  * })
  */
-export const setTaxLinesForItemsStep = createStep(
-  setTaxLinesForItemsStepId,
+export const upsertTaxLinesForItemsStep = createStep(
+  upsertTaxLinesForItemsStepId,
   async (data: SetTaxLinesForItemsStepInput, { container }) => {
     const { cart, item_tax_lines, shipping_tax_lines } = data
     const cartService = container.resolve<ICartModuleService>(Modules.CART)
@@ -81,13 +83,22 @@ export const setTaxLinesForItemsStep = createStep(
           : [],
       ])
 
-    const itemsTaxLinesData = normalizeItemTaxLinesForCart(item_tax_lines)
-    const shippingTaxLinesData =
-      normalizeShippingTaxLinesForCart(shipping_tax_lines)
+    const itemsTaxLinesData = normalizeItemTaxLinesForCart(
+      item_tax_lines,
+      existingLineItemTaxLines
+    )
+    const shippingTaxLinesData = normalizeShippingTaxLinesForCart(
+      shipping_tax_lines,
+      existingShippingMethodTaxLines
+    )
 
     await promiseAll([
-      cartService.setLineItemTaxLines(cart.id, itemsTaxLinesData),
-      cartService.setShippingMethodTaxLines(cart.id, shippingTaxLinesData),
+      itemsTaxLinesData.length
+        ? cartService.upsertLineItemTaxLines(itemsTaxLinesData)
+        : [],
+      shippingTaxLinesData.length
+        ? cartService.upsertShippingMethodTaxLines(shippingTaxLinesData)
+        : [],
     ])
 
     return new StepResponse(null, {
@@ -101,14 +112,13 @@ export const setTaxLinesForItemsStep = createStep(
       return
     }
 
-    const { cart, existingLineItemTaxLines, existingShippingMethodTaxLines } =
+    const { existingLineItemTaxLines, existingShippingMethodTaxLines } =
       revertData
 
     const cartService = container.resolve<ICartModuleService>(Modules.CART)
 
     if (existingLineItemTaxLines) {
-      await cartService.setLineItemTaxLines(
-        cart.id,
+      await cartService.upsertLineItemTaxLines(
         existingLineItemTaxLines.map((taxLine) => ({
           description: taxLine.description,
           tax_rate_id: taxLine.tax_rate_id,
@@ -120,8 +130,7 @@ export const setTaxLinesForItemsStep = createStep(
       )
     }
 
-    await cartService.setShippingMethodTaxLines(
-      cart.id,
+    await cartService.upsertShippingMethodTaxLines(
       existingShippingMethodTaxLines.map((taxLine) => ({
         description: taxLine.description,
         tax_rate_id: taxLine.tax_rate_id,
@@ -135,9 +144,11 @@ export const setTaxLinesForItemsStep = createStep(
 )
 
 function normalizeItemTaxLinesForCart(
-  taxLines: ItemTaxLineDTO[]
+  taxLines: ItemTaxLineDTO[],
+  existingTaxLines: LineItemTaxLineDTO[]
 ): CreateLineItemTaxLineDTO[] {
-  return taxLines.map((taxLine) => ({
+  return taxLines.map((taxLine: ItemTaxLineDTO & { id?: string }) => ({
+    id: existingTaxLines.find((t) => t.item_id === taxLine.line_item_id)?.id,
     description: taxLine.name,
     tax_rate_id: taxLine.rate_id,
     code: taxLine.code!,
@@ -148,9 +159,13 @@ function normalizeItemTaxLinesForCart(
 }
 
 function normalizeShippingTaxLinesForCart(
-  taxLines: ShippingTaxLineDTO[]
+  taxLines: ShippingTaxLineDTO[],
+  existingTaxLines: ShippingMethodTaxLineDTO[]
 ): CreateShippingMethodTaxLineDTO[] {
-  return taxLines.map((taxLine) => ({
+  return taxLines.map((taxLine: ShippingTaxLineDTO & { id?: string }) => ({
+    id: existingTaxLines.find(
+      (t) => t.shipping_method_id === taxLine.shipping_line_id
+    )?.id,
     description: taxLine.name,
     tax_rate_id: taxLine.rate_id,
     code: taxLine.code!,
