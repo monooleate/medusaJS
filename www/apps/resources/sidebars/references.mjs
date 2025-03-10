@@ -99,6 +99,7 @@ export const referencesSidebar = [
         type: "category",
         title: "Steps",
         autogenerate_path: "/references/helper_steps/functions",
+        initialOpen: true,
       },
     ],
   },
@@ -120,11 +121,13 @@ export const referencesSidebar = [
       {
         type: "category",
         title: "Methods",
+        initialOpen: true,
         autogenerate_path: "/service-factory-reference/methods",
       },
       {
         type: "category",
         title: "Tips",
+        initialOpen: true,
         autogenerate_path: "/service-factory-reference/tips",
       },
     ],
@@ -146,6 +149,7 @@ export const referencesSidebar = [
       {
         type: "category",
         title: "Functions",
+        initialOpen: true,
         children: [
           {
             type: "link",
@@ -179,6 +183,7 @@ export const referencesSidebar = [
       {
         type: "category",
         title: "Functions",
+        initialOpen: true,
         autogenerate_path: "/references/workflows/functions",
       },
     ],

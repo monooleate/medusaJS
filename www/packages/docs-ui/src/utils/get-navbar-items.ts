@@ -1,4 +1,4 @@
-import { NavigationItem } from "types"
+import { MenuItem, NavigationItem } from "types"
 import { navDropdownItems } from ".."
 
 type Options = {
@@ -12,20 +12,43 @@ export function getNavDropdownItems({ basePath }: Options): NavigationItem[] {
     }
 
     if (newItem.type === "link") {
-      newItem.path = `${basePath}${newItem.path}`
+      newItem.link = `${basePath}${newItem.link}`
     } else {
-      newItem.children = newItem.children.map((childItem) => {
-        if (childItem.type !== "link") {
-          return childItem
-        }
-
-        return {
-          ...childItem,
-          link: `${basePath}${childItem.link}`,
-        }
+      newItem.children = normalizeMenuItems({
+        basePath,
+        items: newItem.children,
       })
     }
 
     return newItem
+  })
+}
+
+export function normalizeMenuItems({
+  basePath,
+  items,
+}: {
+  basePath: string
+  items: MenuItem[]
+}): MenuItem[] {
+  return items.map((item) => {
+    if (item.type !== "link" && item.type !== "sub-menu") {
+      return item
+    }
+
+    if (item.type === "link") {
+      return {
+        ...item,
+        link: `${basePath}${item.link}`,
+      }
+    }
+
+    return {
+      ...item,
+      items: normalizeMenuItems({
+        basePath,
+        items: item.items,
+      }),
+    }
   })
 }

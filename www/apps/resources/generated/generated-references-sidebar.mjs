@@ -6401,6 +6401,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
           "type": "category",
           "title": "Steps",
           "autogenerate_path": "/references/helper_steps/functions",
+          "initialOpen": true,
           "children": [
             {
               "loaded": true,
@@ -6502,6 +6503,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
           "isPathHref": true,
           "type": "category",
           "title": "Methods",
+          "initialOpen": true,
           "autogenerate_path": "/service-factory-reference/methods",
           "children": [
             {
@@ -6583,6 +6585,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
           "isPathHref": true,
           "type": "category",
           "title": "Tips",
+          "initialOpen": true,
           "autogenerate_path": "/service-factory-reference/tips",
           "children": [
             {
@@ -6622,6 +6625,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
           "isPathHref": true,
           "type": "category",
           "title": "Functions",
+          "initialOpen": true,
           "children": [
             {
               "loaded": true,
@@ -6668,6 +6672,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
           "isPathHref": true,
           "type": "category",
           "title": "Functions",
+          "initialOpen": true,
           "autogenerate_path": "/references/workflows/functions",
           "children": [
             {

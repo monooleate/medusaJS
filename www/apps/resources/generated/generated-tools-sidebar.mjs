@@ -33,6 +33,7 @@ const generatedgeneratedToolsSidebarSidebar = {
           "sidebar_id": "medusa-cli",
           "title": "Medusa CLI",
           "childSidebarTitle": "Medusa CLI Reference",
+          "initialOpen": true,
           "children": [
             {
               "loaded": true,
@@ -756,6 +757,7 @@ const generatedgeneratedToolsSidebarSidebar = {
               "isPathHref": true,
               "type": "category",
               "title": "Payment",
+              "initialOpen": true,
               "children": [
                 {
                   "loaded": true,

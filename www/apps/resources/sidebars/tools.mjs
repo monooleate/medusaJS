@@ -22,6 +22,7 @@ export const toolsSidebar = [
         sidebar_id: "medusa-cli",
         title: "Medusa CLI",
         childSidebarTitle: "Medusa CLI Reference",
+        initialOpen: true,
         children: [
           {
             type: "link",
@@ -100,6 +101,7 @@ export const toolsSidebar = [
           {
             type: "category",
             title: "Payment",
+            initialOpen: true,
             children: [
               {
                 type: "link",
