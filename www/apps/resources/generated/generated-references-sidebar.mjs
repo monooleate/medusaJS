@@ -11,6 +11,9 @@ const generatedgeneratedReferencesSidebarSidebar = {
       "children": []
     },
     {
+      "type": "separator"
+    },
+    {
       "loaded": true,
       "isPathHref": true,
       "type": "link",

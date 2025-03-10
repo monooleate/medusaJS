@@ -1,9 +1,12 @@
 import { Sidebar } from "types"
 
-const getDefaultSidebar = async () =>
-  import("@/generated/generated-resources-sidebar.mjs") as Promise<{
-    default: Sidebar.Sidebar
-  }>
+const getDefaultSidebar = async (): Promise<{ default: Sidebar.Sidebar }> => ({
+  default: {
+    sidebar_id: "default",
+    title: "",
+    items: [],
+  },
+})
 
 const sidebarMappings: {
   module: () => Promise<{ default: Sidebar.Sidebar }>
@@ -74,6 +77,29 @@ const sidebarMappings: {
       "/references/workflows",
       "/references-overview",
     ],
+  },
+  {
+    module: async () =>
+      import(
+        "@/generated/generated-architectural-modules-sidebar.mjs"
+      ) as Promise<{
+        default: Sidebar.Sidebar
+      }>,
+    paths: ["/architectural-modules"],
+  },
+  {
+    module: async () =>
+      import("@/generated/generated-commerce-modules-sidebar.mjs") as Promise<{
+        default: Sidebar.Sidebar
+      }>,
+    paths: ["/commerce-modules"],
+  },
+  {
+    module: async () =>
+      import("@/generated/generated-troubleshooting-sidebar.mjs") as Promise<{
+        default: Sidebar.Sidebar
+      }>,
+    paths: ["/troubleshooting"],
   },
 ]
 export async function getSidebarForPath(
