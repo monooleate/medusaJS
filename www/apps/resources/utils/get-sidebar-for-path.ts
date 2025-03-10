@@ -56,6 +56,25 @@ const sidebarMappings: {
       "/nextjs-starter",
     ],
   },
+  {
+    module: async () =>
+      import("@/generated/generated-references-sidebar.mjs") as Promise<{
+        default: Sidebar.Sidebar
+      }>,
+    paths: [
+      "/admin-widget-injection-zones",
+      "/medusa-container-resources",
+      "/medusa-workflows-reference",
+      "/references/core-flows",
+      "/references/data-model",
+      "/events-reference",
+      "/references/helper-steps",
+      "/service-factory-reference",
+      "/test-tools-reference",
+      "/references/workflows",
+      "/references-overview",
+    ],
+  },
 ]
 export async function getSidebarForPath(
   currentPath: string

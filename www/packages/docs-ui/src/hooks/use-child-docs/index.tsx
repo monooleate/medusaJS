@@ -264,27 +264,41 @@ export const useChildDocs = ({
   }, [isBrowser, searchQuery, storageKey, enableSearch])
 
   const getTopLevelElms = (items?: Sidebar.InteractiveSidebarItem[]) => {
+    const itemsToShow: {
+      [k: string]: Sidebar.InteractiveSidebarItem
+    } = {}
+    items?.forEach((childItem) => {
+      const href = isSidebarItemLink(childItem)
+        ? childItem.path
+        : childItem.type === "sidebar"
+          ? getSidebarFirstLinkChild(childItem)?.path
+          : (
+              childItem.children?.find((item) =>
+                isSidebarItemLink(item)
+              ) as Sidebar.SidebarItemLink
+            )?.path
+
+      if (!href) {
+        return
+      }
+
+      itemsToShow[href] = childItem
+    })
+    const itemsToShowEntries = Object.entries(itemsToShow)
+    if (!itemsToShowEntries.length) {
+      return <></>
+    }
     return (
       <CardList
-        items={
-          items?.map((childItem) => {
-            const href = isSidebarItemLink(childItem)
-              ? childItem.path
-              : childItem.children?.length
-                ? (
-                    childItem.children.find((item) =>
-                      isSidebarItemLink(item)
-                    ) as Sidebar.SidebarItemLink
-                  )?.path
-                : "#"
-            return {
-              title: childItem.title,
-              href,
-              rightIcon:
-                childItem.type === "ref" ? ChevronDoubleRight : undefined,
-            }
-          }) || []
-        }
+        items={itemsToShowEntries.map(([href, childItem]) => {
+          return {
+            title: childItem.title,
+            href,
+            rightIcon:
+              childItem.type === "ref" ? ChevronDoubleRight : undefined,
+            text: childItem.description,
+          }
+        })}
         itemsPerRow={itemsPerRow}
         defaultItemsPerRow={defaultItemsPerRow}
       />

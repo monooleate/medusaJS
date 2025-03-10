@@ -90,27 +90,6 @@ export const sidebar = [
           },
         ],
       },
-      {
-        type: "category",
-        title: "Lists",
-        children: [
-          {
-            type: "link",
-            path: "/medusa-container-resources",
-            title: "Container Dependencies",
-          },
-          {
-            type: "link",
-            path: "/events-reference",
-            title: "Events List",
-          },
-        ],
-      },
-      {
-        type: "category",
-        title: "References",
-        children: referencesSidebar,
-      },
     ],
   },
   {
@@ -137,5 +116,10 @@ export const sidebar = [
     sidebar_id: "tools",
     title: "Tools",
     items: toolsSidebar,
+  },
+  {
+    sidebar_id: "references",
+    title: "References",
+    items: referencesSidebar,
   },
 ]

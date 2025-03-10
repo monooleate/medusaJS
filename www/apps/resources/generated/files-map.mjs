@@ -964,6 +964,10 @@ export const filesMap = [
     "pathname": "/recipes/subscriptions"
   },
   {
+    "filePath": "/www/apps/resources/app/references-overview/page.mdx",
+    "pathname": "/references-overview"
+  },
+  {
     "filePath": "/www/apps/resources/app/service-factory-reference/methods/create/page.mdx",
     "pathname": "/service-factory-reference/methods/create"
   },
