@@ -5,8 +5,6 @@ import "./globals.css"
 import { BareboneLayout, TightLayout } from "docs-ui"
 import { config } from "@/config"
 import clsx from "clsx"
-import Feedback from "../components/Feedback"
-import EditButton from "../components/EditButton"
 import Footer from "../components/Footer"
 
 const ogImage =
@@ -66,8 +64,6 @@ export default function RootLayout({
     >
       <TightLayout ProvidersComponent={Providers} footerComponent={<Footer />}>
         {children}
-        <Feedback className="my-2" />
-        <EditButton />
       </TightLayout>
     </BareboneLayout>
   )
