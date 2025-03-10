@@ -2227,6 +2227,42 @@ export const generatedSidebars = [
                             "title": "updateShippingMethods",
                             "description": "",
                             "children": []
+                          },
+                          {
+                            "loaded": true,
+                            "isPathHref": true,
+                            "type": "link",
+                            "path": "/references/cart/upsertLineItemAdjustments",
+                            "title": "upsertLineItemAdjustments",
+                            "description": "",
+                            "children": []
+                          },
+                          {
+                            "loaded": true,
+                            "isPathHref": true,
+                            "type": "link",
+                            "path": "/references/cart/upsertLineItemTaxLines",
+                            "title": "upsertLineItemTaxLines",
+                            "description": "",
+                            "children": []
+                          },
+                          {
+                            "loaded": true,
+                            "isPathHref": true,
+                            "type": "link",
+                            "path": "/references/cart/upsertShippingMethodAdjustments",
+                            "title": "upsertShippingMethodAdjustments",
+                            "description": "",
+                            "children": []
+                          },
+                          {
+                            "loaded": true,
+                            "isPathHref": true,
+                            "type": "link",
+                            "path": "/references/cart/upsertShippingMethodTaxLines",
+                            "title": "upsertShippingMethodTaxLines",
+                            "description": "",
+                            "children": []
                           }
                         ]
                       }
