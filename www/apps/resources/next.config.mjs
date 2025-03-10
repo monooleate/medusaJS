@@ -149,7 +149,7 @@ const nextConfig = {
     "*": ["node_modules/@medusajs/icons"],
   },
   experimental: {
-    optimizePackageImports: ["@medusajs/icons", "@medusajs/ui"],
+    optimizePackageImports: ["@medusajs/icons", "@medusajs/ui", "elkjs"],
   },
 }
 

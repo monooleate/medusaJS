@@ -536,6 +536,12 @@ export const SidebarProvider = ({
     )
   }, [isBrowser, desktopSidebarOpen])
 
+  useEffect(() => {
+    if (initialSidebars[0].sidebar_id !== sidebars[0].sidebar_id) {
+      resetItems()
+    }
+  }, [initialSidebars])
+
   const updatePersistedCategoryState = (title: string, opened: boolean) => {
     const storageData = JSON.parse(
       localStorage.getItem(categoriesStorageKey) || "{}"
