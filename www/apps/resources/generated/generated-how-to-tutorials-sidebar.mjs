@@ -26,6 +26,7 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
       "isPathHref": true,
       "type": "category",
       "title": "How-To Guides",
+      "description": "How-to guides are a collection of guides that help you understand how to achieve certain customizations or implementing specific features in Medusa.",
       "children": [
         {
           "loaded": true,
@@ -35,6 +36,7 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
           "autogenerate_tags": "howTo+server",
           "autogenerate_as_ref": true,
           "sort_sidebar": "alphabetize",
+          "description": "These how-to guides help you customize the Medusa server to implement custom features and business logic.",
           "children": [
             {
               "loaded": true,
@@ -146,29 +148,130 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
             {
               "loaded": true,
               "isPathHref": true,
-              "type": "link",
-              "path": "/admin-components",
-              "title": "Overview",
-              "children": []
-            },
-            {
-              "type": "separator"
-            },
-            {
-              "loaded": true,
-              "isPathHref": true,
-              "type": "category",
-              "title": "Components",
-              "autogenerate_path": "/admin-components/components",
-              "children": []
-            },
-            {
-              "loaded": true,
-              "isPathHref": true,
-              "type": "category",
-              "title": "Layouts",
-              "autogenerate_path": "/admin-components/layouts",
-              "children": []
+              "type": "sidebar",
+              "sidebar_id": "admin-components-layouts",
+              "title": "Components & Layouts",
+              "children": [
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/admin-components",
+                  "title": "Overview",
+                  "children": []
+                },
+                {
+                  "type": "separator"
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "category",
+                  "title": "Layouts",
+                  "autogenerate_path": "/admin-components/layouts",
+                  "children": [
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/admin-components/layouts/single-column",
+                      "title": "Single Column",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/admin-components/layouts/two-column",
+                      "title": "Two Column",
+                      "description": "",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "category",
+                  "title": "Components",
+                  "autogenerate_path": "/admin-components/components",
+                  "children": [
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/admin-components/components/action-menu",
+                      "title": "Action Menu",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/admin-components/components/container",
+                      "title": "Container",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/admin-components/components/data-table",
+                      "title": "Data Table",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/admin-components/components/forms",
+                      "title": "Forms",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/admin-components/components/header",
+                      "title": "Header",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/admin-components/components/json-view-section",
+                      "title": "JSON View",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/admin-components/components/section-row",
+                      "title": "Section Row",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/admin-components/components/table",
+                      "title": "Table",
+                      "description": "",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -179,6 +282,7 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
       "isPathHref": true,
       "type": "category",
       "title": "Tutorials",
+      "description": "Tutorials are step-by-step guides that take you through implementing a specific use case in Medusa. You can follow these guides whether you're a beginner or an experienced Medusa developer.\n\nWhile tutorials show you a specific use case, they also help you understand how to implement similar use cases in your own projects. Also, you can implement the use case in a tutorial differently to fit your business requirements.",
       "children": [
         {
           "loaded": true,
@@ -186,15 +290,16 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
           "type": "link",
           "title": "Custom Item Pricing",
           "path": "/examples/guides/custom-item-price",
+          "description": "Learn how to use prices from external systems for products.",
           "children": []
         },
         {
           "loaded": true,
           "isPathHref": true,
           "type": "link",
-          "title": "Wishlist",
+          "title": "Wishlist Plugin",
           "path": "/plugins/guides/wishlist",
-          "description": "Learn how to build a wishlist plugin.",
+          "description": "Learn how to build a plugin for wishlist functionalities.",
           "children": []
         },
         {
@@ -257,9 +362,6 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
           "children": []
         },
         {
-          "type": "separator"
-        },
-        {
           "loaded": true,
           "isPathHref": true,
           "type": "link",
@@ -268,12 +370,9 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
           "children": []
         },
         {
-          "type": "separator"
-        },
-        {
           "loaded": true,
           "isPathHref": true,
-          "type": "category",
+          "type": "sub-category",
           "title": "Self-Hosting",
           "children": [
             {
@@ -297,7 +396,7 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
         {
           "loaded": true,
           "isPathHref": true,
-          "type": "category",
+          "type": "sub-category",
           "title": "Next.js Starter",
           "autogenerate_path": "/deployment/storefront",
           "children": [

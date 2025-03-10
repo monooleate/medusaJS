@@ -2101,7 +2101,7 @@ export const generatedEditDates = {
   "app/admin-components/components/json-view-section/page.mdx": "2024-10-07T11:15:58.833Z",
   "app/admin-components/components/section-row/page.mdx": "2024-10-07T11:15:58.832Z",
   "app/admin-components/components/table/page.mdx": "2025-03-03T14:53:37.952Z",
-  "app/admin-components/page.mdx": "2025-03-07T08:00:46.960Z",
+  "app/admin-components/page.mdx": "2025-03-10T10:42:41.345Z",
   "app/admin-components/layouts/single-column/page.mdx": "2024-10-07T11:16:06.435Z",
   "app/admin-components/layouts/two-column/page.mdx": "2024-10-07T11:16:10.092Z",
   "app/admin-components/components/forms/page.mdx": "2024-10-09T12:48:04.229Z",
@@ -6039,5 +6039,6 @@ export const generatedEditDates = {
   "references/core_flows/types/core_flows.RefreshCartItemsWorkflowInput/page.mdx": "2025-03-04T13:33:46.131Z",
   "references/core_flows/types/core_flows.RefreshCartShippingMethodsWorkflowInput/page.mdx": "2025-03-04T13:33:46.133Z",
   "references/core_flows/types/core_flows.ValidateExistingPaymentCollectionStepInput/page.mdx": "2025-03-04T13:33:46.130Z",
-  "references/types/interfaces/types.ITaxProvider/page.mdx": "2025-03-04T13:33:52.645Z"
+  "references/types/interfaces/types.ITaxProvider/page.mdx": "2025-03-04T13:33:52.645Z",
+  "app/how-to-tutorials/page.mdx": "2025-03-10T09:33:49.208Z"
 }

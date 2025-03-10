@@ -788,12 +788,12 @@ export const filesMap = [
     "pathname": "/examples/guides/custom-item-price"
   },
   {
-    "filePath": "/www/apps/resources/app/examples/guides/quote-management/page.mdx",
-    "pathname": "/examples/guides/quote-management"
-  },
-  {
     "filePath": "/www/apps/resources/app/examples/page.mdx",
     "pathname": "/examples"
+  },
+  {
+    "filePath": "/www/apps/resources/app/how-to-tutorials/page.mdx",
+    "pathname": "/how-to-tutorials"
   },
   {
     "filePath": "/www/apps/resources/app/integrations/guides/resend/page.mdx",

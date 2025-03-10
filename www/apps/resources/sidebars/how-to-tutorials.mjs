@@ -2,7 +2,6 @@
 export const howToTutorialsSidebar = [
   {
     type: "link",
-    // TODO add page
     path: "/how-to-tutorials",
     title: "Overview",
   },
@@ -17,6 +16,8 @@ export const howToTutorialsSidebar = [
   {
     type: "category",
     title: "How-To Guides",
+    description:
+      "How-to guides are a collection of guides that help you understand how to achieve certain customizations or implementing specific features in Medusa.",
     children: [
       {
         type: "sub-category",
@@ -24,6 +25,8 @@ export const howToTutorialsSidebar = [
         autogenerate_tags: "howTo+server",
         autogenerate_as_ref: true,
         sort_sidebar: "alphabetize",
+        description:
+          "These how-to guides help you customize the Medusa server to implement custom features and business logic.",
       },
       {
         type: "sub-category",
@@ -33,22 +36,29 @@ export const howToTutorialsSidebar = [
         sort_sidebar: "alphabetize",
         children: [
           {
-            type: "link",
-            path: "/admin-components",
-            title: "Overview",
-          },
-          {
-            type: "separator",
-          },
-          {
-            type: "category",
-            title: "Layouts",
-            autogenerate_path: "/admin-components/layouts",
-          },
-          {
-            type: "category",
-            title: "Components",
-            autogenerate_path: "/admin-components/components",
+            type: "sidebar",
+            sidebar_id: "admin-components-layouts",
+            title: "Components & Layouts",
+            children: [
+              {
+                type: "link",
+                path: "/admin-components",
+                title: "Overview",
+              },
+              {
+                type: "separator",
+              },
+              {
+                type: "category",
+                title: "Layouts",
+                autogenerate_path: "/admin-components/layouts",
+              },
+              {
+                type: "category",
+                title: "Components",
+                autogenerate_path: "/admin-components/components",
+              },
+            ],
           },
         ],
       },
@@ -57,17 +67,23 @@ export const howToTutorialsSidebar = [
   {
     type: "category",
     title: "Tutorials",
+    description: `Tutorials are step-by-step guides that take you through implementing a specific use case in Medusa. You can follow these guides whether you're a beginner or an experienced Medusa developer.
+
+While tutorials show you a specific use case, they also help you understand how to implement similar use cases in your own projects. Also, you can implement the use case in a tutorial differently to fit your business requirements.`,
     children: [
       {
         type: "link",
         title: "Custom Item Pricing",
         path: "/examples/guides/custom-item-price",
+        description:
+          "Learn how to use prices from external systems for products.",
       },
       {
         type: "link",
-        title: "Wishlist",
+        title: "Wishlist Plugin",
         path: "/plugins/guides/wishlist",
-        description: "Learn how to build a wishlist plugin.",
+        description:
+          "Learn how to build a plugin for wishlist functionalities.",
       },
       {
         type: "sub-category",
@@ -88,18 +104,12 @@ export const howToTutorialsSidebar = [
         title: "Overview",
       },
       {
-        type: "separator",
-      },
-      {
         type: "link",
         title: "Medusa Cloud",
         path: "https://medusajs.com/pricing",
       },
       {
-        type: "separator",
-      },
-      {
-        type: "category",
+        type: "sub-category",
         title: "Self-Hosting",
         children: [
           {
@@ -115,7 +125,7 @@ export const howToTutorialsSidebar = [
         ],
       },
       {
-        type: "category",
+        type: "sub-category",
         title: "Next.js Starter",
         autogenerate_path: "/deployment/storefront",
       },
