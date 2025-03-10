@@ -70,7 +70,6 @@ export const sidebar = [
         ],
       },
       ...architecturalModulesSidebar,
-      ...integrationsSidebar,
       ...pluginsSidebar,
       ...storefrontGuidesSidebar,
       {
@@ -129,5 +128,10 @@ export const sidebar = [
     sidebar_id: "how-to-tutorials",
     title: "How-To & Tutorials",
     items: howToTutorialsSidebar,
+  },
+  {
+    sidebar_id: "integrations",
+    title: "Integrations",
+    items: integrationsSidebar,
   },
 ]
