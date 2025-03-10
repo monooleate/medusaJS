@@ -143,6 +143,16 @@ const nextConfig = {
         destination: `${process.env.NEXT_PUBLIC_BASE_URL}/learn/resources/usage`,
         permanent: true,
       },
+      {
+        source: "/plugins",
+        destination: "/integrations",
+        permanent: true,
+      },
+      {
+        source: "/resources",
+        destination: "/recipes",
+        permanent: true,
+      },
     ]
   },
   outputFileTracingExcludes: {
