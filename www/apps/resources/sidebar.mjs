@@ -25,6 +25,7 @@ import { taxSidebar } from "./sidebars/tax.mjs"
 import { troubleshootingSidebar } from "./sidebars/troubleshooting.mjs"
 import { userSidebar } from "./sidebars/user.mjs"
 import { examplesSidebar } from "./sidebars/examples.mjs"
+import { howToTutorialsSidebar } from "./sidebars/how-to-tutorials.mjs"
 
 /** @type {import("types").Sidebar.RawSidebar[]} */
 export const sidebar = [
@@ -38,7 +39,6 @@ export const sidebar = [
         title: "Overview",
       },
       ...examplesSidebar,
-      ...recipesSidebar,
       {
         type: "separator",
       },
@@ -84,53 +84,7 @@ export const sidebar = [
       {
         type: "category",
         title: "General",
-        children: [
-          {
-            type: "sidebar",
-            sidebar_id: "deployment-guides",
-            title: "Deployment Guides",
-            children: [
-              {
-                type: "link",
-                path: "/deployment",
-                title: "Overview",
-              },
-              {
-                type: "separator",
-              },
-              {
-                type: "link",
-                title: "Medusa Cloud",
-                path: "https://medusajs.com/pricing",
-              },
-              {
-                type: "separator",
-              },
-              {
-                type: "category",
-                title: "Self-Hosting",
-                children: [
-                  {
-                    type: "link",
-                    path: "https://docs.medusajs.com/learn/deployment/general",
-                    title: "General",
-                  },
-                  {
-                    type: "link",
-                    path: "/deployment/medusa-application/railway",
-                    title: "Railway",
-                  },
-                ],
-              },
-              {
-                type: "category",
-                title: "Next.js Starter",
-                autogenerate_path: "/deployment/storefront",
-              },
-            ],
-          },
-          ...troubleshootingSidebar,
-        ],
+        children: [...troubleshootingSidebar],
       },
       {
         type: "category",
@@ -140,31 +94,6 @@ export const sidebar = [
             type: "link",
             path: "/admin-widget-injection-zones",
             title: "Admin Widget Injection Zones",
-          },
-          {
-            type: "sidebar",
-            sidebar_id: "admin-components",
-            title: "Admin Components",
-            children: [
-              {
-                type: "link",
-                path: "/admin-components",
-                title: "Overview",
-              },
-              {
-                type: "separator",
-              },
-              {
-                type: "category",
-                title: "Layouts",
-                autogenerate_path: "/admin-components/layouts",
-              },
-              {
-                type: "category",
-                title: "Components",
-                autogenerate_path: "/admin-components/components",
-              },
-            ],
           },
         ],
       },
@@ -190,5 +119,15 @@ export const sidebar = [
         children: referencesSidebar,
       },
     ],
+  },
+  {
+    sidebar_id: "recipes",
+    title: "Recipes",
+    items: recipesSidebar,
+  },
+  {
+    sidebar_id: "how-to-tutorials",
+    title: "How-To & Tutorials",
+    items: howToTutorialsSidebar,
   },
 ]

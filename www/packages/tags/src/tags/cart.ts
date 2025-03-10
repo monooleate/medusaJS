@@ -1,5 +1,9 @@
 export const cart = [
   {
+    "title": "Extend Cart",
+    "path": "https://docs.medusajs.com/resources/commerce-modules/cart/extend"
+  },
+  {
     "title": "Implement Custom Line Item Pricing in Medusa",
     "path": "https://docs.medusajs.com/resources/examples/guides/custom-item-price"
   },

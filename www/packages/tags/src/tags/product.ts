@@ -52,12 +52,20 @@ export const product = [
     "path": "https://docs.medusajs.com/resources/commerce-modules/inventory/inventory-kit"
   },
   {
+    "title": "Extend Product",
+    "path": "https://docs.medusajs.com/resources/commerce-modules/product/extend"
+  },
+  {
     "title": "Get Variant Prices",
     "path": "https://docs.medusajs.com/resources/commerce-modules/product/guides/price"
   },
   {
     "title": "Get Variant Price with Taxes",
     "path": "https://docs.medusajs.com/resources/commerce-modules/product/guides/price-with-taxes"
+  },
+  {
+    "title": "Build Wishlist Plugin",
+    "path": "https://docs.medusajs.com/resources/plugins/guides/wishlist"
   },
   {
     "title": "Implement Express Checkout with Medusa",

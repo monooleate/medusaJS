@@ -311,6 +311,7 @@ export const SidebarProvider = ({
           findSidebarItem({
             sidebarItems: s.items,
             item: { type: "link", path: activePath, title: "" },
+            compareTitles: false,
           }) !== undefined
       ) || sidebars[0]
     )

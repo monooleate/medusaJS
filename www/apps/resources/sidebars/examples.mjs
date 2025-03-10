@@ -6,11 +6,6 @@ export const examplesSidebar = [
     title: "Examples",
     children: [
       {
-        type: "link",
-        path: "/examples",
-        title: "Example Snippets",
-      },
-      {
         type: "ref",
         path: "/recipes",
         title: "Recipes",

@@ -21,14 +21,6 @@ export const generatedSidebars = [
           {
             "loaded": true,
             "isPathHref": true,
-            "type": "link",
-            "path": "/examples",
-            "title": "Example Snippets",
-            "children": []
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
             "type": "ref",
             "path": "/recipes",
             "title": "Recipes",
@@ -72,175 +64,6 @@ export const generatedSidebars = [
         ]
       },
       {
-        "loaded": true,
-        "isPathHref": true,
-        "type": "sidebar",
-        "sidebar_id": "recipes",
-        "title": "Recipes",
-        "children": [
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes",
-            "title": "Overview",
-            "children": []
-          },
-          {
-            "type": "separator"
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/marketplace",
-            "title": "Marketplace",
-            "children": [
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "link",
-                "path": "/recipes/marketplace/examples/vendors",
-                "title": "Example: Vendors",
-                "children": []
-              },
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "link",
-                "path": "/recipes/marketplace/examples/restaurant-delivery",
-                "title": "Example: Restaurant-Delivery",
-                "children": []
-              }
-            ]
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/subscriptions",
-            "title": "Subscriptions",
-            "children": [
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "link",
-                "path": "/recipes/subscriptions/examples/standard",
-                "title": "Example",
-                "children": []
-              }
-            ]
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/digital-products",
-            "title": "Digital Products",
-            "children": [
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "link",
-                "path": "/recipes/digital-products/examples/standard",
-                "title": "Example",
-                "children": []
-              }
-            ]
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/erp",
-            "title": "Integrate ERP",
-            "children": [
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "link",
-                "path": "/recipes/erp/odoo",
-                "title": "Example: Odoo Integration",
-                "children": []
-              }
-            ]
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/b2b",
-            "title": "B2B",
-            "children": []
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/commerce-automation",
-            "title": "Commerce Automation",
-            "children": [
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "link",
-                "path": "/recipes/commerce-automation/restock-notification",
-                "title": "Example: Restock Notifications",
-                "children": []
-              }
-            ]
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/ecommerce",
-            "title": "Ecommerce",
-            "children": []
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/multi-region-store",
-            "title": "Multi-Region Store",
-            "children": []
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/omnichannel",
-            "title": "Omnichannel Store",
-            "children": []
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/oms",
-            "title": "OMS",
-            "children": []
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/personalized-products",
-            "title": "Personalized Products",
-            "children": []
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "link",
-            "path": "/recipes/pos",
-            "title": "POS",
-            "children": []
-          }
-        ]
-      },
-      {
         "type": "separator"
       },
       {
@@ -275,7 +98,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -299,8 +121,35 @@ export const generatedSidebars = [
                 "loaded": true,
                 "isPathHref": true,
                 "type": "category",
+                "title": "Server Guides",
+                "autogenerate_tags": "server+auth",
+                "autogenerate_as_ref": true,
+                "sort_sidebar": "alphabetize",
+                "description": "Learn how to use the API Key Module in your customizations on the Medusa application server.",
+                "children": [
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Create Actor Type",
+                    "path": "https://docs.medusajs.com/resources/commerce-modules/auth/create-actor-type",
+                    "children": []
+                  },
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Create Auth Provider",
+                    "path": "https://docs.medusajs.com/resources/references/auth/provider",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "category",
                 "title": "Storefront Guides",
-                "initialOpen": false,
                 "autogenerate_tags": "storefront+apiKey,-jsSdk",
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
@@ -321,7 +170,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Admin User Guides",
-                "initialOpen": false,
                 "autogenerate_tags": "userGuide+apiKey",
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
@@ -350,7 +198,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the API Key Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -674,7 +521,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -716,7 +562,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Server Guides",
                 "autogenerate_tags": "server+auth",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to use the Auth Module in your customizations on the Medusa application server.",
@@ -724,9 +569,25 @@ export const generatedSidebars = [
                   {
                     "loaded": true,
                     "isPathHref": true,
+                    "type": "ref",
+                    "title": "Create Actor Type",
+                    "path": "https://docs.medusajs.com/resources/commerce-modules/auth/create-actor-type",
+                    "children": []
+                  },
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
                     "type": "link",
                     "path": "/commerce-modules/auth/create-actor-type",
                     "title": "Create an Actor Type",
+                    "children": []
+                  },
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Create Auth Provider",
+                    "path": "https://docs.medusajs.com/resources/references/auth/provider",
                     "children": []
                   },
                   {
@@ -753,7 +614,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+auth,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Auth Module's features into your storefront.",
@@ -814,7 +674,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+auth",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Auth features in the Medusa Admin dashboard.",
@@ -834,7 +693,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Providers",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -867,7 +725,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Auth Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -1275,7 +1132,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -1317,11 +1173,18 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Server Guides",
                 "autogenerate_tags": "server+cart",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to use the Cart Module in your customizations on the Medusa application server.",
                 "children": [
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Extend Cart",
+                    "path": "https://docs.medusajs.com/resources/commerce-modules/cart/extend",
+                    "children": []
+                  },
                   {
                     "loaded": true,
                     "isPathHref": true,
@@ -1346,7 +1209,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+cart,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Cart Module's features into your storefront.",
@@ -1454,7 +1316,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Cart Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -2370,7 +2231,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "sub-category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -2388,7 +2248,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+currency",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Currency features in the Medusa Admin dashboard.",
@@ -2408,7 +2267,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "sub-category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Currency Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -2564,7 +2422,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -2590,11 +2447,18 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Server Guides",
                 "autogenerate_tags": "server+customer",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to use the Customer Module in your customizations on the Medusa application server.",
                 "children": [
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Extend Customer",
+                    "path": "https://docs.medusajs.com/resources/commerce-modules/customer/extend",
+                    "children": []
+                  },
                   {
                     "loaded": true,
                     "isPathHref": true,
@@ -2611,7 +2475,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+customer,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Customer Module's features into your storefront.",
@@ -2696,7 +2559,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+customer",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Customer features in the Medusa Admin dashboard.",
@@ -2732,7 +2594,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Customer Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -3468,7 +3329,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "autogenerate_tags": "concept+fulfillment",
                 "autogenerate_as_ref": true,
                 "children": [
@@ -3528,11 +3388,18 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Server Guides",
                 "autogenerate_tags": "server+fulfillment",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to use the Fulfillment Module in your customizations on the Medusa application server.",
                 "children": [
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Create Fulfillment Provider",
+                    "path": "https://docs.medusajs.com/resources/references/fulfillment/provider",
+                    "children": []
+                  },
                   {
                     "loaded": true,
                     "isPathHref": true,
@@ -3557,7 +3424,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+fulfillment,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Fulfillment Module's features into your storefront.",
@@ -3586,7 +3452,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+fulfillment",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Fulfillment features in the Medusa Admin dashboard.",
@@ -3622,7 +3487,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Fulfillment Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -5052,7 +4916,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "autogenerate_tags": "concept+inventory",
                 "autogenerate_as_ref": true,
                 "children": [
@@ -5112,7 +4975,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+inventory,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Inventory Module's features into your storefront.",
@@ -5133,7 +4995,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+inventory",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Inventory features in the Medusa Admin dashboard.",
@@ -5169,7 +5030,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Inventory Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -6063,7 +5923,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -6161,7 +6020,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+order,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Order Module's features into your storefront.",
@@ -6190,7 +6048,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+order",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Order features in the Medusa Admin dashboard.",
@@ -6274,7 +6131,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Order Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -8942,7 +8798,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -9008,7 +8863,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Server Guides",
                 "autogenerate_tags": "server+payment",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to use the Payment Module in your customizations on the Medusa application server.",
@@ -9028,6 +8882,14 @@ export const generatedSidebars = [
                     "path": "/references/payment/provider",
                     "title": "Create Payment Provider",
                     "children": []
+                  },
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Create Payment Provider",
+                    "path": "https://docs.medusajs.com/resources/references/payment/provider",
+                    "children": []
                   }
                 ]
               },
@@ -9037,7 +8899,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+payment,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Payment Module's features into your storefront.",
@@ -9090,7 +8951,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+payment",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Payment features in the Medusa Admin dashboard.",
@@ -9110,7 +8970,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Providers",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -9127,7 +8986,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Payment Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -10107,7 +9965,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -10157,7 +10014,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Server Guides",
                 "autogenerate_tags": "server+pricing",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to use the Pricing Module in your customizations on the Medusa application server.",
@@ -10194,7 +10050,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+pricing,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Pricing Module's features into your storefront.",
@@ -10239,7 +10094,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+pricing",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Pricing features in the Medusa Admin dashboard.",
@@ -10275,7 +10129,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Pricing Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -11198,7 +11051,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "autogenerate_tags": "concept+product",
                 "autogenerate_as_ref": true,
                 "children": [
@@ -11242,7 +11094,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Server Guides",
                 "autogenerate_tags": "server+product",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to use the Product Module in your customizations on the Medusa application server.",
@@ -11250,9 +11101,25 @@ export const generatedSidebars = [
                   {
                     "loaded": true,
                     "isPathHref": true,
+                    "type": "ref",
+                    "title": "Build Wishlist Plugin",
+                    "path": "https://docs.medusajs.com/resources/plugins/guides/wishlist",
+                    "children": []
+                  },
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
                     "type": "link",
                     "path": "/commerce-modules/product/extend",
                     "title": "Extend Module",
+                    "children": []
+                  },
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Extend Product",
+                    "path": "https://docs.medusajs.com/resources/commerce-modules/product/extend",
                     "children": []
                   },
                   {
@@ -11295,7 +11162,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+product,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Product Module's features into your storefront.",
@@ -11436,7 +11302,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+product",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Product features in the Medusa Admin dashboard.",
@@ -11544,7 +11409,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Product Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -12916,7 +12780,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -12966,7 +12829,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Server Guides",
                 "autogenerate_tags": "server+promotion",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to use the Promotion Module in your customizations on the Medusa application server.",
@@ -12978,6 +12840,14 @@ export const generatedSidebars = [
                     "path": "/commerce-modules/promotion/extend",
                     "title": "Extend Module",
                     "children": []
+                  },
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Extend Promotion",
+                    "path": "https://docs.medusajs.com/resources/commerce-modules/promotion/extend",
+                    "children": []
                   }
                 ]
               },
@@ -12987,7 +12857,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+promotion",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Promotion features in the Medusa Admin dashboard.",
@@ -13031,7 +12900,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Promotion Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -13804,7 +13672,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -13822,7 +13689,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+region,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Region Module's features into your storefront.",
@@ -13867,7 +13733,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+region",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Region features in the Medusa Admin dashboard.",
@@ -13887,7 +13752,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Region Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -14361,7 +14225,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "autogenerate_tags": "concept+salesChannel",
                 "autogenerate_as_ref": true,
                 "children": [
@@ -14397,7 +14260,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+salesChannel,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Sales Channel Module's features into your storefront.",
@@ -14418,7 +14280,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+salesChannel",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Sales Channel features in the Medusa Admin dashboard.",
@@ -14438,7 +14299,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Sales Channel Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -14853,7 +14713,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "autogenerate_tags": "concept+stockLocation",
                 "autogenerate_as_ref": true,
                 "children": [
@@ -14897,7 +14756,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+stockLocation",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Stock Location features in the Medusa Admin dashboard.",
@@ -14925,7 +14783,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Stock Location Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -15259,7 +15116,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -15277,7 +15133,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+store",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Store features in the Medusa Admin dashboard.",
@@ -15297,7 +15152,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Store Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -15700,7 +15554,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "Concepts",
-                "initialOpen": false,
                 "children": [
                   {
                     "loaded": true,
@@ -15734,11 +15587,18 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Server Guides",
                 "autogenerate_tags": "server+tax",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to use the Tax Module in your customizations on the Medusa application server.",
                 "children": [
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Create Tax Provider",
+                    "path": "https://docs.medusajs.com/resources/references/tax/provider",
+                    "children": []
+                  },
                   {
                     "loaded": true,
                     "isPathHref": true,
@@ -15763,7 +15623,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Storefront Guides",
                 "autogenerate_tags": "storefront+tax,-jsSdk",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to integrate the Tax Module's features into your storefront.",
@@ -15784,7 +15643,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+tax",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage Tax features in the Medusa Admin dashboard.",
@@ -15804,7 +15662,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the Tax Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -16502,7 +16359,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Server Guides",
                 "autogenerate_tags": "server+user",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to use the User Module in your customizations on the Medusa application server.",
@@ -16523,7 +16379,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin User Guides",
                 "autogenerate_tags": "userGuide+user",
-                "initialOpen": false,
                 "autogenerate_as_ref": true,
                 "sort_sidebar": "alphabetize",
                 "description": "Learn how to utilize and manage User features in the Medusa Admin dashboard.",
@@ -16567,7 +16422,6 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "category",
                 "title": "References",
-                "initialOpen": false,
                 "description": "Find references for tools and resources related to the User Module, such as data models, methods, and more. These are useful for your customizations.",
                 "children": [
                   {
@@ -17437,23 +17291,6 @@ export const generatedSidebars = [
             "title": "Overview",
             "path": "/plugins",
             "children": []
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "category",
-            "title": "Guides",
-            "children": [
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "link",
-                "title": "Wishlist",
-                "path": "/plugins/guides/wishlist",
-                "description": "Learn how to build a wishlist plugin.",
-                "children": []
-              }
-            ]
           }
         ]
       },
@@ -18061,7 +17898,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Auth",
                 "autogenerate_path": "/references/js_sdk/auth/Auth/methods",
-                "initialOpen": true,
                 "children": [
                   {
                     "loaded": true,
@@ -18134,7 +17970,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Store",
                 "autogenerate_path": "/references/js_sdk/store/Store/properties",
-                "initialOpen": true,
                 "children": [
                   {
                     "loaded": true,
@@ -18225,7 +18060,6 @@ export const generatedSidebars = [
                 "type": "category",
                 "title": "Admin",
                 "autogenerate_path": "/references/js_sdk/admin/Admin/properties",
-                "initialOpen": true,
                 "children": [
                   {
                     "loaded": true,
@@ -18654,79 +18488,6 @@ export const generatedSidebars = [
             "loaded": true,
             "isPathHref": true,
             "type": "sidebar",
-            "sidebar_id": "deployment-guides",
-            "title": "Deployment Guides",
-            "children": [
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "link",
-                "path": "/deployment",
-                "title": "Overview",
-                "children": []
-              },
-              {
-                "type": "separator"
-              },
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "link",
-                "title": "Medusa Cloud",
-                "path": "https://medusajs.com/pricing",
-                "children": []
-              },
-              {
-                "type": "separator"
-              },
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "category",
-                "title": "Self-Hosting",
-                "children": [
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "https://docs.medusajs.com/learn/deployment/general",
-                    "title": "General",
-                    "children": []
-                  },
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/deployment/medusa-application/railway",
-                    "title": "Railway",
-                    "children": []
-                  }
-                ]
-              },
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "category",
-                "title": "Next.js Starter",
-                "autogenerate_path": "/deployment/storefront",
-                "children": [
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/deployment/storefront/vercel",
-                    "title": "Vercel",
-                    "description": "",
-                    "children": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "sidebar",
             "sidebar_id": "troubleshooting",
             "title": "Troubleshooting",
             "children": [
@@ -18903,134 +18664,6 @@ export const generatedSidebars = [
             "path": "/admin-widget-injection-zones",
             "title": "Admin Widget Injection Zones",
             "children": []
-          },
-          {
-            "loaded": true,
-            "isPathHref": true,
-            "type": "sidebar",
-            "sidebar_id": "admin-components",
-            "title": "Admin Components",
-            "children": [
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "link",
-                "path": "/admin-components",
-                "title": "Overview",
-                "children": []
-              },
-              {
-                "type": "separator"
-              },
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "category",
-                "title": "Layouts",
-                "autogenerate_path": "/admin-components/layouts",
-                "children": [
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/admin-components/layouts/single-column",
-                    "title": "Single Column",
-                    "description": "",
-                    "children": []
-                  },
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/admin-components/layouts/two-column",
-                    "title": "Two Column",
-                    "description": "",
-                    "children": []
-                  }
-                ]
-              },
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "category",
-                "title": "Components",
-                "autogenerate_path": "/admin-components/components",
-                "children": [
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/admin-components/components/action-menu",
-                    "title": "Action Menu",
-                    "description": "",
-                    "children": []
-                  },
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/admin-components/components/container",
-                    "title": "Container",
-                    "description": "",
-                    "children": []
-                  },
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/admin-components/components/data-table",
-                    "title": "Data Table",
-                    "description": "",
-                    "children": []
-                  },
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/admin-components/components/forms",
-                    "title": "Forms",
-                    "description": "",
-                    "children": []
-                  },
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/admin-components/components/header",
-                    "title": "Header",
-                    "description": "",
-                    "children": []
-                  },
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/admin-components/components/json-view-section",
-                    "title": "JSON View",
-                    "description": "",
-                    "children": []
-                  },
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/admin-components/components/section-row",
-                    "title": "Section Row",
-                    "description": "",
-                    "children": []
-                  },
-                  {
-                    "loaded": true,
-                    "isPathHref": true,
-                    "type": "link",
-                    "path": "/admin-components/components/table",
-                    "title": "Table",
-                    "description": "",
-                    "children": []
-                  }
-                ]
-              }
-            ]
           }
         ]
       },
@@ -19756,8 +19389,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -19799,8 +19431,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -20301,8 +19932,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -20434,8 +20064,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -20612,8 +20241,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -20727,8 +20355,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -20770,8 +20397,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -20831,8 +20457,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -21216,8 +20841,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -21421,8 +21045,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -21518,8 +21141,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -21579,8 +21201,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -21614,8 +21235,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -23376,8 +22996,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -23500,8 +23119,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -23642,8 +23260,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -23811,8 +23428,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -23917,8 +23533,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -24428,8 +24043,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -24507,8 +24121,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -24748,8 +24361,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -24836,8 +24448,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -24933,8 +24544,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -25012,8 +24622,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -25154,8 +24763,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -25180,8 +24788,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -25232,8 +24839,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -25329,8 +24935,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -25408,8 +25013,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -25622,8 +25226,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               },
               {
                 "loaded": true,
@@ -25719,8 +25322,7 @@ export const generatedSidebars = [
                       }
                     ]
                   }
-                ],
-                "initialOpen": false
+                ]
               }
             ]
           },
@@ -25765,6 +25367,490 @@ export const generatedSidebars = [
                     "children": []
                   }
                 ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "sidebar_id": "recipes",
+    "title": "Recipes",
+    "items": [
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes",
+        "title": "Overview",
+        "children": []
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/marketplace",
+        "title": "Marketplace",
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "path": "/recipes/marketplace/examples/vendors",
+            "title": "Example: Vendors",
+            "children": []
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "path": "/recipes/marketplace/examples/restaurant-delivery",
+            "title": "Example: Restaurant-Delivery",
+            "children": []
+          }
+        ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/subscriptions",
+        "title": "Subscriptions",
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "path": "/recipes/subscriptions/examples/standard",
+            "title": "Example",
+            "children": []
+          }
+        ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/digital-products",
+        "title": "Digital Products",
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "path": "/recipes/digital-products/examples/standard",
+            "title": "Example",
+            "children": []
+          }
+        ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/erp",
+        "title": "Integrate ERP",
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "path": "/recipes/erp/odoo",
+            "title": "Example: Odoo Integration",
+            "children": []
+          }
+        ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/b2b",
+        "title": "B2B",
+        "children": []
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/commerce-automation",
+        "title": "Commerce Automation",
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "path": "/recipes/commerce-automation/restock-notification",
+            "title": "Example: Restock Notifications",
+            "children": []
+          }
+        ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/ecommerce",
+        "title": "Ecommerce",
+        "children": []
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/multi-region-store",
+        "title": "Multi-Region Store",
+        "children": []
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/omnichannel",
+        "title": "Omnichannel Store",
+        "children": []
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/oms",
+        "title": "OMS",
+        "children": []
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/personalized-products",
+        "title": "Personalized Products",
+        "children": []
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/pos",
+        "title": "POS",
+        "children": []
+      }
+    ]
+  },
+  {
+    "sidebar_id": "how-to-tutorials",
+    "title": "How-To & Tutorials",
+    "items": [
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/how-to-tutorials",
+        "title": "Overview",
+        "children": []
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/examples",
+        "title": "Example Snippets",
+        "children": []
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "category",
+        "title": "How-To Guides",
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "sub-category",
+            "title": "Server",
+            "autogenerate_tags": "howTo+server",
+            "autogenerate_as_ref": true,
+            "sort_sidebar": "alphabetize",
+            "children": [
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Create Actor Type",
+                "path": "https://docs.medusajs.com/resources/commerce-modules/auth/create-actor-type",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Create Auth Provider",
+                "path": "https://docs.medusajs.com/resources/references/auth/provider",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Create Cache Module",
+                "path": "https://docs.medusajs.com/resources/architectural-modules/cache/create",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Create Event Module",
+                "path": "https://docs.medusajs.com/resources/architectural-modules/event/create",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Create Fulfillment Provider",
+                "path": "https://docs.medusajs.com/resources/references/fulfillment/provider",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Create Notification Provider",
+                "path": "https://docs.medusajs.com/resources/references/notification-provider-module",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Create Payment Provider",
+                "path": "https://docs.medusajs.com/resources/references/payment/provider",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Create Tax Provider",
+                "path": "https://docs.medusajs.com/resources/references/tax/provider",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Get Variant Price with Taxes",
+                "path": "https://docs.medusajs.com/resources/commerce-modules/product/guides/price-with-taxes",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Get Variant Prices",
+                "path": "https://docs.medusajs.com/resources/commerce-modules/product/guides/price",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Handle Password Reset Event",
+                "path": "https://docs.medusajs.com/resources/commerce-modules/auth/reset-password",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Send Notification",
+                "path": "https://docs.medusajs.com/resources/architectural-modules/notification/send-notification",
+                "children": []
+              }
+            ]
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "sub-category",
+            "title": "Admin",
+            "autogenerate_tags": "howTo+admin",
+            "autogenerate_as_ref": true,
+            "sort_sidebar": "alphabetize",
+            "children": [
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "link",
+                "path": "/admin-components",
+                "title": "Overview",
+                "children": []
+              },
+              {
+                "type": "separator"
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "category",
+                "title": "Components",
+                "autogenerate_path": "/admin-components/components",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "category",
+                "title": "Layouts",
+                "autogenerate_path": "/admin-components/layouts",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "category",
+        "title": "Tutorials",
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Custom Item Pricing",
+            "path": "/examples/guides/custom-item-price",
+            "children": []
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Wishlist",
+            "path": "/plugins/guides/wishlist",
+            "description": "Learn how to build a wishlist plugin.",
+            "children": []
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "sub-category",
+            "title": "Extend Modules",
+            "autogenerate_tags": "tutorial+extendModule",
+            "autogenerate_as_ref": true,
+            "sort_sidebar": "alphabetize",
+            "children": [
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Extend Cart",
+                "path": "https://docs.medusajs.com/resources/commerce-modules/cart/extend",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Extend Customer",
+                "path": "https://docs.medusajs.com/resources/commerce-modules/customer/extend",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Extend Product",
+                "path": "https://docs.medusajs.com/resources/commerce-modules/product/extend",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "title": "Extend Promotion",
+                "path": "https://docs.medusajs.com/resources/commerce-modules/promotion/extend",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "category",
+        "title": "Deployment",
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "path": "/deployment",
+            "title": "Overview",
+            "children": []
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Medusa Cloud",
+            "path": "https://medusajs.com/pricing",
+            "children": []
+          },
+          {
+            "type": "separator"
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "category",
+            "title": "Self-Hosting",
+            "children": [
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "link",
+                "path": "https://docs.medusajs.com/learn/deployment/general",
+                "title": "General",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "link",
+                "path": "/deployment/medusa-application/railway",
+                "title": "Railway",
+                "children": []
+              }
+            ]
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "category",
+            "title": "Next.js Starter",
+            "autogenerate_path": "/deployment/storefront",
+            "children": [
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "link",
+                "path": "/deployment/storefront/vercel",
+                "title": "Vercel",
+                "description": "",
+                "children": []
               }
             ]
           }
