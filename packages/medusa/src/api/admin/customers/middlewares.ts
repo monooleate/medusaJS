@@ -89,7 +89,7 @@ export const adminCustomerRoutesMiddlewares: MiddlewareRoute[] = [
       validateAndTransformBody(AdminUpdateCustomerAddress),
       validateAndTransformQuery(
         AdminCustomerParams,
-        QueryConfig.retrieveTransformQueryConfig
+        QueryConfig.retrieveAddressTransformQueryConfig
       ),
     ],
   },
