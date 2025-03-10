@@ -20,7 +20,7 @@ import { salesChannelSidebar } from "./sidebars/sales-channel.mjs"
 import { sdkToolsSidebar } from "./sidebars/sdk-tools.mjs"
 import { stockLocationSidebar } from "./sidebars/stock-location.mjs"
 import { storeSidebar } from "./sidebars/store.mjs"
-import { storefrontGuidesSidebar } from "./sidebars/storefront.mjs"
+import { storefrontDevelopmentSidebar } from "./sidebars/storefront.mjs"
 import { taxSidebar } from "./sidebars/tax.mjs"
 import { troubleshootingSidebar } from "./sidebars/troubleshooting.mjs"
 import { userSidebar } from "./sidebars/user.mjs"
@@ -71,7 +71,6 @@ export const sidebar = [
       },
       ...architecturalModulesSidebar,
       ...pluginsSidebar,
-      ...storefrontGuidesSidebar,
       {
         type: "separator",
       },
@@ -133,5 +132,10 @@ export const sidebar = [
     sidebar_id: "integrations",
     title: "Integrations",
     items: integrationsSidebar,
+  },
+  {
+    sidebar_id: "storefront-development",
+    title: "Storefront Development",
+    items: storefrontDevelopmentSidebar,
   },
 ]

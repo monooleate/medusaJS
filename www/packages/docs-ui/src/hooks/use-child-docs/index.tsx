@@ -305,9 +305,15 @@ export const useChildDocs = ({
       const HeadingComponent = itemChildren?.length
         ? TitleHeaderComponent(headerLevel)
         : undefined
-      const isChildrenCategory = itemChildren?.every(
-        (child) => child.type === "category" || child.type === "sub-category"
-      )
+      const linkChildren =
+        itemChildren?.filter(
+          (item) => isSidebarItemLink(item) || item.type === "sidebar"
+        ) || []
+      const categoryChildren =
+        itemChildren?.filter(
+          (child) => child.type === "category" || child.type === "sub-category"
+        ) || []
+      const showLinkAsCard = !HeadingComponent && isSidebarItemLink(item)
 
       return (
         <React.Fragment key={key}>
@@ -327,46 +333,41 @@ export const useChildDocs = ({
                   )}
                 </>
               )}
-              {isChildrenCategory &&
-                getAllLevelsElms({
-                  items: itemChildren,
-                  headerLevel: headerLevel + 1,
-                  currentLevel: currentLevel + 1,
-                })}
-              {!isChildrenCategory && (
+              {linkChildren.length > 0 && (
                 <CardList
                   items={
-                    itemChildren
-                      ?.filter(
-                        (item) =>
-                          isSidebarItemLink(item) || item.type === "sidebar"
-                      )
-                      .map((childItem) => {
-                        const href = isSidebarItemLink(childItem)
-                          ? childItem.path
-                          : getSidebarFirstLinkChild(
-                              childItem as Sidebar.SidebarItemSidebar
-                            )?.path
-                        return {
-                          title: childItem.title,
-                          href,
-                          text: childItem.description,
-                          rightIcon:
-                            childItem.type === "ref"
-                              ? ChevronDoubleRight
-                              : undefined,
-                        }
-                      }) || []
+                    linkChildren.map((childItem) => {
+                      const href = isSidebarItemLink(childItem)
+                        ? childItem.path
+                        : getSidebarFirstLinkChild(
+                            childItem as Sidebar.SidebarItemSidebar
+                          )?.path
+                      return {
+                        title: childItem.title,
+                        href,
+                        text: childItem.description,
+                        rightIcon:
+                          childItem.type === "ref"
+                            ? ChevronDoubleRight
+                            : undefined,
+                      }
+                    }) || []
                   }
                   itemsPerRow={itemsPerRow}
                   defaultItemsPerRow={defaultItemsPerRow}
                   className="mb-docs_1"
                 />
               )}
+              {categoryChildren.length > 0 &&
+                getAllLevelsElms({
+                  items: categoryChildren,
+                  headerLevel: headerLevel + 1,
+                  currentLevel: currentLevel + 1,
+                })}
               {key !== items.length - 1 && headerLevel === 2 && <Hr />}
             </>
           )}
-          {!HeadingComponent && isSidebarItemLink(item) && (
+          {showLinkAsCard && (
             <Card
               title={item.title}
               href={item.path}

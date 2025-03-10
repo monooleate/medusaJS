@@ -36,6 +36,13 @@ const sidebarMappings: {
       }>,
     paths: ["/integrations"],
   },
+  {
+    module: async () =>
+      import(
+        "@/generated/generated-storefront-development-sidebar.mjs"
+      ) as Promise<{ default: Sidebar.Sidebar }>,
+    paths: ["/storefront-development"],
+  },
 ]
 export async function getSidebarForPath(
   currentPath: string
