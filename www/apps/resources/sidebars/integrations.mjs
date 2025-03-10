@@ -11,6 +11,7 @@ export const integrationsSidebar = [
   {
     type: "category",
     title: "Auth",
+    initialOpen: true,
     children: [
       {
         type: "ref",
@@ -27,6 +28,7 @@ export const integrationsSidebar = [
   {
     type: "category",
     title: "CMS",
+    initialOpen: true,
     children: [
       {
         type: "link",
@@ -38,6 +40,7 @@ export const integrationsSidebar = [
   {
     type: "category",
     title: "ERP",
+    initialOpen: true,
     children: [
       {
         type: "ref",
@@ -49,6 +52,7 @@ export const integrationsSidebar = [
   {
     type: "category",
     title: "File",
+    initialOpen: true,
     children: [
       {
         type: "ref",
@@ -60,6 +64,7 @@ export const integrationsSidebar = [
   {
     type: "category",
     title: "Fulfillment",
+    initialOpen: true,
     children: [
       {
         type: "link",
@@ -71,6 +76,7 @@ export const integrationsSidebar = [
   {
     type: "category",
     title: "Notification",
+    initialOpen: true,
     children: [
       {
         type: "link",
@@ -87,6 +93,7 @@ export const integrationsSidebar = [
   {
     type: "category",
     title: "Payment",
+    initialOpen: true,
     children: [
       {
         type: "ref",

@@ -17,7 +17,7 @@ import { recipesSidebar } from "./sidebars/recipes.mjs"
 import { referencesSidebar } from "./sidebars/references.mjs"
 import { regionSidebar } from "./sidebars/region.mjs"
 import { salesChannelSidebar } from "./sidebars/sales-channel.mjs"
-import { sdkToolsSidebar } from "./sidebars/sdk-tools.mjs"
+import { toolsSidebar } from "./sidebars/tools.mjs"
 import { stockLocationSidebar } from "./sidebars/stock-location.mjs"
 import { storeSidebar } from "./sidebars/store.mjs"
 import { storefrontDevelopmentSidebar } from "./sidebars/storefront.mjs"
@@ -73,11 +73,6 @@ export const sidebar = [
       ...pluginsSidebar,
       {
         type: "separator",
-      },
-      {
-        type: "category",
-        title: "SDKs and Tools",
-        children: sdkToolsSidebar,
       },
       {
         type: "category",
@@ -137,5 +132,10 @@ export const sidebar = [
     sidebar_id: "storefront-development",
     title: "Storefront Development",
     items: storefrontDevelopmentSidebar,
+  },
+  {
+    sidebar_id: "tools",
+    title: "Tools",
+    items: toolsSidebar,
   },
 ]

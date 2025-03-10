@@ -177,7 +177,7 @@ export const generatedEditDates = {
   "app/storefront-development/regions/store-retrieve-region/page.mdx": "2024-12-19T16:36:22.800Z",
   "app/storefront-development/regions/page.mdx": "2024-06-09T15:19:09+02:00",
   "app/storefront-development/tips/page.mdx": "2024-12-19T16:36:32.938Z",
-  "app/storefront-development/page.mdx": "2025-03-07T07:49:27.809Z",
+  "app/storefront-development/page.mdx": "2025-03-10T12:26:51.415Z",
   "app/troubleshooting/cors-errors/page.mdx": "2024-05-03T17:36:38+03:00",
   "app/troubleshooting/create-medusa-app-errors/page.mdx": "2024-07-11T10:29:13+03:00",
   "app/troubleshooting/database-errors/page.mdx": "2024-05-03T17:36:38+03:00",
@@ -6040,5 +6040,6 @@ export const generatedEditDates = {
   "references/core_flows/types/core_flows.RefreshCartShippingMethodsWorkflowInput/page.mdx": "2025-03-04T13:33:46.133Z",
   "references/core_flows/types/core_flows.ValidateExistingPaymentCollectionStepInput/page.mdx": "2025-03-04T13:33:46.130Z",
   "references/types/interfaces/types.ITaxProvider/page.mdx": "2025-03-04T13:33:52.645Z",
-  "app/how-to-tutorials/page.mdx": "2025-03-10T09:33:49.208Z"
+  "app/how-to-tutorials/page.mdx": "2025-03-10T09:33:49.208Z",
+  "app/tools/page.mdx": "2025-03-10T12:38:56.520Z"
 }

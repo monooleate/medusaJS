@@ -1212,6 +1212,10 @@ export const filesMap = [
     "pathname": "/test-tools-reference"
   },
   {
+    "filePath": "/www/apps/resources/app/tools/page.mdx",
+    "pathname": "/tools"
+  },
+  {
     "filePath": "/www/apps/resources/app/troubleshooting/cors-errors/page.mdx",
     "pathname": "/troubleshooting/cors-errors"
   },

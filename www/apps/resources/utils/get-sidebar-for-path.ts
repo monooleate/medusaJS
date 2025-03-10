@@ -43,6 +43,19 @@ const sidebarMappings: {
       ) as Promise<{ default: Sidebar.Sidebar }>,
     paths: ["/storefront-development"],
   },
+  {
+    module: async () =>
+      import("@/generated/generated-tools-sidebar.mjs") as Promise<{
+        default: Sidebar.Sidebar
+      }>,
+    paths: [
+      "/tools",
+      "/create-medusa-app",
+      "/medusa-cli",
+      "/js-sdk",
+      "/nextjs-starter",
+    ],
+  },
 ]
 export async function getSidebarForPath(
   currentPath: string

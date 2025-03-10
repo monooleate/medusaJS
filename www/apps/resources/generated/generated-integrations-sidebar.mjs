@@ -18,6 +18,7 @@ const generatedgeneratedIntegrationsSidebarSidebar = {
       "isPathHref": true,
       "type": "category",
       "title": "Auth",
+      "initialOpen": true,
       "children": [
         {
           "loaded": true,
@@ -42,6 +43,7 @@ const generatedgeneratedIntegrationsSidebarSidebar = {
       "isPathHref": true,
       "type": "category",
       "title": "CMS",
+      "initialOpen": true,
       "children": [
         {
           "loaded": true,
@@ -58,6 +60,7 @@ const generatedgeneratedIntegrationsSidebarSidebar = {
       "isPathHref": true,
       "type": "category",
       "title": "ERP",
+      "initialOpen": true,
       "children": [
         {
           "loaded": true,
@@ -74,6 +77,7 @@ const generatedgeneratedIntegrationsSidebarSidebar = {
       "isPathHref": true,
       "type": "category",
       "title": "File",
+      "initialOpen": true,
       "children": [
         {
           "loaded": true,
@@ -90,6 +94,7 @@ const generatedgeneratedIntegrationsSidebarSidebar = {
       "isPathHref": true,
       "type": "category",
       "title": "Fulfillment",
+      "initialOpen": true,
       "children": [
         {
           "loaded": true,
@@ -106,6 +111,7 @@ const generatedgeneratedIntegrationsSidebarSidebar = {
       "isPathHref": true,
       "type": "category",
       "title": "Notification",
+      "initialOpen": true,
       "children": [
         {
           "loaded": true,
@@ -130,6 +136,7 @@ const generatedgeneratedIntegrationsSidebarSidebar = {
       "isPathHref": true,
       "type": "category",
       "title": "Payment",
+      "initialOpen": true,
       "children": [
         {
           "loaded": true,
