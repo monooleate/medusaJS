@@ -607,6 +607,11 @@ export const sidebars = [
           },
           {
             type: "link",
+            path: "/learn/production/worker-mode",
+            title: "Worker Mode",
+          },
+          {
+            type: "link",
             path: "/learn/deployment",
             title: "Deployment Overview",
             children: [

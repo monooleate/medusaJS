@@ -762,24 +762,13 @@ module.exports = defineConfig({
 
 ### workerMode
 
-The `projectConfig.workerMode` configuration specifies the worker mode of the Medusa application.
+The `projectConfig.workerMode` configuration specifies the worker mode of the Medusa application. You can learn more about it in the [Worker Mode chapter](../../production/worker-mode/page.mdx).
 
-Workers are processes running separately from the main application. They're useful for executing long-running or resource-heavy tasks in the background, such as importing products.
+The value for this configuration can be one of the following:
 
-With a worker, these tasks are offloaded to a separate process. So, they won't affect the performance of the main application.
-
-![Diagram showcasing how the server and worker work together](https://res.cloudinary.com/dza7lstvk/image/upload/fl_lossy/f_auto/r_16/ar_16:9,c_pad/v1/Medusa%20Book/medusa-worker_klkbch.jpg?_a=BATFJtAA0)
-
-Medusa has three runtime modes:
-
-- Use `shared` to run the application in a single process, meaning the worker and server run in the same process.
-- Use `worker` to run the a worker process only.
-- Use `server` to run the application server only.
-
-In production, it's recommended to deploy two instances of your Medusa application:
-
-1. One having the `workerMode` configuration set to `server`. This is the main application server that handles incoming requests.
-2. Another having the `workerMode` configuration set to `worker`. This is the worker that handles background tasks.
+- `shared`: run the application in a single process, meaning the worker and server run in the same process.
+- `worker`: run the a worker process only.
+- `server`: run the application server only.
 
 #### Example
 

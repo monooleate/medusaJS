@@ -1156,6 +1156,16 @@ export const generatedSidebars = [
             "loaded": true,
             "isPathHref": true,
             "type": "link",
+            "path": "/learn/production/worker-mode",
+            "title": "Worker Mode",
+            "children": [],
+            "chapterTitle": "8.2. Worker Mode",
+            "number": "8.2."
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
             "path": "/learn/deployment",
             "title": "Deployment Overview",
             "children": [
@@ -1166,12 +1176,12 @@ export const generatedSidebars = [
                 "path": "/learn/deployment/general",
                 "title": "General Deployment",
                 "children": [],
-                "chapterTitle": "8.2.1. General Deployment",
-                "number": "8.2.1."
+                "chapterTitle": "8.3.1. General Deployment",
+                "number": "8.3.1."
               }
             ],
-            "chapterTitle": "8.2. Deployment Overview",
-            "number": "8.2."
+            "chapterTitle": "8.3. Deployment Overview",
+            "number": "8.3."
           }
         ],
         "chapterTitle": "8. Production",
