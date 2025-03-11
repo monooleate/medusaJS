@@ -7,7 +7,7 @@ export const generatedSidebars = [
         "loaded": true,
         "isPathHref": true,
         "type": "category",
-        "title": "1. Get Started",
+        "title": "1. Getting Started",
         "children": [
           {
             "loaded": true,
@@ -40,7 +40,7 @@ export const generatedSidebars = [
             "number": "1.3."
           }
         ],
-        "chapterTitle": "1. Get Started",
+        "chapterTitle": "1. Getting Started",
         "number": "1."
       },
       {
@@ -406,9 +406,9 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "link",
                 "path": "/learn/fundamentals/module-links/custom-columns",
-                "title": "Custom Columns",
+                "title": "Add Custom Columns",
                 "children": [],
-                "chapterTitle": "3.3.4. Custom Columns",
+                "chapterTitle": "3.3.4. Add Custom Columns",
                 "number": "3.3.4."
               },
               {

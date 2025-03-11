@@ -13,9 +13,9 @@ In this chapter, you'll learn available configurations in the Medusa application
 All configurations of the Medusa application are stored in the `medusa.config.ts` file. The file exports an object created using the `defineConfig` utility. For example:
 
 ```ts title="medusa.config.ts"
-import { loadEnv, defineConfig } from '@medusajs/framework/utils'
+import { loadEnv, defineConfig } from "@medusajs/framework/utils"
 
-loadEnv(process.env.NODE_ENV || 'development', process.cwd())
+loadEnv(process.env.NODE_ENV || "development", process.cwd())
 
 module.exports = defineConfig({
   projectConfig: {
@@ -26,7 +26,7 @@ module.exports = defineConfig({
       authCors: process.env.AUTH_CORS!,
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
-    }
+    },
   },
 })
 
@@ -82,7 +82,7 @@ This configuration is useful for production databases, which can be supported by
 module.exports = defineConfig({
   projectConfig: {
     databaseDriverOptions: process.env.NODE_ENV !== "development" ?
-      { connection: { ssl: { rejectUnauthorized: false } } } : {}
+      { connection: { ssl: { rejectUnauthorized: false } } } : {},
     // ...
   },
   // ...
@@ -177,7 +177,7 @@ The `projectConfig.databaseLogging` configuration specifies whether database mes
 ```ts title="medusa-config.ts"
 module.exports = defineConfig({
   projectConfig: {
-    databaseLogging: true
+    databaseLogging: true,
     // ...
   },
   // ...
@@ -285,7 +285,7 @@ module.exports = defineConfig({
   projectConfig: {
     http: {
       jwtSecret: process.env.JWT_SECRET || "supersecret",
-    }
+    },
     // ...
   },
   // ...
@@ -305,7 +305,7 @@ module.exports = defineConfig({
   projectConfig: {
     http: {
       jwtExpiresIn: process.env.JWT_EXPIRES_IN || "2d",
-    }
+    },
     // ...
   },
   // ...
@@ -325,7 +325,7 @@ module.exports = defineConfig({
   projectConfig: {
     http: {
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
-    }
+    },
     // ...
   },
   // ...
@@ -362,8 +362,8 @@ Then, set the configuration in `medusa-config.ts`:
 module.exports = defineConfig({
   projectConfig: {
     http: {
-      authCors: process.env.AUTH_CORS
-    }
+      authCors: process.env.AUTH_CORS,
+    },
     // ...
   },
   // ...
@@ -377,7 +377,7 @@ module.exports = defineConfig({
   projectConfig: {
     http: {
       authCors: "/http:\\/\\/localhost:700\\d+$/",
-    }
+    },
     // ...
   },
   // ...
@@ -413,7 +413,7 @@ module.exports = defineConfig({
   projectConfig: {
     http: {
       storeCors: process.env.STORE_CORS,
-    }
+    },
     // ...
   },
   // ...
@@ -427,7 +427,7 @@ module.exports = defineConfig({
   projectConfig: {
     http: {
       storeCors: "/vercel\\.app$/",
-    }
+    },
     // ...
   },
   // ...
@@ -463,7 +463,7 @@ module.exports = defineConfig({
   projectConfig: {
     http: {
       adminCors: process.env.ADMIN_CORS,
-    }
+    },
     // ...
   },
   // ...
@@ -477,7 +477,7 @@ module.exports = defineConfig({
   projectConfig: {
     http: {
       adminCors: "/vercel\\.app$/",
-    }
+    },
     // ...
   },
   // ...
@@ -500,9 +500,9 @@ module.exports = defineConfig({
         enabled: true,
         level: 6,
         memLevel: 8,
-        threshold: 1024
-      }
-    }
+        threshold: 1024,
+      },
+    },
     // ...
   },
   // ...
@@ -563,9 +563,9 @@ module.exports = defineConfig({
     http: {
       authMethodsPerActor: {
         user: ["emailpass"],
-        customer: ["emailpass", "google"]
-      }
-    }
+        customer: ["emailpass", "google"],
+      },
+    },
     // ...
   },
   // ...
@@ -585,9 +585,9 @@ module.exports = defineConfig({
   projectConfig: {
     http: {
       restrictedFields: {
-        store: ["customer", "customers"]
-      }
-    }
+        store: ["customer", "customers"],
+      },
+    },
     // ...
   },
   // ...
@@ -621,7 +621,7 @@ module.exports = defineConfig({
     redisOptions: {
       connectionName: process.env.REDIS_CONNECTION_NAME ||
         "medusa",
-    }
+    },
     // ...
   },
   // ...
@@ -710,7 +710,7 @@ module.exports = defineConfig({
   projectConfig: {
     sessionOptions: {
       name: process.env.SESSION_NAME || "custom",
-    }
+    },
     // ...
   },
   // ...
@@ -786,7 +786,7 @@ In production, it's recommended to deploy two instances of your Medusa applicati
 ```ts title="medusa-config.ts"
 module.exports = defineConfig({
   projectConfig: {
-    workerMode: process.env.WORKER_MODE || "shared"
+    workerMode: process.env.WORKER_MODE || "shared",
     // ...
   },
   // ...
@@ -809,7 +809,7 @@ The `admin.backendUrl` configuration specifies the URL of the Medusa application
 module.exports = defineConfig({
   admin: {
     backendUrl: process.env.MEDUSA_BACKEND_URL ||
-      "http://localhost:9000"
+      "http://localhost:9000",
   },
   // ...
 })
@@ -825,7 +825,7 @@ The `admin.disable` configuration specifies whether to disable the Medusa Admin.
 module.exports = defineConfig({
   admin: {
     disable: process.env.ADMIN_DISABLED === "true" ||
-      false
+      false,
   },
   // ...
 })
@@ -871,7 +871,7 @@ For example, this URL is used as a prefix to shareable payment links for orders 
 module.exports = defineConfig({
   admin: {
     storefrontUrl: process.env.MEDUSA_STOREFRONT_URL ||
-      "http://localhost:8000"
+      "http://localhost:8000",
   },
   // ...
 })
@@ -895,7 +895,7 @@ module.exports = defineConfig({
         optimizeDeps: {
           include: ["qs"],
         },
-      };
+      }
     },
   },
   // ...
@@ -929,9 +929,9 @@ module.exports = defineConfig({
     {
       resolve: "./src/modules/cms",
       options: {
-        apiKey: process.env.CMS_API_KEY
-      }
-    }
+        apiKey: process.env.CMS_API_KEY,
+      },
+    },
   ],
   // ...
 })
@@ -1068,7 +1068,7 @@ module.exports = defineConfig({
   featureFlags: {
     index_engine: true,
     // ...
-  }
+  },
   // ...
 })
 ```

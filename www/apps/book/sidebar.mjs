@@ -6,7 +6,7 @@ export const sidebars = [
     items: [
       {
         type: "category",
-        title: "Get Started",
+        title: "Getting Started",
         children: [
           {
             type: "link",
@@ -218,7 +218,7 @@ export const sidebars = [
               {
                 type: "link",
                 path: "/learn/fundamentals/module-links/custom-columns",
-                title: "Custom Columns",
+                title: "Add Custom Columns",
               },
               {
                 type: "link",
