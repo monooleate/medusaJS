@@ -11,9 +11,11 @@ export function getNavDropdownItems({ basePath }: Options): NavigationItem[] {
       ...item,
     }
 
-    if (newItem.type === "link") {
+    if (newItem.link) {
       newItem.link = `${basePath}${newItem.link}`
-    } else {
+    }
+
+    if (newItem.type === "dropdown") {
       newItem.children = normalizeMenuItems({
         basePath,
         items: newItem.children,
