@@ -54,6 +54,33 @@ export const generatedSidebars = [
             "loaded": true,
             "isPathHref": true,
             "type": "category",
+            "title": "Server Examples",
+            "autogenerate_tags": "example+server",
+            "autogenerate_as_ref": true,
+            "sort_sidebar": "alphabetize",
+            "children": [
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "link",
+                "title": "Custom Item Price",
+                "path": "/examples/guides/custom-item-price",
+                "children": []
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "link",
+                "title": "Quote Management",
+                "path": "/examples/guides/quote-management",
+                "children": []
+              }
+            ]
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "category",
             "title": "Storefront Examples",
             "autogenerate_tags": "example+storefront",
             "autogenerate_as_ref": true,
@@ -164,7 +191,33 @@ export const generatedSidebars = [
                 "children": []
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/b2b",
+        "title": "B2B",
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "path": "/examples/guides/quote-management",
+            "title": "Example: Quote Management",
+            "children": []
+          }
+        ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "link",
+        "path": "/recipes/commerce-automation",
+        "title": "Commerce Automation",
+        "children": [
           {
             "loaded": true,
             "isPathHref": true,
@@ -1336,6 +1389,14 @@ export const generatedSidebars = [
                     "type": "ref",
                     "title": "Implement Custom Line Item Pricing in Medusa",
                     "path": "https://docs.medusajs.com/resources/examples/guides/custom-item-price",
+                    "children": []
+                  },
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Implement Quote Management",
+                    "path": "https://docs.medusajs.com/resources/examples/guides/quote-management",
                     "children": []
                   }
                 ]
@@ -6187,6 +6248,27 @@ export const generatedSidebars = [
                     "type": "link",
                     "path": "/commerce-modules/order/links-to-other-modules",
                     "title": "Links to Other Modules",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "category",
+                "title": "Server Guides",
+                "autogenerate_tags": "server+order",
+                "initialOpen": false,
+                "autogenerate_as_ref": true,
+                "sort_sidebar": "alphabetize",
+                "description": "Learn how to use the Order Module in your customizations on the Medusa application server.",
+                "children": [
+                  {
+                    "loaded": true,
+                    "isPathHref": true,
+                    "type": "ref",
+                    "title": "Implement Quote Management",
+                    "path": "https://docs.medusajs.com/resources/examples/guides/quote-management",
                     "children": []
                   }
                 ]

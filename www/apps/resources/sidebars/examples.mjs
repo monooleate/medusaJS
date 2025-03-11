@@ -31,6 +31,18 @@ export const examplesSidebar = [
         autogenerate_tags: "example+server",
         autogenerate_as_ref: true,
         sort_sidebar: "alphabetize",
+        children: [
+          {
+            type: "link",
+            title: "Custom Item Price",
+            path: "/examples/guides/custom-item-price",
+          },
+          {
+            type: "link",
+            title: "Quote Management",
+            path: "/examples/guides/quote-management",
+          },
+        ],
       },
       {
         type: "category",
