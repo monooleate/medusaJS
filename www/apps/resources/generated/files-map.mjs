@@ -788,6 +788,10 @@ export const filesMap = [
     "pathname": "/examples/guides/custom-item-price"
   },
   {
+    "filePath": "/www/apps/resources/app/examples/guides/quote-management/page.mdx",
+    "pathname": "/examples/guides/quote-management"
+  },
+  {
     "filePath": "/www/apps/resources/app/examples/page.mdx",
     "pathname": "/examples"
   },
@@ -1886,6 +1890,22 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/references/cart/ICartModuleService/methods/cart.ICartModuleService.updateShippingMethods/page.mdx",
     "pathname": "/references/cart/ICartModuleService/methods/cart.ICartModuleService.updateShippingMethods"
+  },
+  {
+    "filePath": "/www/apps/resources/references/cart/ICartModuleService/methods/cart.ICartModuleService.upsertLineItemAdjustments/page.mdx",
+    "pathname": "/references/cart/ICartModuleService/methods/cart.ICartModuleService.upsertLineItemAdjustments"
+  },
+  {
+    "filePath": "/www/apps/resources/references/cart/ICartModuleService/methods/cart.ICartModuleService.upsertLineItemTaxLines/page.mdx",
+    "pathname": "/references/cart/ICartModuleService/methods/cart.ICartModuleService.upsertLineItemTaxLines"
+  },
+  {
+    "filePath": "/www/apps/resources/references/cart/ICartModuleService/methods/cart.ICartModuleService.upsertShippingMethodAdjustments/page.mdx",
+    "pathname": "/references/cart/ICartModuleService/methods/cart.ICartModuleService.upsertShippingMethodAdjustments"
+  },
+  {
+    "filePath": "/www/apps/resources/references/cart/ICartModuleService/methods/cart.ICartModuleService.upsertShippingMethodTaxLines/page.mdx",
+    "pathname": "/references/cart/ICartModuleService/methods/cart.ICartModuleService.upsertShippingMethodTaxLines"
   },
   {
     "filePath": "/www/apps/resources/references/cart/IMessageAggregator/methods/cart.IMessageAggregator.clearMessages/page.mdx",

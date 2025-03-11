@@ -80,6 +80,13 @@ While tutorials show you a specific use case, they also help you understand how 
       },
       {
         type: "link",
+        title: "Quote Management",
+        path: "/examples/guides/quote-management",
+        description:
+          "Learn how to implement quote management, useful for B2B use cases.",
+      },
+      {
+        type: "link",
         title: "Wishlist Plugin",
         path: "/plugins/guides/wishlist",
         description:

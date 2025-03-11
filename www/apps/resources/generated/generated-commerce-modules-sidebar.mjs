@@ -1138,6 +1138,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "title": "Implement Custom Line Item Pricing in Medusa",
               "path": "https://docs.medusajs.com/resources/examples/guides/custom-item-price",
               "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "ref",
+              "title": "Implement Quote Management",
+              "path": "https://docs.medusajs.com/resources/examples/guides/quote-management",
+              "children": []
             }
           ]
         },
@@ -2024,6 +2032,42 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
                       "type": "link",
                       "path": "/references/cart/updateShippingMethods",
                       "title": "updateShippingMethods",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/references/cart/upsertLineItemAdjustments",
+                      "title": "upsertLineItemAdjustments",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/references/cart/upsertLineItemTaxLines",
+                      "title": "upsertLineItemTaxLines",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/references/cart/upsertShippingMethodAdjustments",
+                      "title": "upsertShippingMethodAdjustments",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
+                      "path": "/references/cart/upsertShippingMethodTaxLines",
+                      "title": "upsertShippingMethodTaxLines",
                       "description": "",
                       "children": []
                     }
@@ -5015,14 +5059,6 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
                       "loaded": true,
                       "isPathHref": true,
                       "type": "ref",
-                      "title": "batchProductsWorkflow",
-                      "path": "https://docs.medusajs.com/resources/references/medusa-workflows/batchProductsWorkflow",
-                      "children": []
-                    },
-                    {
-                      "loaded": true,
-                      "isPathHref": true,
-                      "type": "ref",
                       "title": "batchProductVariantsWorkflow",
                       "path": "https://docs.medusajs.com/resources/references/medusa-workflows/batchProductVariantsWorkflow",
                       "children": []
@@ -5948,6 +5984,26 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "type": "link",
               "path": "/commerce-modules/order/links-to-other-modules",
               "title": "Links to Other Modules",
+              "children": []
+            }
+          ]
+        },
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "category",
+          "title": "Server Guides",
+          "autogenerate_tags": "server+order",
+          "autogenerate_as_ref": true,
+          "sort_sidebar": "alphabetize",
+          "description": "Learn how to use the Order Module in your customizations on the Medusa application server.",
+          "children": [
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "ref",
+              "title": "Implement Quote Management",
+              "path": "https://docs.medusajs.com/resources/examples/guides/quote-management",
               "children": []
             }
           ]
@@ -10098,14 +10154,6 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
                       "loaded": true,
                       "isPathHref": true,
                       "type": "ref",
-                      "title": "batchProductsWorkflow",
-                      "path": "https://docs.medusajs.com/resources/references/medusa-workflows/batchProductsWorkflow",
-                      "children": []
-                    },
-                    {
-                      "loaded": true,
-                      "isPathHref": true,
-                      "type": "ref",
                       "title": "batchProductVariantsWorkflow",
                       "path": "https://docs.medusajs.com/resources/references/medusa-workflows/batchProductVariantsWorkflow",
                       "children": []
@@ -11380,14 +11428,6 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
                       "type": "ref",
                       "title": "batchLinkProductsToCollectionWorkflow",
                       "path": "https://docs.medusajs.com/resources/references/medusa-workflows/batchLinkProductsToCollectionWorkflow",
-                      "children": []
-                    },
-                    {
-                      "loaded": true,
-                      "isPathHref": true,
-                      "type": "ref",
-                      "title": "batchProductsWorkflow",
-                      "path": "https://docs.medusajs.com/resources/references/medusa-workflows/batchProductsWorkflow",
                       "children": []
                     },
                     {

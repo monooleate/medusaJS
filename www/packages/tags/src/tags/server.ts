@@ -48,6 +48,10 @@ export const server = [
     "path": "https://docs.medusajs.com/resources/examples/guides/custom-item-price"
   },
   {
+    "title": "Implement Quote Management",
+    "path": "https://docs.medusajs.com/resources/examples/guides/quote-management"
+  },
+  {
     "title": "Build Wishlist Plugin",
     "path": "https://docs.medusajs.com/resources/plugins/guides/wishlist"
   },

@@ -297,6 +297,15 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
           "loaded": true,
           "isPathHref": true,
           "type": "link",
+          "title": "Quote Management",
+          "path": "/examples/guides/quote-management",
+          "description": "Learn how to implement quote management, useful for B2B use cases.",
+          "children": []
+        },
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "link",
           "title": "Wishlist Plugin",
           "path": "/plugins/guides/wishlist",
           "description": "Learn how to build a plugin for wishlist functionalities.",

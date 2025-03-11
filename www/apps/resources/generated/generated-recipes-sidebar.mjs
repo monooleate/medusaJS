@@ -95,7 +95,16 @@ const generatedgeneratedRecipesSidebarSidebar = {
       "type": "link",
       "path": "/recipes/b2b",
       "title": "B2B",
-      "children": []
+      "children": [
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "link",
+          "path": "/examples/guides/quote-management",
+          "title": "Example: Quote Management",
+          "children": []
+        }
+      ]
     },
     {
       "loaded": true,
