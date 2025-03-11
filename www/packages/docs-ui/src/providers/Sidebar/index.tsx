@@ -311,6 +311,7 @@ export const SidebarProvider = ({
           findSidebarItem({
             sidebarItems: s.items,
             item: { type: "link", path: activePath, title: "" },
+            compareTitles: false,
           }) !== undefined
       ) || sidebars[0]
     )
@@ -534,6 +535,12 @@ export const SidebarProvider = ({
       `${desktopSidebarOpen === false}`
     )
   }, [isBrowser, desktopSidebarOpen])
+
+  useEffect(() => {
+    if (initialSidebars[0].sidebar_id !== sidebars[0].sidebar_id) {
+      resetItems()
+    }
+  }, [initialSidebars])
 
   const updatePersistedCategoryState = (title: string, opened: boolean) => {
     const storageData = JSON.parse(
