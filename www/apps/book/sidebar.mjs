@@ -597,20 +597,25 @@ export const sidebars = [
         ],
       },
       {
-        type: "link",
-        path: "/learn/build",
-        title: "Build",
-        chapterTitle: "Production",
+        type: "category",
+        title: "Production",
         children: [
+          {
+            type: "link",
+            path: "/learn/build",
+            title: "Build",
+          },
           {
             type: "link",
             path: "/learn/deployment",
             title: "Deployment Overview",
-          },
-          {
-            type: "link",
-            path: "/learn/deployment/general",
-            title: "General Deployment",
+            children: [
+              {
+                type: "link",
+                path: "/learn/deployment/general",
+                title: "General Deployment",
+              },
+            ],
           },
         ],
       },

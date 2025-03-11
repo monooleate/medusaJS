@@ -1148,18 +1148,17 @@ export const generatedSidebars = [
             "type": "link",
             "path": "/learn/build",
             "title": "Build",
-            "chapterTitle": "8. Production",
+            "children": [],
+            "chapterTitle": "8.1. Build",
+            "number": "8.1."
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "path": "/learn/deployment",
+            "title": "Deployment Overview",
             "children": [
-              {
-                "loaded": true,
-                "isPathHref": true,
-                "type": "link",
-                "path": "/learn/deployment",
-                "title": "Deployment Overview",
-                "children": [],
-                "chapterTitle": "8.1. Deployment Overview",
-                "number": "8.1."
-              },
               {
                 "loaded": true,
                 "isPathHref": true,
@@ -1167,13 +1166,16 @@ export const generatedSidebars = [
                 "path": "/learn/deployment/general",
                 "title": "General Deployment",
                 "children": [],
-                "chapterTitle": "8.2. General Deployment",
-                "number": "8.2."
+                "chapterTitle": "8.2.1. General Deployment",
+                "number": "8.2.1."
               }
             ],
-            "number": "8."
+            "chapterTitle": "8.2. Deployment Overview",
+            "number": "8.2."
           }
-        ]
+        ],
+        "chapterTitle": "8. Production",
+        "number": "8."
       },
       {
         "loaded": true,
