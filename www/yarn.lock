@@ -1669,19 +1669,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@medusajs/ui-preset@npm:~2.5.1":
-  version: 2.5.1
-  resolution: "@medusajs/ui-preset@npm:2.5.1"
-  dependencies:
-    "@tailwindcss/forms": ^0.5.3
-    tailwindcss-animate: ^1.0.6
-  peerDependencies:
-    tailwindcss: ">=3.0.0"
-  checksum: 7aee7a7e9f0acc8f6329434f1b502d1c5eabecb3a60b3207f435da17ce8c681e85cb0466a1f861f98eb0bd89e7f8363b5865c0f70ad546dfb6aaacb22887b182
-  languageName: node
-  linkType: hard
-
-"@medusajs/ui@npm:4.0.6, @medusajs/ui@npm:~4.0.6":
+"@medusajs/ui@npm:4.0.6":
   version: 4.0.6
   resolution: "@medusajs/ui@npm:4.0.6"
   dependencies:
@@ -5892,8 +5880,8 @@ __metadata:
   dependencies:
     "@mdx-js/loader": ^3.1.0
     "@mdx-js/react": ^3.1.0
-    "@medusajs/icons": ~2.5.1
-    "@medusajs/ui": ~4.0.6
+    "@medusajs/icons": 2.6.0
+    "@medusajs/ui": 4.0.6
     "@next/bundle-analyzer": 15.0.4
     "@next/mdx": 15.0.4
     "@react-hook/resize-observer": ^2.0.2
@@ -15485,9 +15473,9 @@ turbo@latest:
   dependencies:
     "@faker-js/faker": ^8.0.2
     "@mdx-js/react": ^3.1.0
-    "@medusajs/icons": ~2.5.1
-    "@medusajs/ui": ~4.0.6
-    "@medusajs/ui-preset": ~2.5.1
+    "@medusajs/icons": 2.6.0
+    "@medusajs/ui": 4.0.6
+    "@medusajs/ui-preset": 2.6.0
     "@types/node": 20.4.9
     "@types/react": "npm:types-react@rc"
     "@types/react-dom": "npm:types-react@rc"

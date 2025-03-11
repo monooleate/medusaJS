@@ -65,6 +65,13 @@ export const recipesSidebar = [
     type: "link",
     path: "/recipes/b2b",
     title: "B2B",
+    children: [
+      {
+        type: "link",
+        path: "/examples/guides/quote-management",
+        title: "Example: Quote Management",
+      },
+    ],
   },
   {
     type: "link",
