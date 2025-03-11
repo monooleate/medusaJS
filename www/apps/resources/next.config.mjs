@@ -153,6 +153,11 @@ const nextConfig = {
         destination: "/recipes",
         permanent: true,
       },
+      {
+        source: "/references/medusa-config",
+        destination: `${process.env.NEXT_PUBLIC_BASE_URL}/learn/configurations/medusa-config`,
+        permanent: true,
+      },
     ]
   },
   outputFileTracingExcludes: {

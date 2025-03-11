@@ -536,6 +536,11 @@ export const sidebars = [
           },
           {
             type: "link",
+            title: "Medusa Configuations",
+            path: "/learn/configurations/medusa-config",
+          },
+          {
+            type: "link",
             title: "Type Aliases",
             path: "/learn/conventions/ts-aliases",
           },

@@ -6,7 +6,6 @@ export const generatedSidebars = [
       {
         "loaded": true,
         "isPathHref": true,
-        "initialOpen": false,
         "type": "category",
         "title": "1. Get Started",
         "children": [
@@ -47,7 +46,6 @@ export const generatedSidebars = [
       {
         "loaded": true,
         "isPathHref": true,
-        "initialOpen": false,
         "type": "category",
         "title": "2. Customization Tutorial",
         "children": [
@@ -232,7 +230,6 @@ export const generatedSidebars = [
       {
         "loaded": true,
         "isPathHref": true,
-        "initialOpen": false,
         "type": "category",
         "title": "3. Framework",
         "children": [
@@ -912,7 +909,6 @@ export const generatedSidebars = [
       {
         "loaded": true,
         "isPathHref": true,
-        "initialOpen": false,
         "type": "category",
         "title": "4. Admin Development",
         "children": [
@@ -1006,13 +1002,11 @@ export const generatedSidebars = [
             "children": [],
             "number": "5."
           }
-        ],
-        "initialOpen": false
+        ]
       },
       {
         "loaded": true,
         "isPathHref": true,
-        "initialOpen": false,
         "type": "category",
         "title": "6. Configurations",
         "children": [
@@ -1030,11 +1024,21 @@ export const generatedSidebars = [
             "loaded": true,
             "isPathHref": true,
             "type": "link",
+            "title": "Medusa Configuations",
+            "path": "/learn/configurations/medusa-config",
+            "children": [],
+            "chapterTitle": "6.2. Medusa Configuations",
+            "number": "6.2."
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
             "title": "Type Aliases",
             "path": "/learn/conventions/ts-aliases",
             "children": [],
-            "chapterTitle": "6.2. Type Aliases",
-            "number": "6.2."
+            "chapterTitle": "6.3. Type Aliases",
+            "number": "6.3."
           }
         ],
         "chapterTitle": "6. Configurations",
@@ -1043,7 +1047,6 @@ export const generatedSidebars = [
       {
         "loaded": true,
         "isPathHref": true,
-        "initialOpen": false,
         "type": "category",
         "title": "7. Debugging & Testing",
         "children": [
@@ -1170,13 +1173,11 @@ export const generatedSidebars = [
             ],
             "number": "8."
           }
-        ],
-        "initialOpen": false
+        ]
       },
       {
         "loaded": true,
         "isPathHref": true,
-        "initialOpen": false,
         "type": "category",
         "title": "9. Upgrade",
         "children": [
@@ -1207,7 +1208,6 @@ export const generatedSidebars = [
       {
         "loaded": true,
         "isPathHref": true,
-        "initialOpen": false,
         "type": "category",
         "title": "10. Resources",
         "children": [
