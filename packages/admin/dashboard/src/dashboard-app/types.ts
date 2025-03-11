@@ -9,6 +9,7 @@ import {
 import { ComponentType } from "react"
 import { LoaderFunction } from "react-router-dom"
 import { ZodFirstPartySchemaTypes } from "zod"
+import { INavItem } from "../components/layout/nav-item"
 
 export type RouteExtension = {
   Component: ComponentType
@@ -119,3 +120,15 @@ export type DisplayMap = Map<
   CustomFieldModel,
   Map<CustomFieldContainerZone, React.ComponentType<{ data: any }>[]>
 >
+
+export type MenuMap = Map<MenuItemKey, INavItem[]>
+
+export type WidgetMap = Map<InjectionZone, React.ComponentType[]>
+
+export type DashboardPlugin = {
+  formModule: FormModule
+  displayModule: DisplayModule
+  menuItemModule: MenuItemModule
+  widgetModule: WidgetModule
+  routeModule: RouteModule
+}

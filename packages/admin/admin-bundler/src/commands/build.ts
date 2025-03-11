@@ -1,6 +1,6 @@
 import type { InlineConfig } from "vite"
 import { BundlerOptions } from "../types"
-import { getViteConfig } from "./config"
+import { getViteConfig } from "../utils/config"
 
 export async function build(options: BundlerOptions) {
   const vite = await import("vite")

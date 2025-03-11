@@ -4,7 +4,7 @@ import path from "path"
 import type { InlineConfig, ViteDevServer } from "vite"
 
 import { BundlerOptions } from "../types"
-import { getViteConfig } from "./config"
+import { getViteConfig } from "../utils/config"
 
 const router = express.Router()
 
