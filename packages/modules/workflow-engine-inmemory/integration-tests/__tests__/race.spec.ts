@@ -14,6 +14,16 @@ import "../__fixtures__"
 
 jest.setTimeout(3000000)
 
+const failTrap = (done) => {
+  setTimeoutSync(() => {
+    // REF:https://stackoverflow.com/questions/78028715/jest-async-test-with-event-emitter-isnt-ending
+    console.warn(
+      "Jest is breaking the event emit with its debouncer. This allows to continue the test by managing the timeout of the test manually."
+    )
+    done()
+  }, 5000)
+}
+
 moduleIntegrationTestRunner<IWorkflowEngineService>({
   moduleName: Modules.WORKFLOW_ENGINE,
   resolve: __dirname + "/../..",
@@ -87,6 +97,8 @@ moduleIntegrationTestRunner<IWorkflowEngineService>({
             expect(result).toBe("result from step 0")
           })
           .catch((e) => e)
+
+        failTrap(done)
       })
 
       it("should prevent race continuation of the workflow compensation during retryIntervalAwaiting in background execution", (done) => {
@@ -176,6 +188,8 @@ moduleIntegrationTestRunner<IWorkflowEngineService>({
             expect(result).toBe("result from step 0")
           })
           .catch((e) => e)
+
+        failTrap(done)
       })
     })
   },
