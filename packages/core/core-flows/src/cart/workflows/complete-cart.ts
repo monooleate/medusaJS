@@ -4,6 +4,7 @@ import {
   UsageComputedActions,
 } from "@medusajs/framework/types"
 import {
+  isDefined,
   Modules,
   OrderStatus,
   OrderWorkflowEvents,
@@ -167,14 +168,16 @@ export const completeCartWorkflow = createWorkflow(
 
       const cartToOrder = transform({ cart, payment }, ({ cart, payment }) => {
         const transactions =
-          payment?.captures?.map((capture) => {
-            return {
-              amount: capture.raw_amount ?? capture.amount,
-              currency_code: payment.currency_code,
-              reference: "capture",
-              reference_id: capture.id,
-            }
-          }) ?? []
+          (payment &&
+            payment?.captures?.map((capture) => {
+              return {
+                amount: capture.raw_amount ?? capture.amount,
+                currency_code: payment.currency_code,
+                reference: "capture",
+                reference_id: capture.id,
+              }
+            })) ??
+          []
 
         const allItems = (cart.items ?? []).map((item) => {
           const input: PrepareLineItemDataInput = {
@@ -280,19 +283,31 @@ export const completeCartWorkflow = createWorkflow(
         }
       })
 
-      parallelize(
-        createRemoteLinkStep([
-          {
-            [Modules.ORDER]: { order_id: createdOrder.id },
-            [Modules.CART]: { cart_id: cart.id },
-          },
-          {
-            [Modules.ORDER]: { order_id: createdOrder.id },
-            [Modules.PAYMENT]: {
-              payment_collection_id: cart.payment_collection.id,
+      const linksToCreate = transform(
+        { cart, createdOrder },
+        ({ cart, createdOrder }) => {
+          const links: Record<string, any>[] = [
+            {
+              [Modules.ORDER]: { order_id: createdOrder.id },
+              [Modules.CART]: { cart_id: cart.id },
             },
-          },
-        ]),
+          ]
+
+          if (isDefined(cart.payment_collection?.id)) {
+            links.push({
+              [Modules.ORDER]: { order_id: createdOrder.id },
+              [Modules.PAYMENT]: {
+                payment_collection_id: cart.payment_collection.id,
+              },
+            })
+          }
+
+          return links
+        }
+      )
+
+      parallelize(
+        createRemoteLinkStep(linksToCreate),
         updateCartsStep([updateCompletedAt]),
         reserveInventoryStep(formatedInventoryItems),
         emitEventStep({

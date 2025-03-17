@@ -1148,7 +1148,7 @@ medusaIntegrationTestRunner({
           expect.objectContaining({
             id: order.id,
             total: 0,
-            subtotal: -6,
+            subtotal: 100,
             summary: expect.objectContaining({
               current_order_total: 0,
               accounting_total: 0,

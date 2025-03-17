@@ -768,7 +768,7 @@ describe("Total calculation", function () {
         },
       ],
       total: 48,
-      subtotal: 60,
+      subtotal: 100,
       tax_total: 8,
       discount_total: 22,
       discount_subtotal: 20,
