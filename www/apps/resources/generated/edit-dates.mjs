@@ -6057,5 +6057,8 @@ export const generatedEditDates = {
   "references/modules/event/page.mdx": "2025-03-17T15:24:03.021Z",
   "references/modules/file_service/page.mdx": "2025-03-17T15:24:03.025Z",
   "references/modules/notification_service/page.mdx": "2025-03-17T15:24:05.164Z",
-  "references/notification_service/interfaces/notification_service.INotificationModuleService/page.mdx": "2025-03-17T15:24:05.173Z"
+  "references/notification_service/interfaces/notification_service.INotificationModuleService/page.mdx": "2025-03-17T15:24:05.173Z",
+  "app/nextjs-starter/guides/revalidate-cache/page.mdx": "2025-03-18T08:47:59.628Z",
+  "app/storefront-development/cart/totals/page.mdx": "2025-03-18T09:20:59.533Z",
+  "app/storefront-development/checkout/order-confirmation/page.mdx": "2025-03-18T09:44:14.561Z"
 }

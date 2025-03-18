@@ -1199,6 +1199,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "loaded": true,
               "isPathHref": true,
               "type": "ref",
+              "title": "Show Cart Totals",
+              "path": "https://docs.medusajs.com/resources/storefront-development/cart/totals",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "ref",
               "title": "Update Cart in Storefront",
               "path": "https://docs.medusajs.com/resources/storefront-development/cart/update",
               "children": []
@@ -5956,6 +5964,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "type": "ref",
               "title": "Implement Express Checkout with Medusa",
               "path": "https://docs.medusajs.com/resources/storefront-development/guides/express-checkout",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "ref",
+              "title": "Order Confirmation in Storefront",
+              "path": "https://docs.medusajs.com/resources/storefront-development/checkout/order-confirmation",
               "children": []
             }
           ]
