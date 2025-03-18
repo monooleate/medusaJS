@@ -27,19 +27,24 @@ export type StepFunctionReturnConfig<TOutput> = {
 type KeysOfUnion<T> = T extends T ? keyof T : never
 export type HookHandler = (...args: any[]) => void | Promise<void>
 
+type ConvertHookToObject<THook> = THook extends Hook<infer Name, infer Input>
+  ? {
+      [K in Name]: <TOutput, TCompensateInput>(
+        invoke: InvokeFn<Input, TOutput, TCompensateInput>,
+        compensate?: CompensateFn<TCompensateInput>
+      ) => void
+    }
+  : never
+
 /**
  * Helper to convert an array of hooks to functions
  */
-type ConvertHooksToFunctions<THooks extends any[]> = {
-  [K in keyof THooks]: THooks[K] extends Hook<infer Name, infer Input>
-    ? {
-        [Fn in Name]: <TOutput, TCompensateInput>(
-          invoke: InvokeFn<Input, TOutput, TCompensateInput>,
-          compensate?: CompensateFn<TCompensateInput>
-        ) => void
-      }
-    : never
-}[number]
+type ConvertHooksToFunctions<THooks extends any[]> = THooks extends [
+  infer A,
+  ...infer R
+]
+  ? ConvertHookToObject<A> & ConvertHooksToFunctions<R>
+  : {}
 
 /**
  * A step function to be used in a workflow.
