@@ -71,6 +71,10 @@ const sidebarMappings: {
       "/references/file-provider-module",
       "/references/locking",
       "/references/notification-provider-module",
+      "/references/notification-service",
+      "/references/event-service",
+      "/references/cache-service",
+      "/references/file-service",
     ],
   },
   {
