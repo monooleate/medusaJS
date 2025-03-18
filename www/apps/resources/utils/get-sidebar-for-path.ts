@@ -117,6 +117,7 @@ const sidebarMappings: {
       "/test-tools-reference",
       "/references/workflows",
       "/references-overview",
+      "/references/medusa-workflows",
     ],
   },
   {
