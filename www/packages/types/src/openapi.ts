@@ -1,5 +1,7 @@
 import type { OpenAPIV3 } from "openapi-types"
 
+export type { OpenAPIV3 }
+
 export type Area = "admin" | "store"
 
 export type Code = {
