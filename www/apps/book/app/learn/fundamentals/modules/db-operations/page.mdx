@@ -40,7 +40,7 @@ import {
 } from "@medusajs/framework/utils"
 import { SqlEntityManager } from "@mikro-orm/knex"
 
-class HelloModuleService {
+class BlogModuleService {
   // ...
 
   @InjectManager()
@@ -105,7 +105,7 @@ import {
 import { Context } from "@medusajs/framework/types"
 import { EntityManager } from "@mikro-orm/knex"
 
-class HelloModuleService {
+class BlogModuleService {
   // ...
   @InjectTransactionManager()
   protected async update_(
@@ -147,7 +147,7 @@ class HelloModuleService {
 }
 ```
 
-The `HelloModuleService` has two methods:
+The `BlogModuleService` has two methods:
 
 - A protected `update_` that performs the database operations inside a transaction.
 - A public `update` that executes the transactional protected method.
@@ -180,7 +180,7 @@ For example, the `update` method could be changed to the following:
 // other imports...
 import { EntityManager } from "@mikro-orm/knex"
 
-class HelloModuleService {
+class BlogModuleService {
   // ...
   @InjectManager()
   async update(
@@ -210,7 +210,7 @@ For example:
 // other imports...
 import { EntityManager } from "@mikro-orm/knex"
 
-class HelloModuleService {
+class BlogModuleService {
   // ...
   @InjectTransactionManager()
   protected async anotherMethod(
@@ -253,15 +253,15 @@ For example, resolve the `baseRepository` in your service's constructor:
 
 ```ts highlights={[["14"]]}
 import { MedusaService } from "@medusajs/framework/utils"
-import MyCustom from "./models/my-custom"
+import Post from "./models/post"
 import { DAL } from "@medusajs/framework/types"
 
 type InjectedDependencies = {
   baseRepository: DAL.RepositoryService
 }
 
-class HelloModuleService extends MedusaService({
-  MyCustom,
+class BlogModuleService extends MedusaService({
+  Post,
 }){
   protected baseRepository_: DAL.RepositoryService
 
@@ -271,7 +271,7 @@ class HelloModuleService extends MedusaService({
   }
 }
 
-export default HelloModuleService
+export default BlogModuleService
 ```
   </CodeTab>
   <CodeTab label="Without Service Factory" value="no-service-factory">
@@ -283,7 +283,7 @@ type InjectedDependencies = {
   baseRepository: DAL.RepositoryService
 }
 
-class HelloModuleService {
+class BlogModuleService {
   protected baseRepository_: DAL.RepositoryService
 
   constructor({ baseRepository }: InjectedDependencies) {
@@ -291,7 +291,7 @@ class HelloModuleService {
   }
 }
 
-export default HelloModuleService
+export default BlogModuleService
 ```
 
   </CodeTab>
@@ -313,7 +313,7 @@ import {
 import { Context } from "@medusajs/framework/types"
 import { EntityManager } from "@mikro-orm/knex"
 
-class HelloModuleService {
+class BlogModuleService {
   // ...
   @InjectTransactionManager()
   protected async update_(
@@ -383,7 +383,7 @@ The second parameter of the `baseRepository_.transaction` method is an object of
 // other imports...
 import { EntityManager } from "@mikro-orm/knex"
 
-class HelloModuleService {
+class BlogModuleService {
   // ...
   @InjectTransactionManager()
   async update_(
@@ -416,7 +416,7 @@ class HelloModuleService {
 // other imports...
 import { IsolationLevel } from "@mikro-orm/core"
 
-class HelloModuleService {
+class BlogModuleService {
   // ...
   @InjectTransactionManager()
   async update_(
@@ -442,7 +442,7 @@ class HelloModuleService {
     - If `transaction` is provided and this is disabled, the manager in `transaction` is re-used.
 
 ```ts highlights={[["16"]]}
-class HelloModuleService {
+class BlogModuleService {
   // ...
   @InjectTransactionManager()
   async update_(

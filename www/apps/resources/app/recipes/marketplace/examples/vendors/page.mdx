@@ -411,13 +411,15 @@ The workflow’s steps are:
         type: "step",
         name: "createVendorStep",
         description: "Create the vendor.",
-        depth: 1
+        depth: 1,
+        link: "#createvendorstep"
       },
       {
         type: "step",
         name: "createVendorAdminStep",
         description: "Create the vendor admin.",
-        depth: 1
+        depth: 1,
+        link: "#createvendoradminstep"
       },
       {
         type: "step",
@@ -910,7 +912,7 @@ The workflow to create a product has the following steps:
 
 <WorkflowDiagram
   workflow={{
-    nam: "createVendorProductWorkflow",
+    name: "createVendorProductWorkflow",
     steps: [
       {
         type: "step",
@@ -1280,7 +1282,8 @@ In this step, you’ll create a workflow that’s executed when the customer pla
         type: "step",
         name: "groupVendorItemsStep",
         description: "Group the items by their vendor.",
-        depth: 1
+        depth: 1,
+        link: "#groupvendoritemssstep"
       },
       {
         type: "step",
@@ -1293,7 +1296,8 @@ In this step, you’ll create a workflow that’s executed when the customer pla
         type: "step",
         name: "createVendorOrdersStep", 
         description: "Create child orders for each vendor.",
-        depth: 1
+        depth: 1,
+        link: "#createvendorordersstep"
       },
       {
         type: "step",
