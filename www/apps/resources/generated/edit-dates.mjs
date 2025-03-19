@@ -5855,7 +5855,7 @@ export const generatedEditDates = {
   "references/core_flows/types/core_flows.ThrowUnlessPaymentCollectionNotePaidInput/page.mdx": "2025-01-17T16:43:25.819Z",
   "references/core_flows/types/core_flows.ValidatePaymentsRefundStepInput/page.mdx": "2025-01-17T16:43:26.128Z",
   "references/core_flows/types/core_flows.ValidateRefundStepInput/page.mdx": "2025-03-04T13:33:47.462Z",
-  "app/plugins/guides/wishlist/page.mdx": "2025-03-11T08:56:19.626Z",
+  "app/plugins/guides/wishlist/page.mdx": "2025-03-19T06:30:47.430Z",
   "app/plugins/page.mdx": "2025-02-26T11:39:25.709Z",
   "app/admin-components/components/data-table/page.mdx": "2025-03-03T14:55:58.556Z",
   "references/order_models/variables/order_models.Order/page.mdx": "2025-01-27T11:43:58.788Z",
