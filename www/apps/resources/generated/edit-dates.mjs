@@ -6044,9 +6044,9 @@ export const generatedEditDates = {
   "app/how-to-tutorials/page.mdx": "2025-03-10T09:33:49.208Z",
   "app/tools/page.mdx": "2025-03-10T12:38:56.520Z",
   "app/references-overview/page.mdx": "2025-03-10T12:55:49.803Z",
-  "app/architectural-modules/locking/page.mdx": "2025-03-12T11:40:25.695Z",
-  "app/architectural-modules/locking/postgres/page.mdx": "2025-03-12T10:07:48.820Z",
-  "app/architectural-modules/locking/redis/page.mdx": "2025-03-12T10:07:43.867Z",
+  "app/architectural-modules/locking/page.mdx": "2025-03-14T08:32:57.875Z",
+  "app/architectural-modules/locking/postgres/page.mdx": "2025-03-14T08:32:57.875Z",
+  "app/architectural-modules/locking/redis/page.mdx": "2025-03-14T08:32:57.876Z",
   "references/locking/interfaces/locking.ILockingModule/page.mdx": "2025-03-12T12:28:30.425Z",
   "references/locking/interfaces/locking.ILockingProvider/page.mdx": "2025-03-12T12:28:30.422Z",
   "references/modules/locking/page.mdx": "2025-03-12T12:28:30.419Z",
@@ -6060,5 +6060,6 @@ export const generatedEditDates = {
   "references/notification_service/interfaces/notification_service.INotificationModuleService/page.mdx": "2025-03-17T15:24:05.173Z",
   "app/nextjs-starter/guides/revalidate-cache/page.mdx": "2025-03-18T08:47:59.628Z",
   "app/storefront-development/cart/totals/page.mdx": "2025-03-18T09:20:59.533Z",
-  "app/storefront-development/checkout/order-confirmation/page.mdx": "2025-03-18T09:44:14.561Z"
+  "app/storefront-development/checkout/order-confirmation/page.mdx": "2025-03-18T09:44:14.561Z",
+  "app/how-to-tutorials/tutorials/product-reviews/page.mdx": "2025-03-19T13:00:56.901Z"
 }
