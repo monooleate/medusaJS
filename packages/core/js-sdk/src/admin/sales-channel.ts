@@ -239,6 +239,8 @@ export class SalesChannel {
    * .then(({ sales_channel }) => {
    *   console.log(sales_channel)
    * })
+   * 
+   * @deprecated Use {@link batchProducts} instead
    */
   async updateProducts(
     id: string,
@@ -276,7 +278,7 @@ export class SalesChannel {
    */
   async batchProducts(
     id: string,
-    body: HttpTypes.AdminBatchLink,
+    body: HttpTypes.AdminUpdateSalesChannelProducts,
     headers?: ClientHeaders
   ) {
     return await this.client.fetch<HttpTypes.AdminSalesChannelResponse>(

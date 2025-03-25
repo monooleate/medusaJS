@@ -397,7 +397,7 @@ export class Return {
   async updateReturnShipping(
     id: string,
     actionId: string,
-    body: HttpTypes.AdminAddReturnShipping,
+    body: HttpTypes.AdminUpdateReturnShipping,
     query?: HttpTypes.SelectParams,
     headers?: ClientHeaders
   ) {

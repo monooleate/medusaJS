@@ -26,7 +26,7 @@ export type TransactionStepState =
   | "skipped_failure"
   | "timeout"
 
-interface AdminWorkflowExecutionExecution {
+export interface AdminWorkflowExecutionExecution {
   /**
    * The details of the workflow execution's steps.
    * The key is the step's ID, and the value is the step's details.
