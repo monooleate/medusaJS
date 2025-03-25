@@ -721,8 +721,12 @@ class OasKindGenerator extends FunctionKindGenerator {
         }
       }
     } else if (oldJsSdkExampleIndex !== -1) {
-      // remove the JS SDK example if it doesn't exist
-      oas["x-codeSamples"]!.splice(oldJsSdkExampleIndex, 1)
+      // output a warning that maybe the JS SDK should be updated
+      console.warn(
+        chalk.yellow(
+          `[WARNING] The JS SDK example of ${methodName} ${oasPath} is missing from generated route examples. Consider updating it.`
+        )
+      )
     }
 
     // push new tags to the tags property
