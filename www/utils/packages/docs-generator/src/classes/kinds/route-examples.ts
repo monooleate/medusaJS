@@ -1,7 +1,6 @@
 import ts from "typescript"
 import { SyntaxKind } from "typescript"
 import DefaultKindGenerator, { GetDocBlockOptions } from "./default.js"
-import { API_ROUTE_PARAM_REGEX } from "../../constants.js"
 import type { RouteExamples } from "types"
 const EXAMPLE_CODEBLOCK_REGEX = /```(ts|typescript)\s*([.\s\S]*?)\s*```/
 
@@ -105,11 +104,16 @@ class RouteExamplesKindGenerator extends DefaultKindGenerator<ts.MethodDeclarati
       node.kind === ts.SyntaxKind.NoSubstitutionTemplateLiteral ||
       node.kind === ts.SyntaxKind.TemplateExpression
     ) {
-      const str = node
+      let str = node
         .getText()
         .replace(/^["'`]|["'`]$/g, "")
-        .replace(API_ROUTE_PARAM_REGEX, `{$1}`)
+        .replace(/\$\{(.+?)\}/g, `{$1}`)
         .toLowerCase()
+      // remove possible query params in string
+      const queryIndex = str.indexOf("?")
+      if (queryIndex > -1) {
+        str = str.slice(0, queryIndex)
+      }
       if (
         str.startsWith("/store") ||
         str.startsWith("/admin") ||
