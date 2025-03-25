@@ -6021,7 +6021,7 @@ export const generatedEditDates = {
   "references/core_flows/types/core_flows.UpdateRequestItemReturnValidationStepInput/page.mdx": "2025-03-04T13:33:47.327Z",
   "references/core_flows/types/core_flows.UpdateReturnShippingMethodValidationStepInput/page.mdx": "2025-03-04T13:33:47.336Z",
   "references/core_flows/types/core_flows.UpdateReturnValidationStepInput/page.mdx": "2025-03-04T13:33:47.348Z",
-  "app/examples/guides/quote-management/page.mdx": "2025-03-11T09:58:19.490Z",
+  "app/examples/guides/quote-management/page.mdx": "2025-03-25T13:51:49.716Z",
   "references/cart/interfaces/cart.CartCreditLineDTO/page.mdx": "2025-03-04T13:33:48.207Z",
   "references/cart/interfaces/cart.UpdateLineItemWithoutSelectorDTO/page.mdx": "2025-03-04T13:33:48.254Z",
   "references/cart_models/variables/cart_models.CreditLine/page.mdx": "2025-03-04T13:33:56.876Z",
