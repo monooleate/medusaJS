@@ -363,17 +363,17 @@ class OasKindGenerator extends FunctionKindGenerator {
     // retrieve code examples
     oas["x-codeSamples"] = []
 
-    if (curlExample) {
-      oas["x-codeSamples"].push({
-        ...OasExamplesGenerator.CURL_CODESAMPLE_DATA,
-        source: curlExample,
-      })
-    }
-
     if (jsSdkExample) {
       oas["x-codeSamples"].push({
         ...OasExamplesGenerator.JSCLIENT_CODESAMPLE_DATA,
         source: jsSdkExample,
+      })
+    }
+
+    if (curlExample) {
+      oas["x-codeSamples"].push({
+        ...OasExamplesGenerator.CURL_CODESAMPLE_DATA,
+        source: curlExample,
       })
     }
 
@@ -728,6 +728,13 @@ class OasKindGenerator extends FunctionKindGenerator {
         )
       )
     }
+
+    // sort the code samples to show JS SDK first
+    oas["x-codeSamples"] = oas["x-codeSamples"]?.sort((a) => {
+      return a.label === OasExamplesGenerator.JSCLIENT_CODESAMPLE_DATA.label
+        ? -1
+        : 1
+    })
 
     // push new tags to the tags property
     if (tagName) {
