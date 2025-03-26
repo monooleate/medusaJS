@@ -7,6 +7,35 @@ import { readFileSync } from "fs"
 
 type CodeSampleData = Omit<CodeSample, "source">
 
+const JS_SDK_PREFIX = {
+  store: `import Medusa from "@medusajs/js-sdk"
+
+let MEDUSA_BACKEND_URL = "http://localhost:9000"
+
+if (process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL) {
+  MEDUSA_BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL
+}
+
+export const sdk = new Medusa({
+  baseUrl: MEDUSA_BACKEND_URL,
+  debug: process.env.NODE_ENV === "development",
+  publishableKey: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY,
+})
+
+`,
+  admin: `import Medusa from "@medusajs/js-sdk"
+
+export const sdk = new Medusa({
+  baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
+  debug: import.meta.env.DEV,
+  auth: {
+    type: "session",
+  },
+})
+
+`,
+}
+
 /**
  * This class generates examples for OAS.
  */
@@ -50,7 +79,9 @@ class OasExamplesGenerator {
     if (!matchingRouteKey || !this.routeExamples[matchingRouteKey]["js-sdk"]) {
       return ""
     }
-    return this.routeExamples[matchingRouteKey]["js-sdk"]
+
+    const area = path.startsWith("/store") ? "store" : "admin"
+    return `${JS_SDK_PREFIX[area]}${this.routeExamples[matchingRouteKey]["js-sdk"]}`
   }
 
   /**
