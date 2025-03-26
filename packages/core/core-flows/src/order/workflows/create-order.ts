@@ -86,13 +86,13 @@ export const createOrdersWorkflowId = "create-orders"
 /**
  * This workflow creates an order. It's used by the [Create Draft Order Admin API Route](https://docs.medusajs.com/api/admin#draft-orders_postdraftorders), but
  * you can also use it to create any order.
- * 
- * This workflow has a hook that allows you to perform custom actions on the created order. For example, you can pass under `additional_data` custom data that 
+ *
+ * This workflow has a hook that allows you to perform custom actions on the created order. For example, you can pass under `additional_data` custom data that
  * allows you to create custom data models linked to the order.
- * 
+ *
  * You can also use this workflow within your customizations or your own custom workflows, allowing you to wrap custom logic around creating an order. For example,
  * you can create a workflow that imports orders from an external system, then uses this workflow to create the orders in Medusa.
- * 
+ *
  * @example
  * const { result } = await createOrderWorkflow(container)
  * .run({
@@ -121,11 +121,11 @@ export const createOrdersWorkflowId = "create-orders"
  *     }
  *   }
  * })
- * 
+ *
  * @summary
- * 
+ *
  * Create an order.
- * 
+ *
  * @property hooks.orderCreated - This hook is executed after the order is created. You can consume this hook to perform custom actions on the created order.
  */
 export const createOrderWorkflow = createWorkflow(
