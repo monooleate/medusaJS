@@ -73,6 +73,13 @@ While tutorials show you a specific use case, they also help you understand how 
     children: [
       {
         type: "link",
+        title: "Abandoned Cart",
+        path: "/how-to-tutorials/tutorials/abandoned-cart",
+        description:
+          "Learn how to send abandoned cart notifications to customers.",
+      },
+      {
+        type: "link",
         title: "Custom Item Pricing",
         path: "/examples/guides/custom-item-price",
         description:

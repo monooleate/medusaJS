@@ -816,6 +816,10 @@ export const filesMap = [
     "pathname": "/how-to-tutorials"
   },
   {
+    "filePath": "/www/apps/resources/app/how-to-tutorials/tutorials/abandoned-cart/page.mdx",
+    "pathname": "/how-to-tutorials/tutorials/abandoned-cart"
+  },
+  {
     "filePath": "/www/apps/resources/app/how-to-tutorials/tutorials/product-reviews/page.mdx",
     "pathname": "/how-to-tutorials/tutorials/product-reviews"
   },
