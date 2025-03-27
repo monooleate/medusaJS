@@ -12,9 +12,11 @@ export const metadata = {
 
 In this guide, you'll learn how to store a customer's selected region in your storefront, then retrieve it for later use.
 
-## Why Store and Retrieve Region?
+## Why Select and Store Region?
 
-In your store, prices, taxes, and available payment methods can vary between regions. So, you should allow customers to select their region to see the correct prices, taxes, and payment methods.
+In your store, prices, taxes, and available payment methods can vary between regions.
+
+So, you should allow customers to select their region to see the correct prices, taxes, and payment methods.
 
 ---
 
@@ -60,5 +62,9 @@ sdk.store.region.retrieve(regionId)
 ```
 
 The response has a `regions` field, which is an array of [regions](!api!/store#regions_region_schema).
+
+---
+
+## Store Region Details in React Context
 
 If you're using React, it's then recommended to create a context that stores the region details and make it available to all components in your application, as explained in the [Region React Context in Storefront](../context/page.mdx) guide.

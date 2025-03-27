@@ -101,11 +101,10 @@ The response object returns a `count` field, which is the total count of product
 For example:
 
 export const paginateHighlights = [
-  ["20", "offset", "Calculate the number of products to skip based on the current page and limit."],
-  ["27", "searchParams.toString()", "Pass the pagination parameters in the query."], 
-  ["34", "count", "The total number of products in the Medusa application."],
-  ["45", "setHasMorePages", "Set whether there are more pages based on the total count."],
-  ["62", "button", "Show a button to load more products if there are more pages."]
+  ["21", "offset", "Calculate the number of products to skip based on the current page and limit."],
+  ["27", "count", "The total number of products in the Medusa application."],
+  ["38", "setHasMorePages", "Set whether there are more pages based on the total count."],
+  ["55", "button", "Show a button to load more products if there are more pages."]
 ]
 
 ```tsx highlights={paginateHighlights}
@@ -113,7 +112,7 @@ export const paginateHighlights = [
 
 import { useEffect, useState } from "react"
 import { HttpTypes } from "@medusajs/types"
-import { sdk } from "../../lib/sdk"
+import { sdk } from "@/lib/sdk"
 
 export default function Products() {
   const [loading, setLoading] = useState(true)

@@ -14,6 +14,8 @@ export const metadata = {
 
 In this guide, you'll learn how to create a region context in your React storefront.
 
+## Why Create a Region Context?
+
 Throughout your storefront, you'll need to access the customer's selected region to perform different actions, such as retrieve product's prices in the selected region.
 
 <Note title="Tip">
@@ -23,6 +25,8 @@ To learn how to allow customers to select their region, refer to the [Store Sele
 </Note>
 
 So, if your storefront is React-based, create a region context and add it at the top of your components tree. Then, you can access the selected region anywhere in your storefront.
+
+---
 
 ## Create Region Context Provider
 
@@ -55,7 +59,7 @@ import {
   useState,
 } from "react"
 import { HttpTypes } from "@medusajs/types"
-import { sdk } from "../lib/sdk"
+import { sdk } from "@/lib/sdk"
 
 type RegionContextType = {
   region?: HttpTypes.StoreRegion
@@ -136,8 +140,8 @@ For example, if you're using Next.js, add it to the `app/layout.tsx` or `src/app
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { CartProvider } from "../providers/cart"
-import { RegionProvider } from "../providers/region"
+import { CartProvider } from "@/providers/cart"
+import { RegionProvider } from "@/providers/region"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -173,7 +177,7 @@ For example:
 ```tsx
 "use client" // include with Next.js 13+
 // ...
-import { useRegion } from "../providers/region"
+import { useRegion } from "@/providers/region"
 
 export default function Products() {
   const { region } = useRegion()
