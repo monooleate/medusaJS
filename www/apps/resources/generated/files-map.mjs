@@ -824,6 +824,10 @@ export const filesMap = [
     "pathname": "/how-to-tutorials/tutorials/product-reviews"
   },
   {
+    "filePath": "/www/apps/resources/app/integrations/guides/algolia/page.mdx",
+    "pathname": "/integrations/guides/algolia"
+  },
+  {
     "filePath": "/www/apps/resources/app/integrations/guides/resend/page.mdx",
     "pathname": "/integrations/guides/resend"
   },

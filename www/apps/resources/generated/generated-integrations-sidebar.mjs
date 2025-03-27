@@ -147,6 +147,23 @@ const generatedgeneratedIntegrationsSidebarSidebar = {
           "children": []
         }
       ]
+    },
+    {
+      "loaded": true,
+      "isPathHref": true,
+      "type": "category",
+      "title": "Search",
+      "initialOpen": true,
+      "children": [
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "ref",
+          "path": "/integrations/guides/algolia",
+          "title": "Algolia",
+          "children": []
+        }
+      ]
     }
   ]
 }
