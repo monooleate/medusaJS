@@ -292,7 +292,9 @@ export const ReturnCreateForm = ({
     await updateReturnRequest({ location_id: selectedLocationId })
   }
 
-  const onShippingOptionChange = async (selectedOptionId: string) => {
+  const onShippingOptionChange = async (
+    selectedOptionId: string | undefined
+  ) => {
     const promises = preview.shipping_methods
       .map((s) => s.actions?.find((a) => a.action === "SHIPPING_ADD")?.id)
       .filter(Boolean)
@@ -300,7 +302,9 @@ export const ReturnCreateForm = ({
 
     await Promise.all(promises)
 
-    await addReturnShipping({ shipping_option_id: selectedOptionId })
+    if (selectedOptionId) {
+      await addReturnShipping({ shipping_option_id: selectedOptionId })
+    }
   }
 
   useEffect(() => {
@@ -562,7 +566,6 @@ export const ReturnCreateForm = ({
                     </Form.Hint>
                   </div>
 
-                  {/* TODO: WHAT IF THE RETURN OPTION HAS COMPUTED PRICE*/}
                   <Form.Field
                     control={form.control}
                     name="option_id"
@@ -571,6 +574,7 @@ export const ReturnCreateForm = ({
                         <Form.Item>
                           <Form.Control>
                             <Combobox
+                              allowClear
                               value={value}
                               onChange={(v) => {
                                 onChange(v)

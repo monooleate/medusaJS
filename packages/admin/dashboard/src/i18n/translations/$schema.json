@@ -3034,6 +3034,9 @@
         "manageLocations": {
           "type": "string"
         },
+        "manageLocationQuantity": {
+          "type": "string"
+        },
         "deleteWarning": {
           "type": "string"
         },
@@ -3252,6 +3255,7 @@
         "locationLevels",
         "associatedVariants",
         "manageLocations",
+        "manageLocationQuantity",
         "deleteWarning",
         "editItemDetails",
         "create",
