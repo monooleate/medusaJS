@@ -110,6 +110,23 @@ const generatedgeneratedIntegrationsSidebarSidebar = {
       "loaded": true,
       "isPathHref": true,
       "type": "category",
+      "title": "Migration",
+      "initialOpen": true,
+      "children": [
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "link",
+          "path": "/integrations/guides/magento",
+          "title": "Magento",
+          "children": []
+        }
+      ]
+    },
+    {
+      "loaded": true,
+      "isPathHref": true,
+      "type": "category",
       "title": "Notification",
       "initialOpen": true,
       "children": [

@@ -828,6 +828,10 @@ export const filesMap = [
     "pathname": "/integrations/guides/algolia"
   },
   {
+    "filePath": "/www/apps/resources/app/integrations/guides/magento/page.mdx",
+    "pathname": "/integrations/guides/magento"
+  },
+  {
     "filePath": "/www/apps/resources/app/integrations/guides/resend/page.mdx",
     "pathname": "/integrations/guides/resend"
   },

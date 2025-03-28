@@ -75,6 +75,18 @@ export const integrationsSidebar = [
   },
   {
     type: "category",
+    title: "Migration",
+    initialOpen: true,
+    children: [
+      {
+        type: "link",
+        path: "/integrations/guides/magento",
+        title: "Magento",
+      },
+    ],
+  },
+  {
+    type: "category",
     title: "Notification",
     initialOpen: true,
     children: [

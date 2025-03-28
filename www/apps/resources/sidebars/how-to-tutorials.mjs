@@ -86,6 +86,12 @@ While tutorials show you a specific use case, they also help you understand how 
           "Learn how to use prices from external systems for products.",
       },
       {
+        type: "ref",
+        title: "Magento Migration",
+        path: "/integrations/guides/magento",
+        description: "Learn how to migrate data from Magento to Medusa.",
+      },
+      {
         type: "link",
         title: "Product Reviews",
         path: "/how-to-tutorials/tutorials/product-reviews",

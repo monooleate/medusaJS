@@ -6072,5 +6072,6 @@ export const generatedEditDates = {
   "app/troubleshooting/workflow-errors/step-x-defined/page.mdx": "2025-03-21T07:09:02.741Z",
   "app/troubleshooting/workflow-errors/when-then/page.mdx": "2025-03-21T08:35:45.145Z",
   "app/how-to-tutorials/tutorials/abandoned-cart/page.mdx": "2025-03-27T17:39:52.123Z",
-  "app/integrations/guides/algolia/page.mdx": "2025-03-27T18:00:49.330Z"
+  "app/integrations/guides/algolia/page.mdx": "2025-03-27T18:00:49.330Z",
+  "app/integrations/guides/magento/page.mdx": "2025-03-28T06:46:40.800Z"
 }
