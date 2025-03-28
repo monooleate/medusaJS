@@ -220,6 +220,7 @@
         "plusCount",
         "plusCountMore",
         "areYouSure",
+        "areYouSureDescription",
         "noRecordsFound",
         "typeToConfirm",
         "noResultsTitle",
@@ -1407,6 +1408,7 @@
         }
       },
       "required": [
+        "title",
         "shippingAddress",
         "billingAddress",
         "contactHeading",
@@ -3573,7 +3575,7 @@
               "additionalProperties": false
             }
           },
-          "required": ["title", "create"],
+          "required": ["title", "fields", "create"],
           "additionalProperties": false
         }
       },
@@ -3587,7 +3589,8 @@
         "fields",
         "registered",
         "guest",
-        "hasAccount"
+        "hasAccount",
+        "addresses"
       ],
       "additionalProperties": false
     },
@@ -4243,7 +4246,7 @@
             "inboundTotal": {
               "type": "string"
             },
-            "refundAmount": {
+            "estDifference": {
               "type": "string"
             },
             "outstandingAmount": {
@@ -4457,7 +4460,7 @@
             "sendNotificationHint",
             "returnTotal",
             "inboundTotal",
-            "refundAmount",
+            "estDifference",
             "outstandingAmount",
             "reason",
             "reasonHint",

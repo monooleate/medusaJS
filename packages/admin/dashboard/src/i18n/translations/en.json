@@ -1133,7 +1133,7 @@
       "sendNotificationHint": "Notify customer about return.",
       "returnTotal": "Return total",
       "inboundTotal": "Inbound total",
-      "refundAmount": "Refund amount",
+      "estDifference": "Estimated difference",
       "outstandingAmount": "Outstanding amount",
       "reason": "Reason",
       "reasonHint": "Choose why the customer want to return items.",
