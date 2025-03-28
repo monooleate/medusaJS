@@ -273,7 +273,7 @@ export default class MagentoModuleService {
     }
 
     this.accessToken = {
-      token: token.replaceAll('"', ""),
+      token: token.replaceAll("\"", ""),
       expiresAt: new Date(Date.now() + 4 * 60 * 60 * 1000), // 4 hours in milliseconds
     }
   }
@@ -448,8 +448,8 @@ const { items: products, ...pagination }: MagentoPaginatedResponse<MagentoProduc
       "Authorization": `Bearer ${this.accessToken.token}`,
     },
   }
-).then(res => res.json())
-.catch(err => {
+).then((res) => res.json())
+.catch((err) => {
   console.log(err)
   throw new MedusaError(
     MedusaError.Types.INVALID_DATA, 
@@ -475,10 +475,10 @@ await promiseAll(
       {
         headers: {
           "Authorization": `Bearer ${this.accessToken.token}`,
-        }
+        },
       }
-    ).then(res => res.json())
-    .catch(err => {
+    ).then((res) => res.json())
+    .catch((err) => {
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA, 
         `Failed to get product children from Magento: ${err.message}`
@@ -488,7 +488,7 @@ await promiseAll(
     product.media_gallery_entries = product.media_gallery_entries.map(
       (entry) => ({
         ...entry,
-        file: `${this.options.migrationOptions?.imageBaseUrl}${entry.file}`
+        file: `${this.options.migrationOptions?.imageBaseUrl}${entry.file}`,
       }
     ))
 
@@ -512,8 +512,8 @@ Add the new method `getAttributes` to the `MagentoModuleService` class:
 ```ts title="src/modules/magento/service.ts"
 export default class MagentoModuleService {
   // ...
-  async getAttributes ({
-    ids
+  async getAttributes({
+    ids,
   }: {
     ids: string[]
   }): Promise<MagentoAttribute[]> {
@@ -538,7 +538,7 @@ export default class MagentoModuleService {
     )
 
     const { 
-      items: attributes
+      items: attributes,
     }: MagentoPaginatedResponse<MagentoAttribute> = await fetch(
       `${this.options.baseUrl}/rest/${this.options.storeCode}/V1/products/attributes?${searchQuery}`, 
       {
@@ -546,8 +546,8 @@ export default class MagentoModuleService {
           "Authorization": `Bearer ${this.accessToken.token}`,
         },
       }
-    ).then(res => res.json())
-    .catch(err => {
+    ).then((res) => res.json())
+    .catch((err) => {
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA, 
         `Failed to get attributes from Magento: ${err.message}`
@@ -621,7 +621,7 @@ module.exports = defineConfig({
         password: process.env.MAGENTO_PASSWORD,
         migrationOptions: {
           imageBaseUrl: process.env.MAGENTO_IMAGE_BASE_URL,
-        }
+        },
       },
     },
   ],
@@ -733,9 +733,9 @@ In your plugin, create the file `src/workflows/steps/get-magento-products.ts` wi
 ![Diagram showcasing the get-magento-products file to create](https://res.cloudinary.com/dza7lstvk/image/upload/v1739349590/Medusa%20Resources/magento-5_ueb4wn.jpg)
 
 ```ts title="src/workflows/steps/get-magento-products.ts"
-import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk";
-import { MAGENTO_MODULE } from "../../modules/magento";
-import MagentoModuleService from "../../modules/magento/service";
+import { createStep, StepResponse } from "@medusajs/framework/workflows-sdk"
+import { MAGENTO_MODULE } from "../../modules/magento"
+import MagentoModuleService from "../../modules/magento/service"
 
 type GetMagentoProductsInput = {
   currentPage: number
@@ -750,7 +750,7 @@ export const getMagentoProductsStep = createStep(
 
     const response = await magentoModuleService.getProducts({
       currentPage,
-      pageSize
+      pageSize,
     })
 
     return new StepResponse(response)
@@ -779,15 +779,15 @@ In your plugin, create the file `src/workflows/migrate-products-from-magento.ts`
 
 ```ts title="src/workflows/migrate-products-from-magento.ts"
 import { 
-  createWorkflow, transform, WorkflowResponse
+  createWorkflow, transform, WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk"
 import { 
-  CreateProductWorkflowInputDTO, UpsertProductDTO
+  CreateProductWorkflowInputDTO, UpsertProductDTO,
 } from "@medusajs/framework/types"
 import { 
   createProductsWorkflow, 
   updateProductsWorkflow, 
-  useQueryGraphStep
+  useQueryGraphStep,
 } from "@medusajs/medusa/core-flows"
 import { getMagentoProductsStep } from "./steps/get-magento-products"
 
@@ -803,7 +803,7 @@ export const migrateProductsFromMagentoWorkflow = createWorkflow(
   {
     name: migrateProductsFromMagentoWorkflowId,
     retentionTime: 10000,
-    store: true
+    store: true,
   },
   (input: MigrateProductsFromMagentoWorkflowInput) => {
     const { pagination, products, attributes } = getMagentoProductsStep(
@@ -831,8 +831,8 @@ const { data: stores } = useQueryGraphStep({
   fields: ["supported_currencies.*", "default_sales_channel_id"],
   pagination: {
     take: 1,
-    skip: 0
-  }
+    skip: 0,
+  },
 })
 
 const { data: shippingProfiles } = useQueryGraphStep({
@@ -840,8 +840,8 @@ const { data: shippingProfiles } = useQueryGraphStep({
   fields: ["id"],
   pagination: {
     take: 1,
-    skip: 0
-  }
+    skip: 0,
+  },
 }).config({ name: "get-shipping-profiles" })
 
 // TODO retrieve existing products
@@ -855,7 +855,7 @@ Next, you'll retrieve products that were previously migrated from Magento to det
 
 ```ts title="src/workflows/migrate-products-from-magento.ts"
 const externalIdFilters = transform({
-  products
+  products,
 }, (data) => {
   return data.products.map((product) => product.id.toString())
 })
@@ -864,8 +864,8 @@ const { data: existingProducts } = useQueryGraphStep({
   entity: "product",
   fields: ["id", "external_id", "variants.id", "variants.metadata"],
   filters: {
-    external_id: externalIdFilters
-  }
+    external_id: externalIdFilters,
+  },
 }).config({ name: "get-existing-products" })
 
 // TODO prepare products to create or update
@@ -914,13 +914,13 @@ export const prepareHighlights = [
 ```ts title="src/workflows/migrate-products-from-magento.ts" highlights={prepareHighlights}
 const { 
   productsToCreate,
-  productsToUpdate
+  productsToUpdate,
 } = transform({
   products,
   attributes,
   stores,
   shippingProfiles,
-  existingProducts
+  existingProducts,
 }, (data) => {
   const productsToCreate = new Map<string, CreateProductWorkflowInputDTO>()
   const productsToUpdate = new Map<string, UpsertProductDTO>()
@@ -940,7 +940,7 @@ const {
         (entry) => entry.types.includes("thumbnail")
       )?.file,
       sales_channels: [{
-        id: data.stores[0].default_sales_channel_id
+        id: data.stores[0].default_sales_channel_id,
       }],
       shipping_profile_id: data.shippingProfiles[0].id,
     }
@@ -956,7 +956,7 @@ const {
         title: option.label,
         values: attribute?.options.filter((opt) => {
           return option.values.find((v) => v.value_index === parseInt(opt.value))
-        }).map((opt) => opt.label) || []
+        }).map((opt) => opt.label) || [],
       }
     }) || []
 
@@ -982,13 +982,13 @@ const {
         prices: data.stores[0].supported_currencies.map(({ currency_code }) => {
           return {
             amount: child.price,
-            currency_code
+            currency_code,
           }
         }),
         metadata: {
-          external_id: variantExternalId
+          external_id: variantExternalId,
         },
-        id: existingVariant?.id
+        id: existingVariant?.id,
       }
     })
 
@@ -996,8 +996,8 @@ const {
       return {
         url: entry.file,
         metadata: {
-          external_id: entry.id.toString()
-        }
+          external_id: entry.id.toString(),
+        },
       }
     })
 
@@ -1010,7 +1010,7 @@ const {
 
   return {
     productsToCreate: Array.from(productsToCreate.values()),
-    productsToUpdate: Array.from(productsToUpdate.values())
+    productsToUpdate: Array.from(productsToUpdate.values()),
   }
 })
 
@@ -1034,14 +1034,14 @@ The last steps of the workflow is to create and update the products. Replace the
 ```ts title="src/workflows/migrate-products-from-magento.ts"
 createProductsWorkflow.runAsStep({
   input: {
-    products: productsToCreate
-  }
+    products: productsToCreate,
+  },
 })
 
 updateProductsWorkflow.runAsStep({
   input: {
-    products: productsToUpdate
-  }
+    products: productsToUpdate,
+  },
 })
 
 return new WorkflowResponse(pagination)
@@ -1089,12 +1089,12 @@ export default async function migrateMagentoJob(
       currentPage++
   
       const { 
-        result: pagination
+        result: pagination,
       } = await migrateProductsFromMagentoWorkflow(container).run({
         input: {
           currentPage,
-          pageSize
-        }
+          pageSize,
+        },
       })
   
       totalCount = pagination.total_count
@@ -1105,7 +1105,7 @@ export default async function migrateMagentoJob(
 
 export const config = {
   name: "migrate-magento-job",
-  schedule: "0 0 * * *"
+  schedule: "0 0 * * *",
 }
 ```
 
@@ -1125,7 +1125,7 @@ To test out this scheduled job, first, change the configuration to run the job e
 ```ts title="src/jobs/migrate-magento.ts"
 export const config = {
   // ...
-  schedule: "* * * * *"
+  schedule: "* * * * *",
 }
 ```
 
