@@ -1,13 +1,13 @@
+import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
 import { IndexTypes } from "@medusajs/types"
 import { defaultCurrencies, Modules } from "@medusajs/utils"
-import { medusaIntegrationTestRunner } from "@medusajs/test-utils"
 import { setTimeout } from "timers/promises"
 import {
   adminHeaders,
   createAdminUser,
 } from "../../../helpers/create-admin-user"
 
-jest.setTimeout(120000)
+jest.setTimeout(100000)
 
 process.env.ENABLE_INDEX_MODULE = "true"
 
@@ -65,7 +65,7 @@ medusaIntegrationTestRunner({
           })
 
         // Timeout to allow indexing to finish
-        await setTimeout(2000)
+        await setTimeout(4000)
 
         const { data: results } = await indexEngine.query<"product">({
           fields: [
@@ -144,7 +144,7 @@ medusaIntegrationTestRunner({
           })
 
         // Timeout to allow indexing to finish
-        await setTimeout(2000)
+        await setTimeout(4000)
 
         const { data: results } = await indexEngine.query<"product">({
           fields: [
