@@ -2995,6 +2995,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@changesets/assemble-release-plan@patch:@changesets/assemble-release-plan@npm:^6.0.0#.yarn/patches/changesets.patch::locator=root%40workspace%3A.":
+  version: 6.0.0
+  resolution: "@changesets/assemble-release-plan@patch:@changesets/assemble-release-plan@npm%3A6.0.0#.yarn/patches/changesets.patch::version=6.0.0&hash=d9ce1e&locator=root%40workspace%3A."
+  dependencies:
+    "@babel/runtime": ^7.20.1
+    "@changesets/errors": ^0.2.0
+    "@changesets/get-dependents-graph": ^2.0.0
+    "@changesets/types": ^6.0.0
+    "@manypkg/get-packages": ^1.1.3
+    semver: ^7.5.3
+  checksum: 30adac69c1aaa4e3905e4336560f2dfbe413e8215f56d9b7c2f3802242c228f7b38c911b120f74594b082091e9a483bcfbcff53ecaa8b15cee3809f462de196c
+  languageName: node
+  linkType: hard
+
 "@changesets/changelog-git@npm:^0.2.0":
   version: 0.2.0
   resolution: "@changesets/changelog-git@npm:0.2.0"
