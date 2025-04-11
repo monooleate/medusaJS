@@ -9688,6 +9688,15 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
                       "loaded": true,
                       "isPathHref": true,
                       "type": "link",
+                      "path": "/references/payment/retrievePayment",
+                      "title": "retrievePayment",
+                      "description": "",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "link",
                       "path": "/references/payment/retrievePaymentCollection",
                       "title": "retrievePaymentCollection",
                       "description": "",
