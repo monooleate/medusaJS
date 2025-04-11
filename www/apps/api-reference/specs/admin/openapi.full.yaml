@@ -69271,11 +69271,6 @@ components:
         - updated_at
         - deleted_at
       properties:
-        products:
-          type: array
-          description: The category's products.
-          items:
-            $ref: '#/components/schemas/StoreProduct'
         id:
           type: string
           title: id
@@ -69325,6 +69320,11 @@ components:
           format: date-time
           title: deleted_at
           description: The date the category was deleted.
+        products:
+          type: array
+          description: The category's products.
+          items:
+            $ref: '#/components/schemas/StoreProduct'
     StoreProductCategoryListResponse:
       type: object
       description: The paginated list of product categories.
