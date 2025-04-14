@@ -24,6 +24,7 @@ import {
   vi,
   ko,
   nl,
+  hu,
 } from "date-fns/locale"
 import { Language } from "./types"
 
@@ -63,6 +64,12 @@ export const languages: Language[] = [
     display_name: "Français",
     ltr: true,
     date_locale: fr,
+  },
+  {
+    code: "hu",
+    display_name: "Magyar",
+    ltr: true,
+    date_locale: hu,
   },
   {
     code: "it",
