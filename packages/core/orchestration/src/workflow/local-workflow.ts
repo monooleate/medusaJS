@@ -113,7 +113,7 @@ export class LocalWorkflow {
             return target[prop]
           }
 
-          return async (...args) => {
+          return (...args) => {
             const ctxIndex = MedusaContext.getIndex(target, prop as string)
 
             const hasContext = args[ctxIndex!]?.__type === MedusaContextType
@@ -125,8 +125,12 @@ export class LocalWorkflow {
 
                 args[ctxIndex] = context
               }
+            } else if (hasContext) {
+              args[ctxIndex!].eventGroupId ??= this_.medusaContext?.eventGroupId
             }
-            return await target[prop].apply(target, [...args])
+
+            const method = target[prop]
+            return method.apply(target, [...args])
           }
         },
       })
@@ -355,12 +359,18 @@ export class LocalWorkflow {
     this.medusaContext = context
     const { handler, orchestrator } = this.workflow
 
-    const transaction = await orchestrator.beginTransaction(
-      uniqueTransactionId,
-      handler(this.container_, context),
-      input,
-      flowMetadata
-    )
+    const transaction = await orchestrator.beginTransaction({
+      transactionId: uniqueTransactionId,
+      handler: handler(this.container_, context),
+      payload: input,
+      flowMetadata,
+      onLoad: (transaction) => {
+        if (this.medusaContext) {
+          this.medusaContext.eventGroupId =
+            transaction.getFlow().metadata?.eventGroupId
+        }
+      },
+    })
 
     const { cleanUpEventListeners } = this.registerEventCallbacks({
       orchestrator,
@@ -402,6 +412,11 @@ export class LocalWorkflow {
       ? await this.getRunningTransaction(transactionOrTransactionId, context)
       : transactionOrTransactionId
 
+    if (this.medusaContext) {
+      this.medusaContext.eventGroupId =
+        transaction.getFlow().metadata?.eventGroupId
+    }
+
     const { cleanUpEventListeners } = this.registerEventCallbacks({
       orchestrator,
       transaction,
@@ -432,12 +447,17 @@ export class LocalWorkflow {
       subscribe,
     })
 
-    const transaction = await orchestrator.registerStepSuccess(
-      idempotencyKey,
-      handler(this.container_, context),
-      undefined,
-      response
-    )
+    const transaction = await orchestrator.registerStepSuccess({
+      responseIdempotencyKey: idempotencyKey,
+      handler: handler(this.container_, context),
+      response,
+      onLoad: (transaction) => {
+        if (this.medusaContext) {
+          this.medusaContext.eventGroupId =
+            transaction.getFlow().metadata?.eventGroupId
+        }
+      },
+    })
 
     try {
       return transaction
@@ -461,11 +481,17 @@ export class LocalWorkflow {
       subscribe,
     })
 
-    const transaction = await orchestrator.registerStepFailure(
-      idempotencyKey,
+    const transaction = await orchestrator.registerStepFailure({
+      responseIdempotencyKey: idempotencyKey,
       error,
-      handler(this.container_, context)
-    )
+      handler: handler(this.container_, context),
+      onLoad: (transaction) => {
+        if (this.medusaContext) {
+          this.medusaContext.eventGroupId =
+            transaction.getFlow().metadata?.eventGroupId
+        }
+      },
+    })
 
     try {
       return transaction
