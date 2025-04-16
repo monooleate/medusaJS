@@ -26,6 +26,7 @@ export type MenuItemSubMenu = {
   type: "sub-menu"
   items: MenuItem[]
   title: string
+  link?: string
 }
 
 export type MenuItem =
