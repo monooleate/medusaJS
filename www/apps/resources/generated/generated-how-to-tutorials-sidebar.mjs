@@ -361,6 +361,15 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
         {
           "loaded": true,
           "isPathHref": true,
+          "type": "link",
+          "title": "Loyalty Points System",
+          "path": "/how-to-tutorials/tutorials/loyalty-points",
+          "description": "Learn how to implement a loyalty points system in your Medusa store.",
+          "children": []
+        },
+        {
+          "loaded": true,
+          "isPathHref": true,
           "type": "ref",
           "title": "Magento Migration",
           "path": "/integrations/guides/magento",
