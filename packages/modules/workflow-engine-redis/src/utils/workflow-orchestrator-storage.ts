@@ -118,7 +118,8 @@ export class RedisDistributedTransactionStorage
         if (allowedJobs.includes(job.name as JobType)) {
           await this.executeTransaction(
             job.data.workflowId,
-            job.data.transactionId
+            job.data.transactionId,
+            job.data.transactionMetadata
           )
         }
 
@@ -180,11 +181,20 @@ export class RedisDistributedTransactionStorage
     ])
   }
 
-  private async executeTransaction(workflowId: string, transactionId: string) {
+  private async executeTransaction(
+    workflowId: string,
+    transactionId: string,
+    transactionMetadata: TransactionFlow["metadata"] = {}
+  ) {
     return await this.workflowOrchestratorService_.run(workflowId, {
       transactionId,
       logOnError: true,
       throwOnError: false,
+      context: {
+        eventGroupId: transactionMetadata.eventGroupId,
+        parentStepIdempotencyKey: transactionMetadata.parentStepIdempotencyKey,
+        preventReleaseEvents: transactionMetadata.preventReleaseEvents,
+      },
     })
   }
 
@@ -326,6 +336,7 @@ export class RedisDistributedTransactionStorage
       {
         workflowId: transaction.modelId,
         transactionId: transaction.transactionId,
+        transactionMetadata: transaction.getFlow().metadata,
         stepId: step.id,
       },
       {
@@ -353,6 +364,7 @@ export class RedisDistributedTransactionStorage
       {
         workflowId: transaction.modelId,
         transactionId: transaction.transactionId,
+        transactionMetadata: transaction.getFlow().metadata,
       },
       {
         delay: interval * 1000,
@@ -379,6 +391,7 @@ export class RedisDistributedTransactionStorage
       {
         workflowId: transaction.modelId,
         transactionId: transaction.transactionId,
+        transactionMetadata: transaction.getFlow().metadata,
         stepId: step.id,
       },
       {

@@ -12,6 +12,12 @@ import {
   Modules,
   TransactionHandlerType,
 } from "@medusajs/framework/utils"
+import {
+  createStep,
+  createWorkflow,
+  StepResponse,
+  WorkflowResponse,
+} from "@medusajs/framework/workflows-sdk"
 import { moduleIntegrationTestRunner } from "@medusajs/test-utils"
 import { WorkflowsModuleService } from "@services"
 import { asFunction } from "awilix"
@@ -31,7 +37,7 @@ import {
 } from "../__fixtures__/workflow_event_group_id"
 import { createScheduled } from "../__fixtures__/workflow_scheduled"
 
-jest.setTimeout(300000)
+jest.setTimeout(60000)
 
 const failTrap = (done) => {
   setTimeoutSync(() => {
@@ -157,6 +163,83 @@ moduleIntegrationTestRunner<IWorkflowEngineService>({
         )
       })
 
+      it("should compose nested workflows w/ async steps", (done) => {
+        const asyncResults: any[] = []
+        const mockStep1Fn = jest.fn().mockImplementation(() => {
+          const res = { obj: "return from 1" }
+          asyncResults.push(res)
+          return new StepResponse(res)
+        })
+        const mockStep2Fn = jest.fn().mockImplementation(async () => {
+          await setTimeoutPromise(100)
+          const res = { obj: "return from 2" }
+          asyncResults.push(res)
+          return new StepResponse(res)
+        })
+
+        const mockStep3Fn = jest.fn().mockImplementation(() => {
+          const res = { obj: "return from 3" }
+          asyncResults.push(res)
+          return new StepResponse(res)
+        })
+
+        const step1 = createStep("step1", mockStep1Fn)
+        const step2 = createStep(
+          {
+            name: "step2",
+            async: true,
+            backgroundExecution: true,
+          },
+          mockStep2Fn
+        )
+        const step3 = createStep("step3", mockStep3Fn)
+
+        const wf3 = createWorkflow("workflow3", function (input) {
+          return new WorkflowResponse(step2(input))
+        })
+
+        const wf2 = createWorkflow("workflow2", function (input) {
+          const ret3 = wf3.runAsStep({
+            input: {},
+          })
+          return new WorkflowResponse(ret3)
+        })
+
+        const workflowId = "workflow1"
+        createWorkflow(workflowId, function (input) {
+          step1(input)
+          wf2.runAsStep({ input })
+          const fourth = step3({})
+          return new WorkflowResponse(fourth)
+        })
+
+        asyncResults.push("begin workflow")
+        workflowOrcModule
+          .run(workflowId, {
+            input: {},
+          })
+          .then(() => {
+            asyncResults.push("returned workflow")
+
+            void workflowOrcModule.subscribe({
+              workflowId,
+              subscriber: (event) => {
+                if (event.eventType === "onFinish") {
+                  expect(asyncResults).toEqual([
+                    "begin workflow",
+                    { obj: "return from 1" },
+                    "returned workflow",
+                    { obj: "return from 2" },
+                    { obj: "return from 3" },
+                  ])
+                }
+              },
+            })
+          })
+
+        failTrap(done)
+      })
+
       describe("Testing basic workflow", function () {
         beforeEach(() => {
           jest.clearAllMocks()
@@ -270,7 +353,7 @@ moduleIntegrationTestRunner<IWorkflowEngineService>({
           expect(transaction.getFlow().state).toEqual("reverted")
         })
 
-        it.skip("should subscribe to a async workflow and receive the response when it finishes", (done) => {
+        it("should subscribe to a async workflow and receive the response when it finishes", (done) => {
           const transactionId = "trx_123"
 
           const onFinish = jest.fn(() => {
@@ -296,6 +379,7 @@ moduleIntegrationTestRunner<IWorkflowEngineService>({
           })
 
           expect(onFinish).toHaveBeenCalledTimes(0)
+          failTrap(done)
         })
 
         it("should cancel and revert a completed workflow", async () => {

@@ -258,6 +258,8 @@ export type TransactionFlow = {
     eventGroupId?: string
     parentIdempotencyKey?: string
     sourcePath?: string
+    preventReleaseEvents?: boolean
+    parentStepIdempotencyKey?: string
     [key: string]: unknown
   }
   hasAsyncSteps: boolean
