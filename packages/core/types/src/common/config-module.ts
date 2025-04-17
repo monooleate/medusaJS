@@ -910,7 +910,7 @@ export type ConfigModule = {
    *
    * :::note
    *
-   * Medusa's commerce modules are configured by default, so only
+   * Medusa's Commerce Modules are configured by default, so only
    * add them to this property if you're changing their configurations or adding providers to a module.
    *
    * :::
