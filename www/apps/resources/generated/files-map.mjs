@@ -48,98 +48,6 @@ export const filesMap = [
     "pathname": "/admin-widget-injection-zones"
   },
   {
-    "filePath": "/www/apps/resources/app/architectural-modules/cache/create/page.mdx",
-    "pathname": "/architectural-modules/cache/create"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/cache/in-memory/page.mdx",
-    "pathname": "/architectural-modules/cache/in-memory"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/cache/page.mdx",
-    "pathname": "/architectural-modules/cache"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/cache/redis/page.mdx",
-    "pathname": "/architectural-modules/cache/redis"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/event/create/page.mdx",
-    "pathname": "/architectural-modules/event/create"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/event/local/page.mdx",
-    "pathname": "/architectural-modules/event/local"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/event/page.mdx",
-    "pathname": "/architectural-modules/event"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/event/redis/page.mdx",
-    "pathname": "/architectural-modules/event/redis"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/file/local/page.mdx",
-    "pathname": "/architectural-modules/file/local"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/file/page.mdx",
-    "pathname": "/architectural-modules/file"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/file/s3/page.mdx",
-    "pathname": "/architectural-modules/file/s3"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/locking/page.mdx",
-    "pathname": "/architectural-modules/locking"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/locking/postgres/page.mdx",
-    "pathname": "/architectural-modules/locking/postgres"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/locking/redis/page.mdx",
-    "pathname": "/architectural-modules/locking/redis"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/notification/local/page.mdx",
-    "pathname": "/architectural-modules/notification/local"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/notification/page.mdx",
-    "pathname": "/architectural-modules/notification"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/notification/send-notification/page.mdx",
-    "pathname": "/architectural-modules/notification/send-notification"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/notification/sendgrid/page.mdx",
-    "pathname": "/architectural-modules/notification/sendgrid"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/page.mdx",
-    "pathname": "/architectural-modules"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/workflow-engine/how-to-use/page.mdx",
-    "pathname": "/architectural-modules/workflow-engine/how-to-use"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/workflow-engine/in-memory/page.mdx",
-    "pathname": "/architectural-modules/workflow-engine/in-memory"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/workflow-engine/page.mdx",
-    "pathname": "/architectural-modules/workflow-engine"
-  },
-  {
-    "filePath": "/www/apps/resources/app/architectural-modules/workflow-engine/redis/page.mdx",
-    "pathname": "/architectural-modules/workflow-engine/redis"
-  },
-  {
     "filePath": "/www/apps/resources/app/commerce-modules/api-key/admin-widget-zones/page.mdx",
     "pathname": "/commerce-modules/api-key/admin-widget-zones"
   },
@@ -826,6 +734,98 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/app/how-to-tutorials/tutorials/product-reviews/page.mdx",
     "pathname": "/how-to-tutorials/tutorials/product-reviews"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/cache/create/page.mdx",
+    "pathname": "/infrastructure-modules/cache/create"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/cache/in-memory/page.mdx",
+    "pathname": "/infrastructure-modules/cache/in-memory"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/cache/page.mdx",
+    "pathname": "/infrastructure-modules/cache"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/cache/redis/page.mdx",
+    "pathname": "/infrastructure-modules/cache/redis"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/event/create/page.mdx",
+    "pathname": "/infrastructure-modules/event/create"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/event/local/page.mdx",
+    "pathname": "/infrastructure-modules/event/local"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/event/page.mdx",
+    "pathname": "/infrastructure-modules/event"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/event/redis/page.mdx",
+    "pathname": "/infrastructure-modules/event/redis"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/file/local/page.mdx",
+    "pathname": "/infrastructure-modules/file/local"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/file/page.mdx",
+    "pathname": "/infrastructure-modules/file"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/file/s3/page.mdx",
+    "pathname": "/infrastructure-modules/file/s3"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/locking/page.mdx",
+    "pathname": "/infrastructure-modules/locking"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/locking/postgres/page.mdx",
+    "pathname": "/infrastructure-modules/locking/postgres"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/locking/redis/page.mdx",
+    "pathname": "/infrastructure-modules/locking/redis"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/notification/local/page.mdx",
+    "pathname": "/infrastructure-modules/notification/local"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/notification/page.mdx",
+    "pathname": "/infrastructure-modules/notification"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/notification/send-notification/page.mdx",
+    "pathname": "/infrastructure-modules/notification/send-notification"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/notification/sendgrid/page.mdx",
+    "pathname": "/infrastructure-modules/notification/sendgrid"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/page.mdx",
+    "pathname": "/infrastructure-modules"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/workflow-engine/how-to-use/page.mdx",
+    "pathname": "/infrastructure-modules/workflow-engine/how-to-use"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/workflow-engine/in-memory/page.mdx",
+    "pathname": "/infrastructure-modules/workflow-engine/in-memory"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/workflow-engine/page.mdx",
+    "pathname": "/infrastructure-modules/workflow-engine"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/workflow-engine/redis/page.mdx",
+    "pathname": "/infrastructure-modules/workflow-engine/redis"
   },
   {
     "filePath": "/www/apps/resources/app/integrations/guides/algolia/page.mdx",

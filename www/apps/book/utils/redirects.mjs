@@ -64,8 +64,8 @@ const redirects = async () => {
       permanent: true,
     },
     {
-      source: "/learn/advanced-development/architecture/architectural-modules",
-      destination: "/learn/fundamentals/modules/architectural-modules",
+      source: "/learn/advanced-development/architecture/infrastructure-modules",
+      destination: "/learn/fundamentals/modules/infrastructure-modules",
       permanent: true,
     },
     {
@@ -156,6 +156,11 @@ const redirects = async () => {
     {
       source: "/starters/nextjs-medusa-starter",
       destination: "/resources/nextjs-starter",
+      permanent: true,
+    },
+    {
+      source: "/learn/fundamentals/modules/infrastructure-modules",
+      destination: "/learn/fundamentals/modules/infrastructure-modules",
       permanent: true,
     },
   ]

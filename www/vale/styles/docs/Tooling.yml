@@ -10,6 +10,13 @@ swap:
   "Data Modeling Language": "Data Model Language"
   '(?:[\w\d'']+) framework': $1 Framework
   "Medusa's Framework": "Medusa Framework"
+  "Architecural Module[s]?": "Infrastructure Module"
+  "Architectural module[s]?": "Infrastructure module"
+  "architectural module[s]?": "infrastructure module"
+  "Infrastructure module[s]?": "Infrastructure Module"
+  "infrastructure module[s]?": "Infrastructure Module"
+  "Commerce module[s]?": "Commerce Module"
+  "commerce module[s]?": "Commerce Module"
 exceptions:
   - 'storefront framework'
   - 'Storefront Framework'

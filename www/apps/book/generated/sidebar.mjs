@@ -364,10 +364,10 @@ export const generatedSidebars = [
                 "loaded": true,
                 "isPathHref": true,
                 "type": "link",
-                "path": "/learn/fundamentals/modules/architectural-modules",
-                "title": "Architectural Modules",
+                "path": "/learn/fundamentals/modules/infrastructure-modules",
+                "title": "Infrastructure Modules",
                 "children": [],
-                "chapterTitle": "3.3.11. Architectural Modules",
+                "chapterTitle": "3.3.11. Infrastructure Modules",
                 "number": "3.3.11."
               }
             ],

@@ -59,7 +59,7 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
               "isPathHref": true,
               "type": "ref",
               "title": "Create Cache Module",
-              "path": "https://docs.medusajs.com/resources/architectural-modules/cache/create",
+              "path": "https://docs.medusajs.com/resources/infrastructure-modules/cache/create",
               "children": []
             },
             {
@@ -67,7 +67,7 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
               "isPathHref": true,
               "type": "ref",
               "title": "Create Event Module",
-              "path": "https://docs.medusajs.com/resources/architectural-modules/event/create",
+              "path": "https://docs.medusajs.com/resources/infrastructure-modules/event/create",
               "children": []
             },
             {
@@ -139,7 +139,7 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
               "isPathHref": true,
               "type": "ref",
               "title": "Send Notification",
-              "path": "https://docs.medusajs.com/resources/architectural-modules/notification/send-notification",
+              "path": "https://docs.medusajs.com/resources/infrastructure-modules/notification/send-notification",
               "children": []
             },
             {
@@ -187,7 +187,7 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
               "isPathHref": true,
               "type": "ref",
               "title": "Use Workflow Engine Module",
-              "path": "https://docs.medusajs.com/resources/architectural-modules/workflow-engine/how-to-use",
+              "path": "https://docs.medusajs.com/resources/infrastructure-modules/workflow-engine/how-to-use",
               "children": []
             }
           ]

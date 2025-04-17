@@ -168,6 +168,11 @@ const nextConfig = {
         destination: "/medusa-cli/commands/start",
         permanent: true,
       },
+      {
+        source: "/infrastructure-modules/:path*",
+        destination: "/infrastructure-modules/:path*",
+        permanent: true,
+      },
     ]
   },
   outputFileTracingExcludes: {

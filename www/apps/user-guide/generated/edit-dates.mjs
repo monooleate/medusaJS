@@ -55,5 +55,5 @@ export const generatedEditDates = {
   "app/settings/developer/publishable-api-keys/page.mdx": "2025-02-25T16:15:29.847Z",
   "app/settings/developer/secret-api-keys/page.mdx": "2025-02-25T16:17:40.621Z",
   "app/settings/developer/workflows/page.mdx": "2025-02-25T15:52:48.349Z",
-  "app/reset-password/page.mdx": "2025-02-26T11:13:45.457Z"
+  "app/reset-password/page.mdx": "2025-04-17T08:29:28.890Z"
 }

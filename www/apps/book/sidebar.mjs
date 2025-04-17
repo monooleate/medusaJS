@@ -195,8 +195,8 @@ export const sidebars = [
               },
               {
                 type: "link",
-                path: "/learn/fundamentals/modules/architectural-modules",
-                title: "Architectural Modules",
+                path: "/learn/fundamentals/modules/infrastructure-modules",
+                title: "Infrastructure Modules",
               },
             ],
           },

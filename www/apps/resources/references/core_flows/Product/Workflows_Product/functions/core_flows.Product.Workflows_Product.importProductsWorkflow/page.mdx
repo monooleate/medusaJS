@@ -23,7 +23,7 @@ This workflow starts a product import from a CSV file in the background. It's us
 You can use this workflow within your custom workflows, allowing you to wrap custom logic around product import.
 For example, you can import products from another system.
 
-The workflow only starts the import, but you'll have to confirm it using the [Workflow Engine](https://docs.medusajs.com/resources/architectural-modules/workflow-engine).
+The workflow only starts the import, but you'll have to confirm it using the [Workflow Engine](https://docs.medusajs.com/resources/infrastructure-modules/workflow-engine).
 The below example shows how to confirm the import.
 
 <SourceCodeLink link="https://github.com/medusajs/medusa/blob/b9edc066c8486e8ec52e4f505968db1c558bc7b8/packages/core/core-flows/src/product/workflows/import-products.ts#L92" />
@@ -231,7 +231,7 @@ const myWorkflow = createWorkflow(
   </CodeTabs>
 . You'll use this ID to confirm the import afterwards.
 
-You confirm the import using the [Workflow Engine](https://docs.medusajs.com/resources/architectural-modules/workflow-engine).
+You confirm the import using the [Workflow Engine](https://docs.medusajs.com/resources/infrastructure-modules/workflow-engine).
 For example, in an API route:
 
 ```ts workflow={false}

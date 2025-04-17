@@ -461,7 +461,7 @@ tags:
       You can upload public files, such as product images, or private files, such as CSV files used to import products.
     externalDocs:
       description: Check out available file module providers.
-      url: https://docs.medusajs.com/resources/architectural-modules/file
+      url: https://docs.medusajs.com/resources/infrastructure-modules/file
   - name: Users
     description: |
       A user is an admin user that can authenticate and perform functionalities as an admin user.
@@ -481,7 +481,7 @@ tags:
       Depending on the workflow engine you use, executions may only be retained for a short while, or only until the Medusa application is restarted.
     externalDocs:
       description: Check out available Workflow Engine Modules
-      url: https://docs.medusajs.com/resources/architectural-modules/workflow-engine
+      url: https://docs.medusajs.com/resources/infrastructure-modules/workflow-engine
 paths:
   /admin/api-keys:
     get:
@@ -50279,7 +50279,7 @@ paths:
       description: |
         Generate a reset password token for an admin user. This API route doesn't reset the admin's password or send them the reset instructions in a notification.
 
-        Instead, This API route emits the `auth.password_reset` event, passing it the token as a payload. You can listen to that event in a subscriber as explained in [this guide](https://docs.medusajs.com/resources/commerce-modules/auth/reset-password), then send the user a notification. The notification is sent using a [Notification Module Provider](https://docs.medusajs.com/resources/architectural-modules/notification), and it should have the URL to reset the password in the Medusa Admin dashboard, such as `http://localhost:9000/app/reset-password?token=123`.
+        Instead, This API route emits the `auth.password_reset` event, passing it the token as a payload. You can listen to that event in a subscriber as explained in [this guide](https://docs.medusajs.com/resources/commerce-modules/auth/reset-password), then send the user a notification. The notification is sent using a [Notification Module Provider](https://docs.medusajs.com/resources/infrastructure-modules/notification), and it should have the URL to reset the password in the Medusa Admin dashboard, such as `http://localhost:9000/app/reset-password?token=123`.
 
 
          Use the generated token to update the user's password using the [Reset Password API route](https://docs.medusajs.com/api/admin#auth_postactor_typeauth_providerupdate).

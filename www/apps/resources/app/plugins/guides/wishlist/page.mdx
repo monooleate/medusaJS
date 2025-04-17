@@ -39,7 +39,7 @@ export const metadata = {
 
 In this guide, you'll learn how to build a wishlist [plugin](!docs!/learn/fundamentals/plugins) in Medusa.
 
-When you install a Medusa application, you get a fully-fledged commerce platform with a Framework for customization. The Medusa application's commerce features are built around [commerce modules](../../../commerce-modules/page.mdx) which are available out-of-the-box.
+When you install a Medusa application, you get a fully-fledged commerce platform with a Framework for customization. The Medusa application's commerce features are built around [Commerce Modules](../../../commerce-modules/page.mdx) which are available out-of-the-box.
 
 Customers browsing your store may be interested in a product but not ready to buy it yet. They may want to save the product for later or share it with friends and family. A wishlist feature allows customers to save products they like and access them later.
 
@@ -396,7 +396,7 @@ The tables of the Wishlist Module's data models are now created in the database.
 
 ## Step 5: Link Wishlist Data Models with Core Models
 
-The Wishlist Module's data models store IDs of records in data models implemented in Medusa's core commerce modules, such as the ID of a customer or a product variant.
+The Wishlist Module's data models store IDs of records in data models implemented in Medusa's core Commerce Modules, such as the ID of a customer or a product variant.
 
 However, modules are [isolated](!docs!/learn/fundamentals/modules/isolation) to ensure they're re-usable and don't have side effects when integrated into the Medusa application. So, to build associations between modules, you define [module links](!docs!/learn/fundamentals/module-links). A Module link associates two modules' data models while maintaining module isolation.
 

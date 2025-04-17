@@ -171,38 +171,38 @@ export const navDropdownItems: NavigationItem[] = [
       },
       {
         type: "sub-menu",
-        title: "Architectural Modules",
-        link: "/resources/architectural-modules",
+        title: "Infrastructure Modules",
+        link: "/resources/infrastructure-modules",
         items: [
           {
             type: "link",
             title: "Cache",
-            link: "/resources/architectural-modules/cache",
+            link: "/resources/infrastructure-modules/cache",
           },
           {
             type: "link",
             title: "Event",
-            link: "/resources/architectural-modules/event",
+            link: "/resources/infrastructure-modules/event",
           },
           {
             type: "link",
             title: "File",
-            link: "/resources/architectural-modules/file",
+            link: "/resources/infrastructure-modules/file",
           },
           {
             type: "link",
             title: "Locking",
-            link: "/resources/architectural-modules/locking",
+            link: "/resources/infrastructure-modules/locking",
           },
           {
             type: "link",
             title: "Notification",
-            link: "/resources/architectural-modules/notification",
+            link: "/resources/infrastructure-modules/notification",
           },
           {
             type: "link",
             title: "Workflow Engine",
-            link: "/resources/architectural-modules/workflow-engine",
+            link: "/resources/infrastructure-modules/workflow-engine",
           },
         ],
       },
