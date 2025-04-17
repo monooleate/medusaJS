@@ -47,7 +47,7 @@ export const generatedEditDates = {
   "app/price-lists/manage/page.mdx": "2025-02-19T10:35:49.881Z",
   "app/price-lists/page.mdx": "2025-02-19T09:51:32.546Z",
   "app/settings/tax-regions/page.mdx": "2025-02-19T17:33:43.806Z",
-  "app/settings/locations-and-shipping/locations/page.mdx": "2025-02-25T15:02:02.164Z",
+  "app/settings/locations-and-shipping/locations/page.mdx": "2025-04-17T13:47:40.883Z",
   "app/settings/locations-and-shipping/page.mdx": "2025-02-19T17:23:45.824Z",
   "app/settings/locations-and-shipping/shipping-profiles/page.mdx": "2025-02-19T17:36:46.339Z",
   "app/settings/product-tags/page.mdx": "2025-02-19T17:36:25.102Z",

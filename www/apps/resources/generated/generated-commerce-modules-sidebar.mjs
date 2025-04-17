@@ -3283,7 +3283,7 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
           "isPathHref": true,
           "type": "category",
           "title": "Concepts",
-          "autogenerate_tags": "concept+fulfillment",
+          "autogenerate_tags": "fulfillment+concept",
           "autogenerate_as_ref": true,
           "children": [
             {
@@ -3324,6 +3324,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "type": "link",
               "path": "/commerce-modules/fulfillment/links-to-other-modules",
               "title": "Links to Other Modules",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "ref",
+              "title": "Shipping Option Price Rules",
+              "path": "https://docs.medusajs.com/resources/commerce-modules/pricing/price-rules",
               "children": []
             },
             {
@@ -11018,7 +11026,7 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
           "isPathHref": true,
           "type": "category",
           "title": "Concepts",
-          "autogenerate_tags": "concept+product",
+          "autogenerate_tags": "product+concept",
           "autogenerate_as_ref": true,
           "children": [
             {
@@ -11051,6 +11059,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "type": "ref",
               "title": "Inventory Kits",
               "path": "https://docs.medusajs.com/resources/commerce-modules/inventory/inventory-kit",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "ref",
+              "title": "Variant Price Rules",
+              "path": "https://docs.medusajs.com/resources/commerce-modules/pricing/price-rules",
               "children": []
             }
           ]
