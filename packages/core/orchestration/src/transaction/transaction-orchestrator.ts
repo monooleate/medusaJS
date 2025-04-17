@@ -21,6 +21,7 @@ import {
   isDefined,
   isErrorLike,
   isObject,
+  isString,
   MedusaError,
   promiseAll,
   serializeError,
@@ -437,7 +438,10 @@ export class TransactionOrchestrator extends EventEmitter {
         } else if (curState.state === TransactionStepState.REVERTED) {
           hasReverted = true
         } else if (curState.state === TransactionStepState.FAILED) {
-          if (stepDef.definition.continueOnPermanentFailure) {
+          if (
+            stepDef.definition.continueOnPermanentFailure ||
+            stepDef.definition.skipOnPermanentFailure
+          ) {
             hasIgnoredFailure = true
           } else {
             hasFailed = true
@@ -696,12 +700,28 @@ export class TransactionOrchestrator extends EventEmitter {
 
       if (!step.isCompensating()) {
         if (
-          step.definition.continueOnPermanentFailure &&
+          (step.definition.continueOnPermanentFailure ||
+            step.definition.skipOnPermanentFailure) &&
           !TransactionTimeoutError.isTransactionTimeoutError(timeoutError!)
         ) {
-          for (const childStep of step.next) {
-            const child = flow.steps[childStep]
-            child.changeState(TransactionStepState.SKIPPED_FAILURE)
+          if (step.definition.skipOnPermanentFailure) {
+            const until = isString(step.definition.skipOnPermanentFailure)
+              ? step.definition.skipOnPermanentFailure
+              : undefined
+
+            let stepsToSkip: string[] = [...step.next]
+            while (stepsToSkip.length > 0) {
+              const currentStep = flow.steps[stepsToSkip.shift()!]
+
+              if (until && currentStep.definition.action === until) {
+                break
+              }
+              currentStep.changeState(TransactionStepState.SKIPPED_FAILURE)
+
+              if (currentStep.next?.length > 0) {
+                stepsToSkip = stepsToSkip.concat(currentStep.next)
+              }
+            }
           }
         } else {
           flow.state = TransactionState.WAITING_TO_COMPENSATE
@@ -1351,7 +1371,7 @@ export class TransactionOrchestrator extends EventEmitter {
           states[parent].next?.push(id)
         }
 
-        const definitionCopy = { ...obj }
+        const definitionCopy = { ...obj } as TransactionStepsDefinition
         delete definitionCopy.next
 
         if (definitionCopy.async) {
