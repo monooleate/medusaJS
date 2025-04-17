@@ -6059,7 +6059,6 @@ export const generatedEditDates = {
   "app/storefront-development/cart/totals/page.mdx": "2025-03-27T14:47:14.252Z",
   "app/storefront-development/checkout/order-confirmation/page.mdx": "2025-03-27T14:29:45.669Z",
   "app/how-to-tutorials/tutorials/product-reviews/page.mdx": "2025-04-17T08:48:08.716Z",
-  "app/troubleshooting/api-routes/page.mdx": "2025-03-21T07:17:56.248Z",
   "app/troubleshooting/data-models/default-fields/page.mdx": "2025-03-21T06:59:06.775Z",
   "app/troubleshooting/medusa-admin/blocked-request/page.mdx": "2025-03-21T06:53:34.854Z",
   "app/troubleshooting/nextjs-starter-rewrites/page.mdx": "2025-03-21T07:09:08.901Z",
@@ -6146,5 +6145,8 @@ export const generatedEditDates = {
   "references/types/interfaces/types.IFulfillmentProvider/page.mdx": "2025-04-11T09:04:46.137Z",
   "references/user/types/user.Message/page.mdx": "2025-04-11T09:04:52.767Z",
   "app/infrastructure-modules/workflow-engine/how-to-use/page.mdx": "2025-03-27T14:53:13.311Z",
-  "references/core_flows/Notification/Steps_Notification/functions/core_flows.Notification.Steps_Notification.notifyOnFailureStep/page.mdx": "2025-04-17T08:42:33.837Z"
+  "references/core_flows/Notification/Steps_Notification/functions/core_flows.Notification.Steps_Notification.notifyOnFailureStep/page.mdx": "2025-04-17T08:42:33.837Z",
+  "app/troubleshooting/api-routes/additional-data-error/page.mdx": "2025-03-27T17:39:10.858Z",
+  "app/troubleshooting/api-routes/middleware-registration/page.mdx": "2025-04-17T10:35:42.095Z",
+  "app/troubleshooting/query/expression-type-error/page.mdx": "2025-04-17T10:30:39.317Z"
 }

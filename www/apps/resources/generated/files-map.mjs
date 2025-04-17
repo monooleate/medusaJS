@@ -1264,8 +1264,12 @@ export const filesMap = [
     "pathname": "/tools"
   },
   {
-    "filePath": "/www/apps/resources/app/troubleshooting/api-routes/page.mdx",
-    "pathname": "/troubleshooting/api-routes"
+    "filePath": "/www/apps/resources/app/troubleshooting/api-routes/additional-data-error/page.mdx",
+    "pathname": "/troubleshooting/api-routes/additional-data-error"
+  },
+  {
+    "filePath": "/www/apps/resources/app/troubleshooting/api-routes/middleware-registration/page.mdx",
+    "pathname": "/troubleshooting/api-routes/middleware-registration"
   },
   {
     "filePath": "/www/apps/resources/app/troubleshooting/cors-errors/page.mdx",
@@ -1318,6 +1322,10 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/app/troubleshooting/page.mdx",
     "pathname": "/troubleshooting"
+  },
+  {
+    "filePath": "/www/apps/resources/app/troubleshooting/query/expression-type-error/page.mdx",
+    "pathname": "/troubleshooting/query/expression-type-error"
   },
   {
     "filePath": "/www/apps/resources/app/troubleshooting/query/filter-linked/page.mdx",
