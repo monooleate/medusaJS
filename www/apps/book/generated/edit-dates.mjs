@@ -85,7 +85,7 @@ export const generatedEditDates = {
   "app/learn/customization/customize-admin/widget/page.mdx": "2025-02-05T09:10:18.163Z",
   "app/learn/customization/extend-features/define-link/page.mdx": "2025-04-17T08:50:17.036Z",
   "app/learn/customization/extend-features/page.mdx": "2024-12-09T11:02:39.244Z",
-  "app/learn/customization/extend-features/query-linked-records/page.mdx": "2025-03-25T13:48:49.973Z",
+  "app/learn/customization/extend-features/query-linked-records/page.mdx": "2025-04-18T07:41:05.912Z",
   "app/learn/customization/integrate-systems/handle-event/page.mdx": "2024-12-24T15:09:24.653Z",
   "app/learn/customization/integrate-systems/page.mdx": "2024-12-09T10:40:08.528Z",
   "app/learn/customization/integrate-systems/schedule-task/page.mdx": "2025-01-28T16:42:42.071Z",
@@ -119,5 +119,6 @@ export const generatedEditDates = {
   "app/learn/production/worker-mode/page.mdx": "2025-03-11T15:21:50.906Z",
   "app/learn/fundamentals/module-links/read-only/page.mdx": "2025-03-21T09:14:54.944Z",
   "app/learn/fundamentals/data-models/properties/page.mdx": "2025-03-18T07:57:17.826Z",
-  "app/learn/fundamentals/framework/page.mdx": "2025-04-17T16:07:19.090Z"
+  "app/learn/fundamentals/framework/page.mdx": "2025-04-17T16:07:19.090Z",
+  "app/learn/fundamentals/api-routes/retrieve-custom-links/page.mdx": "2025-04-18T07:38:56.729Z"
 }

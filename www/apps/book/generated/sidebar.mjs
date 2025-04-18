@@ -628,10 +628,20 @@ export const generatedSidebars = [
                 "isPathHref": true,
                 "type": "link",
                 "path": "/learn/fundamentals/api-routes/additional-data",
-                "title": "Additional Data",
+                "title": "Pass Additional Data",
                 "children": [],
-                "chapterTitle": "3.6.10. Additional Data",
+                "chapterTitle": "3.6.10. Pass Additional Data",
                 "number": "3.6.10."
+              },
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "link",
+                "path": "/learn/fundamentals/api-routes/retrieve-custom-links",
+                "title": "Retrieve Custom Links",
+                "children": [],
+                "chapterTitle": "3.6.11. Retrieve Custom Links",
+                "number": "3.6.11."
               }
             ],
             "chapterTitle": "3.6. API Routes",

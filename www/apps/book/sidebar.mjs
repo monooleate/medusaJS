@@ -332,7 +332,12 @@ export const sidebars = [
               {
                 type: "link",
                 path: "/learn/fundamentals/api-routes/additional-data",
-                title: "Additional Data",
+                title: "Pass Additional Data",
+              },
+              {
+                type: "link",
+                path: "/learn/fundamentals/api-routes/retrieve-custom-links",
+                title: "Retrieve Custom Links",
               },
             ],
           },

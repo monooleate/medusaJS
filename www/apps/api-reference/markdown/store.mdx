@@ -597,6 +597,20 @@ This returns the variants of each product, but the variants only have their `id`
 
 <DividedMarkdownLayout>
 
+<DividedMarkdownContent>
+
+### Select Custom Linked Data Models
+
+Most of the API routes that accept a `fields` query parameter allow you to specify custom linked data models. For example, if you linked a `Brand` to a `Product`, you can pass `brand` in the `fields` query parameter to retrieve the brand of each product.
+
+However, some API routes restrict the fields and relations you can retrieve. To learn about those API routes and how to override the allowed fields and relations, refer to the [Retrieve Custom Linked Data Models from Medusa's API routes](!docs!/learn/fundamentals/api-routes/retrieve-custom-links) documentation.
+
+</DividedMarkdownContent>
+
+</DividedMarkdownLayout>
+
+<DividedMarkdownLayout>
+
 <Feedback
   event="survey_api-ref"
   extraData={{
