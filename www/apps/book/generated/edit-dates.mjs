@@ -119,5 +119,5 @@ export const generatedEditDates = {
   "app/learn/production/worker-mode/page.mdx": "2025-03-11T15:21:50.906Z",
   "app/learn/fundamentals/module-links/read-only/page.mdx": "2025-03-21T09:14:54.944Z",
   "app/learn/fundamentals/data-models/properties/page.mdx": "2025-03-18T07:57:17.826Z",
-  "app/learn/fundamentals/framework/page.mdx": "2025-04-16T14:39:59.724Z"
+  "app/learn/fundamentals/framework/page.mdx": "2025-04-17T16:07:19.090Z"
 }
