@@ -451,6 +451,15 @@ moduleIntegrationTestRunner<IWorkflowEngineService>({
         beforeEach(() => {
           jest.useFakeTimers()
           jest.clearAllMocks()
+
+          // Register test-value in the container for all tests
+          const sharedContainer =
+            workflowOrcModule["workflowOrchestratorService_"]["container_"]
+
+          sharedContainer.register(
+            "test-value",
+            asFunction(() => "test")
+          )
         })
 
         afterEach(() => {
@@ -459,44 +468,56 @@ moduleIntegrationTestRunner<IWorkflowEngineService>({
 
         it("should execute a scheduled workflow", async () => {
           const spy = createScheduled("standard", {
-            cron: "0 0 * * * *", // Jest issue: clearExpiredExecutions runs every hour, this is scheduled to run every hour to match the number of calls
+            cron: "0 0 * * * *", // Runs at the start of every hour
           })
 
+          expect(spy).toHaveBeenCalledTimes(0)
+
           await jest.runOnlyPendingTimersAsync()
+
           expect(spy).toHaveBeenCalledTimes(1)
 
           await jest.runOnlyPendingTimersAsync()
+
           expect(spy).toHaveBeenCalledTimes(2)
         })
 
         it("should stop executions after the set number of executions", async () => {
           const spy = await createScheduled("num-executions", {
-            cron: "* * * * * *",
+            interval: 1000,
             numberOfExecutions: 2,
           })
 
-          await jest.runOnlyPendingTimersAsync()
+          expect(spy).toHaveBeenCalledTimes(0)
+
+          await jest.advanceTimersByTimeAsync(1100)
+
           expect(spy).toHaveBeenCalledTimes(1)
 
-          await jest.runOnlyPendingTimersAsync()
+          await jest.advanceTimersByTimeAsync(1100)
+
           expect(spy).toHaveBeenCalledTimes(2)
 
-          await jest.runOnlyPendingTimersAsync()
+          await jest.advanceTimersByTimeAsync(1100)
+
           expect(spy).toHaveBeenCalledTimes(2)
         })
 
         it("should remove scheduled workflow if workflow no longer exists", async () => {
           const spy = await createScheduled("remove-scheduled", {
-            cron: "* * * * * *",
+            interval: 1000,
           })
           const logSpy = jest.spyOn(console, "warn")
 
-          await jest.runOnlyPendingTimersAsync()
+          expect(spy).toHaveBeenCalledTimes(0)
+
+          await jest.advanceTimersByTimeAsync(1100)
+
           expect(spy).toHaveBeenCalledTimes(1)
 
           WorkflowManager["workflows"].delete("remove-scheduled")
 
-          await jest.runOnlyPendingTimersAsync()
+          await jest.advanceTimersByTimeAsync(1100)
           expect(spy).toHaveBeenCalledTimes(1)
           expect(logSpy).toHaveBeenCalledWith(
             "Tried to execute a scheduled workflow with ID remove-scheduled that does not exist, removing it from the scheduler."
@@ -504,22 +525,23 @@ moduleIntegrationTestRunner<IWorkflowEngineService>({
         })
 
         it("the scheduled workflow should have access to the shared container", async () => {
-          const sharedContainer =
-            workflowOrcModule["workflowOrchestratorService_"]["container_"]
-
-          sharedContainer.register(
-            "test-value",
-            asFunction(() => "test")
-          )
-
           const spy = await createScheduled("shared-container-job", {
-            cron: "* * * * * *",
+            interval: 1000,
+            numberOfExecutions: 1,
           })
-          await jest.runOnlyPendingTimersAsync()
-          expect(spy).toHaveBeenCalledTimes(1)
+
+          const initialCallCount = spy.mock.calls.length
+
+          await jest.advanceTimersByTimeAsync(1100)
+
+          expect(spy).toHaveBeenCalledTimes(initialCallCount + 1)
           expect(spy).toHaveReturnedWith(
             expect.objectContaining({ output: { testValue: "test" } })
           )
+
+          await jest.advanceTimersByTimeAsync(1100)
+
+          expect(spy).toHaveBeenCalledTimes(initialCallCount + 1)
         })
 
         it("should fetch an idempotent workflow after its completion", async () => {
