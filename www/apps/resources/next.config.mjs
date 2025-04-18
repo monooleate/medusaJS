@@ -169,7 +169,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/infrastructure-modules/:path*",
+        source: "/architectural-modules/:path*",
         destination: "/infrastructure-modules/:path*",
         permanent: true,
       },
