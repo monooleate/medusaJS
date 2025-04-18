@@ -3,6 +3,7 @@ export type MenuItemLink = {
   icon?: React.ReactNode
   title: string
   link: string
+  openInNewTab?: boolean
 }
 
 export type MenuItemDivider = {
