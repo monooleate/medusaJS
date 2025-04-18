@@ -1,4 +1,9 @@
 /**
+ * The access level of the file.
+ */
+export type FileAccessPermission = "public" | "private"
+
+/**
  * The File details.
  */
 export interface FileDTO {
@@ -23,4 +28,15 @@ export interface FilterableFileProps {
    * The file ID to filter by.
    */
   id?: string
+}
+
+export interface UploadFileUrlDTO {
+  /**
+   * The URL of the file.
+   */
+  url: string
+  /**
+   * The key of the file.
+   */
+  key: string
 }
