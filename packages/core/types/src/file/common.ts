@@ -36,7 +36,12 @@ export interface UploadFileUrlDTO {
    */
   url: string
   /**
-   * The key of the file.
+   * The file's key allowing you to later
+   * identify the file in the third-party
+   * system. For example, the S3 Module Provider
+   * returns the file's key in S3, whereas the
+   * Local File Module Provider returns the file's
+   * path.
    */
   key: string
 }
