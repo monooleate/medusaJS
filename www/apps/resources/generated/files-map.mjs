@@ -692,6 +692,50 @@ export const filesMap = [
     "pathname": "/create-medusa-app"
   },
   {
+    "filePath": "/www/apps/resources/app/data-model-repository-reference/methods/create/page.mdx",
+    "pathname": "/data-model-repository-reference/methods/create"
+  },
+  {
+    "filePath": "/www/apps/resources/app/data-model-repository-reference/methods/delete/page.mdx",
+    "pathname": "/data-model-repository-reference/methods/delete"
+  },
+  {
+    "filePath": "/www/apps/resources/app/data-model-repository-reference/methods/find/page.mdx",
+    "pathname": "/data-model-repository-reference/methods/find"
+  },
+  {
+    "filePath": "/www/apps/resources/app/data-model-repository-reference/methods/findAndCount/page.mdx",
+    "pathname": "/data-model-repository-reference/methods/findAndCount"
+  },
+  {
+    "filePath": "/www/apps/resources/app/data-model-repository-reference/methods/restore/page.mdx",
+    "pathname": "/data-model-repository-reference/methods/restore"
+  },
+  {
+    "filePath": "/www/apps/resources/app/data-model-repository-reference/methods/softDelete/page.mdx",
+    "pathname": "/data-model-repository-reference/methods/softDelete"
+  },
+  {
+    "filePath": "/www/apps/resources/app/data-model-repository-reference/methods/update/page.mdx",
+    "pathname": "/data-model-repository-reference/methods/update"
+  },
+  {
+    "filePath": "/www/apps/resources/app/data-model-repository-reference/methods/upsert/page.mdx",
+    "pathname": "/data-model-repository-reference/methods/upsert"
+  },
+  {
+    "filePath": "/www/apps/resources/app/data-model-repository-reference/methods/upsertWithReplace/page.mdx",
+    "pathname": "/data-model-repository-reference/methods/upsertWithReplace"
+  },
+  {
+    "filePath": "/www/apps/resources/app/data-model-repository-reference/page.mdx",
+    "pathname": "/data-model-repository-reference"
+  },
+  {
+    "filePath": "/www/apps/resources/app/data-model-repository-reference/tips/filtering/page.mdx",
+    "pathname": "/data-model-repository-reference/tips/filtering"
+  },
+  {
     "filePath": "/www/apps/resources/app/deployment/medusa-application/railway/page.mdx",
     "pathname": "/deployment/medusa-application/railway"
   },

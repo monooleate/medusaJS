@@ -6370,6 +6370,137 @@ const generatedgeneratedReferencesSidebarSidebar = {
     {
       "loaded": true,
       "isPathHref": true,
+      "type": "sidebar",
+      "sidebar_id": "data-model-repository-reference",
+      "title": "Data Model Repository",
+      "description": "List of methods in your service extending the data model repository.",
+      "children": [
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "link",
+          "path": "/data-model-repository-reference",
+          "title": "Overview",
+          "children": []
+        },
+        {
+          "type": "separator"
+        },
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "category",
+          "title": "Methods",
+          "initialOpen": true,
+          "autogenerate_path": "/data-model-repository-reference/methods",
+          "children": [
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
+              "path": "/data-model-repository-reference/methods/create",
+              "title": "create",
+              "description": "",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
+              "path": "/data-model-repository-reference/methods/delete",
+              "title": "delete",
+              "description": "",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
+              "path": "/data-model-repository-reference/methods/find",
+              "title": "find",
+              "description": "",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
+              "path": "/data-model-repository-reference/methods/findAndCount",
+              "title": "findAndCount",
+              "description": "",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
+              "path": "/data-model-repository-reference/methods/restore",
+              "title": "restore",
+              "description": "",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
+              "path": "/data-model-repository-reference/methods/softDelete",
+              "title": "softDelete",
+              "description": "",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
+              "path": "/data-model-repository-reference/methods/update",
+              "title": "update",
+              "description": "",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
+              "path": "/data-model-repository-reference/methods/upsert",
+              "title": "upsert",
+              "description": "",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
+              "path": "/data-model-repository-reference/methods/upsertWithReplace",
+              "title": "upsertWithReplace",
+              "description": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "category",
+          "title": "Tips",
+          "initialOpen": true,
+          "autogenerate_path": "/data-model-repository-reference/tips",
+          "children": [
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
+              "path": "/data-model-repository-reference/tips/filtering",
+              "title": "Filtering",
+              "description": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "loaded": true,
+      "isPathHref": true,
       "type": "link",
       "path": "/events-reference",
       "title": "Events",
