@@ -8,7 +8,10 @@ export const sdk = new Medusa({
   },
 })
 
-sdk.admin.draftOrder.convertToOrder("order_123")
-.then(({ order }) => {
-  console.log(order)
+sdk.admin.draftOrder.removeShippingMethod(
+  "order_123", 
+  "shipping_method_123"
+)
+.then(({ draft_order_preview }) => {
+  console.log(draft_order_preview)
 })

@@ -1,12 +1,9 @@
 /**
- * @oas [delete] /admin/draft-orders/{id}/edit/shipping-methods/{action_id}
- * operationId: DeleteDraftOrdersIdEditShippingMethodsAction_id
- * summary: Remove New Shipping Method from Draft Order
- * x-sidebar-summary: Remove New Shipping Method
- * description: |
- *   Remove the shipping method in a draft order using the `ID` of the method's `SHIPPING_ADD` action.
- * 
- *   Every shipping method has an `actions` property, whose value is an array of actions. You can check the action's name using its `action` property, and use the value of the `id` property.
+ * @oas [delete] /admin/draft-orders/{id}/edit/shipping-methods/method/{method_id}
+ * operationId: DeleteDraftOrdersIdEditShippingMethodsMethodMethod_id
+ * summary: Remove Shipping Method from Draft Order
+ * x-sidebar-summary: Remove Shipping Method
+ * description: Remove the shipping method in a draft order that is being edited.
  * x-authenticated: true
  * parameters:
  *   - name: id
@@ -15,9 +12,9 @@
  *     required: true
  *     schema:
  *       type: string
- *   - name: action_id
+ *   - name: method_id
  *     in: path
- *     description: The ID of the shipping method's `SHIPPING_ADD` action.
+ *     description: The shipping method's ID.
  *     required: true
  *     schema:
  *       type: string
@@ -39,14 +36,17 @@
  *         },
  *       })
  * 
- *       sdk.admin.draftOrder.removeShippingMethod("order_123", "action_123")
+ *       sdk.admin.draftOrder.removeShippingMethod(
+ *         "order_123", 
+ *         "shipping_method_123"
+ *       )
  *       .then(({ draft_order_preview }) => {
  *         console.log(draft_order_preview)
  *       })
  *   - lang: Shell
  *     label: cURL
  *     source: |-
- *       curl -X DELETE '{backend_url}/admin/draft-orders/{id}/edit/shipping-methods/{action_id}' \
+ *       curl -X DELETE '{backend_url}/admin/draft-orders/{id}/edit/shipping-methods/method/{method_id}' \
  *       -H 'Authorization: Bearer {access_token}'
  * tags:
  *   - Draft Orders
@@ -65,7 +65,7 @@
  *     $ref: "#/components/responses/invalid_request_error"
  *   "500":
  *     $ref: "#/components/responses/500_error"
- * x-workflow: removeDraftOrderActionShippingMethodWorkflow
+ * x-workflow: removeDraftOrderShippingMethodWorkflow
  * 
 */
 
