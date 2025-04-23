@@ -1186,6 +1186,192 @@ const generatedgeneratedReferencesSidebarSidebar = {
           "loaded": true,
           "isPathHref": true,
           "type": "category",
+          "title": "Draft Order",
+          "children": [
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "sub-category",
+              "title": "Workflows",
+              "children": [
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/addDraftOrderItemsWorkflow",
+                  "title": "addDraftOrderItemsWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/addDraftOrderPromotionWorkflow",
+                  "title": "addDraftOrderPromotionWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/addDraftOrderShippingMethodsWorkflow",
+                  "title": "addDraftOrderShippingMethodsWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/beginDraftOrderEditWorkflow",
+                  "title": "beginDraftOrderEditWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/cancelDraftOrderEditWorkflow",
+                  "title": "cancelDraftOrderEditWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/confirmDraftOrderEditWorkflow",
+                  "title": "confirmDraftOrderEditWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/convertDraftOrderWorkflow",
+                  "title": "convertDraftOrderWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/removeDraftOrderActionItemWorkflow",
+                  "title": "removeDraftOrderActionItemWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/removeDraftOrderActionShippingMethodWorkflow",
+                  "title": "removeDraftOrderActionShippingMethodWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/removeDraftOrderPromotionsWorkflow",
+                  "title": "removeDraftOrderPromotionsWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/removeDraftOrderShippingMethodWorkflow",
+                  "title": "removeDraftOrderShippingMethodWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/requestDraftOrderEditWorkflow",
+                  "title": "requestDraftOrderEditWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/updateDraftOrderActionItemWorkflow",
+                  "title": "updateDraftOrderActionItemWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/updateDraftOrderActionShippingMethodWorkflow",
+                  "title": "updateDraftOrderActionShippingMethodWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/updateDraftOrderItemWorkflow",
+                  "title": "updateDraftOrderItemWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/updateDraftOrderShippingMethodWorkflow",
+                  "title": "updateDraftOrderShippingMethodWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/updateDraftOrderWorkflow",
+                  "title": "updateDraftOrderWorkflow",
+                  "description": "",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "sub-category",
+              "title": "Steps",
+              "children": [
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/steps/validateDraftOrderStep",
+                  "title": "validateDraftOrderStep",
+                  "description": "",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "category",
           "title": "File",
           "children": [
             {
@@ -2324,6 +2510,15 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "loaded": true,
                   "isPathHref": true,
                   "type": "link",
+                  "path": "/references/medusa-workflows/createOrderCreditLinesWorkflow",
+                  "title": "createOrderCreditLinesWorkflow",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
                   "path": "/references/medusa-workflows/createOrderEditShippingMethodWorkflow",
                   "title": "createOrderEditShippingMethodWorkflow",
                   "description": "Create a shipping method for an order edit.",
@@ -3061,6 +3256,15 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "loaded": true,
                   "isPathHref": true,
                   "type": "link",
+                  "path": "/references/medusa-workflows/steps/registerOrderDeliveryStep",
+                  "title": "registerOrderDeliveryStep",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
                   "path": "/references/medusa-workflows/steps/registerOrderFulfillmentStep",
                   "title": "registerOrderFulfillmentStep",
                   "description": "",
@@ -3774,6 +3978,15 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/updateReturnValidationStep",
                   "title": "updateReturnValidationStep",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/validateOrderCreditLinesStep",
+                  "title": "validateOrderCreditLinesStep",
                   "description": "",
                   "children": []
                 }

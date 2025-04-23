@@ -248,6 +248,10 @@ export const step = [
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/createDefaultStoreStep"
   },
   {
+    "title": "validateDraftOrderStep",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/validateDraftOrderStep"
+  },
+  {
     "title": "deleteFilesStep",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/deleteFilesStep"
   },
@@ -472,10 +476,6 @@ export const step = [
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/createOrderExchangesStep"
   },
   {
-    "title": "createOrderLineItemsStep",
-    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/createOrderLineItemsStep"
-  },
-  {
     "title": "createOrdersStep",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/createOrdersStep"
   },
@@ -518,6 +518,10 @@ export const step = [
   {
     "title": "registerOrderChangesStep",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/registerOrderChangesStep"
+  },
+  {
+    "title": "registerOrderDeliveryStep",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/registerOrderDeliveryStep"
   },
   {
     "title": "registerOrderFulfillmentStep",
@@ -826,6 +830,10 @@ export const step = [
   {
     "title": "updateReturnValidationStep",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/updateReturnValidationStep"
+  },
+  {
+    "title": "validateOrderCreditLinesStep",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/validateOrderCreditLinesStep"
   },
   {
     "title": "authorizePaymentSessionStep",
