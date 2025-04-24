@@ -1,6 +1,6 @@
 import { z } from "zod"
-import { createFindParams, createSelectParams } from "../../utils/validators"
 import { applyAndAndOrOperators } from "../../utils/common-validators"
+import { createFindParams, createSelectParams } from "../../utils/validators"
 
 export type ReturnParamsType = z.infer<typeof ReturnParams>
 export const ReturnParams = createSelectParams()
@@ -28,7 +28,7 @@ const ItemSchema = z.object({
 })
 
 export const StorePostReturnsReqSchema = z.object({
-  order_id: z.string(),
+  order_id: z.string().min(1),
   items: z.array(ItemSchema),
   return_shipping: ReturnShippingSchema,
   note: z.string().nullish(),
