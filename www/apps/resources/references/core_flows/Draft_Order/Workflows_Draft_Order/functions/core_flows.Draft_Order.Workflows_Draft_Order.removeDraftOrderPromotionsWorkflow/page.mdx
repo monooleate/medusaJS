@@ -1,7 +1,7 @@
 ---
 slug: /references/medusa-workflows/removeDraftOrderPromotionsWorkflow
 sidebar_label: removeDraftOrderPromotionsWorkflow
-sidebar_description: ""
+sidebar_description: Remove promotions from a draft order edit.
 tags:
   - remote query
   - order
@@ -14,7 +14,13 @@ import { TypeList, WorkflowDiagram } from "docs-ui"
 
 This documentation provides a reference to the `removeDraftOrderPromotionsWorkflow`. It belongs to the `@medusajs/medusa/core-flows` package.
 
-<SourceCodeLink link="https://github.com/medusajs/medusa/blob/876a14eb98aed54360312b9b215599aa46faccd8/packages/core/core-flows/src/draft-order/workflows/remove-draft-order-promotions.ts#L31" />
+This workflow removes promotions from a draft order edit. It's used by the
+[Remove Promotions from Draft Order Edit Admin API Route](https://docs.medusajs.com/api/admin#draft-orders\_deletedraftordersideditpromotions).
+
+You can use this workflow within your customizations or your own custom workflows, allowing you to wrap custom logic around
+removing promotions from a draft order edit.
+
+<SourceCodeLink link="https://github.com/medusajs/medusa/blob/6f8ffcf53c709d40dfeb5980f3769cd0bb810e3e/packages/core/core-flows/src/draft-order/workflows/remove-draft-order-promotions.ts#L60" />
 
 ## Examples
 
@@ -34,7 +40,10 @@ export async function POST(
 ) {
   const { result } = await removeDraftOrderPromotionsWorkflow(req.scope)
     .run({
-      input: "{value}"
+      input: {
+        order_id: "order_123",
+        promo_codes: ["PROMO_CODE_1", "PROMO_CODE_2"],
+      }
     })
 
   res.send(result)
@@ -57,7 +66,10 @@ export default async function handleOrderPlaced({
 }: SubscriberArgs < { id: string } > ) {
   const { result } = await removeDraftOrderPromotionsWorkflow(container)
     .run({
-      input: "{value}"
+      input: {
+        order_id: "order_123",
+        promo_codes: ["PROMO_CODE_1", "PROMO_CODE_2"],
+      }
     })
 
   console.log(result)
@@ -80,7 +92,10 @@ export default async function myCustomJob(
 ) {
   const { result } = await removeDraftOrderPromotionsWorkflow(container)
     .run({
-      input: "{value}"
+      input: {
+        order_id: "order_123",
+        promo_codes: ["PROMO_CODE_1", "PROMO_CODE_2"],
+      }
     })
 
   console.log(result)
@@ -104,7 +119,10 @@ const myWorkflow = createWorkflow(
   () => {
     const result = removeDraftOrderPromotionsWorkflow
       .runAsStep({
-        input: "{value}"
+        input: {
+          order_id: "order_123",
+          promo_codes: ["PROMO_CODE_1", "PROMO_CODE_2"],
+        }
       })
   }
 )
@@ -119,7 +137,7 @@ const myWorkflow = createWorkflow(
 
 ## Input
 
-<TypeList types={[{"name":"RemoveDraftOrderPromotionsWorkflowInput","type":"`RemoveDraftOrderPromotionsWorkflowInput`","optional":false,"defaultValue":"","description":"","expandable":false,"children":[]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" openedLevel={1} sectionTitle="removeDraftOrderPromotionsWorkflow"/>
+<TypeList types={[{"name":"RemoveDraftOrderPromotionsWorkflowInput","type":"[RemoveDraftOrderPromotionsWorkflowInput](../../../../interfaces/core_flows.RemoveDraftOrderPromotionsWorkflowInput/page.mdx)","optional":false,"defaultValue":"","description":"The details of the promotions to remove from a draft order.","expandable":false,"children":[{"name":"order_id","type":"`string`","description":"The ID of the draft order to remove the promotions from.","optional":false,"defaultValue":"","expandable":false,"children":[]},{"name":"promo_codes","type":"`string`[]","description":"The codes of the promotions to remove from the draft order.","optional":false,"defaultValue":"","expandable":false,"children":[]}]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" openedLevel={1} sectionTitle="removeDraftOrderPromotionsWorkflow"/>
 
 ## Output
 

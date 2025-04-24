@@ -1,7 +1,7 @@
 ---
 slug: /references/medusa-workflows/updateDraftOrderItemWorkflow
 sidebar_label: updateDraftOrderItemWorkflow
-sidebar_description: ""
+sidebar_description: Update an item in a draft order edit.
 tags:
   - remote query
   - order
@@ -14,7 +14,13 @@ import { TypeList, WorkflowDiagram } from "docs-ui"
 
 This documentation provides a reference to the `updateDraftOrderItemWorkflow`. It belongs to the `@medusajs/medusa/core-flows` package.
 
-<SourceCodeLink link="https://github.com/medusajs/medusa/blob/876a14eb98aed54360312b9b215599aa46faccd8/packages/core/core-flows/src/draft-order/workflows/update-draft-order-item.ts#L33" />
+This workflow updates an item in a draft order edit. It's used by the
+[Update Item in Draft Order Edit Admin API Route](https://docs.medusajs.com/api/admin#draft-orders\_postdraftordersidedititemsitemitem\_id).
+
+You can use this workflow within your customizations or your own custom workflows, allowing you to wrap custom logic around
+updating an item in a draft order edit.
+
+<SourceCodeLink link="https://github.com/medusajs/medusa/blob/6f8ffcf53c709d40dfeb5980f3769cd0bb810e3e/packages/core/core-flows/src/draft-order/workflows/update-draft-order-item.ts#L53" />
 
 ## Examples
 
@@ -35,11 +41,8 @@ export async function POST(
   const { result } = await updateDraftOrderItemWorkflow(req.scope)
     .run({
       input: {
-        "order_id": "order_123",
-        "items": [{
-          "id": "id_kjpPS2S1yZ6z",
-          "quantity": 24
-        }]
+        order_id: "order_123",
+        items: [{ id: "orli_123", quantity: 2 }],
       }
     })
 
@@ -64,11 +67,8 @@ export default async function handleOrderPlaced({
   const { result } = await updateDraftOrderItemWorkflow(container)
     .run({
       input: {
-        "order_id": "order_123",
-        "items": [{
-          "id": "id_kjpPS2S1yZ6z",
-          "quantity": 24
-        }]
+        order_id: "order_123",
+        items: [{ id: "orli_123", quantity: 2 }],
       }
     })
 
@@ -93,11 +93,8 @@ export default async function myCustomJob(
   const { result } = await updateDraftOrderItemWorkflow(container)
     .run({
       input: {
-        "order_id": "order_123",
-        "items": [{
-          "id": "id_kjpPS2S1yZ6z",
-          "quantity": 24
-        }]
+        order_id: "order_123",
+        items: [{ id: "orli_123", quantity: 2 }],
       }
     })
 
@@ -123,11 +120,8 @@ const myWorkflow = createWorkflow(
     const result = updateDraftOrderItemWorkflow
       .runAsStep({
         input: {
-          "order_id": "order_123",
-          "items": [{
-            "id": "id_kjpPS2S1yZ6z",
-            "quantity": 24
-          }]
+          order_id: "order_123",
+          items: [{ id: "orli_123", quantity: 2 }],
         }
       })
   }

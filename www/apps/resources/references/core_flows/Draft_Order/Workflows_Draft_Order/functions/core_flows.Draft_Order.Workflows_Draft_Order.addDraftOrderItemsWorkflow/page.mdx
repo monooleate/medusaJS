@@ -1,7 +1,7 @@
 ---
 slug: /references/medusa-workflows/addDraftOrderItemsWorkflow
 sidebar_label: addDraftOrderItemsWorkflow
-sidebar_description: ""
+sidebar_description: Add items to a draft order.
 tags:
   - remote query
   - order
@@ -20,7 +20,13 @@ import { TypeList, WorkflowDiagram } from "docs-ui"
 
 This documentation provides a reference to the `addDraftOrderItemsWorkflow`. It belongs to the `@medusajs/medusa/core-flows` package.
 
-<SourceCodeLink link="https://github.com/medusajs/medusa/blob/876a14eb98aed54360312b9b215599aa46faccd8/packages/core/core-flows/src/draft-order/workflows/add-draft-order-items.ts#L27" />
+This workflow adds items to a draft order. It's used by the
+[Add Item to Draft Order Admin API Route](https://docs.medusajs.com/api/admin#draft-orders\_postdraftordersidedititems).
+
+You can use this workflow within your customizations or your own custom workflows, allowing you to wrap custom logic around adding items to
+a draft order.
+
+<SourceCodeLink link="https://github.com/medusajs/medusa/blob/6f8ffcf53c709d40dfeb5980f3769cd0bb810e3e/packages/core/core-flows/src/draft-order/workflows/add-draft-order-items.ts#L50" />
 
 ## Examples
 
@@ -41,9 +47,10 @@ export async function POST(
   const { result } = await addDraftOrderItemsWorkflow(req.scope)
     .run({
       input: {
-        "order_id": "order_123",
-        "items": [{
-          "quantity": 24
+        order_id: "order_123",
+        items: [{
+          variant_id: "variant_123",
+          quantity: 1
         }]
       }
     })
@@ -69,9 +76,10 @@ export default async function handleOrderPlaced({
   const { result } = await addDraftOrderItemsWorkflow(container)
     .run({
       input: {
-        "order_id": "order_123",
-        "items": [{
-          "quantity": 24
+        order_id: "order_123",
+        items: [{
+          variant_id: "variant_123",
+          quantity: 1
         }]
       }
     })
@@ -97,9 +105,10 @@ export default async function myCustomJob(
   const { result } = await addDraftOrderItemsWorkflow(container)
     .run({
       input: {
-        "order_id": "order_123",
-        "items": [{
-          "quantity": 24
+        order_id: "order_123",
+        items: [{
+          variant_id: "variant_123",
+          quantity: 1
         }]
       }
     })
@@ -126,9 +135,10 @@ const myWorkflow = createWorkflow(
     const result = addDraftOrderItemsWorkflow
       .runAsStep({
         input: {
-          "order_id": "order_123",
-          "items": [{
-            "quantity": 24
+          order_id: "order_123",
+          items: [{
+            variant_id: "variant_123",
+            quantity: 1
           }]
         }
       })

@@ -2,7 +2,7 @@
  * @oas [post] /admin/draft-orders
  * operationId: PostDraftOrders
  * summary: Create Draft Order
- * description: Create a draft order. This creates an order with the `is_draft_order` property enabled.
+ * description: Create a draft order. This creates an order with the `is_draft_order` property enabled. You can later convert the draft order to an order.
  * x-authenticated: true
  * parameters:
  *   - name: fields

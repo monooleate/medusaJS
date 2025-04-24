@@ -1050,6 +1050,11 @@ export const slugChanges = [
     "filePath": "/www/apps/resources/references/core_flows/Draft_Order/Workflows_Draft_Order/functions/core_flows.Draft_Order.Workflows_Draft_Order.confirmDraftOrderEditWorkflow/page.mdx"
   },
   {
+    "origSlug": "/references/core_flows/Draft_Order/Workflows_Draft_Order/functions/core_flows.Draft_Order.Workflows_Draft_Order.convertDraftOrderStep",
+    "newSlug": "/references/medusa-workflows/convertDraftOrderStep",
+    "filePath": "/www/apps/resources/references/core_flows/Draft_Order/Workflows_Draft_Order/functions/core_flows.Draft_Order.Workflows_Draft_Order.convertDraftOrderStep/page.mdx"
+  },
+  {
     "origSlug": "/references/core_flows/Draft_Order/Workflows_Draft_Order/functions/core_flows.Draft_Order.Workflows_Draft_Order.convertDraftOrderWorkflow",
     "newSlug": "/references/medusa-workflows/convertDraftOrderWorkflow",
     "filePath": "/www/apps/resources/references/core_flows/Draft_Order/Workflows_Draft_Order/functions/core_flows.Draft_Order.Workflows_Draft_Order.convertDraftOrderWorkflow/page.mdx"
@@ -1098,6 +1103,11 @@ export const slugChanges = [
     "origSlug": "/references/core_flows/Draft_Order/Workflows_Draft_Order/functions/core_flows.Draft_Order.Workflows_Draft_Order.updateDraftOrderShippingMethodWorkflow",
     "newSlug": "/references/medusa-workflows/updateDraftOrderShippingMethodWorkflow",
     "filePath": "/www/apps/resources/references/core_flows/Draft_Order/Workflows_Draft_Order/functions/core_flows.Draft_Order.Workflows_Draft_Order.updateDraftOrderShippingMethodWorkflow/page.mdx"
+  },
+  {
+    "origSlug": "/references/core_flows/Draft_Order/Workflows_Draft_Order/functions/core_flows.Draft_Order.Workflows_Draft_Order.updateDraftOrderStep",
+    "newSlug": "/references/medusa-workflows/updateDraftOrderStep",
+    "filePath": "/www/apps/resources/references/core_flows/Draft_Order/Workflows_Draft_Order/functions/core_flows.Draft_Order.Workflows_Draft_Order.updateDraftOrderStep/page.mdx"
   },
   {
     "origSlug": "/references/core_flows/Draft_Order/Workflows_Draft_Order/functions/core_flows.Draft_Order.Workflows_Draft_Order.updateDraftOrderWorkflow",

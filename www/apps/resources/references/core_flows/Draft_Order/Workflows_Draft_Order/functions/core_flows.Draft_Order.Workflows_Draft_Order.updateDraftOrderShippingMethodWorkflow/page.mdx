@@ -1,7 +1,7 @@
 ---
 slug: /references/medusa-workflows/updateDraftOrderShippingMethodWorkflow
 sidebar_label: updateDraftOrderShippingMethodWorkflow
-sidebar_description: ""
+sidebar_description: Update an existing shipping method in a draft order edit.
 tags:
   - remote query
   - order
@@ -15,7 +15,13 @@ import { TypeList, WorkflowDiagram } from "docs-ui"
 
 This documentation provides a reference to the `updateDraftOrderShippingMethodWorkflow`. It belongs to the `@medusajs/medusa/core-flows` package.
 
-<SourceCodeLink link="https://github.com/medusajs/medusa/blob/876a14eb98aed54360312b9b215599aa46faccd8/packages/core/core-flows/src/draft-order/workflows/update-draft-order-shipping-method.ts#L53" />
+This workflow updates an existing shipping method in a draft order edit. It's used by the
+[Update Shipping Method in Draft Order Edit Admin API Route](https://docs.medusajs.com/api/admin#draft-orders\_postdraftordersideditshippingmethodsmethodmethod\_id).
+
+You can use this workflow within your customizations or your own custom workflows, allowing you to wrap custom logic around
+updating an existing shipping method in a draft order edit.
+
+<SourceCodeLink link="https://github.com/medusajs/medusa/blob/6f8ffcf53c709d40dfeb5980f3769cd0bb810e3e/packages/core/core-flows/src/draft-order/workflows/update-draft-order-shipping-method.ts#L79" />
 
 ## Examples
 
@@ -36,9 +42,10 @@ export async function POST(
   const { result } = await updateDraftOrderShippingMethodWorkflow(req.scope)
     .run({
       input: {
-        "order_id": "order_123",
-        "data": {
-          "shipping_method_id": "{value}"
+        order_id: "order_123",
+        data: {
+          shipping_method_id: "sm_123",
+          custom_amount: 10,
         }
       }
     })
@@ -64,9 +71,10 @@ export default async function handleOrderPlaced({
   const { result } = await updateDraftOrderShippingMethodWorkflow(container)
     .run({
       input: {
-        "order_id": "order_123",
-        "data": {
-          "shipping_method_id": "{value}"
+        order_id: "order_123",
+        data: {
+          shipping_method_id: "sm_123",
+          custom_amount: 10,
         }
       }
     })
@@ -92,9 +100,10 @@ export default async function myCustomJob(
   const { result } = await updateDraftOrderShippingMethodWorkflow(container)
     .run({
       input: {
-        "order_id": "order_123",
-        "data": {
-          "shipping_method_id": "{value}"
+        order_id: "order_123",
+        data: {
+          shipping_method_id: "sm_123",
+          custom_amount: 10,
         }
       }
     })
@@ -121,9 +130,10 @@ const myWorkflow = createWorkflow(
     const result = updateDraftOrderShippingMethodWorkflow
       .runAsStep({
         input: {
-          "order_id": "order_123",
-          "data": {
-            "shipping_method_id": "{value}"
+          order_id: "order_123",
+          data: {
+            shipping_method_id: "sm_123",
+            custom_amount: 10,
           }
         }
       })
@@ -140,7 +150,7 @@ const myWorkflow = createWorkflow(
 
 ## Input
 
-<TypeList types={[{"name":"UpdateDraftOrderShippingMethodWorkflowInput","type":"[UpdateDraftOrderShippingMethodWorkflowInput](../../../../interfaces/core_flows.UpdateDraftOrderShippingMethodWorkflowInput/page.mdx)","optional":false,"defaultValue":"","description":"","expandable":false,"children":[{"name":"order_id","type":"`string`","description":"The ID of the order to update the shipping method in its edit.","optional":false,"defaultValue":"","expandable":false,"children":[]},{"name":"data","type":"`object`","description":"","optional":false,"defaultValue":"","expandable":false,"children":[{"name":"shipping_method_id","type":"`string`","description":"The ID of the shipping method to update.","optional":false,"defaultValue":"","expandable":false,"children":[]},{"name":"shipping_option_id","type":"`string`","description":"The ID of the shipping option to associate with the shipping method.","optional":true,"defaultValue":"","expandable":false,"children":[]},{"name":"custom_amount","type":"[BigNumberInput](../../../../../types/types/types.BigNumberInput/page.mdx)","description":"Set a custom amount for the shipping method.","optional":true,"defaultValue":"","expandable":false,"children":[{"name":"value","type":"`string` \\| `number`","description":"","optional":false,"defaultValue":"","expandable":false,"children":[]},{"name":"numeric","type":"`number`","description":"","optional":false,"defaultValue":"","expandable":false,"children":[]},{"name":"raw","type":"[BigNumberRawValue](../../../../../types/types/types.BigNumberRawValue/page.mdx)","description":"","optional":true,"defaultValue":"","expandable":false,"children":[]},{"name":"bigNumber","type":"`BigNumber`","description":"","optional":true,"defaultValue":"","expandable":false,"children":[]}]},{"name":"internal_note","type":"`null` \\| `string`","description":"A note viewed by admins only related to the shipping method.","optional":true,"defaultValue":"","expandable":false,"children":[]}]}]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" openedLevel={1} sectionTitle="updateDraftOrderShippingMethodWorkflow"/>
+<TypeList types={[{"name":"UpdateDraftOrderShippingMethodWorkflowInput","type":"[UpdateDraftOrderShippingMethodWorkflowInput](../../../../interfaces/core_flows.UpdateDraftOrderShippingMethodWorkflowInput/page.mdx)","optional":false,"defaultValue":"","description":"The details of the shipping method to update in the order edit.","expandable":false,"children":[{"name":"order_id","type":"`string`","description":"The ID of the order to update the shipping method in its edit.","optional":false,"defaultValue":"","expandable":false,"children":[]},{"name":"data","type":"`object`","description":"","optional":false,"defaultValue":"","expandable":false,"children":[{"name":"shipping_method_id","type":"`string`","description":"The ID of the shipping method to update.","optional":false,"defaultValue":"","expandable":false,"children":[]},{"name":"shipping_option_id","type":"`string`","description":"The ID of the shipping method's option.","optional":true,"defaultValue":"","expandable":false,"children":[]},{"name":"custom_amount","type":"[BigNumberInput](../../../../../types/types/types.BigNumberInput/page.mdx)","description":"Set a custom amount for the shipping method.","optional":true,"defaultValue":"","expandable":false,"children":[{"name":"value","type":"`string` \\| `number`","description":"","optional":false,"defaultValue":"","expandable":false,"children":[]},{"name":"numeric","type":"`number`","description":"","optional":false,"defaultValue":"","expandable":false,"children":[]},{"name":"raw","type":"[BigNumberRawValue](../../../../../types/types/types.BigNumberRawValue/page.mdx)","description":"","optional":true,"defaultValue":"","expandable":false,"children":[]},{"name":"bigNumber","type":"`BigNumber`","description":"","optional":true,"defaultValue":"","expandable":false,"children":[]}]},{"name":"internal_note","type":"`null` \\| `string`","description":"A note viewed by admins only related to the shipping method.","optional":true,"defaultValue":"","expandable":false,"children":[]}]}]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" openedLevel={1} sectionTitle="updateDraftOrderShippingMethodWorkflow"/>
 
 ## Output
 

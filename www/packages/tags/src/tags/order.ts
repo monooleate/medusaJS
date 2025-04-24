@@ -120,6 +120,10 @@ export const order = [
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/updateDraftOrderShippingMethodWorkflow"
   },
   {
+    "title": "updateDraftOrderStep",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/updateDraftOrderStep"
+  },
+  {
     "title": "updateDraftOrderWorkflow",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/updateDraftOrderWorkflow"
   },

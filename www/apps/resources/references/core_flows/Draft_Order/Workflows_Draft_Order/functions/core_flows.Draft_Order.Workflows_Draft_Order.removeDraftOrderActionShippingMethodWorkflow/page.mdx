@@ -1,7 +1,7 @@
 ---
 slug: /references/medusa-workflows/removeDraftOrderActionShippingMethodWorkflow
 sidebar_label: removeDraftOrderActionShippingMethodWorkflow
-sidebar_description: ""
+sidebar_description: Remove a shipping method from an edited draft order.
 tags:
   - remote query
   - order
@@ -14,7 +14,13 @@ import { TypeList, WorkflowDiagram } from "docs-ui"
 
 This documentation provides a reference to the `removeDraftOrderActionShippingMethodWorkflow`. It belongs to the `@medusajs/medusa/core-flows` package.
 
-<SourceCodeLink link="https://github.com/medusajs/medusa/blob/876a14eb98aed54360312b9b215599aa46faccd8/packages/core/core-flows/src/draft-order/workflows/remove-draft-order-action-shipping-method.ts#L32" />
+This workflow removes a shipping method that was added to an edited draft order. It's used by the
+[Remove Shipping Method from Draft Order Edit Admin API Route](https://docs.medusajs.com/api/admin#draft-orders\_deletedraftordersideditshippingmethodsaction\_id).
+
+You can use this workflow within your customizations or your own custom workflows, allowing you to wrap custom logic around
+removing a shipping method from an edited draft order.
+
+<SourceCodeLink link="https://github.com/medusajs/medusa/blob/6f8ffcf53c709d40dfeb5980f3769cd0bb810e3e/packages/core/core-flows/src/draft-order/workflows/remove-draft-order-action-shipping-method.ts#L52" />
 
 ## Examples
 
@@ -36,8 +42,8 @@ export async function POST(
       .scope)
     .run({
       input: {
-        "order_id": "order_123",
-        "action_id": "{value}"
+        order_id: "order_123",
+        action_id: "action_123",
       }
     })
 
@@ -63,8 +69,8 @@ export default async function handleOrderPlaced({
       container)
     .run({
       input: {
-        "order_id": "order_123",
-        "action_id": "{value}"
+        order_id: "order_123",
+        action_id: "action_123",
       }
     })
 
@@ -90,8 +96,8 @@ export default async function myCustomJob(
       container)
     .run({
       input: {
-        "order_id": "order_123",
-        "action_id": "{value}"
+        order_id: "order_123",
+        action_id: "action_123",
       }
     })
 
@@ -117,8 +123,8 @@ const myWorkflow = createWorkflow(
     const result = removeDraftOrderActionShippingMethodWorkflow
       .runAsStep({
         input: {
-          "order_id": "order_123",
-          "action_id": "{value}"
+          order_id: "order_123",
+          action_id: "action_123",
         }
       })
   }

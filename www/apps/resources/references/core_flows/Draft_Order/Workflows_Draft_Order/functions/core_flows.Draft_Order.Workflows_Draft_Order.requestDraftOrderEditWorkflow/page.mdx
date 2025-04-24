@@ -1,7 +1,7 @@
 ---
 slug: /references/medusa-workflows/requestDraftOrderEditWorkflow
 sidebar_label: requestDraftOrderEditWorkflow
-sidebar_description: ""
+sidebar_description: Request a draft order edit.
 tags:
   - remote query
   - order
@@ -16,7 +16,13 @@ import { TypeList, WorkflowDiagram } from "docs-ui"
 
 This documentation provides a reference to the `requestDraftOrderEditWorkflow`. It belongs to the `@medusajs/medusa/core-flows` package.
 
-<SourceCodeLink link="https://github.com/medusajs/medusa/blob/876a14eb98aed54360312b9b215599aa46faccd8/packages/core/core-flows/src/draft-order/workflows/request-draft-order-edit.ts#L51" />
+This workflow requests a draft order edit. It's used by the
+[Request Draft Order Edit Admin API Route](https://docs.medusajs.com/api/admin#draft-orders\_postdraftordersideditrequest).
+
+You can use this workflow within your customizations or your own custom workflows, allowing you to wrap custom logic around
+requesting a draft order edit.
+
+<SourceCodeLink link="https://github.com/medusajs/medusa/blob/6f8ffcf53c709d40dfeb5980f3769cd0bb810e3e/packages/core/core-flows/src/draft-order/workflows/request-draft-order-edit.ts#L71" />
 
 ## Examples
 
@@ -37,7 +43,8 @@ export async function POST(
   const { result } = await requestDraftOrderEditWorkflow(req.scope)
     .run({
       input: {
-        "order_id": "order_123"
+        order_id: "order_123",
+        requested_by: "user_123",
       }
     })
 
@@ -62,7 +69,8 @@ export default async function handleOrderPlaced({
   const { result } = await requestDraftOrderEditWorkflow(container)
     .run({
       input: {
-        "order_id": "order_123"
+        order_id: "order_123",
+        requested_by: "user_123",
       }
     })
 
@@ -87,7 +95,8 @@ export default async function myCustomJob(
   const { result } = await requestDraftOrderEditWorkflow(container)
     .run({
       input: {
-        "order_id": "order_123"
+        order_id: "order_123",
+        requested_by: "user_123",
       }
     })
 
@@ -113,7 +122,8 @@ const myWorkflow = createWorkflow(
     const result = requestDraftOrderEditWorkflow
       .runAsStep({
         input: {
-          "order_id": "order_123"
+          order_id: "order_123",
+          requested_by: "user_123",
         }
       })
   }

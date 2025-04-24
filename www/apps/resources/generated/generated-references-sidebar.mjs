@@ -1200,7 +1200,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/addDraftOrderItemsWorkflow",
                   "title": "addDraftOrderItemsWorkflow",
-                  "description": "",
+                  "description": "Add items to a draft order.",
                   "children": []
                 },
                 {
@@ -1209,7 +1209,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/addDraftOrderPromotionWorkflow",
                   "title": "addDraftOrderPromotionWorkflow",
-                  "description": "",
+                  "description": "Add promotions to a draft order.",
                   "children": []
                 },
                 {
@@ -1218,7 +1218,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/addDraftOrderShippingMethodsWorkflow",
                   "title": "addDraftOrderShippingMethodsWorkflow",
-                  "description": "",
+                  "description": "Add shipping methods to a draft order.",
                   "children": []
                 },
                 {
@@ -1227,7 +1227,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/beginDraftOrderEditWorkflow",
                   "title": "beginDraftOrderEditWorkflow",
-                  "description": "",
+                  "description": "Create a draft order edit request.",
                   "children": []
                 },
                 {
@@ -1236,7 +1236,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/cancelDraftOrderEditWorkflow",
                   "title": "cancelDraftOrderEditWorkflow",
-                  "description": "",
+                  "description": "Cancel a draft order edit.",
                   "children": []
                 },
                 {
@@ -1245,7 +1245,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/confirmDraftOrderEditWorkflow",
                   "title": "confirmDraftOrderEditWorkflow",
-                  "description": "",
+                  "description": "Confirm a draft order edit.",
                   "children": []
                 },
                 {
@@ -1254,7 +1254,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/convertDraftOrderWorkflow",
                   "title": "convertDraftOrderWorkflow",
-                  "description": "",
+                  "description": "Convert a draft order to a pending order.",
                   "children": []
                 },
                 {
@@ -1263,7 +1263,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/removeDraftOrderActionItemWorkflow",
                   "title": "removeDraftOrderActionItemWorkflow",
-                  "description": "",
+                  "description": "Remove an item from a draft order edit.",
                   "children": []
                 },
                 {
@@ -1272,7 +1272,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/removeDraftOrderActionShippingMethodWorkflow",
                   "title": "removeDraftOrderActionShippingMethodWorkflow",
-                  "description": "",
+                  "description": "Remove a shipping method from an edited draft order.",
                   "children": []
                 },
                 {
@@ -1281,7 +1281,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/removeDraftOrderPromotionsWorkflow",
                   "title": "removeDraftOrderPromotionsWorkflow",
-                  "description": "",
+                  "description": "Remove promotions from a draft order edit.",
                   "children": []
                 },
                 {
@@ -1290,7 +1290,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/removeDraftOrderShippingMethodWorkflow",
                   "title": "removeDraftOrderShippingMethodWorkflow",
-                  "description": "",
+                  "description": "Remove an existing shipping method from a draft order edit.",
                   "children": []
                 },
                 {
@@ -1299,7 +1299,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/requestDraftOrderEditWorkflow",
                   "title": "requestDraftOrderEditWorkflow",
-                  "description": "",
+                  "description": "Request a draft order edit.",
                   "children": []
                 },
                 {
@@ -1308,7 +1308,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/updateDraftOrderActionItemWorkflow",
                   "title": "updateDraftOrderActionItemWorkflow",
-                  "description": "",
+                  "description": "Update a new item in a draft order edit.",
                   "children": []
                 },
                 {
@@ -1317,7 +1317,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/updateDraftOrderActionShippingMethodWorkflow",
                   "title": "updateDraftOrderActionShippingMethodWorkflow",
-                  "description": "",
+                  "description": "Update a new shipping method in a draft order edit.",
                   "children": []
                 },
                 {
@@ -1326,7 +1326,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/updateDraftOrderItemWorkflow",
                   "title": "updateDraftOrderItemWorkflow",
-                  "description": "",
+                  "description": "Update an item in a draft order edit.",
                   "children": []
                 },
                 {
@@ -1335,7 +1335,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/updateDraftOrderShippingMethodWorkflow",
                   "title": "updateDraftOrderShippingMethodWorkflow",
-                  "description": "",
+                  "description": "Update an existing shipping method in a draft order edit.",
                   "children": []
                 },
                 {
@@ -1344,7 +1344,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/updateDraftOrderWorkflow",
                   "title": "updateDraftOrderWorkflow",
-                  "description": "",
+                  "description": "Update a draft order's details.",
                   "children": []
                 }
               ]
@@ -1361,6 +1361,24 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "type": "link",
                   "path": "/references/medusa-workflows/steps/validateDraftOrderStep",
                   "title": "validateDraftOrderStep",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/convertDraftOrderStep",
+                  "title": "convertDraftOrderStep",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
+                  "path": "/references/medusa-workflows/updateDraftOrderStep",
+                  "title": "updateDraftOrderStep",
                   "description": "",
                   "children": []
                 }

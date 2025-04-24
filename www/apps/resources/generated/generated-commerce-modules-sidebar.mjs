@@ -7275,6 +7275,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
                       "loaded": true,
                       "isPathHref": true,
                       "type": "ref",
+                      "title": "updateDraftOrderStep",
+                      "path": "https://docs.medusajs.com/resources/references/medusa-workflows/updateDraftOrderStep",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "ref",
                       "title": "updateOrderChangeActionsStep",
                       "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/updateOrderChangeActionsStep",
                       "children": []

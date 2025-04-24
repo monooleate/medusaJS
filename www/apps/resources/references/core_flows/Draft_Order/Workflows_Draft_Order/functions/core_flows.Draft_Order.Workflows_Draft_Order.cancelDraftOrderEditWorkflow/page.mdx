@@ -1,7 +1,7 @@
 ---
 slug: /references/medusa-workflows/cancelDraftOrderEditWorkflow
 sidebar_label: cancelDraftOrderEditWorkflow
-sidebar_description: ""
+sidebar_description: Cancel a draft order edit.
 tags:
   - remote query
   - order
@@ -14,7 +14,13 @@ import { TypeList, WorkflowDiagram } from "docs-ui"
 
 This documentation provides a reference to the `cancelDraftOrderEditWorkflow`. It belongs to the `@medusajs/medusa/core-flows` package.
 
-<SourceCodeLink link="https://github.com/medusajs/medusa/blob/876a14eb98aed54360312b9b215599aa46faccd8/packages/core/core-flows/src/draft-order/workflows/cancel-draft-order-edit.ts#L27" />
+This workflow cancels a draft order edit. It's used by the
+[Cancel Draft Order Edit Admin API Route](https://docs.medusajs.com/api/admin#draft-orders\_deletedraftordersidedit).
+
+You can use this workflow within your customizations or your own custom workflows, allowing you to wrap custom logic around
+cancelling a draft order edit.
+
+<SourceCodeLink link="https://github.com/medusajs/medusa/blob/6f8ffcf53c709d40dfeb5980f3769cd0bb810e3e/packages/core/core-flows/src/draft-order/workflows/cancel-draft-order-edit.ts#L52" />
 
 ## Examples
 
@@ -35,7 +41,7 @@ export async function POST(
   const { result } = await cancelDraftOrderEditWorkflow(req.scope)
     .run({
       input: {
-        "order_id": "order_123"
+        order_id: "order_123",
       }
     })
 
@@ -60,7 +66,7 @@ export default async function handleOrderPlaced({
   const { result } = await cancelDraftOrderEditWorkflow(container)
     .run({
       input: {
-        "order_id": "order_123"
+        order_id: "order_123",
       }
     })
 
@@ -85,7 +91,7 @@ export default async function myCustomJob(
   const { result } = await cancelDraftOrderEditWorkflow(container)
     .run({
       input: {
-        "order_id": "order_123"
+        order_id: "order_123",
       }
     })
 
@@ -111,7 +117,7 @@ const myWorkflow = createWorkflow(
     const result = cancelDraftOrderEditWorkflow
       .runAsStep({
         input: {
-          "order_id": "order_123"
+          order_id: "order_123",
         }
       })
   }
@@ -127,4 +133,4 @@ const myWorkflow = createWorkflow(
 
 ## Input
 
-<TypeList types={[{"name":"CancelDraftOrderEditWorkflowInput","type":"[CancelDraftOrderEditWorkflowInput](../../../../interfaces/core_flows.CancelDraftOrderEditWorkflowInput/page.mdx)","optional":false,"defaultValue":"","description":"","expandable":false,"children":[{"name":"order_id","type":"`string`","description":"","optional":false,"defaultValue":"","expandable":false,"children":[]}]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" openedLevel={1} sectionTitle="cancelDraftOrderEditWorkflow"/>
+<TypeList types={[{"name":"CancelDraftOrderEditWorkflowInput","type":"[CancelDraftOrderEditWorkflowInput](../../../../interfaces/core_flows.CancelDraftOrderEditWorkflowInput/page.mdx)","optional":false,"defaultValue":"","description":"The details of the draft order edit to cancel.","expandable":false,"children":[{"name":"order_id","type":"`string`","description":"The ID of the draft order to cancel the edit for.","optional":false,"defaultValue":"","expandable":false,"children":[]}]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" openedLevel={1} sectionTitle="cancelDraftOrderEditWorkflow"/>

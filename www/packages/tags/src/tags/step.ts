@@ -252,6 +252,10 @@ export const step = [
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/validateDraftOrderStep"
   },
   {
+    "title": "updateDraftOrderStep",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/updateDraftOrderStep"
+  },
+  {
     "title": "deleteFilesStep",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/deleteFilesStep"
   },

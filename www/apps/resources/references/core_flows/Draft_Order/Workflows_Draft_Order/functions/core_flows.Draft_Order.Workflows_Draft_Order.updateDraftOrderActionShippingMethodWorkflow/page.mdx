@@ -1,7 +1,7 @@
 ---
 slug: /references/medusa-workflows/updateDraftOrderActionShippingMethodWorkflow
 sidebar_label: updateDraftOrderActionShippingMethodWorkflow
-sidebar_description: ""
+sidebar_description: Update a new shipping method in a draft order edit.
 tags:
   - remote query
   - order
@@ -14,7 +14,13 @@ import { TypeList, WorkflowDiagram } from "docs-ui"
 
 This documentation provides a reference to the `updateDraftOrderActionShippingMethodWorkflow`. It belongs to the `@medusajs/medusa/core-flows` package.
 
-<SourceCodeLink link="https://github.com/medusajs/medusa/blob/876a14eb98aed54360312b9b215599aa46faccd8/packages/core/core-flows/src/draft-order/workflows/update-draft-order-action-shipping-method.ts#L33" />
+This workflow updates a new shipping method that was added to a draft order edit. It's used by the
+[Update New Shipping Method in Draft Order Edit Admin API Route](https://docs.medusajs.com/api/admin#draft-orders\_postdraftordersideditshippingmethodsaction\_id).
+
+You can use this workflow within your customizations or your own custom workflows, allowing you to wrap custom logic around
+updating a new shipping method in a draft order edit.
+
+<SourceCodeLink link="https://github.com/medusajs/medusa/blob/6f8ffcf53c709d40dfeb5980f3769cd0bb810e3e/packages/core/core-flows/src/draft-order/workflows/update-draft-order-action-shipping-method.ts#L56" />
 
 ## Examples
 
@@ -36,9 +42,11 @@ export async function POST(
       .scope)
     .run({
       input: {
-        "order_id": "order_123",
-        "action_id": "{value}",
-        "data": {}
+        order_id: "order_123",
+        action_id: "action_123",
+        data: {
+          custom_amount: 10,
+        }
       }
     })
 
@@ -64,9 +72,11 @@ export default async function handleOrderPlaced({
       container)
     .run({
       input: {
-        "order_id": "order_123",
-        "action_id": "{value}",
-        "data": {}
+        order_id: "order_123",
+        action_id: "action_123",
+        data: {
+          custom_amount: 10,
+        }
       }
     })
 
@@ -92,9 +102,11 @@ export default async function myCustomJob(
       container)
     .run({
       input: {
-        "order_id": "order_123",
-        "action_id": "{value}",
-        "data": {}
+        order_id: "order_123",
+        action_id: "action_123",
+        data: {
+          custom_amount: 10,
+        }
       }
     })
 
@@ -120,9 +132,11 @@ const myWorkflow = createWorkflow(
     const result = updateDraftOrderActionShippingMethodWorkflow
       .runAsStep({
         input: {
-          "order_id": "order_123",
-          "action_id": "{value}",
-          "data": {}
+          order_id: "order_123",
+          action_id: "action_123",
+          data: {
+            custom_amount: 10,
+          }
         }
       })
   }

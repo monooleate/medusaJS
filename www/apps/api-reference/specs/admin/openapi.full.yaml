@@ -14129,7 +14129,7 @@ paths:
     post:
       operationId: PostDraftOrders
       summary: Create Draft Order
-      description: Create a draft order. This creates an order with the `is_draft_order` property enabled.
+      description: Create a draft order. This creates an order with the `is_draft_order` property enabled. You can later convert the draft order to an order.
       x-authenticated: true
       parameters:
         - name: fields
@@ -14588,7 +14588,7 @@ paths:
     post:
       operationId: PostDraftOrdersId
       summary: Update a Draft Order
-      description: Update a draft order's details.
+      description: Update a draft order's details. This doesn't include updating the draft order's items, shipping methods, or promotions. To update those, you need to create an edit that you can later request or confirm.
       x-authenticated: true
       parameters:
         - name: id
@@ -14743,7 +14743,7 @@ paths:
       operationId: PostDraftOrdersIdEdit
       summary: Create a Draft Order Edit
       x-sidebar-summary: Create Edit
-      description: Create an edit on a draft order. This will allow you to make changes to the draft order's items, shipping methods, or promotions before confirming them later.
+      description: Create an edit on a draft order. This will allow you to make changes to the draft order's items, shipping methods, or promotions. Once you've made the necessar changes, you can later either request the edit (which requires a confirmation from the customer), or force-confirm the edit.
       x-authenticated: true
       parameters:
         - name: id
@@ -14917,9 +14917,9 @@ paths:
   /admin/draft-orders/{id}/edit/items:
     post:
       operationId: PostDraftOrdersIdEditItems
-      summary: Add Item to Draft Order
+      summary: Add Item to Draft Order Edit
       x-sidebar-summary: Add Item
-      description: Add an Item to a draft order.
+      description: Add an item to a draft order edit.
       x-authenticated: true
       parameters:
         - name: id
@@ -14988,9 +14988,9 @@ paths:
   /admin/draft-orders/{id}/edit/items/item/{item_id}:
     post:
       operationId: PostDraftOrdersIdEditItemsItemItem_id
-      summary: Update Item in Draft Order
+      summary: Update Existing Item in Draft Order Edit
       x-sidebar-summary: Update Item
-      description: Update an item in a draft order.
+      description: Update an existing item in a draft order edit.
       x-authenticated: true
       parameters:
         - name: id
@@ -15064,10 +15064,10 @@ paths:
   /admin/draft-orders/{id}/edit/items/{action_id}:
     post:
       operationId: PostDraftOrdersIdEditItemsAction_id
-      summary: Update Item Changes in Draft Order
-      x-sidebar-summary: Update Item Changes
+      summary: Update New Item in Draft Order Edit
+      x-sidebar-summary: Update New Item
       description: |
-        Update changes made on an item (addition or update) in the draft order by the ID of the item's `ITEM_ADD` or `ITEM_UPDATE` action.
+        Update a new item that was added to a draft order edit by the ID of the item's `ITEM_ADD` action.
 
         Every item has an `actions` property, whose value is an array of actions. You can check the action's name using its `action` property, and use the value of the `id` property.
       x-authenticated: true
@@ -15080,7 +15080,7 @@ paths:
             type: string
         - name: action_id
           in: path
-          description: The ID of the item's `ITEM_ADD` or `ITEM_UPDATE` action.
+          description: The ID of the item's `ITEM_ADD` action.
           required: true
           schema:
             type: string
@@ -15142,10 +15142,10 @@ paths:
       x-workflow: updateDraftOrderActionItemWorkflow
     delete:
       operationId: DeleteDraftOrdersIdEditItemsAction_id
-      summary: Remove Item from Draft Order
+      summary: Remove Item from Draft Order Edit
       x-sidebar-summary: Remove Item
       description: |
-        Remove an order item from a draft order by the ID of the item's `ITEM_REMOVE` action.
+        Remove an order item from a draft order edit by the ID of the item's `ITEM_ADD` or `ITEM_UPDATE` action.
 
         Every item has an `actions` property, whose value is an array of actions. You can check the action's name using its `action` property, and use the value of the `id` property.
       x-authenticated: true
@@ -15158,7 +15158,7 @@ paths:
             type: string
         - name: action_id
           in: path
-          description: The ID of the order item's `ITEM_REMOVE` action.
+          description: The ID of the order item's `ITEM_ADD` or `ITEM_UPDATE` action.
           required: true
           schema:
             type: string
@@ -15210,9 +15210,9 @@ paths:
   /admin/draft-orders/{id}/edit/promotions:
     post:
       operationId: PostDraftOrdersIdEditPromotions
-      summary: Add Promotions to Draft Order
+      summary: Add Promotions to Draft Order Edit
       x-sidebar-summary: Add Promotions
-      description: Add promotions to a draft order.
+      description: Add promotions to a draft order edit.
       x-authenticated: true
       parameters:
         - name: id
@@ -15285,9 +15285,9 @@ paths:
       x-workflow: addDraftOrderPromotionWorkflow
     delete:
       operationId: DeleteDraftOrdersIdEditPromotions
-      summary: Remove Promotions from Draft Order
+      summary: Remove Promotions from Draft Order Edit
       x-sidebar-summary: Remove Promotions
-      description: Remove specified promotions from a draft order.
+      description: Remove specified promotions from a draft order edit.
       x-authenticated: true
       parameters:
         - name: id
@@ -15411,9 +15411,9 @@ paths:
   /admin/draft-orders/{id}/edit/shipping-methods:
     post:
       operationId: PostDraftOrdersIdEditShippingMethods
-      summary: Add Shipping Method to Draft Order
+      summary: Add Shipping Method to Draft Order Edit
       x-sidebar-summary: Add Shipping Method
-      description: Add a shipping method to a draft order.
+      description: Add a shipping method to a draft order edit.
       x-authenticated: true
       parameters:
         - name: id
@@ -15481,9 +15481,9 @@ paths:
   /admin/draft-orders/{id}/edit/shipping-methods/method/{method_id}:
     post:
       operationId: PostDraftOrdersIdEditShippingMethodsMethodMethod_id
-      summary: Update Shipping Method in Draft Order
+      summary: Update Existing Shipping Method in Draft Order Edit
       x-sidebar-summary: Update Shipping Method
-      description: Update a shipping method in a draft order
+      description: Update an existing shipping method in a draft order edit.
       x-authenticated: true
       parameters:
         - name: id
@@ -15552,9 +15552,9 @@ paths:
       x-workflow: updateDraftOrderShippingMethodWorkflow
     delete:
       operationId: DeleteDraftOrdersIdEditShippingMethodsMethodMethod_id
-      summary: Remove Shipping Method from Draft Order
+      summary: Remove Shipping Method from Draft Order Edit
       x-sidebar-summary: Remove Shipping Method
-      description: Remove the shipping method in a draft order that is being edited.
+      description: Remove an existing shipping method from a draft order edit.
       x-authenticated: true
       parameters:
         - name: id
@@ -15620,10 +15620,10 @@ paths:
   /admin/draft-orders/{id}/edit/shipping-methods/{action_id}:
     post:
       operationId: PostDraftOrdersIdEditShippingMethodsAction_id
-      summary: Update Shipping Method Changes in Draft Order
-      x-sidebar-summary: Update Shipping Method Changes
+      summary: Update New Shipping Method in Draft Order Edit
+      x-sidebar-summary: Update New Shipping Method
       description: |
-        Update changes made on a shipping method (addition or update) in a draft order using the `ID` of the method's `SHIPPING_ADD` or `SHIPPING_UPDATE` action.
+        Update a new shipping method that was added to a draft order edit using the `ID` of the method's `SHIPPING_ADD` action.
 
         Every shipping method has an `actions` property, whose value is an array of actions. You can check the action's name using its `action` property, and use the value of the `id` property.
       x-authenticated: true
@@ -15636,7 +15636,7 @@ paths:
             type: string
         - name: action_id
           in: path
-          description: The ID of the shipping method's `SHIPPING_ADD` or `SHIPPING_UPDATE` action.
+          description: The ID of the shipping method's `SHIPPING_ADD` action.
           required: true
           schema:
             type: string
@@ -15701,7 +15701,7 @@ paths:
       summary: Remove New Shipping Method from Draft Order
       x-sidebar-summary: Remove New Shipping Method
       description: |
-        Remove the shipping method in a draft order using the `ID` of the method's `SHIPPING_ADD` action.
+        Remove a shipping method that was added to a draft order edit using the `ID` of the method's `SHIPPING_ADD` action.
 
         Every shipping method has an `actions` property, whose value is an array of actions. You can check the action's name using its `action` property, and use the value of the `id` property.
       x-authenticated: true
