@@ -58,7 +58,7 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const [
       restoredPosts, 
-      restoredEntities
+      restoredEntities,
     ] = await this.postRepository_.restore(id)
 
     return restoredPosts
@@ -154,7 +154,7 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const [
       restoredPosts, 
-      restoredEntities
+      restoredEntities,
     ] = await this.postRepository_.restore(ids)
 
     return restoredPosts
@@ -250,9 +250,9 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const [
       restoredPosts, 
-      restoredEntities
+      restoredEntities,
     ] = await this.postRepository_.restore({
-      title: "My Post"
+      title: "My Post",
     })
 
     return restoredPosts

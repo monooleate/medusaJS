@@ -62,22 +62,22 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const {
       entities,
-      performedActions
+      performedActions,
     } = await this.postRepository_.upsertWithReplace([
       {
         id: "01JSHAW6Z7KW4X6E8MFPGNEKHC",
         title: "My Old Post",
-        author_id: null
+        author_id: null,
       },
       {
         id: "123",
         title: "My New Post",
-      }
+      },
     ])
 
     return {
       entities,
-      performedActions
+      performedActions,
     }
   }
 

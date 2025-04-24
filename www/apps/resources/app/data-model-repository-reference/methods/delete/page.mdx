@@ -55,7 +55,7 @@ class BlogModuleService extends MedusaService({
     @MedusaContext() sharedContext?: Context<EntityManager>
   ): Promise<any> {
     const deletedIds = await this.postRepository_.delete({
-      id
+      id,
     })
 
     return deletedIds
@@ -105,7 +105,7 @@ class BlogModuleService extends MedusaService({
     @MedusaContext() sharedContext?: Context<EntityManager>
   ): Promise<any> {
     const deletedIds = await this.postRepository_.delete({
-      title: "My Post"
+      title: "My Post",
     })
 
     return deletedIds

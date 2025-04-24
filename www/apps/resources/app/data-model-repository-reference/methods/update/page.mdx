@@ -71,17 +71,17 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const existingPost = await this.postRepository_.find({
       where: {
-        id
-      }
+        id,
+      },
     })    
     
     const posts = await this.postRepository_.update([
       {
         entity: existingPost[0],
         update: {
-          title: "My Post Updated"
-        }
-      }
+          title: "My Post Updated",
+        },
+      },
     ])
 
     return posts

@@ -111,7 +111,7 @@ export const generatedEditDates = {
   "app/nextjs-starter/page.mdx": "2025-02-26T11:37:47.137Z",
   "app/recipes/b2b/page.mdx": "2025-04-17T08:48:38.369Z",
   "app/recipes/commerce-automation/page.mdx": "2025-04-17T08:48:37.663Z",
-  "app/recipes/digital-products/examples/standard/page.mdx": "2025-04-17T08:48:36.289Z",
+  "app/recipes/digital-products/examples/standard/page.mdx": "2025-04-24T15:41:05.364Z",
   "app/recipes/digital-products/page.mdx": "2025-04-17T08:29:01.230Z",
   "app/recipes/ecommerce/page.mdx": "2025-02-26T12:20:52.092Z",
   "app/recipes/marketplace/examples/vendors/page.mdx": "2025-03-18T15:28:32.122Z",

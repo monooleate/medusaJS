@@ -80,7 +80,7 @@ While the examples in this reference are based on the `find` method, the same fi
 ```ts
 const posts = await this.postRepository_.find({
   where: {
-    title: "My Post"
+    title: "My Post",
   },
 })
 ```
@@ -98,7 +98,7 @@ const posts = await this.postRepository_.find({
   where: {
     title: {
       $ne: "My Post",
-    }
+    },
   },
 })
 ```
@@ -134,8 +134,8 @@ In the example above, only posts having either `50` or `100` views are retrieved
 const posts = await this.postRepository_.find({
   where: {
     title: {
-      $nin: ["My Post", "My Post 2"]
-    }
+      $nin: ["My Post", "My Post 2"],
+    },
   },
 })
 ```
@@ -158,8 +158,8 @@ This filter only applies to text-like properties, including `text`, `id`, and `e
 const posts = await this.postRepository_.find({
   where: {
     title: {
-      $like: "My%"
-    }
+      $like: "My%",
+    },
   },
 })
 ```

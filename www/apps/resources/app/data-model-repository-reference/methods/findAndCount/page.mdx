@@ -122,7 +122,7 @@ class BlogModuleService extends MedusaService({
 
     return {
       posts,
-      count
+      count,
     }
   }
 
@@ -176,7 +176,7 @@ class BlogModuleService extends MedusaService({
 
     return {
       posts,
-      count
+      count,
     }
   }
 
@@ -240,16 +240,16 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const [posts, count] = await this.postRepository_.findAndCount({
       where: {
-        id
+        id,
       },
       options: {
-        populate: ["author"]
-      }
+        populate: ["author"],
+      },
     })
 
     return {
       posts,
-      count
+      count,
     }
   }
 
@@ -320,16 +320,16 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const [posts, count] = await this.postRepository_.findAndCount({
       where: {
-        id
+        id,
       },
       options: {
-        fields: ["title"]
-      }
+        fields: ["title"],
+      },
     })
 
     return {
       posts,
-      count
+      count,
     }
   }
 
@@ -392,12 +392,12 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const [posts, count] = await this.postRepository_.findAndCount({
       where: {
-        id
+        id,
       },
       options: {
         limit: 10,
         offset: 10,
-      }
+      },
     })
 
     return posts
@@ -453,18 +453,18 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const [posts, count] = await this.postRepository_.findAndCount({
       where: {
-        id
+        id,
       },
       options: {
         orderBy: {
-          title: "ASC"
-        }
-      }
+          title: "ASC",
+        },
+      },
     })
 
     return {
       posts,
-      count
+      count,
     }
   }
 

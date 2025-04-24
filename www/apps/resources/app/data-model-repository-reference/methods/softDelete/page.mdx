@@ -60,7 +60,7 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const [
       deletedPosts, 
-      deletedEntities
+      deletedEntities,
     ] = await this.postRepository_.softDelete(id)
 
     return deletedPosts
@@ -156,7 +156,7 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const [
       deletedPosts, 
-      deletedEntities
+      deletedEntities,
     ] = await this.postRepository_.softDelete(ids)
 
     return deletedPosts
@@ -252,9 +252,9 @@ class BlogModuleService extends MedusaService({
   ): Promise<any> {
     const [
       deletedPosts, 
-      deletedEntities
+      deletedEntities,
     ] = await this.postRepository_.softDelete({
-      title: "My Post"
+      title: "My Post",
     })
 
     return deletedPosts
