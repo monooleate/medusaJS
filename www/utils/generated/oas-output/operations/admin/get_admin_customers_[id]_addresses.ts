@@ -110,13 +110,21 @@
  *       oneOf:
  *         - type: string
  *           title: province
- *           description: Filter by a province.
+ *           description: Filter by an ISO 3166-2 province code. Must be lower-case.
+ *           example: "us-ca"
+ *           externalDocs:
+ *             url: https://en.wikipedia.org/wiki/ISO_3166-2
+ *             description: Learn more about ISO 3166-2
  *         - type: array
- *           description: Filter by provinces.
+ *           description: Filter by ISO 3166-2 provinces.
  *           items:
  *             type: string
  *             title: province
- *             description: A province code.
+ *             description: A ISO 3166-2 province code. Must be lower-case.
+ *             example: "us-ca"
+ *             externalDocs:
+ *               url: https://en.wikipedia.org/wiki/ISO_3166-2
+ *               description: Learn more about ISO 3166-2
  *   - name: postal_code
  *     in: query
  *     required: false
