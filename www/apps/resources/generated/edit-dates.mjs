@@ -5533,7 +5533,7 @@ export const generatedEditDates = {
   "references/workflows/classes/workflows.WorkflowResponse/page.mdx": "2025-04-11T09:04:53.140Z",
   "references/workflows/interfaces/workflows.ApplyStepOptions/page.mdx": "2025-01-13T17:30:31.420Z",
   "references/workflows/types/workflows.WorkflowData/page.mdx": "2024-12-23T13:57:08.059Z",
-  "app/integrations/guides/resend/page.mdx": "2024-12-09T16:19:17.798Z",
+  "app/integrations/guides/resend/page.mdx": "2025-04-25T08:04:32.434Z",
   "references/api_key_models/variables/api_key_models.ApiKey/page.mdx": "2024-12-23T08:25:00.296Z",
   "references/cart/ICartModuleService/methods/cart.ICartModuleService.updateShippingMethods/page.mdx": "2025-04-11T09:04:44.258Z",
   "references/cart/interfaces/cart.UpdateShippingMethodDTO/page.mdx": "2024-12-10T14:54:57.530Z",
