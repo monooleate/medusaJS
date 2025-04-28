@@ -133,7 +133,7 @@ Refer to the [Modules documentation](!docs!/learn/fundamentals/modules) to learn
 
 ### Create Module Directory
 
-A module is created under the `src/modules` directory of your Medusa application. So, create the directory `src/modules/review`.
+A module is created under the `src/modules` directory of your Medusa application. So, create the directory `src/modules/product-review`.
 
 ### Create Data Models 
 
@@ -145,9 +145,9 @@ Refer to the [Data Models documentation](!docs!/learn/fundamentals/modules#1-cre
 
 </Note>
 
-For the Product Review Module, you need to define a `Review` data model that represents a product review. So, create the file `src/modules/review/models/review.ts` with the following content:
+For the Product Review Module, you need to define a `Review` data model that represents a product review. So, create the file `src/modules/product-review/models/review.ts` with the following content:
 
-```ts title="src/modules/review/models/review.ts"
+```ts title="src/modules/product-review/models/review.ts"
 import { model } from "@medusajs/framework/utils"
 
 const Review = model.define("review", {
@@ -203,9 +203,9 @@ Refer to the [Module Service documentation](!docs!/learn/fundamentals/modules#2-
 
 </Note>
 
-To create the Review Module's service, create the file `src/modules/review/service.ts` with the following content:
+To create the Review Module's service, create the file `src/modules/product-review/service.ts` with the following content:
 
-```ts title="src/modules/review/service.ts"
+```ts title="src/modules/product-review/service.ts"
 import { MedusaService } from "@medusajs/framework/utils"
 import Review from "./models/review"
 
@@ -233,9 +233,9 @@ You'll use this service later when you implement custom flows for product review
 
 The final piece to a module is its definition, which you export in an `index.ts` file at its root directory. This definition tells Medusa the name of the module and its service.
 
-So, create the file `src/modules/review/index.ts` with the following content:
+So, create the file `src/modules/product-review/index.ts` with the following content:
 
-```ts title="src/modules/review/index.ts"
+```ts title="src/modules/product-review/index.ts"
 import { Module } from "@medusajs/framework/utils"
 import ProductReviewModuleService from "./service"
 
@@ -285,10 +285,10 @@ Refer to the [Migrations documentation](!docs!/learn/fundamentals/modules#5-gene
 Medusa's CLI tool can generate the migrations for you. To generate a migration for the Review Module, run the following command in your Medusa application's directory:
 
 ```bash
-npx medusa db:generate review
+npx medusa db:generate productReview
 ```
 
-The `db:generate` command of the Medusa CLI accepts the name of the module to generate the migration for. You'll now have a `migrations` directory under `src/modules/review` that holds the generated migration.
+The `db:generate` command of the Medusa CLI accepts the name of the module to generate the migration for. You'll now have a `migrations` directory under `src/modules/product-review` that holds the generated migration.
 
 Then, to reflect these migrations on the database, run the following command:
 
@@ -1471,9 +1471,9 @@ Before doing that, you need to add an API route that retrieves the list of appro
 
 On the product's page, you want to display the average rating of a product. To do this, you'll add a method that retrieves the average rating of a product's reviews in the Review Module's service.
 
-In `src/modules/review/service.ts`, add the following methods to the `ProductReviewModuleService` class:
+In `src/modules/product-review/service.ts`, add the following methods to the `ProductReviewModuleService` class:
 
-```ts title="src/modules/review/service.ts"
+```ts title="src/modules/product-review/service.ts"
 import { InjectManager, MedusaService, MedusaContext } from "@medusajs/framework/utils"
 import Review from "./models/review"
 import { Context } from "@medusajs/framework/types"

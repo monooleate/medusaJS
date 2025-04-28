@@ -6057,7 +6057,7 @@ export const generatedEditDates = {
   "app/nextjs-starter/guides/revalidate-cache/page.mdx": "2025-04-18T15:24:15.919Z",
   "app/storefront-development/cart/totals/page.mdx": "2025-03-27T14:47:14.252Z",
   "app/storefront-development/checkout/order-confirmation/page.mdx": "2025-03-27T14:29:45.669Z",
-  "app/how-to-tutorials/tutorials/product-reviews/page.mdx": "2025-04-17T08:48:08.716Z",
+  "app/how-to-tutorials/tutorials/product-reviews/page.mdx": "2025-04-28T15:58:01.411Z",
   "app/troubleshooting/data-models/default-fields/page.mdx": "2025-03-21T06:59:06.775Z",
   "app/troubleshooting/medusa-admin/blocked-request/page.mdx": "2025-03-21T06:53:34.854Z",
   "app/troubleshooting/nextjs-starter-rewrites/page.mdx": "2025-03-21T07:09:08.901Z",
