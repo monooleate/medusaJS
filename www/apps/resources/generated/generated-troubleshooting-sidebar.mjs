@@ -187,7 +187,7 @@ const generatedgeneratedTroubleshootingSidebarSidebar = {
           "isPathHref": true,
           "type": "link",
           "title": "ValidationError",
-          "link": "/troubleshooting/validation-error",
+          "path": "/troubleshooting/validation-error",
           "children": []
         }
       ]
