@@ -2033,6 +2033,9 @@
                 },
                 "hint": {
                   "type": "string"
+                },
+                "placeholder": {
+                  "type": "string"
                 }
               },
               "required": ["label", "hint"],
@@ -2042,6 +2045,9 @@
               "type": "object",
               "properties": {
                 "label": {
+                  "type": "string"
+                },
+                "placeholder": {
                   "type": "string"
                 }
               },
@@ -2056,6 +2062,9 @@
                 },
                 "tooltip": {
                   "type": "string"
+                },
+                "placeholder": {
+                  "type": "string"
                 }
               },
               "required": ["label", "tooltip"],
@@ -2068,6 +2077,9 @@
                   "type": "string"
                 },
                 "hint": {
+                  "type": "string"
+                },
+                "placeholder": {
                   "type": "string"
                 }
               },
