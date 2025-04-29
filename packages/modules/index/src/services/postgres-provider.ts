@@ -68,37 +68,6 @@ export class PostgresProvider implements IndexTypes.StorageProvider {
 
     this.schemaObjectRepresentation_ = options.schemaObjectRepresentation
     this.schemaEntitiesMap_ = options.entityMap
-
-    // Add a new column for each key that can be found in the jsonb data column to perform indexes and query on it.
-    // So far, the execution time is about the same
-    /*;(async () => {
-      const query = [
-        ...new Set(
-          Object.keys(this.schemaObjectRepresentation_)
-            .filter(
-              (key) =>
-                ![
-                  "_serviceNameModuleConfigMap",
-                  "_schemaPropertiesMap",
-                ].includes(key)
-            )
-            .map((key) => {
-              return this.schemaObjectRepresentation_[key].fields.filter(
-                (field) => !field.includes(".")
-              )
-            })
-            .flat()
-        ),
-      ].map(
-        (field) =>
-          "ALTER TABLE index_data ADD IF NOT EXISTS " +
-          field +
-          " text GENERATED ALWAYS AS (NEW.data->>'" +
-          field +
-          "') STORED"
-      )
-      await this.manager_.execute(query.join(";"))
-    })()*/
   }
 
   async onApplicationStart() {
@@ -138,7 +107,7 @@ export class PostgresProvider implements IndexTypes.StorageProvider {
         const parentAlias = field.split(".")[0]
         const parentSchemaObjectRepresentation =
           schemaEntityObjectRepresentation.parents.find(
-            (parent) => parent.ref.alias === parentAlias
+            (parent) => parent.inverseSideProp === parentAlias
           )
 
         if (!parentSchemaObjectRepresentation) {
@@ -304,7 +273,6 @@ export class PostgresProvider implements IndexTypes.StorageProvider {
       schema: this.schemaObjectRepresentation_,
       entityMap: this.schemaEntitiesMap_,
       knex: connection.getKnex(),
-      rawConfig: config,
       selector: {
         select,
         where,
@@ -316,26 +284,30 @@ export class PostgresProvider implements IndexTypes.StorageProvider {
         keepFilteredEntities,
         orderBy,
       },
+      rawConfig: config,
       requestedFields,
     })
 
-    const sql = qb.buildQuery({
+    const { sql, sqlCount } = qb.buildQuery({
       hasPagination,
       returnIdOnly: !!keepFilteredEntities,
       hasCount,
     })
 
-    const resultSet = await manager.execute(sql)
+    const [resultSet, countResult] = await Promise.all([
+      manager.execute(sql),
+      hasCount ? manager.execute(sqlCount!) : null,
+    ])
 
     const resultMetadata: IndexTypes.QueryFunctionReturnPagination | undefined =
       hasPagination
-        ? {
-            count: hasCount
-              ? parseInt(resultSet[0]?.count_total ?? 0)
+        ? ({
+            estimate_count: hasCount
+              ? parseInt(countResult![0]?.estimate_count ?? 0)
               : undefined,
             skip,
             take,
-          }
+          } as IndexTypes.QueryFunctionReturnPagination)
         : undefined
 
     if (keepFilteredEntities) {

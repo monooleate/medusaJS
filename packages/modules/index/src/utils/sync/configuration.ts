@@ -127,17 +127,15 @@ export class Configuration {
     }
 
     if (idxSyncData.length > 0) {
-      if (updatedConfig.length > 0) {
-        const ids = await this.#indexSyncService.list({
-          entity: updatedConfig.map((c) => c.entity),
-        })
-        idxSyncData.forEach((sync) => {
-          const id = ids.find((i) => i.entity === sync.entity)?.id
-          if (id) {
-            sync.id = id
-          }
-        })
-      }
+      const ids = await this.#indexSyncService.list({
+        entity: idxSyncData.map((c) => c.entity),
+      })
+      idxSyncData.forEach((sync) => {
+        const id = ids.find((i) => i.entity === sync.entity)?.id
+        if (id) {
+          sync.id = id
+        }
+      })
 
       await this.#indexSyncService.upsert(idxSyncData)
     }

@@ -38,6 +38,10 @@ export type PaginatedResponse<T> = {
    * The total number of items.
    */
   count: number
+  /**
+   * The estimated number of items.
+   */
+  estimate_count?: number
 } & T
 
 export type BatchResponse<T> = {
@@ -59,7 +63,7 @@ export type BatchResponse<T> = {
     ids: string[]
     /**
      * The type of the items that were deleted.
-     * 
+     *
      * @example
      * "product"
      */

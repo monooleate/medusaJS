@@ -143,7 +143,7 @@ medusaIntegrationTestRunner({
         )
 
         expect(resultset.metadata).toEqual({
-          count: 2,
+          estimate_count: expect.any(Number),
           skip: 0,
           take: 10,
         })

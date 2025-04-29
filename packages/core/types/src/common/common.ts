@@ -456,3 +456,7 @@ export type TransformObjectMethodToAsync<T extends object> = {
     ? TransformObjectMethodToAsync<T[K]>
     : T[K]
 }
+
+export type QueryContextType = Record<string, any> & {
+  __type?: "QueryContext"
+}

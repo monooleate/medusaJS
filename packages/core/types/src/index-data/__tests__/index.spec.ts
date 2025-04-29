@@ -9,6 +9,7 @@ describe("IndexQueryConfig", () => {
 
     expectTypeOf<IndexConfig["fields"]>().toEqualTypeOf<
       (
+        | "*"
         | "id"
         | "title"
         | "variants.*"

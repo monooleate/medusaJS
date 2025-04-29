@@ -22,6 +22,7 @@ import {
   isString,
   MedusaModuleProviderType,
   MedusaModuleType,
+  Modules,
   ModulesSdkUtils,
   toMikroOrmEntities,
 } from "@medusajs/utils"
@@ -223,7 +224,8 @@ export async function loadInternalModule(args: {
     ContainerRegistrationKeys.MANAGER,
     ContainerRegistrationKeys.CONFIG_MODULE,
     ContainerRegistrationKeys.LOGGER,
-    ContainerRegistrationKeys.PG_CONNECTION
+    ContainerRegistrationKeys.PG_CONNECTION,
+    Modules.EVENT_BUS
   )
 
   for (const dependency of dependencies) {
