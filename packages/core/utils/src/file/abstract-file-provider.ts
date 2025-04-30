@@ -1,3 +1,4 @@
+import type { Readable } from "stream"
 import { FileTypes, IFileProvider } from "@medusajs/types"
 
 /**
@@ -49,9 +50,9 @@ import { FileTypes, IFileProvider } from "@medusajs/types"
 export class AbstractFileProviderService implements IFileProvider {
   /**
    * Each file provider has a unique ID used to identify it. The provider's ID
-   * will be stored as `fs_{identifier}_{id}`, where `{id}` is the provider's `id` 
+   * will be stored as `fs_{identifier}_{id}`, where `{id}` is the provider's `id`
    * property in the `medusa-config.ts`.
-   * 
+   *
    * @example
    * class MyFileProviderService extends AbstractFileProviderService {
    *   static identifier = "my-file"
@@ -63,11 +64,11 @@ export class AbstractFileProviderService implements IFileProvider {
   /**
    * This method validates the options of the provider set in `medusa-config.ts`.
    * Implementing this method is optional. It's useful if your provider requires custom validation.
-   * 
+   *
    * If the options aren't valid, throw an error.
-   * 
+   *
    * @param options - The provider's options.
-   * 
+   *
    * @example
    * class MyFileProviderService extends AbstractFileProviderService {
    *   static validateOptions(options: Record<any, any>) {
@@ -92,7 +93,7 @@ export class AbstractFileProviderService implements IFileProvider {
   /**
    * This method uploads a file using your provider's custom logic. In this method, you can upload the file
    * into your provider's storage, and return the uploaded file's details.
-   * 
+   *
    * This method will be used when uploading product images, CSV files for imports, or other
    * custom file uploads.
    *
@@ -173,5 +174,35 @@ export class AbstractFileProviderService implements IFileProvider {
     fileData: FileTypes.ProviderGetFileDTO
   ): Promise<string> {
     throw Error("getPresignedDownloadUrl must be overridden by the child class")
+  }
+
+  /**
+   * Get the file contents as a readable stream.
+   *
+   * @example
+   * class MyFileProviderService extends AbstractFileProviderService {
+   *   // ...
+   *   async getAsStream(file: ProviderDeleteFileDTO): Promise<Readable> {
+   *     this.client.getAsStream(file.fileKey)
+   *   }
+   * }
+   */
+  getAsStream(fileData: FileTypes.ProviderGetFileDTO): Promise<Readable> {
+    throw Error("getAsStream must be overridden by the child class")
+  }
+
+  /**
+   * Get the file contents as a Node.js Buffer
+   *
+   * @example
+   * class MyFileProviderService extends AbstractFileProviderService {
+   *   // ...
+   *   async getAsBuffer(file: ProviderDeleteFileDTO): Promise<Buffer> {
+   *     this.client.getAsBuffer(file.fileKey)
+   *   }
+   * }
+   */
+  getAsBuffer(fileData: FileTypes.ProviderGetFileDTO): Promise<Buffer> {
+    throw Error("getAsBuffer must be overridden by the child class")
   }
 }

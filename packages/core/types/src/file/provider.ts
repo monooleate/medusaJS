@@ -1,3 +1,4 @@
+import { Readable } from "stream"
 import { FileAccessPermission } from "./common"
 
 /**
@@ -144,4 +145,14 @@ export interface IFileProvider {
   getPresignedUploadUrl?(
     fileData: ProviderGetPresignedUploadUrlDTO
   ): Promise<ProviderFileResultDTO>
+
+  /**
+   * Get the file contents as a readable stream.
+   */
+  getAsStream(fileData: ProviderGetFileDTO): Promise<Readable>
+
+  /**
+   * Get the file contents as a Node.js Buffer
+   */
+  getAsBuffer(fileData: ProviderGetFileDTO): Promise<Buffer>
 }

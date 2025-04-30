@@ -1,3 +1,4 @@
+import type { Readable } from "stream"
 import {
   Context,
   CreateFileDTO,
@@ -26,6 +27,10 @@ export default class FileModuleService implements FileTypes.IFileModuleService {
 
   __joinerConfig(): ModuleJoinerConfig {
     return joinerConfig
+  }
+
+  getProvider() {
+    return this.fileProviderService_
   }
 
   createFiles(
@@ -153,5 +158,27 @@ export default class FileModuleService implements FileTypes.IFileModuleService {
       ],
       1,
     ]
+  }
+
+  /**
+   * Get the file contents as a readable stream.
+   *
+   * @example
+   * const stream = await fileModuleService.getAsStream("file_123")
+   * writeable.pipe(stream)
+   */
+  getAsStream(id: string): Promise<Readable> {
+    return this.fileProviderService_.getAsStream({ fileKey: id })
+  }
+
+  /**
+   * Get the file contents as a Node.js Buffer
+   *
+   * @example
+   * const contents = await fileModuleService.getAsBuffer("file_123")
+   * contents.toString('utf-8')
+   */
+  getAsBuffer(id: string): Promise<Buffer> {
+    return this.fileProviderService_.getAsBuffer({ fileKey: id })
   }
 }

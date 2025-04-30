@@ -3,8 +3,10 @@ import {
   AbstractFileProviderService,
   MedusaError,
 } from "@medusajs/framework/utils"
+import { createReadStream } from "fs"
 import fs from "fs/promises"
 import path from "path"
+import type { Readable } from "stream"
 
 export class LocalFileService extends AbstractFileProviderService {
   static identifier = "localfs"
@@ -81,6 +83,24 @@ export class LocalFileService extends AbstractFileProviderService {
     }
 
     return
+  }
+
+  async getAsStream(file: FileTypes.ProviderGetFileDTO): Promise<Readable> {
+    const baseDir = file.fileKey.startsWith("private-")
+      ? this.privateUploadDir_
+      : this.uploadDir_
+
+    const filePath = this.getUploadFilePath(baseDir, file.fileKey)
+    return createReadStream(filePath)
+  }
+
+  async getAsBuffer(file: FileTypes.ProviderGetFileDTO): Promise<Buffer> {
+    const baseDir = file.fileKey.startsWith("private-")
+      ? this.privateUploadDir_
+      : this.uploadDir_
+
+    const filePath = this.getUploadFilePath(baseDir, file.fileKey)
+    return fs.readFile(filePath)
   }
 
   // The local file provider doesn't support presigned URLs for private files (i.e files not placed in /static).
