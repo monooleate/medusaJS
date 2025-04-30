@@ -30,7 +30,7 @@ export default function (theme: MarkdownTheme) {
       hooks.forEach((hook) => {
         const hookReflection =
           hookChildren.find((child) => {
-            if (child.name !== hook.name) {
+            if (child.name !== hook.name || !child.comment) {
               return false
             }
 
