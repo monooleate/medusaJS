@@ -31,6 +31,12 @@ export const OrderWorkflowEvents = {
   TRANSFER_REQUESTED: "order.transfer_requested",
 }
 
+export const OrderEditWorkflowEvents = {
+  REQUESTED: "order-edit.requested",
+  CONFIRMED: "order-edit.confirmed",
+  CANCELED: "order-edit.canceled",
+}
+
 export const UserWorkflowEvents = {
   CREATED: "user.created",
   UPDATED: "user.updated",
