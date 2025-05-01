@@ -107,3 +107,28 @@ export const RegionWorkflowEvents = {
   CREATED: "region.created",
   DELETED: "region.deleted",
 }
+
+/**
+ * @category Fulfillment
+ */
+export const FulfillmentWorkflowEvents = {
+  /**
+   * Emitted when a shipment is created for an order.
+   * 
+   * @eventPayload
+   * {
+   *   id, // the ID of the shipment
+   *   no_notification, // whether to notify the customer
+   * }
+   */
+  SHIPMENT_CREATED: "shipment.created",
+  /**
+   * Emitted when a fulfillment is marked as delivered.
+   * 
+   * @eventPayload
+   * {
+   *   id, // the ID of the fulfillment
+   * }
+   */
+  DELIVERY_CREATED: "delivery.created",
+}
