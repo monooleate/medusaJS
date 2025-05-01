@@ -155,7 +155,7 @@ export const fulfillmentSidebar = [
           },
           {
             type: "link",
-            path: "/commerce-modules/fulfillment/events",
+            path: "/references/fulfillment/events",
             title: "Events Reference",
           },
           {

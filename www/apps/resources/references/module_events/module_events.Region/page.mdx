@@ -1,0 +1,103 @@
+---
+slug: /references/region/events
+sidebar_label: Events Reference
+---
+
+import { TypeList } from "docs-ui"
+
+# Region Module Events Reference
+
+This reference shows all the events emitted by the Medusa application related to the Region Module. If you use the module outside the Medusa application, these events aren't emitted.
+
+## Summary
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+Event
+</Table.HeaderCell>
+      <Table.HeaderCell>
+Description
+</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+[region.updated](#regionupdated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when regions are updated.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[region.created](#regioncreated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when regions are created.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[region.deleted](#regiondeleted)
+</Table.Cell>
+      <Table.Cell>
+Emitted when regions are deleted.
+</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+## `region.updated`
+
+Emitted when regions are updated.
+
+### Payload
+
+```ts
+[{
+  id, // The ID of the region
+}]
+```
+
+### Workflows Emitting this Event
+
+- [updateRegionsWorkflow](/references/medusa-workflows/updateRegionsWorkflow)
+
+---
+
+## `region.created`
+
+Emitted when regions are created.
+
+### Payload
+
+```ts
+[{
+  id, // The ID of the region
+}]
+```
+
+### Workflows Emitting this Event
+
+- [createRegionsWorkflow](/references/medusa-workflows/createRegionsWorkflow)
+
+---
+
+## `region.deleted`
+
+Emitted when regions are deleted.
+
+### Payload
+
+```ts
+[{
+  id, // The ID of the region
+}]
+```
+
+### Workflows Emitting this Event
+
+- [deleteRegionsWorkflow](/references/medusa-workflows/deleteRegionsWorkflow)

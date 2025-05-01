@@ -174,7 +174,7 @@ export const paymentSidebar = [
           },
           {
             type: "link",
-            path: "/commerce-modules/payment/events",
+            path: "/references/payment/events",
             title: "Events Reference",
           },
           {

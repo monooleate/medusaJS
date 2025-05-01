@@ -47,6 +47,19 @@ const customOptions: Record<string, Partial<TypeDocOptions>> = {
     tsConfigName: "types.json",
     name: "event",
   }),
+  events: getOptions({
+    entryPointPath: "packages/core/utils/src/core-flows/events.ts",
+    tsConfigName: "utils.json",
+    name: "events",
+    enableEventsResolver: true,
+  }),
+  "module-events": getOptions({
+    entryPointPath: "packages/core/utils/src/core-flows/events.ts",
+    tsConfigName: "utils.json",
+    name: "module-events",
+    enableEventsResolver: true,
+    generateCustomNamespaces: true,
+  }),
   file: getOptions({
     entryPointPath: "packages/core/utils/src/file/abstract-file-provider.ts",
     tsConfigName: "utils.json",

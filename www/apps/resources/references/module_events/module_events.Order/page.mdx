@@ -1,0 +1,459 @@
+---
+slug: /references/order/events
+sidebar_label: Events Reference
+---
+
+import { TypeList } from "docs-ui"
+
+# Order Module Events Reference
+
+This reference shows all the events emitted by the Medusa application related to the Order Module. If you use the module outside the Medusa application, these events aren't emitted.
+
+##  Order Events
+
+### Summary
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+Event
+</Table.HeaderCell>
+      <Table.HeaderCell>
+Description
+</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+[order.updated](#orderupdated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when the details of an order or draft order is updated. This
+doesn't include updates made by an edit.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order.placed](#orderplaced)
+</Table.Cell>
+      <Table.Cell>
+Emitted when an order is placed, or when a draft order is converted to an
+order.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order.canceled](#ordercanceled)
+</Table.Cell>
+      <Table.Cell>
+Emitted when an order is canceld.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order.completed](#ordercompleted)
+</Table.Cell>
+      <Table.Cell>
+Emitted when orders are completed.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order.archived](#orderarchived)
+</Table.Cell>
+      <Table.Cell>
+Emitted when an order is archived.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order.fulfillment_created](#orderfulfillment_created)
+</Table.Cell>
+      <Table.Cell>
+Emitted when a fulfillment is created for an order.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order.fulfillment_canceled](#orderfulfillment_canceled)
+</Table.Cell>
+      <Table.Cell>
+Emitted when an order's fulfillment is canceled.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order.return_requested](#orderreturn_requested)
+</Table.Cell>
+      <Table.Cell>
+Emitted when a return request is confirmed.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order.return_received](#orderreturn_received)
+</Table.Cell>
+      <Table.Cell>
+Emitted when a return is marked as received.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order.claim_created](#orderclaim_created)
+</Table.Cell>
+      <Table.Cell>
+Emitted when a claim is created for an order.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order.exchange_created](#orderexchange_created)
+</Table.Cell>
+      <Table.Cell>
+Emitted when an exchange is created for an order.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order.transfer_requested](#ordertransfer_requested)
+</Table.Cell>
+      <Table.Cell>
+Emitted when an order is requested to be transferred to
+another customer.
+</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+### `order.updated`
+
+Emitted when the details of an order or draft order is updated. This
+doesn't include updates made by an edit.
+
+#### Payload
+
+```ts
+{
+  id, // The ID of the order
+}
+```
+
+#### Workflows Emitting this Event
+
+- [updateOrderWorkflow](/references/medusa-workflows/updateOrderWorkflow)
+- [updateDraftOrderWorkflow](/references/medusa-workflows/updateDraftOrderWorkflow)
+
+---
+
+### `order.placed`
+
+Emitted when an order is placed, or when a draft order is converted to an
+order.
+
+#### Payload
+
+```ts
+{
+  id, // The ID of the order
+}
+```
+
+#### Workflows Emitting this Event
+
+- [completeCartWorkflow](/references/medusa-workflows/completeCartWorkflow)
+- [convertDraftOrderWorkflow](/references/medusa-workflows/convertDraftOrderWorkflow)
+- [processPaymentWorkflow](/references/medusa-workflows/processPaymentWorkflow)
+
+---
+
+### `order.canceled`
+
+Emitted when an order is canceld.
+
+#### Payload
+
+```ts
+{
+  id, // The ID of the order
+}
+```
+
+#### Workflows Emitting this Event
+
+- [cancelOrderWorkflow](/references/medusa-workflows/cancelOrderWorkflow)
+
+---
+
+### `order.completed`
+
+Emitted when orders are completed.
+
+#### Payload
+
+```ts
+[{
+  id, // The ID of the order
+}]
+```
+
+#### Workflows Emitting this Event
+
+- [completeOrderWorkflow](/references/medusa-workflows/completeOrderWorkflow)
+
+---
+
+### `order.archived`
+
+Emitted when an order is archived.
+
+#### Payload
+
+```ts
+[{
+  id, // The ID of the order
+}]
+```
+
+#### Workflows Emitting this Event
+
+- [archiveOrderWorkflow](/references/medusa-workflows/archiveOrderWorkflow)
+
+---
+
+### `order.fulfillment_created`
+
+Emitted when a fulfillment is created for an order.
+
+#### Payload
+
+```ts
+{
+  order_id, // The ID of the order
+  fulfillment_id, // The ID of the fulfillment
+  no_notification, // Whether to notify the customer
+}
+```
+
+#### Workflows Emitting this Event
+
+- [createOrderFulfillmentWorkflow](/references/medusa-workflows/createOrderFulfillmentWorkflow)
+
+---
+
+### `order.fulfillment_canceled`
+
+Emitted when an order's fulfillment is canceled.
+
+#### Payload
+
+```ts
+{
+  order_id, // The ID of the order
+  fulfillment_id, // The ID of the fulfillment
+  no_notification, // Whether to notify the customer
+}
+```
+
+#### Workflows Emitting this Event
+
+- [cancelOrderFulfillmentWorkflow](/references/medusa-workflows/cancelOrderFulfillmentWorkflow)
+
+---
+
+### `order.return_requested`
+
+Emitted when a return request is confirmed.
+
+#### Payload
+
+```ts
+{
+  order_id, // The ID of the order
+  return_id, // The ID of the return
+}
+```
+
+#### Workflows Emitting this Event
+
+- [createAndCompleteReturnOrderWorkflow](/references/medusa-workflows/createAndCompleteReturnOrderWorkflow)
+- [confirmReturnRequestWorkflow](/references/medusa-workflows/confirmReturnRequestWorkflow)
+
+---
+
+### `order.return_received`
+
+Emitted when a return is marked as received.
+
+#### Payload
+
+```ts
+{
+  order_id, // The ID of the order
+  return_id, // The ID of the return
+}
+```
+
+#### Workflows Emitting this Event
+
+- [createAndCompleteReturnOrderWorkflow](/references/medusa-workflows/createAndCompleteReturnOrderWorkflow)
+- [confirmReturnReceiveWorkflow](/references/medusa-workflows/confirmReturnReceiveWorkflow)
+
+---
+
+### `order.claim_created`
+
+Emitted when a claim is created for an order.
+
+#### Payload
+
+```ts
+{
+  order_id, // The ID of the order
+  claim_id, // The ID of the claim
+}
+```
+
+#### Workflows Emitting this Event
+
+- [confirmClaimRequestWorkflow](/references/medusa-workflows/confirmClaimRequestWorkflow)
+
+---
+
+### `order.exchange_created`
+
+Emitted when an exchange is created for an order.
+
+#### Payload
+
+```ts
+{
+  order_id, // The ID of the order
+  exchange_id, // The ID of the exchange
+}
+```
+
+#### Workflows Emitting this Event
+
+- [confirmExchangeRequestWorkflow](/references/medusa-workflows/confirmExchangeRequestWorkflow)
+
+---
+
+### `order.transfer_requested`
+
+Emitted when an order is requested to be transferred to
+another customer.
+
+#### Payload
+
+```ts
+{
+  id, // The ID of the order
+  order_change_id, // The ID of the order change created for the transfer
+}
+```
+
+#### Workflows Emitting this Event
+
+- [requestOrderTransferWorkflow](/references/medusa-workflows/requestOrderTransferWorkflow)
+
+---
+
+##  Order Edit Events
+
+### Summary
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+Event
+</Table.HeaderCell>
+      <Table.HeaderCell>
+Description
+</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+[order-edit.requested](#order-editrequested)
+</Table.Cell>
+      <Table.Cell>
+Emitted when an order edit is requested.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order-edit.confirmed](#order-editconfirmed)
+</Table.Cell>
+      <Table.Cell>
+Emitted when an order edit request is confirmed.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[order-edit.canceled](#order-editcanceled)
+</Table.Cell>
+      <Table.Cell>
+Emitted when an order edit request is canceled.
+</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+### `order-edit.requested`
+
+Emitted when an order edit is requested.
+
+#### Payload
+
+```ts
+{
+  order_id, // The ID of the order
+  actions, // The actions to edit the order
+}
+```
+
+#### Workflows Emitting this Event
+
+- [requestOrderEditRequestWorkflow](/references/medusa-workflows/requestOrderEditRequestWorkflow)
+
+---
+
+### `order-edit.confirmed`
+
+Emitted when an order edit request is confirmed.
+
+#### Payload
+
+```ts
+{
+  order_id, // The ID of the order
+  actions, // The actions to edit the order
+}
+```
+
+#### Workflows Emitting this Event
+
+- [confirmOrderEditRequestWorkflow](/references/medusa-workflows/confirmOrderEditRequestWorkflow)
+
+---
+
+### `order-edit.canceled`
+
+Emitted when an order edit request is canceled.
+
+#### Payload
+
+```ts
+{
+  order_id, // The ID of the order
+  actions, // The actions to edit the order
+}
+```
+
+#### Workflows Emitting this Event
+
+- [cancelBeginOrderEditWorkflow](/references/medusa-workflows/cancelBeginOrderEditWorkflow)

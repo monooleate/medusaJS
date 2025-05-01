@@ -7,6 +7,7 @@ import {
   SourceCodeLink,
   CodeTabs,
   CodeTab,
+  Table,
 } from "docs-ui"
 import { CommerceModuleSections } from "../CommerceModuleSections"
 
@@ -19,6 +20,7 @@ const MDXComponents: MDXComponentsType = {
   SourceCodeLink,
   CodeTabs,
   CodeTab,
+  Table,
 }
 
 export default MDXComponents

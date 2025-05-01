@@ -1,0 +1,237 @@
+---
+slug: /references/user/events
+sidebar_label: Events Reference
+---
+
+import { TypeList } from "docs-ui"
+
+# User Module Events Reference
+
+This reference shows all the events emitted by the Medusa application related to the User Module. If you use the module outside the Medusa application, these events aren't emitted.
+
+##  User Events
+
+### Summary
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+Event
+</Table.HeaderCell>
+      <Table.HeaderCell>
+Description
+</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+[user.created](#usercreated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when users are created.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[user.updated](#userupdated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when users are updated.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[user.deleted](#userdeleted)
+</Table.Cell>
+      <Table.Cell>
+Emitted when users are deleted.
+</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+### `user.created`
+
+Emitted when users are created.
+
+#### Payload
+
+```ts
+[{
+  id, // The ID of the user
+}]
+```
+
+#### Workflows Emitting this Event
+
+- [createUsersWorkflow](/references/medusa-workflows/createUsersWorkflow)
+- [createUserAccountWorkflow](/references/medusa-workflows/createUserAccountWorkflow)
+- [acceptInviteWorkflow](/references/medusa-workflows/acceptInviteWorkflow)
+
+---
+
+### `user.updated`
+
+Emitted when users are updated.
+
+#### Payload
+
+```ts
+[{
+  id, // The ID of the user
+}]
+```
+
+#### Workflows Emitting this Event
+
+- [updateUsersWorkflow](/references/medusa-workflows/updateUsersWorkflow)
+
+---
+
+### `user.deleted`
+
+Emitted when users are deleted.
+
+#### Payload
+
+```ts
+[{
+  id, // The ID of the user
+}]
+```
+
+#### Workflows Emitting this Event
+
+- [deleteUsersWorkflow](/references/medusa-workflows/deleteUsersWorkflow)
+- [removeUserAccountWorkflow](/references/medusa-workflows/removeUserAccountWorkflow)
+
+---
+
+##  Invite Events
+
+### Summary
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+Event
+</Table.HeaderCell>
+      <Table.HeaderCell>
+Description
+</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+[invite.accepted](#inviteaccepted)
+</Table.Cell>
+      <Table.Cell>
+Emitted when an invite is accepted.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[invite.created](#invitecreated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when invites are created. You can listen to this event
+to send an email to the invited users, for example.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[invite.deleted](#invitedeleted)
+</Table.Cell>
+      <Table.Cell>
+Emitted when invites are deleted.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[invite.resent](#inviteresent)
+</Table.Cell>
+      <Table.Cell>
+Emitted when invites should be resent because their token was
+refreshed. You can listen to this event to send an email to the invited users,
+for example.
+</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+### `invite.accepted`
+
+Emitted when an invite is accepted.
+
+#### Payload
+
+```ts
+{
+  id, // The ID of the invite
+}
+```
+
+#### Workflows Emitting this Event
+
+- [acceptInviteWorkflow](/references/medusa-workflows/acceptInviteWorkflow)
+
+---
+
+### `invite.created`
+
+Emitted when invites are created. You can listen to this event
+to send an email to the invited users, for example.
+
+#### Payload
+
+```ts
+[{
+  id, // The ID of the invite
+}]
+```
+
+#### Workflows Emitting this Event
+
+- [createInvitesWorkflow](/references/medusa-workflows/createInvitesWorkflow)
+
+---
+
+### `invite.deleted`
+
+Emitted when invites are deleted.
+
+#### Payload
+
+```ts
+[{
+  id, // The ID of the invite
+}]
+```
+
+#### Workflows Emitting this Event
+
+- [deleteInvitesWorkflow](/references/medusa-workflows/deleteInvitesWorkflow)
+
+---
+
+### `invite.resent`
+
+Emitted when invites should be resent because their token was
+refreshed. You can listen to this event to send an email to the invited users,
+for example.
+
+#### Payload
+
+```ts
+[{
+  id, // The ID of the invite
+}]
+```
+
+#### Workflows Emitting this Event
+
+- [refreshInviteTokensWorkflow](/references/medusa-workflows/refreshInviteTokensWorkflow)

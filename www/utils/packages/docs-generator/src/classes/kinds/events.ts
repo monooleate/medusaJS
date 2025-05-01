@@ -3,6 +3,7 @@ import DefaultKindGenerator, { GetDocBlockOptions } from "./default.js"
 import { glob } from "glob"
 import getMonorepoRoot from "../../utils/get-monorepo-root.js"
 import { readFile } from "fs/promises"
+import { MedusaEvent } from "types"
 
 class EventsKindGenerator extends DefaultKindGenerator<ts.VariableDeclaration> {
   protected allowedKinds: ts.SyntaxKind[] = [ts.SyntaxKind.VariableDeclaration]
@@ -33,17 +34,7 @@ class EventsKindGenerator extends DefaultKindGenerator<ts.VariableDeclaration> {
     const properties = (node.initializer as ts.ObjectLiteralExpression)
       .properties
 
-    const events: {
-      name: string
-      parentName: string
-      propertyName: string
-      payload: string
-      description?: string
-      workflows: string[]
-      version?: string
-      deprecated?: boolean
-      deprecated_message?: string
-    }[] = properties
+    const events: MedusaEvent[] = properties
       .filter((property) => ts.isPropertyAssignment(property))
       .map((property) => {
         const propertyAssignment = property as ts.PropertyAssignment

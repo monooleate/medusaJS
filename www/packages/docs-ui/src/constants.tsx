@@ -321,7 +321,7 @@ export const navDropdownItems: NavigationItem[] = [
       {
         type: "link",
         title: "Events Reference",
-        link: "/resources/events-reference",
+        link: "/resources/references/events",
       },
       {
         type: "link",

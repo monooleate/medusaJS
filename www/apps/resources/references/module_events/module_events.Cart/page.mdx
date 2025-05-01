@@ -1,0 +1,134 @@
+---
+slug: /references/cart/events
+sidebar_label: Events Reference
+---
+
+import { TypeList } from "docs-ui"
+
+# Cart Module Events Reference
+
+This reference shows all the events emitted by the Medusa application related to the Cart Module. If you use the module outside the Medusa application, these events aren't emitted.
+
+## Summary
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+Event
+</Table.HeaderCell>
+      <Table.HeaderCell>
+Description
+</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+[cart.created](#cartcreated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when a cart is created.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[cart.updated](#cartupdated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when a cart's details are updated.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[cart.customer_updated](#cartcustomer_updated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when the customer in the cart is updated.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[cart.region_updated](#cartregion_updated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when the cart's region is updated. This
+event is emitted alongside the CartWorkflowEvents.UPDATED event.
+</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+## `cart.created`
+
+Emitted when a cart is created.
+
+### Payload
+
+```ts
+{
+  id, // The ID of the cart
+}
+```
+
+### Workflows Emitting this Event
+
+- [createCartWorkflow](/references/medusa-workflows/createCartWorkflow)
+
+---
+
+## `cart.updated`
+
+Emitted when a cart's details are updated.
+
+### Payload
+
+```ts
+{
+  id, // The ID of the cart
+}
+```
+
+### Workflows Emitting this Event
+
+- [updateLineItemInCartWorkflow](/references/medusa-workflows/updateLineItemInCartWorkflow)
+- [updateCartWorkflow](/references/medusa-workflows/updateCartWorkflow)
+- [addToCartWorkflow](/references/medusa-workflows/addToCartWorkflow)
+- [addShippingMethodToCartWorkflow](/references/medusa-workflows/addShippingMethodToCartWorkflow)
+
+---
+
+## `cart.customer_updated`
+
+Emitted when the customer in the cart is updated.
+
+### Payload
+
+```ts
+{
+  id, // The ID of the cart
+}
+```
+
+### Workflows Emitting this Event
+
+- [updateCartWorkflow](/references/medusa-workflows/updateCartWorkflow)
+
+---
+
+## `cart.region_updated`
+
+Emitted when the cart's region is updated. This
+event is emitted alongside the CartWorkflowEvents.UPDATED event.
+
+### Payload
+
+```ts
+{
+  id, // The ID of the cart
+}
+```
+
+### Workflows Emitting this Event
+
+- [updateCartWorkflow](/references/medusa-workflows/updateCartWorkflow)

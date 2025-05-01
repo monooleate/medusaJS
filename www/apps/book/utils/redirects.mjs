@@ -281,7 +281,7 @@ const redirects = async () => {
     },
     {
       source: "/v1/development/events/events-list",
-      destination: "/resources/events-reference",
+      destination: "/resources/references/events",
       permanent: true,
     },
     {

@@ -6733,7 +6733,7 @@ const generatedgeneratedReferencesSidebarSidebar = {
       "loaded": true,
       "isPathHref": true,
       "type": "link",
-      "path": "/events-reference",
+      "path": "/references/events",
       "title": "Events",
       "description": "List of events emitted by Medusa's Commerce Modules.",
       "children": []

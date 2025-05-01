@@ -1,0 +1,103 @@
+---
+slug: /references/sales-channel/events
+sidebar_label: Events Reference
+---
+
+import { TypeList } from "docs-ui"
+
+# Sales Channel Module Events Reference
+
+This reference shows all the events emitted by the Medusa application related to the Sales Channel Module. If you use the module outside the Medusa application, these events aren't emitted.
+
+## Summary
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+Event
+</Table.HeaderCell>
+      <Table.HeaderCell>
+Description
+</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+[sales-channel.created](#sales-channelcreated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when sales channels are created.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[sales-channel.updated](#sales-channelupdated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when sales channels are updated.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[sales-channel.deleted](#sales-channeldeleted)
+</Table.Cell>
+      <Table.Cell>
+Emitted when sales channels are deleted.
+</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+## `sales-channel.created`
+
+Emitted when sales channels are created.
+
+### Payload
+
+```ts
+[{
+  id, // The ID of the sales channel
+}]
+```
+
+### Workflows Emitting this Event
+
+- [createSalesChannelsWorkflow](/references/medusa-workflows/createSalesChannelsWorkflow)
+
+---
+
+## `sales-channel.updated`
+
+Emitted when sales channels are updated.
+
+### Payload
+
+```ts
+[{
+  id, // The ID of the sales channel
+}]
+```
+
+### Workflows Emitting this Event
+
+- [updateSalesChannelsWorkflow](/references/medusa-workflows/updateSalesChannelsWorkflow)
+
+---
+
+## `sales-channel.deleted`
+
+Emitted when sales channels are deleted.
+
+### Payload
+
+```ts
+[{
+  id, // The ID of the sales channel
+}]
+```
+
+### Workflows Emitting this Event
+
+- [deleteSalesChannelsWorkflow](/references/medusa-workflows/deleteSalesChannelsWorkflow)

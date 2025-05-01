@@ -173,6 +173,61 @@ const nextConfig = {
         destination: "/infrastructure-modules/:path*",
         permanent: true,
       },
+      {
+        source: "/events-reference",
+        destination: "/references/events",
+        permanent: true,
+      },
+      {
+        source: "/commerce-modules/auth/events",
+        destination: "/references/auth/events",
+        permanent: true,
+      },
+      {
+        source: "/commerce-modules/cart/events",
+        destination: "/references/cart/events",
+        permanent: true,
+      },
+      {
+        source: "/commerce-modules/customer/events",
+        destination: "/references/customer/events",
+        permanent: true,
+      },
+      {
+        source: "/commerce-modules/fulfillment/events",
+        destination: "/references/fulfillment/events",
+        permanent: true,
+      },
+      {
+        source: "/commerce-modules/order/events",
+        destination: "/references/order/events",
+        permanent: true,
+      },
+      {
+        source: "/commerce-modules/payment/events",
+        destination: "/references/payment/events",
+        permanent: true,
+      },
+      {
+        source: "/commerce-modules/product/events",
+        destination: "/references/product/events",
+        permanent: true,
+      },
+      {
+        source: "/commerce-modules/region/events",
+        destination: "/references/region/events",
+        permanent: true,
+      },
+      {
+        source: "/commerce-modules/sales-channel/events",
+        destination: "/references/sales-channel/events",
+        permanent: true,
+      },
+      {
+        source: "/commerce-modules/user/events",
+        destination: "/references/user/events",
+        permanent: true,
+      },
     ]
   },
   outputFileTracingExcludes: {

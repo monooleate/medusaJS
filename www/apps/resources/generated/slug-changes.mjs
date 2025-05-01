@@ -4855,6 +4855,51 @@ export const slugChanges = [
     "filePath": "/www/apps/resources/references/medusa_config/interfaces/medusa_config.ConfigModule/page.mdx"
   },
   {
+    "origSlug": "/references/module_events/module_events.Auth",
+    "newSlug": "/references/auth/events",
+    "filePath": "/www/apps/resources/references/module_events/module_events.Auth/page.mdx"
+  },
+  {
+    "origSlug": "/references/module_events/module_events.Cart",
+    "newSlug": "/references/cart/events",
+    "filePath": "/www/apps/resources/references/module_events/module_events.Cart/page.mdx"
+  },
+  {
+    "origSlug": "/references/module_events/module_events.Customer",
+    "newSlug": "/references/customer/events",
+    "filePath": "/www/apps/resources/references/module_events/module_events.Customer/page.mdx"
+  },
+  {
+    "origSlug": "/references/module_events/module_events.Fulfillment",
+    "newSlug": "/references/fulfillment/events",
+    "filePath": "/www/apps/resources/references/module_events/module_events.Fulfillment/page.mdx"
+  },
+  {
+    "origSlug": "/references/module_events/module_events.Order",
+    "newSlug": "/references/order/events",
+    "filePath": "/www/apps/resources/references/module_events/module_events.Order/page.mdx"
+  },
+  {
+    "origSlug": "/references/module_events/module_events.Product",
+    "newSlug": "/references/product/events",
+    "filePath": "/www/apps/resources/references/module_events/module_events.Product/page.mdx"
+  },
+  {
+    "origSlug": "/references/module_events/module_events.Region",
+    "newSlug": "/references/region/events",
+    "filePath": "/www/apps/resources/references/module_events/module_events.Region/page.mdx"
+  },
+  {
+    "origSlug": "/references/module_events/module_events.Sales_Channel",
+    "newSlug": "/references/sales-channel/events",
+    "filePath": "/www/apps/resources/references/module_events/module_events.Sales_Channel/page.mdx"
+  },
+  {
+    "origSlug": "/references/module_events/module_events.User",
+    "newSlug": "/references/user/events",
+    "filePath": "/www/apps/resources/references/module_events/module_events.User/page.mdx"
+  },
+  {
     "origSlug": "/references/modules/api_key_models",
     "newSlug": "/references/api-key/models",
     "filePath": "/www/apps/resources/references/modules/api_key_models/page.mdx"
@@ -4883,6 +4928,11 @@ export const slugChanges = [
     "origSlug": "/references/modules/dml",
     "newSlug": "/references/data-model",
     "filePath": "/www/apps/resources/references/modules/dml/page.mdx"
+  },
+  {
+    "origSlug": "/references/modules/events",
+    "newSlug": "/references/events",
+    "filePath": "/www/apps/resources/references/modules/events/page.mdx"
   },
   {
     "origSlug": "/references/modules/fulfillment_models",

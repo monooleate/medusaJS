@@ -108,10 +108,6 @@ export const filesMap = [
     "pathname": "/commerce-modules/auth/create-actor-type"
   },
   {
-    "filePath": "/www/apps/resources/app/commerce-modules/auth/events/page.mdx",
-    "pathname": "/commerce-modules/auth/events"
-  },
-  {
     "filePath": "/www/apps/resources/app/commerce-modules/auth/js-sdk/page.mdx",
     "pathname": "/commerce-modules/auth/js-sdk"
   },
@@ -134,10 +130,6 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/app/commerce-modules/cart/concepts/page.mdx",
     "pathname": "/commerce-modules/cart/concepts"
-  },
-  {
-    "filePath": "/www/apps/resources/app/commerce-modules/cart/events/page.mdx",
-    "pathname": "/commerce-modules/cart/events"
   },
   {
     "filePath": "/www/apps/resources/app/commerce-modules/cart/extend/page.mdx",
@@ -188,10 +180,6 @@ export const filesMap = [
     "pathname": "/commerce-modules/customer/customer-accounts"
   },
   {
-    "filePath": "/www/apps/resources/app/commerce-modules/customer/events/page.mdx",
-    "pathname": "/commerce-modules/customer/events"
-  },
-  {
     "filePath": "/www/apps/resources/app/commerce-modules/customer/extend/page.mdx",
     "pathname": "/commerce-modules/customer/extend"
   },
@@ -218,10 +206,6 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/app/commerce-modules/fulfillment/concepts/page.mdx",
     "pathname": "/commerce-modules/fulfillment/concepts"
-  },
-  {
-    "filePath": "/www/apps/resources/app/commerce-modules/fulfillment/events/page.mdx",
-    "pathname": "/commerce-modules/fulfillment/events"
   },
   {
     "filePath": "/www/apps/resources/app/commerce-modules/fulfillment/fulfillment-provider/page.mdx",
@@ -304,10 +288,6 @@ export const filesMap = [
     "pathname": "/commerce-modules/order/edit"
   },
   {
-    "filePath": "/www/apps/resources/app/commerce-modules/order/events/page.mdx",
-    "pathname": "/commerce-modules/order/events"
-  },
-  {
     "filePath": "/www/apps/resources/app/commerce-modules/order/exchange/page.mdx",
     "pathname": "/commerce-modules/order/exchange"
   },
@@ -358,10 +338,6 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/app/commerce-modules/payment/account-holder/page.mdx",
     "pathname": "/commerce-modules/payment/account-holder"
-  },
-  {
-    "filePath": "/www/apps/resources/app/commerce-modules/payment/events/page.mdx",
-    "pathname": "/commerce-modules/payment/events"
   },
   {
     "filePath": "/www/apps/resources/app/commerce-modules/payment/js-sdk/page.mdx",
@@ -452,10 +428,6 @@ export const filesMap = [
     "pathname": "/commerce-modules/product/admin-widget-zones"
   },
   {
-    "filePath": "/www/apps/resources/app/commerce-modules/product/events/page.mdx",
-    "pathname": "/commerce-modules/product/events"
-  },
-  {
     "filePath": "/www/apps/resources/app/commerce-modules/product/extend/page.mdx",
     "pathname": "/commerce-modules/product/extend"
   },
@@ -540,10 +512,6 @@ export const filesMap = [
     "pathname": "/commerce-modules/region/admin-widget-zones"
   },
   {
-    "filePath": "/www/apps/resources/app/commerce-modules/region/events/page.mdx",
-    "pathname": "/commerce-modules/region/events"
-  },
-  {
     "filePath": "/www/apps/resources/app/commerce-modules/region/js-sdk/page.mdx",
     "pathname": "/commerce-modules/region/js-sdk"
   },
@@ -562,10 +530,6 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/app/commerce-modules/sales-channel/admin-widget-zones/page.mdx",
     "pathname": "/commerce-modules/sales-channel/admin-widget-zones"
-  },
-  {
-    "filePath": "/www/apps/resources/app/commerce-modules/sales-channel/events/page.mdx",
-    "pathname": "/commerce-modules/sales-channel/events"
   },
   {
     "filePath": "/www/apps/resources/app/commerce-modules/sales-channel/js-sdk/page.mdx",
@@ -668,10 +632,6 @@ export const filesMap = [
     "pathname": "/commerce-modules/user/admin-widget-zones"
   },
   {
-    "filePath": "/www/apps/resources/app/commerce-modules/user/events/page.mdx",
-    "pathname": "/commerce-modules/user/events"
-  },
-  {
     "filePath": "/www/apps/resources/app/commerce-modules/user/js-sdk/page.mdx",
     "pathname": "/commerce-modules/user/js-sdk"
   },
@@ -750,10 +710,6 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/app/deployment/storefront/vercel/page.mdx",
     "pathname": "/deployment/storefront/vercel"
-  },
-  {
-    "filePath": "/www/apps/resources/app/events-reference/page.mdx",
-    "pathname": "/events-reference"
   },
   {
     "filePath": "/www/apps/resources/app/examples/guides/custom-item-price/page.mdx",
@@ -13444,6 +13400,42 @@ export const filesMap = [
     "pathname": "/references/medusa_config/types/medusa_config.PluginDetails"
   },
   {
+    "filePath": "/www/apps/resources/references/module_events/module_events.Auth/page.mdx",
+    "pathname": "/references/module_events/module_events.Auth"
+  },
+  {
+    "filePath": "/www/apps/resources/references/module_events/module_events.Cart/page.mdx",
+    "pathname": "/references/module_events/module_events.Cart"
+  },
+  {
+    "filePath": "/www/apps/resources/references/module_events/module_events.Customer/page.mdx",
+    "pathname": "/references/module_events/module_events.Customer"
+  },
+  {
+    "filePath": "/www/apps/resources/references/module_events/module_events.Fulfillment/page.mdx",
+    "pathname": "/references/module_events/module_events.Fulfillment"
+  },
+  {
+    "filePath": "/www/apps/resources/references/module_events/module_events.Order/page.mdx",
+    "pathname": "/references/module_events/module_events.Order"
+  },
+  {
+    "filePath": "/www/apps/resources/references/module_events/module_events.Product/page.mdx",
+    "pathname": "/references/module_events/module_events.Product"
+  },
+  {
+    "filePath": "/www/apps/resources/references/module_events/module_events.Region/page.mdx",
+    "pathname": "/references/module_events/module_events.Region"
+  },
+  {
+    "filePath": "/www/apps/resources/references/module_events/module_events.Sales_Channel/page.mdx",
+    "pathname": "/references/module_events/module_events.Sales_Channel"
+  },
+  {
+    "filePath": "/www/apps/resources/references/module_events/module_events.User/page.mdx",
+    "pathname": "/references/module_events/module_events.User"
+  },
+  {
     "filePath": "/www/apps/resources/references/modules/api_key/page.mdx",
     "pathname": "/references/modules/api_key"
   },
@@ -13504,6 +13496,10 @@ export const filesMap = [
     "pathname": "/references/modules/event"
   },
   {
+    "filePath": "/www/apps/resources/references/modules/events/page.mdx",
+    "pathname": "/references/modules/events"
+  },
+  {
     "filePath": "/www/apps/resources/references/modules/file/page.mdx",
     "pathname": "/references/modules/file"
   },
@@ -13550,6 +13546,10 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/references/modules/medusa_config/page.mdx",
     "pathname": "/references/modules/medusa_config"
+  },
+  {
+    "filePath": "/www/apps/resources/references/modules/module_events/page.mdx",
+    "pathname": "/references/modules/module_events"
   },
   {
     "filePath": "/www/apps/resources/references/modules/modules_sdk/page.mdx",

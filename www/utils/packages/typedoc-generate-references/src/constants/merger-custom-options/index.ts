@@ -18,6 +18,7 @@ import cacheOptions from "./cache.js"
 import eventOptions from "./event.js"
 import fileServiceOptions from "./file-service.js"
 import notificationServiceOptions from "./notification-service.js"
+import eventsOptions from "./events.js"
 
 const mergerCustomOptions: FormattingOptionsType = {
   ...authProviderOptions,
@@ -25,6 +26,7 @@ const mergerCustomOptions: FormattingOptionsType = {
   ...coreFlowsOptions,
   ...dmlOptions,
   ...eventOptions,
+  ...eventsOptions,
   ...fileServiceOptions,
   ...fileOptions,
   ...fulfillmentProviderOptions,

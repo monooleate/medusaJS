@@ -157,7 +157,7 @@ export const authSidebar = [
           },
           {
             type: "link",
-            path: "/commerce-modules/auth/events",
+            path: "/references/auth/events",
             title: "Events Reference",
           },
           {
