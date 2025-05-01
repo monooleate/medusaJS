@@ -1174,6 +1174,7 @@ class OasKindGenerator extends FunctionKindGenerator {
               descriptionOptions,
               context: "query",
               saveSchema: !forUpdate,
+              symbol: property,
             }),
           })
         )
@@ -1403,6 +1404,7 @@ class OasKindGenerator extends FunctionKindGenerator {
     disallowedChildren,
     zodObjectTypeName,
     saveSchema = true,
+    symbol: originalSymbol,
     ...rest
   }: {
     /**
@@ -1445,6 +1447,10 @@ class OasKindGenerator extends FunctionKindGenerator {
      * Whether to save object schemas. Useful when only getting schemas to update.
      */
     saveSchema?: boolean
+    /**
+     * The symbol of the node to retrieve the schema from.
+     */
+    symbol?: ts.Symbol
   }): OpenApiSchema {
     if (isLevelExceeded(level, this.MAX_LEVEL)) {
       return {}
@@ -1484,6 +1490,24 @@ class OasKindGenerator extends FunctionKindGenerator {
       (itemType.symbol.parent as ts.Symbol)?.valueDeclaration?.kind ===
         ts.SyntaxKind.EnumDeclaration
 
+    const commentsAndTags = originalSymbol?.valueDeclaration
+      ? ts.getJSDocCommentsAndTags(originalSymbol?.valueDeclaration)
+      : symbol?.valueDeclaration
+        ? ts.getJSDocCommentsAndTags(symbol?.valueDeclaration)
+        : []
+
+    // check if type is now deprecated
+    const isDeprecated =
+      commentsAndTags.some((comment) => {
+        if (!("tags" in comment)) {
+          return false
+        }
+
+        return comment.tags?.some((tag) => {
+          return tag.tagName.getText() === "deprecated"
+        })
+      }) || undefined // avoid showing it as false in the generated OAS
+
     switch (true) {
       case isEnum || isEnumParent:
         const enumMembers: string[] = []
@@ -1505,6 +1529,7 @@ class OasKindGenerator extends FunctionKindGenerator {
           type: "string",
           description,
           enum: enumMembers,
+          deprecated: isDeprecated,
         }
       case itemType.isLiteral() || typeAsString === "RegExp":
         const isString =
@@ -1522,6 +1547,7 @@ class OasKindGenerator extends FunctionKindGenerator {
             typeName: typeAsString,
             name: title,
           }),
+          deprecated: isDeprecated,
         }
       case itemType.flags === ts.TypeFlags.String ||
         itemType.flags === ts.TypeFlags.Number ||
@@ -1541,6 +1567,7 @@ class OasKindGenerator extends FunctionKindGenerator {
             typeName: typeAsString,
             name: title,
           }),
+          deprecated: isDeprecated,
         }
       case ("intrinsicName" in itemType &&
         itemType.intrinsicName === "boolean") ||
@@ -1552,11 +1579,13 @@ class OasKindGenerator extends FunctionKindGenerator {
           default: symbol?.valueDeclaration
             ? this.getDefaultValue(symbol?.valueDeclaration)
             : undefined,
+          deprecated: isDeprecated,
         }
       case this.checker.isArrayType(itemType):
         return {
           type: "array",
           description,
+          deprecated: isDeprecated,
           items: this.typeToSchema({
             itemType: this.checker.getTypeArguments(
               itemType as ts.TypeReference
@@ -1588,6 +1617,7 @@ class OasKindGenerator extends FunctionKindGenerator {
           return {
             type: "string",
             description,
+            deprecated: isDeprecated,
             enum: cleanedUpTypes.map(
               (unionType) => (unionType as ts.LiteralType).value
             ),
@@ -1611,6 +1641,7 @@ class OasKindGenerator extends FunctionKindGenerator {
 
         return {
           oneOf: oneOfItems,
+          deprecated: isDeprecated,
         }
       case itemType.isIntersection():
         const allOfItems = this.typesHelper
@@ -1632,6 +1663,7 @@ class OasKindGenerator extends FunctionKindGenerator {
 
         return {
           allOf: allOfItems,
+          deprecated: isDeprecated,
         }
       case typeAsString.startsWith("Pick"):
         const pickTypeArgs =
@@ -1712,6 +1744,7 @@ class OasKindGenerator extends FunctionKindGenerator {
         const objSchema: OpenApiSchema = {
           type: "object",
           description,
+          deprecated: isDeprecated,
           "x-schemaName":
             itemType.isClassOrInterface() ||
             itemType.isTypeParameter() ||
@@ -1818,6 +1851,7 @@ class OasKindGenerator extends FunctionKindGenerator {
                 parentName: title || descriptionOptions?.parentName,
               },
               saveSchema,
+              symbol: property,
               ...rest,
             })
 
@@ -2369,6 +2403,19 @@ class OasKindGenerator extends FunctionKindGenerator {
     ) {
       oldSchemaObj!.description =
         newSchemaObj?.description || SUMMARY_PLACEHOLDER
+    }
+
+    if (oldSchemaObj?.deprecated !== newSchemaObj?.deprecated) {
+      // avoid many changes to exising OAS
+      if (!newSchemaObj?.deprecated) {
+        if (oldSchemaObj!.deprecated) {
+          wasUpdated = true
+        }
+        delete oldSchemaObj!.deprecated
+      } else {
+        oldSchemaObj!.deprecated = newSchemaObj.deprecated
+        wasUpdated = true
+      }
     }
 
     if (!wasUpdated) {
