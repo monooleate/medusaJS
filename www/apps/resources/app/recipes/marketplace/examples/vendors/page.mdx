@@ -588,6 +588,7 @@ export const vendorWorkflowHighlights = [
 import { 
   createWorkflow,
   WorkflowResponse,
+  transform,
 } from "@medusajs/framework/workflows-sdk"
 import { 
   setAuthAppMetadataStep,
@@ -636,7 +637,7 @@ const createVendorWorkflow = createWorkflow(
       actorType: "vendor",
       value: vendorAdmin.id,
     })
-
+    // @ts-ignore
     const { data: vendorWithAdmin } = useQueryGraphStep({
       entity: "vendor",
       fields: ["id", "name", "handle", "logo", "admins.*"],
@@ -651,7 +652,7 @@ const createVendorWorkflow = createWorkflow(
   }
 )
 
-export default createVendorAdminWorkflow
+export default createVendorWorkflow
 ```
 
 You create a workflow with `createWorkflow` from the Workflows SDK. It accepts two parameters:
