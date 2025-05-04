@@ -187,8 +187,8 @@ export class AbstractFileProviderService implements IFileProvider {
    *   }
    * }
    */
-  getAsStream(fileData: FileTypes.ProviderGetFileDTO): Promise<Readable> {
-    throw Error("getAsStream must be overridden by the child class")
+  getDownloadStream(fileData: FileTypes.ProviderGetFileDTO): Promise<Readable> {
+    throw Error("getDownloadStream must be overridden by the child class")
   }
 
   /**

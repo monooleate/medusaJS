@@ -167,8 +167,8 @@ export default class FileModuleService implements FileTypes.IFileModuleService {
    * const stream = await fileModuleService.getAsStream("file_123")
    * writeable.pipe(stream)
    */
-  getAsStream(id: string): Promise<Readable> {
-    return this.fileProviderService_.getAsStream({ fileKey: id })
+  getDownloadStream(id: string): Promise<Readable> {
+    return this.fileProviderService_.getDownloadStream({ fileKey: id })
   }
 
   /**

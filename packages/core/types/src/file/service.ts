@@ -169,10 +169,10 @@ export interface IFileModuleService extends IModuleService {
    * Get the file contents as a readable stream.
    *
    * @example
-   * const stream = await fileModuleService.getAsStream("file_123")
+   * const stream = await fileModuleService.getDownloadStream("file_123")
    * writeable.pipe(stream)
    */
-  getAsStream(id: string, sharedContext?: Context): Promise<Readable>
+  getDownloadStream(id: string, sharedContext?: Context): Promise<Readable>
 
   /**
    * Get the file contents as a Node.js Buffer

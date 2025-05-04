@@ -70,8 +70,8 @@ export default class FileProviderService {
     return this.fileProvider_.getPresignedUploadUrl(fileData)
   }
 
-  getAsStream(fileData: FileTypes.ProviderGetFileDTO): Promise<Readable> {
-    return this.fileProvider_.getAsStream(fileData)
+  getDownloadStream(fileData: FileTypes.ProviderGetFileDTO): Promise<Readable> {
+    return this.fileProvider_.getDownloadStream(fileData)
   }
 
   getAsBuffer(fileData: FileTypes.ProviderGetFileDTO): Promise<Buffer> {

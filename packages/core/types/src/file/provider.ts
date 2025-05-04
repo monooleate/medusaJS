@@ -149,7 +149,7 @@ export interface IFileProvider {
   /**
    * Get the file contents as a readable stream.
    */
-  getAsStream(fileData: ProviderGetFileDTO): Promise<Readable>
+  getDownloadStream(fileData: ProviderGetFileDTO): Promise<Readable>
 
   /**
    * Get the file contents as a Node.js Buffer

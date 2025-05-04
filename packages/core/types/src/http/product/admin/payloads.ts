@@ -570,3 +570,11 @@ interface AdminDeleteProductVariantInventoryItem {
    */
   variant_id: string
 }
+
+export interface AdminImportProductsRequest {
+  file_key: string
+  originalname: string
+  extension: string
+  size: number
+  mime_type: string
+}

@@ -217,15 +217,17 @@ export class S3FileService extends AbstractFileProviderService {
     }
   }
 
-  async getAsStream(file: FileTypes.ProviderGetFileDTO): Promise<Readable> {
-    if (!file?.filename) {
+  async getDownloadStream(
+    file: FileTypes.ProviderGetFileDTO
+  ): Promise<Readable> {
+    if (!file?.fileKey) {
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA,
-        `No filename provided`
+        `No fileKey provided`
       )
     }
 
-    const fileKey = `${this.config_.prefix}${file.filename}`
+    const fileKey = `${this.config_.prefix}${file.fileKey}`
     const response = await this.client_.send(
       new GetObjectCommand({
         Key: fileKey,
@@ -237,14 +239,14 @@ export class S3FileService extends AbstractFileProviderService {
   }
 
   async getAsBuffer(file: FileTypes.ProviderGetFileDTO): Promise<Buffer> {
-    if (!file?.filename) {
+    if (!file?.fileKey) {
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA,
-        `No filename provided`
+        `No fileKey provided`
       )
     }
 
-    const fileKey = `${this.config_.prefix}${file.filename}`
+    const fileKey = `${this.config_.prefix}${file.fileKey}`
     const response = await this.client_.send(
       new GetObjectCommand({
         Key: fileKey,
