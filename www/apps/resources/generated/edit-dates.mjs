@@ -6218,5 +6218,6 @@ export const generatedEditDates = {
   "references/module_events/module_events.Region/page.mdx": "2025-05-01T15:18:45.934Z",
   "references/module_events/module_events.Sales_Channel/page.mdx": "2025-05-01T15:18:45.933Z",
   "references/module_events/module_events.User/page.mdx": "2025-05-01T15:18:45.932Z",
-  "references/modules/module_events/page.mdx": "2025-05-01T15:18:45.930Z"
+  "references/modules/module_events/page.mdx": "2025-05-01T15:18:45.930Z",
+  "app/troubleshooting/medusa-admin/build-error/page.mdx": "2025-05-05T15:56:02.042Z"
 }
