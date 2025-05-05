@@ -39,10 +39,10 @@ import {
   MedusaService,
   Modules,
   ProductStatus,
-  promiseAll,
   removeUndefined,
   toHandle,
 } from "@medusajs/framework/utils"
+import { wrap } from "@mikro-orm/core"
 import {
   UpdateCategoryInput,
   UpdateCollectionInput,
@@ -1661,124 +1661,63 @@ export default class ProductModuleService
       this.validateProductUpdatePayload(product)
     }
 
-    const { entities: productData } =
-      await this.productService_.upsertWithReplace(
-        normalizedProducts,
-        {
-          relations: ["tags", "categories"],
-        },
-        sharedContext
-      )
-
-    // There is more than 1-level depth of relations here, so we need to handle the options and variants manually
-    await promiseAll(
-      // Note: It's safe to rely on the order here as `upsertWithReplace` preserves the order of the input
-      normalizedProducts.map(async (product, i) => {
-        const upsertedProduct: any = productData[i]
-        let allOptions: any[] = []
-
-        if (product.options?.length) {
-          const { entities: productOptions } =
-            await this.productOptionService_.upsertWithReplace(
-              product.options?.map((option) => ({
-                ...option,
-                product_id: upsertedProduct.id,
-              })) ?? [],
-              { relations: ["values"] },
-              sharedContext
-            )
-          upsertedProduct.options = productOptions
-
-          // Since we handle the options and variants outside of the product upsert, we need to clean up manually
-          await this.productOptionService_.delete(
-            {
-              product_id: upsertedProduct.id,
-              id: {
-                $nin: upsertedProduct.options.map(({ id }) => id),
-              },
-            },
-            sharedContext
-          )
-          allOptions = upsertedProduct.options
-        } else {
-          // If the options weren't affected, but the user is changing the variants, make sure we have all options available locally
-          if (product.variants?.length) {
-            allOptions = await this.productOptionService_.list(
-              { product_id: upsertedProduct.id },
-              { relations: ["values"] },
-              sharedContext
-            )
-          }
-        }
-
-        if (product.variants?.length) {
-          const productVariantsWithOptions =
-            ProductModuleService.assignOptionsToVariants(
-              product.variants.map((v) => ({
-                ...v,
-                product_id: upsertedProduct.id,
-              })) ?? [],
-              allOptions
-            )
-
-          ProductModuleService.checkIfVariantsHaveUniqueOptionsCombinations(
-            productVariantsWithOptions as any
-          )
-
-          const { entities: productVariants } =
-            await this.productVariantService_.upsertWithReplace(
-              productVariantsWithOptions,
-              { relations: ["options"] },
-              sharedContext
-            )
-
-          upsertedProduct.variants = productVariants
-
-          await this.productVariantService_.delete(
-            {
-              product_id: upsertedProduct.id,
-              id: {
-                $nin: upsertedProduct.variants.map(({ id }) => id),
-              },
-            },
-            sharedContext
-          )
-        }
-
-        if (Array.isArray(product.images)) {
-          if (product.images.length) {
-            const { entities: productImages } =
-              await this.productImageService_.upsertWithReplace(
-                product.images.map((image, rank) => ({
-                  ...image,
-                  product_id: upsertedProduct.id,
-                  rank,
-                })),
-                {},
-                sharedContext
-              )
-            upsertedProduct.images = productImages
-
-            await this.productImageService_.delete(
-              {
-                product_id: upsertedProduct.id,
-                id: {
-                  $nin: productImages.map(({ id }) => id),
-                },
-              },
-              sharedContext
-            )
-          } else {
-            await this.productImageService_.delete(
-              { product_id: upsertedProduct.id },
-              sharedContext
-            )
-          }
-        }
-      })
+    const products = await this.productService_.list(
+      { id: normalizedProducts.map((p) => p.id) },
+      { relations: ["*"] },
+      sharedContext
     )
+    const productsMap = new Map(products.map((p) => [p.id, p]))
 
-    return productData
+    for (const normalizedProduct of normalizedProducts) {
+      const update = normalizedProduct as any
+      const product = productsMap.get(update.id)!
+
+      // Assign the options first, so they'll be available for the variants loop below
+      if (update.options) {
+        wrap(product).assign({ options: update.options })
+        delete update.options // already assigned above, so no longer necessary
+      }
+
+      if (update.variants) {
+        ProductModuleService.validateVariantOptions(
+          update.variants,
+          product.options
+        )
+
+        update.variants.forEach((variant: any) => {
+          if (variant.options) {
+            variant.options = Object.entries(variant.options).map(
+              ([key, value]) => {
+                const productOption = product.options.find(
+                  (option) => option.title === key
+                )!
+                const productOptionValue = productOption.values?.find(
+                  (optionValue) => optionValue.value === value
+                )!
+                return productOptionValue.id
+              }
+            )
+          }
+        })
+      }
+
+      if (update.tags) {
+        update.tags = update.tags.map((t: { id: string }) => t.id)
+      }
+      if (update.categories) {
+        update.categories = update.categories.map((c: { id: string }) => c.id)
+      }
+      if (update.images) {
+        update.images = update.images.map((image: any, index: number) => ({
+          ...image,
+          rank: index,
+        }))
+      }
+
+      wrap(product!).assign(update)
+    }
+
+    return products
   }
 
   // @ts-expect-error
@@ -2052,6 +1991,26 @@ export default class ProductModuleService
     return collectionData
   }
 
+  protected static validateVariantOptions(
+    variants:
+      | ProductTypes.CreateProductVariantDTO[]
+      | ProductTypes.UpdateProductVariantDTO[],
+    options: InferEntityType<typeof ProductOption>[]
+  ) {
+    const variantsWithOptions = ProductModuleService.assignOptionsToVariants(
+      variants.map((v) => ({
+        ...v,
+        // adding product_id to the variant to make it valid for the assignOptionsToVariants function
+        ...(options.length ? { product_id: options[0].product_id } : {}),
+      })),
+      options
+    )
+
+    ProductModuleService.checkIfVariantsHaveUniqueOptionsCombinations(
+      variantsWithOptions as any
+    )
+  }
+
   protected static assignOptionsToVariants(
     variants:
       | ProductTypes.CreateProductVariantDTO[]
@@ -2063,7 +2022,6 @@ export default class ProductModuleService
     if (!variants.length) {
       return variants
     }
-
     const variantsWithOptions = variants.map((variant: any) => {
       const numOfProvidedVariantOptionValues = Object.keys(
         variant.options || {}
@@ -2079,7 +2037,7 @@ export default class ProductModuleService
       ) {
         throw new MedusaError(
           MedusaError.Types.INVALID_DATA,
-          `Product has ${productsOptions.length} but there were ${numOfProvidedVariantOptionValues} provided option values for the variant: ${variant.title}.`
+          `Product has ${productsOptions.length} option values but there were ${numOfProvidedVariantOptionValues} provided option values for the variant: ${variant.title}.`
         )
       }
 

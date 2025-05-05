@@ -12,10 +12,10 @@ import {
   ProductStatus,
 } from "@medusajs/framework/utils"
 import {
-  ProductImage,
   Product,
   ProductCategory,
   ProductCollection,
+  ProductImage,
   ProductType,
 } from "@models"
 
@@ -400,9 +400,7 @@ moduleIntegrationTestRunner<IProductModuleService>({
               options: { size: "x", color: "red" }, // update options
             },
             {
-              id: existingVariant2.id,
-              title: "new variant 2",
-              options: { size: "l", color: "green" }, // just preserve old one
+              id: existingVariant2.id, // just preserve old one
             },
             {
               product_id: product.id,
@@ -722,30 +720,6 @@ moduleIntegrationTestRunner<IProductModuleService>({
           expect(error).toEqual(`Product with id: does-not-exist was not found`)
         })
 
-        it("should throw because variant doesn't have all options set", async () => {
-          const error = await service
-            .createProducts([
-              {
-                title: "Product with variants and options",
-                options: [
-                  { title: "opt1", values: ["1", "2"] },
-                  { title: "opt2", values: ["3", "4"] },
-                ],
-                variants: [
-                  {
-                    title: "missing option",
-                    options: { opt1: "1" },
-                  },
-                ],
-              },
-            ])
-            .catch((e) => e)
-
-          expect(error.message).toEqual(
-            `Product "Product with variants and options" has variants with missing options: [missing option]`
-          )
-        })
-
         it("should update, create and delete variants", async () => {
           const updateData = {
             id: productTwo.id,
@@ -847,6 +821,136 @@ moduleIntegrationTestRunner<IProductModuleService>({
                 title: "created-variant",
               }),
             ])
+          )
+        })
+
+        it("should simultaneously update options and variants", async () => {
+          const updateData = {
+            id: productTwo.id,
+            options: [{ title: "material", values: ["cotton", "silk"] }],
+            variants: [{ title: "variant 1", options: { material: "cotton" } }],
+          }
+
+          await service.upsertProducts([updateData])
+
+          const product = await service.retrieveProduct(productTwo.id, {
+            relations: ["*"],
+          })
+
+          expect(product.options).toHaveLength(1)
+          expect(product.options[0].title).toEqual("material")
+          expect(product.options[0].values).toHaveLength(2)
+          expect(product.options[0].values[0].value).toEqual("cotton")
+          expect(product.options[0].values[1].value).toEqual("silk")
+
+          expect(product.variants).toHaveLength(1)
+          expect(product.variants[0].options).toHaveLength(1)
+          expect(product.variants[0].options[0].value).toEqual("cotton")
+        })
+
+        it("should throw an error when some tag id does not exist", async () => {
+          const error = await service
+            .updateProducts(productOne.id, {
+              tag_ids: ["does-not-exist"],
+            })
+            .catch((e) => e)
+
+          expect(error?.message).toEqual(
+            `You tried to set relationship product_tag_id: does-not-exist, but such entity does not exist`
+          )
+        })
+
+        it("should throw an error when some category id does not exist", async () => {
+          const error = await service
+            .updateProducts(productOne.id, {
+              category_ids: ["does-not-exist"],
+            })
+            .catch((e) => e)
+
+          expect(error?.message).toEqual(
+            `You tried to set relationship product_category_id: does-not-exist, but such entity does not exist`
+          )
+        })
+
+        it("should throw an error when collection id does not exist", async () => {
+          const error = await service
+            .updateProducts(productOne.id, {
+              collection_id: "does-not-exist",
+            })
+            .catch((e) => e)
+
+          expect(error?.message).toEqual(
+            `You tried to set relationship collection_id: does-not-exist, but such entity does not exist`
+          )
+        })
+
+        it("should throw an error when type id does not exist", async () => {
+          const error = await service
+            .updateProducts(productOne.id, {
+              type_id: "does-not-exist",
+            })
+            .catch((e) => e)
+
+          expect(error?.message).toEqual(
+            `You tried to set relationship type_id: does-not-exist, but such entity does not exist`
+          )
+        })
+
+        it("should throw if two variants have the same options combination", async () => {
+          const error = await service
+            .updateProducts(productTwo.id, {
+              variants: [
+                {
+                  title: "variant 1",
+                  options: { size: "small", color: "blue" },
+                },
+                {
+                  title: "variant 2",
+                  options: { size: "small", color: "blue" },
+                },
+              ],
+            })
+            .catch((e) => e)
+
+          expect(error?.message).toEqual(
+            `Variant "variant 1" has same combination of option values as "variant 2".`
+          )
+        })
+
+        it("should throw if a variant doesn't have all options set", async () => {
+          const error = await service
+            .updateProducts(productTwo.id, {
+              variants: [
+                {
+                  title: "variant 1",
+                  options: { size: "small" },
+                },
+              ],
+            })
+            .catch((e) => e)
+
+          expect(error?.message).toEqual(
+            `Product has 2 option values but there were 1 provided option values for the variant: variant 1.`
+          )
+        })
+
+        it("should throw if a variant uses a non-existing option", async () => {
+          const error = await service
+            .updateProducts(productTwo.id, {
+              variants: [
+                {
+                  title: "variant 1",
+                  options: {
+                    size: "small",
+                    non_existing_option: "non_existing_value",
+                  },
+                },
+              ],
+            })
+            .catch((e) => e)
+
+          expect(error?.message).toEqual(
+            `Option value non_existing_value does not exist for option non_existing_option`
           )
         })
       })
@@ -961,6 +1065,30 @@ moduleIntegrationTestRunner<IProductModuleService>({
             {
               internal: true,
             }
+          )
+        })
+
+        it("should throw because variant doesn't have all options set", async () => {
+          const error = await service
+            .createProducts([
+              {
+                title: "Product with variants and options",
+                options: [
+                  { title: "opt1", values: ["1", "2"] },
+                  { title: "opt2", values: ["3", "4"] },
+                ],
+                variants: [
+                  {
+                    title: "missing option",
+                    options: { opt1: "1" },
+                  },
+                ],
+              },
+            ])
+            .catch((e) => e)
+
+          expect(error.message).toEqual(
+            `Product "Product with variants and options" has variants with missing options: [missing option]`
           )
         })
       })
@@ -1406,6 +1534,28 @@ moduleIntegrationTestRunner<IProductModuleService>({
               rank: 2,
             }),
           ])
+        })
+
+        it("should delete images if empty array is passed on update", async () => {
+          const images = [
+            { url: "image-1" },
+            { url: "image-2" },
+            { url: "image-3" },
+          ]
+
+          const [product] = await service.createProducts([
+            buildProductAndRelationsData({ images }),
+          ])
+
+          await service.updateProducts(product.id, {
+            images: [],
+          })
+
+          const productAfterUpdate = await service.retrieveProduct(product.id, {
+            relations: ["*"],
+          })
+
+          expect(productAfterUpdate.images).toHaveLength(0)
         })
 
         it("should retrieve images in the correct order consistently", async () => {
