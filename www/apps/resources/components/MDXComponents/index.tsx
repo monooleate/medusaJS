@@ -24,7 +24,9 @@ const MDXComponents: MDXComponentsType = {
   CodeTab,
   Table,
   Badge,
-  Tooltip,
+  Tooltip: (props) => {
+    return <Tooltip {...props} />
+  },
 }
 
 export default MDXComponents
