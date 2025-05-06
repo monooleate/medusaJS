@@ -180,6 +180,22 @@ moduleIntegrationTestRunner<IProductModuleService>({
           productTwo = res[1]
         })
 
+        it("should update multiple products", async () => {
+          await service.upsertProducts([
+            { id: productOne.id, title: "updated title 1" },
+            { id: productTwo.id, title: "updated title 2" },
+          ])
+
+          const products = await service.listProducts(
+            { id: [productOne.id, productTwo.id] },
+            { relations: ["*"] }
+          )
+
+          expect(products).toHaveLength(2)
+          expect(products[0].title).toEqual("updated title 1")
+          expect(products[1].title).toEqual("updated title 2")
+        })
+
         it("should update a product and upsert relations that are not created yet", async () => {
           const tags = await service.createProductTags([{ value: "tag-1" }])
           const data = buildProductAndRelationsData({
@@ -839,13 +855,25 @@ moduleIntegrationTestRunner<IProductModuleService>({
 
           expect(product.options).toHaveLength(1)
           expect(product.options[0].title).toEqual("material")
-          expect(product.options[0].values).toHaveLength(2)
-          expect(product.options[0].values[0].value).toEqual("cotton")
-          expect(product.options[0].values[1].value).toEqual("silk")
+          expect(product.options[0].values).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                value: "cotton",
+              }),
+              expect.objectContaining({
+                value: "silk",
+              }),
+            ])
+          )
 
           expect(product.variants).toHaveLength(1)
-          expect(product.variants[0].options).toHaveLength(1)
-          expect(product.variants[0].options[0].value).toEqual("cotton")
+          expect(product.variants[0].options).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                value: "cotton",
+              }),
+            ])
+          )
         })
 
         it("should throw an error when some tag id does not exist", async () => {

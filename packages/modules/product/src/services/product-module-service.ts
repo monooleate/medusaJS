@@ -42,7 +42,6 @@ import {
   removeUndefined,
   toHandle,
 } from "@medusajs/framework/utils"
-import { wrap } from "@mikro-orm/core"
 import {
   UpdateCategoryInput,
   UpdateCollectionInput,
@@ -1663,59 +1662,78 @@ export default class ProductModuleService
 
     const products = await this.productService_.list(
       { id: normalizedProducts.map((p) => p.id) },
-      { relations: ["*"] },
+      {
+        relations: [
+          "images",
+          "variants",
+          "variants.options",
+          "options",
+          "options.values",
+        ],
+      }, // loading all relations is the only way for productService_.update to update deep relations, otherwise it triggers INSERTS for all relations
       sharedContext
     )
     const productsMap = new Map(products.map((p) => [p.id, p]))
 
-    for (const normalizedProduct of normalizedProducts) {
-      const update = normalizedProduct as any
-      const product = productsMap.get(update.id)!
+    await this.productService_.update(
+      normalizedProducts.map((normalizedProduct: any) => {
+        const update = { ...normalizedProduct }
+        if (update.tags) {
+          update.tags = update.tags.map((t: { id: string }) => t.id)
+        }
+        if (update.categories) {
+          update.categories = update.categories.map((c: { id: string }) => c.id)
+        }
+        if (update.images) {
+          update.images = update.images.map((image: any, index: number) => ({
+            ...image,
+            rank: index,
+          }))
+        }
 
-      // Assign the options first, so they'll be available for the variants loop below
-      if (update.options) {
-        wrap(product).assign({ options: update.options })
-        delete update.options // already assigned above, so no longer necessary
-      }
+        // There's an integration test that checks that metadata updates are all-or-nothing
+        // but productService_.update merges instead, so we update the field directly
+        productsMap.get(normalizedProduct.id)!.metadata = update.metadata
+        delete update.metadata
 
-      if (update.variants) {
-        ProductModuleService.validateVariantOptions(
-          update.variants,
-          product.options
-        )
+        delete update.variants // variants are updated in the next step
 
-        update.variants.forEach((variant: any) => {
-          if (variant.options) {
-            variant.options = Object.entries(variant.options).map(
-              ([key, value]) => {
-                const productOption = product.options.find(
-                  (option) => option.title === key
-                )!
-                const productOptionValue = productOption.values?.find(
-                  (optionValue) => optionValue.value === value
-                )!
-                return productOptionValue.id
-              }
-            )
+        return update
+      }),
+      sharedContext
+    )
+
+    // We update variants in a second step because we need the options to be updated first
+    await this.productService_.update(
+      normalizedProducts
+        .filter((p) => p.variants)
+        .map((normalizedProduct: any) => {
+          const update = {
+            id: normalizedProduct.id,
+            variants: normalizedProduct.variants,
           }
-        })
-      }
 
-      if (update.tags) {
-        update.tags = update.tags.map((t: { id: string }) => t.id)
-      }
-      if (update.categories) {
-        update.categories = update.categories.map((c: { id: string }) => c.id)
-      }
-      if (update.images) {
-        update.images = update.images.map((image: any, index: number) => ({
-          ...image,
-          rank: index,
-        }))
-      }
+          const options = productsMap.get(normalizedProduct.id)!.options
+          ProductModuleService.validateVariantOptions(update.variants, options)
 
-      wrap(product!).assign(update)
-    }
+          update.variants.forEach((variant: any) => {
+            if (variant.options) {
+              variant.options = Object.entries(variant.options).map(
+                ([key, value]) => {
+                  const option = options.find((option) => option.title === key)!
+                  const optionValue = option.values?.find(
+                    (optionValue) => optionValue.value === value
+                  )!
+                  return optionValue.id
+                }
+              )
+            }
+          })
+
+          return update
+        }),
+      sharedContext
+    )
 
     return products
   }
