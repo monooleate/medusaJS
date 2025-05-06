@@ -8,6 +8,8 @@ import {
   CodeTabs,
   CodeTab,
   Table,
+  Badge,
+  Tooltip,
 } from "docs-ui"
 import { CommerceModuleSections } from "../CommerceModuleSections"
 
@@ -21,6 +23,8 @@ const MDXComponents: MDXComponentsType = {
   CodeTabs,
   CodeTab,
   Table,
+  Badge,
+  Tooltip,
 }
 
 export default MDXComponents
