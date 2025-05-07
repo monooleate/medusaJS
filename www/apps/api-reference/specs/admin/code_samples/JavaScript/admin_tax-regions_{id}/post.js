@@ -8,13 +8,9 @@ export const sdk = new Medusa({
   },
 })
 
-sdk.admin.product.updateOption(
-  "prod_123",
-  "prodopt_123",
-  {
-    title: "Color"
-  }
-)
-.then(({ product }) => {
-  console.log(product)
+sdk.admin.taxRegion.update("txreg_123", {
+  province_code: "ca",
+})
+.then(({ tax_region }) => {
+  console.log(tax_region)
 })
