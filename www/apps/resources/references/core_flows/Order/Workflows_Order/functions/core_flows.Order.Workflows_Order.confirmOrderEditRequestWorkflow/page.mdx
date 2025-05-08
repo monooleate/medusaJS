@@ -25,7 +25,7 @@ This workflow confirms an order edit request. It's used by the
 You can use this workflow within your customizations or your own custom workflows, allowing you to confirm an order edit
 in your custom flow.
 
-<SourceCodeLink link="https://github.com/medusajs/medusa/blob/ecf3556589c1fb64ad8bdc0b88307b11a6f7c89f/packages/core/core-flows/src/order/workflows/order-edit/confirm-order-edit-request.ts#L113" />
+<SourceCodeLink link="https://github.com/medusajs/medusa/blob/196f6b7015d8349f311eea6194223af60b9e59c5/packages/core/core-flows/src/order/workflows/order-edit/confirm-order-edit-request.ts#L113" />
 
 ## Examples
 
@@ -162,6 +162,9 @@ Description
       <Table.HeaderCell>
 Payload
 </Table.HeaderCell>
+      <Table.HeaderCell>
+Action
+</Table.HeaderCell>
     </Table.Row>
   </Table.Header>
   <Table.Body>
@@ -176,9 +179,20 @@ Emitted when an order edit request is confirmed.
 ```ts blockStyle="inline"
 {
   order_id, // The ID of the order
-  actions, // The actions to edit the order
+  actions, // (array) The [actions](https://docs.medusajs.com/resources/references/fulfillment/interfaces/fulfillment.OrderChangeActionDTO) to edit the order
 }
 ```
+</Table.Cell>
+      <Table.Cell>
+<CopyGeneratedSnippetButton tooltipText="Copy subscriber for event" type="subscriber" options={{
+        event: "order-edit.confirmed",
+        payload: `\`\`\`ts
+{
+  order_id, // The ID of the order
+  actions, // (array) The [actions](https://docs.medusajs.com/resources/references/fulfillment/interfaces/fulfillment.OrderChangeActionDTO) to edit the order
+}
+\`\`\``
+        }}/>
 </Table.Cell>
     </Table.Row>
   </Table.Body>

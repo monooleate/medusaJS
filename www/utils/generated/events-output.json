@@ -233,7 +233,7 @@
     "name": "order-edit.confirmed",
     "parentName": "OrderEditWorkflowEvents",
     "propertyName": "CONFIRMED",
-    "payload": "```ts\n{\n  order_id, // The ID of the order\n  actions, // (array) The [actions](https://docs.medusajs.com/resources/references/fulfillment/interfaces/fulfillment.OrderChangeActionDTO) to edit the order\n```",
+    "payload": "```ts\n{\n  order_id, // The ID of the order\n  actions, // (array) The [actions](https://docs.medusajs.com/resources/references/fulfillment/interfaces/fulfillment.OrderChangeActionDTO) to edit the order\n}\n```",
     "description": "Emitted when an order edit request is confirmed.",
     "workflows": [
       "confirmOrderEditRequestWorkflow"
