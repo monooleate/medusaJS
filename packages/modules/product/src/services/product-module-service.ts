@@ -42,6 +42,7 @@ import {
   removeUndefined,
   toHandle,
 } from "@medusajs/framework/utils"
+import { ProductRepository } from "../repositories"
 import {
   UpdateCategoryInput,
   UpdateCollectionInput,
@@ -56,6 +57,7 @@ import { joinerConfig } from "./../joiner-config"
 
 type InjectedDependencies = {
   baseRepository: DAL.RepositoryService
+  productRepository: ProductRepository
   productService: ModulesSdkTypes.IMedusaInternalService<any, any>
   productVariantService: ModulesSdkTypes.IMedusaInternalService<any, any>
   productTagService: ModulesSdkTypes.IMedusaInternalService<any>
@@ -112,6 +114,7 @@ export default class ProductModuleService
   implements ProductTypes.IProductModuleService
 {
   protected baseRepository_: DAL.RepositoryService
+  protected readonly productRepository_: ProductRepository
   protected readonly productService_: ModulesSdkTypes.IMedusaInternalService<
     InferEntityType<typeof Product>
   >
@@ -142,6 +145,7 @@ export default class ProductModuleService
   constructor(
     {
       baseRepository,
+      productRepository,
       productService,
       productVariantService,
       productTagService,
@@ -160,6 +164,7 @@ export default class ProductModuleService
     super(...arguments)
 
     this.baseRepository_ = baseRepository
+    this.productRepository_ = productRepository
     this.productService_ = productService
     this.productVariantService_ = productVariantService
     this.productTagService_ = productTagService
@@ -1660,82 +1665,11 @@ export default class ProductModuleService
       this.validateProductUpdatePayload(product)
     }
 
-    const products = await this.productService_.list(
-      { id: normalizedProducts.map((p) => p.id) },
-      {
-        relations: [
-          "images",
-          "variants",
-          "variants.options",
-          "options",
-          "options.values",
-        ],
-      }, // loading all relations is the only way for productService_.update to update deep relations, otherwise it triggers INSERTS for all relations
+    return this.productRepository_.deepUpdate(
+      normalizedProducts,
+      ProductModuleService.validateVariantOptions,
       sharedContext
     )
-    const productsMap = new Map(products.map((p) => [p.id, p]))
-
-    await this.productService_.update(
-      normalizedProducts.map((normalizedProduct: any) => {
-        const update = { ...normalizedProduct }
-        if (update.tags) {
-          update.tags = update.tags.map((t: { id: string }) => t.id)
-        }
-        if (update.categories) {
-          update.categories = update.categories.map((c: { id: string }) => c.id)
-        }
-        if (update.images) {
-          update.images = update.images.map((image: any, index: number) => ({
-            ...image,
-            rank: index,
-          }))
-        }
-
-        // There's an integration test that checks that metadata updates are all-or-nothing
-        // but productService_.update merges instead, so we update the field directly
-        productsMap.get(normalizedProduct.id)!.metadata = update.metadata
-        delete update.metadata
-
-        delete update.variants // variants are updated in the next step
-
-        return update
-      }),
-      sharedContext
-    )
-
-    // We update variants in a second step because we need the options to be updated first
-    await this.productService_.update(
-      normalizedProducts
-        .filter((p) => p.variants)
-        .map((normalizedProduct: any) => {
-          const update = {
-            id: normalizedProduct.id,
-            variants: normalizedProduct.variants,
-          }
-
-          const options = productsMap.get(normalizedProduct.id)!.options
-          ProductModuleService.validateVariantOptions(update.variants, options)
-
-          update.variants.forEach((variant: any) => {
-            if (variant.options) {
-              variant.options = Object.entries(variant.options).map(
-                ([key, value]) => {
-                  const option = options.find((option) => option.title === key)!
-                  const optionValue = option.values?.find(
-                    (optionValue) => optionValue.value === value
-                  )!
-                  return optionValue.id
-                }
-              )
-            }
-          })
-
-          return update
-        }),
-      sharedContext
-    )
-
-    return products
   }
 
   // @ts-expect-error
