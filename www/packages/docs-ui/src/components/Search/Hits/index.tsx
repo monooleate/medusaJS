@@ -102,7 +102,7 @@ export const SearchHits = ({
   setNoResults,
   checkInternalPattern,
 }: SearchHitsProps) => {
-  const { items: hits } = useHits<HitType>()
+  const { items: hits, sendEvent } = useHits<HitType>()
   const { status } = useInstantSearch()
   const { setIsOpen } = useSearch()
 
@@ -182,6 +182,7 @@ export const SearchHits = ({
               className="absolute top-0 left-0 h-full w-full"
               target="_self"
               onClick={(e) => {
+                sendEvent("click", item, "Search Result Clicked")
                 if (checkIfInternal(item.url)) {
                   e.preventDefault()
                   window.location.href = item.url
