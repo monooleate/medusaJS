@@ -217,8 +217,8 @@ To create the Bundled Product Module's service, create the file `src/modules/bun
 
 ```ts title="src/modules/bundled-product/service.ts"
 import { MedusaService } from "@medusajs/framework/utils"
-import { Bundle } from "./models/bundle";
-import { BundleItem } from "./models/bundle-item";
+import { Bundle } from "./models/bundle"
+import { BundleItem } from "./models/bundle-item"
 
 export default class BundledProductModuleService extends MedusaService({
   Bundle,
@@ -338,9 +338,9 @@ You can define links between data models in a TypeScript or JavaScript file unde
 So, to define the link between a bundle and a product, create the file `src/links/bundle-product.ts` with the following content:
 
 ```ts title="src/links/bundle-product.ts"
-import { defineLink } from "@medusajs/framework/utils";
-import ProductModule from "@medusajs/medusa/product";
-import BundledProductsModule from "../modules/bundled-product";
+import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "@medusajs/medusa/product"
+import BundledProductsModule from "../modules/bundled-product"
 
 export default defineLink(
   BundledProductsModule.linkable.bundle,
@@ -360,9 +360,9 @@ You'll later learn how to query and manage the linked records.
 Next, you'll define the link between the `BundleItem` data model and the `Product` data model. Create the file `src/links/bundle-item-product.ts` with the following content:
 
 ```ts title="src/links/bundle-item-product.ts"
-import { defineLink } from "@medusajs/framework/utils";
-import ProductModule from "@medusajs/medusa/product";
-import BundledProductsModule from "../modules/bundled-product";
+import { defineLink } from "@medusajs/framework/utils"
+import ProductModule from "@medusajs/medusa/product"
+import BundledProductsModule from "../modules/bundled-product"
 
 export default defineLink(
   {
@@ -579,13 +579,13 @@ export const createBundleItemsStep = createStep(
       container.resolve(BUNDLED_PRODUCT_MODULE)
 
     const bundleItems = await bundledProductModuleService.createBundleItems(
-      items.map(item => ({
+      items.map((item) => ({
         bundle_id,
         quantity: item.quantity,
       }))
     )
 
-    return new StepResponse(bundleItems, bundleItems.map(item => item.id))
+    return new StepResponse(bundleItems, bundleItems.map((item) => item.id))
   },
   async (itemIds, { container }) => {
     if (!itemIds?.length) {
@@ -657,7 +657,7 @@ export const createBundledProductWorkflow = createWorkflow(
     const bundleProduct = createProductsWorkflow.runAsStep({
       input: {
         products: [bundleData.product],
-      }
+      },
     })
 
     createRemoteLinkStep([{
@@ -671,7 +671,7 @@ export const createBundledProductWorkflow = createWorkflow(
 
     const bundleProducttemLinks = transform({
       bundleData,
-      bundleItems
+      bundleItems,
     }, (data) => {
       return data.bundleItems.map((item, index) => ({
         [BUNDLED_PRODUCT_MODULE]: {
@@ -758,16 +758,16 @@ export const bundledProductsRouteHighlights = [
 ```ts title="src/api/admin/bundled-products/route.ts" highlights={bundledProductsRouteHighlights}
 import { 
   AuthenticatedMedusaRequest, 
-  MedusaResponse
-} from "@medusajs/framework/http";
-import { z } from "zod";
+  MedusaResponse,
+} from "@medusajs/framework/http"
+import { z } from "zod"
 import { 
-  AdminCreateProduct
+  AdminCreateProduct,
 } from "@medusajs/medusa/api/admin/products/validators"
 import { 
   createBundledProductWorkflow, 
-  CreateBundledProductWorkflowInput
-} from "../../../workflows/create-bundled-product";
+  CreateBundledProductWorkflowInput,
+} from "../../../workflows/create-bundled-product"
 
 export const PostBundledProductsSchema = z.object({
   title: z.string(),
@@ -785,12 +785,12 @@ export async function POST(
   res: MedusaResponse
 ) {
   const { 
-    result: bundledProduct
+    result: bundledProduct,
   } = await createBundledProductWorkflow(req.scope)
     .run({
       input: {
         bundle: req.validatedBody,
-      } as CreateBundledProductWorkflowInput
+      } as CreateBundledProductWorkflowInput,
     })
 
   res.json({
@@ -843,9 +843,9 @@ export const middlewaresHighlights = [
 ```ts title="src/api/middlewares.ts" highlights={middlewaresHighlights}
 import {
   defineMiddlewares, 
-  validateAndTransformBody
-} from "@medusajs/framework/http";
-import { PostBundledProductsSchema } from "./admin/bundled-products/route";
+  validateAndTransformBody,
+} from "@medusajs/framework/http"
+import { PostBundledProductsSchema } from "./admin/bundled-products/route"
 
 export default defineMiddlewares({
   routes: [
@@ -856,7 +856,7 @@ export default defineMiddlewares({
         validateAndTransformBody(PostBundledProductsSchema),
       ],
     },
-  ]
+  ],
 })
 ```
 
@@ -893,10 +893,10 @@ export async function GET(
 
   const { 
     data: bundledProducts, 
-    metadata: { count, take, skip } = {} 
+    metadata: { count, take, skip } = {}, 
   } = await query.graph({
     entity: "bundle",
-    ...req.queryConfig
+    ...req.queryConfig,
   })
 
   res.json({
@@ -932,8 +932,8 @@ export const getBundledProductsMiddlewareHighlights = [
 
 ```ts title="src/api/middlewares.ts" highlights={getBundledProductsMiddlewareHighlights}
 // other imports...
-import { validateAndTransformQuery } from "@medusajs/framework/http";
-import { createFindParams } from "@medusajs/medusa/api/utils/validators";
+import { validateAndTransformQuery } from "@medusajs/framework/http"
+import { createFindParams } from "@medusajs/medusa/api/utils/validators"
 
 export default defineMiddlewares({
   routes: [
@@ -955,7 +955,7 @@ export default defineMiddlewares({
         }),
       ],
     },
-  ]
+  ],
 })
 ```
 
@@ -1253,7 +1253,7 @@ import {
   Input,
   Label,
   Select,
-  toast
+  toast,
 } from "@medusajs/ui"
 import { useState, useRef, useCallback, useMemo } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
@@ -1270,7 +1270,7 @@ const CreateBundledProduct = () => {
     {
       product_id: undefined,
       quantity: 1,
-    }
+    },
   ])
   // TODO fetch products
 }
@@ -1303,8 +1303,9 @@ const [products, setProducts] = useState<HttpTypes.AdminProduct[]>([])
 const productsLimit = 15
 const [currnetProductPage, setCurrentProductPage] = useState(0)
 const [productsCount, setProductsCount] = useState(0)
-const hasNextPage = useMemo(() => 
-  productsCount ? productsCount > productsLimit : true, 
+const hasNextPage = useMemo(() => {
+  return productsCount ? productsCount > productsLimit : true
+}, 
 [productsCount, productsLimit])
 const queryClient = useQueryClient()
 useQuery({
@@ -1353,14 +1354,14 @@ export const createBundledProductComponentHighlights3 = [
 ```tsx title="src/admin/components/create-bundled-product.tsx" highlights={createBundledProductComponentHighlights3}
 const { 
   mutateAsync: createBundledProduct, 
-  isPending: isCreating
+  isPending: isCreating,
 } = useMutation({
   mutationFn: async (data: Record<string, any>) => {
     await sdk.client.fetch("/admin/bundled-products", {
       method: "POST",
-      body: data
+      body: data,
     })
-  }
+  },
 })
 
 const handleCreate = async () => {
@@ -1372,8 +1373,8 @@ const handleCreate = async () => {
         options: [
           {
             title: "Default",
-            values: ["default"]
-          }
+            values: ["default"],
+          },
         ],
         status: "published",
         variants: [
@@ -1382,21 +1383,21 @@ const handleCreate = async () => {
             // You can set prices in the product's page
             prices: [],
             options: {
-              Default: "default"
+              Default: "default",
             },
-            manage_inventory: false
-          }
-        ]
+            manage_inventory: false,
+          },
+        ],
       },
       items: items.map((item) => ({
         product_id: item.product_id,
         quantity: item.quantity,
-      }))
+      })),
     })
     setOpen(false)
     toast.success("Bundled product created successfully")
     queryClient.invalidateQueries({
-      queryKey: ["bundled-products"]
+      queryKey: ["bundled-products"],
     })
     setTitle("")
     setItems([{ product_id: undefined, quantity: 1 }])
@@ -1452,7 +1453,7 @@ const BundledProductItem = ({
   setItems, 
   products, 
   fetchMoreProducts, 
-  hasNextPage
+  hasNextPage,
 }: BundledProductItemProps) => {
   const observer = useRef(
     new IntersectionObserver(
@@ -1491,14 +1492,14 @@ const BundledProductItem = ({
           value={item.product_id} 
           onValueChange={(value) => 
             setItems((items) => 
-              items.map((item, i) => 
-                i === index 
+              items.map((item, i) => {
+                return i === index 
                   ? { 
                       ...item, 
                       product_id: value, 
                     } 
                   : item
-              )
+              })
             )
           }
         >
@@ -1530,11 +1531,11 @@ const BundledProductItem = ({
             value={item.quantity}
             onChange={(e) => 
               setItems((items) => 
-                items.map((item, i) => 
-                  i === index 
+                items.map((item, i) => {
+                  return i === index 
                     ? { ...item, quantity: parseInt(e.target.value) } 
                     : item
-                )
+                })
               )
             }
           />
@@ -1838,8 +1839,8 @@ export const prepareBundleCartDataStep = createStep(
         quantity: item.quantity * quantity,
         metadata: {
           bundle_id: bundle.id,
-          quantity: quantity
-        }
+          quantity: quantity,
+        },
       }
     })
 
@@ -1869,8 +1870,8 @@ return {
   unit_price: 100,
   metadata: {
     bundle_id: bundle.id,
-    quantity: quantity
-  }
+    quantity: quantity,
+  },
 }
 ```
 
@@ -1895,15 +1896,15 @@ export const addBundleToCartWorkflowHighlights = [
 import { 
   createWorkflow, 
   transform, 
-  WorkflowResponse
+  WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk"
 import { 
   addToCartWorkflow, 
-  useQueryGraphStep
+  useQueryGraphStep,
 } from "@medusajs/medusa/core-flows"
 import { 
   prepareBundleCartDataStep, 
-  PrepareBundleCartDataStepInput
+  PrepareBundleCartDataStepInput,
 } from "./steps/prepare-bundle-cart-data"
 
 type AddBundleToCartWorkflowInput = {
@@ -1926,27 +1927,27 @@ export const addBundleToCartWorkflow = createWorkflow(
         "id",
         "items.*",
         "items.product.*",
-        "items.product.variants.*"
+        "items.product.variants.*",
       ],
       filters: {
-        id: bundle_id
+        id: bundle_id,
       },
       options: {
-        throwIfKeyNotFound: true
-      }
+        throwIfKeyNotFound: true,
+      },
     })
     
     const itemsToAdd = prepareBundleCartDataStep({
       bundle: data[0],
       quantity,
-      items
+      items,
     } as unknown as PrepareBundleCartDataStepInput)
 
     addToCartWorkflow.runAsStep({
       input: {
         cart_id,
-        items: itemsToAdd
-      }
+        items: itemsToAdd,
+      },
     })
 
     // @ts-ignore
@@ -1979,19 +1980,19 @@ You'll now create the API route that exposes the workflow's functionalities to s
 To create the API route, create the file `src/api/store/carts/[id]/line-item-bundles/route.ts` with the following content:
 
 ```ts title="src/api/store/carts/[id]/line-item-bundles/route.ts" collapsibleLines="1-6" expandButtonLabel="Show Imports"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
-import { z } from "zod";
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { z } from "zod"
 import { 
-  addBundleToCartWorkflow
-} from "../../../../../workflows/add-bundle-to-cart";
+  addBundleToCartWorkflow,
+} from "../../../../../workflows/add-bundle-to-cart"
 
 export const PostCartsBundledLineItemsSchema = z.object({
   bundle_id: z.string(),
   quantity: z.number().default(1),
   items: z.array(z.object({
     item_id: z.string(),
-    variant_id: z.string()
-  }))
+    variant_id: z.string(),
+  })),
 })
 
 type PostCartsBundledLineItemsSchema = z.infer<
@@ -2008,12 +2009,12 @@ export async function POST(
         cart_id: req.params.id,
         bundle_id: req.validatedBody.bundle_id,
         quantity: req.validatedBody.quantity || 1,
-        items: req.validatedBody.items
-      }
+        items: req.validatedBody.items,
+      },
     })
 
   res.json({
-    cart
+    cart,
   })
 }
 ```
@@ -2039,8 +2040,8 @@ In `src/api/middlewares.ts`, add a new middleware object to the `routes` array:
 ```ts title="src/api/middlewares.ts"
 // other imports...
 import { 
-  PostCartsBundledLineItemsSchema
-} from "./store/carts/[id]/line-item-bundles/route";
+  PostCartsBundledLineItemsSchema,
+} from "./store/carts/[id]/line-item-bundles/route"
 
 export default defineMiddlewares({
   routes: [
@@ -2049,10 +2050,10 @@ export default defineMiddlewares({
       matcher: "/store/carts/:id/line-item-bundles",
       methods: ["POST"],
       middlewares: [
-        validateAndTransformBody(PostCartsBundledLineItemsSchema)
+        validateAndTransformBody(PostCartsBundledLineItemsSchema),
       ],
-    }
-  ]
+    },
+  ],
 })
 ```
 
@@ -2076,8 +2077,8 @@ export const bundleProductsRouteHighlights = [
 ]
 
 ```ts title="src/api/store/bundle-products/[id]/route.ts" highlights={bundleProductsRouteHighlights} 
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
-import { QueryContext } from "@medusajs/framework/utils";
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { QueryContext } from "@medusajs/framework/utils"
 
 export async function GET(
   req: MedusaRequest,
@@ -2100,7 +2101,7 @@ export async function GET(
       "items.product.variants.options.*",
     ],
     filters: {
-      id
+      id,
     },
     context: {
       items: {
@@ -2111,16 +2112,16 @@ export async function GET(
               currency_code,
             }),
           },
-        }
-      }
+        },
+      },
     },
   
   }, {
-    throwIfKeyNotFound: true
+    throwIfKeyNotFound: true,
   })
 
   res.json({
-    bundle_product: data[0]
+    bundle_product: data[0],
   })
 }
 ```
@@ -2283,7 +2284,7 @@ const pricedProduct = await listProducts({
   countryCode: params.countryCode,
   queryParams: { 
     handle: params.handle, 
-    fields: "*bundle"
+    fields: "*bundle",
   },
 }).then(({ response }) => response.products[0])
 ```
@@ -2313,7 +2314,7 @@ export async function addBundleToCart({
   bundleId,
   quantity,
   countryCode,
-  items
+  items,
 }: {
   bundleId: string
   quantity: number
@@ -2344,7 +2345,7 @@ export async function addBundleToCart({
     body: {
       bundle_id: bundleId,
       quantity,
-      items
+      items,
     },
     headers,
   })
@@ -2442,7 +2443,7 @@ export const bundleActionsComponentHighlights2 = [
 // For each product, if it has only 1 variant, preselect it
 useEffect(() => {
   const initialOptions: Record<string, Record<string, string>> = {}
-  bundle.items.forEach(item => {
+  bundle.items.forEach((item) => {
     if (item.product.variants?.length === 1) {
       const variantOptions = optionsAsKeymap(item.product.variants[0].options)
       initialOptions[item.product.id] = variantOptions ?? {}
@@ -2454,10 +2455,10 @@ useEffect(() => {
 }, [bundle.items])
 
 const selectedVariants = useMemo(() => {
-  return bundle.items.map(item => {
-    if (!item.product.variants || item.product.variants.length === 0) return undefined
+  return bundle.items.map((item) => {
+    if (!item.product.variants || item.product.variants.length === 0) {return undefined}
 
-    return item.product.variants.find(v => {
+    return item.product.variants.find((v) => {
       const variantOptions = optionsAsKeymap(v.options)
       return isEqual(variantOptions, productOptions[item.product.id])
     })
@@ -2465,17 +2466,17 @@ const selectedVariants = useMemo(() => {
 }, [bundle.items, productOptions])
 
 const setOptionValue = (productId: string, optionId: string, value: string) => {
-  setProductOptions(prev => ({
+  setProductOptions((prev) => ({
     ...prev,
     [productId]: {
       ...prev[productId],
       [optionId]: value,
-    }
+    },
   }))
 }
 
 const allVariantsSelected = useMemo(() => {
-  return selectedVariants.every(v => v !== undefined)
+  return selectedVariants.every((v) => v !== undefined)
 }, [selectedVariants])
 
 // TODO handle add to cart
@@ -2497,7 +2498,7 @@ Replace the `TODO` in the `BundleActions` component with the following code:
 
 ```tsx title="src/modules/products/components/bundle-actions/index.tsx" badgeLabel="Storefront" badgeColor="blue"
 const handleAddToCart = async () => {
-  if (!allVariantsSelected) return
+  if (!allVariantsSelected) {return}
 
   setIsAdding(true)
   await addBundleToCart({
@@ -2541,6 +2542,7 @@ Then, in the `return` statement, pass the `className` prop in the classes of the
     className={clx("text-xl-semi", {
       "text-ui-fg-interactive": selectedPrice.price_type === "sale",
     }, className)}
+  >
    {/* ... */}
   </span>
 </div>
@@ -2805,11 +2807,11 @@ export const removeBundleFromCartWorkflowHighlights = [
 import { 
   createWorkflow, 
   transform, 
-  WorkflowResponse
+  WorkflowResponse,
 } from "@medusajs/framework/workflows-sdk"
 import { 
   deleteLineItemsWorkflow, 
-  useQueryGraphStep
+  useQueryGraphStep,
 } from "@medusajs/medusa/core-flows"
 
 type RemoveBundleFromCartWorkflowInput = {
@@ -2831,7 +2833,7 @@ export const removeBundleFromCartWorkflow = createWorkflow(
       },
       options: {
         throwIfKeyNotFound: true,
-      }
+      },
     })
 
     const itemsToRemove = transform({
@@ -2847,7 +2849,7 @@ export const removeBundleFromCartWorkflow = createWorkflow(
       input: {
         cart_id,
         ids: itemsToRemove,
-      }
+      },
     })
 
     // retrieve cart again
@@ -2886,10 +2888,10 @@ Next, you'll create the API route that exposes the workflow's functionality to s
 Create the file `src/api/store/carts/[id]/line-item-bundles/[bundle_id]/route.ts` with the following content:
 
 ```ts title="src/api/store/carts/[id]/line-item-bundles/[bundle_id]/route.ts"
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
+import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
 import { 
-  removeBundleFromCartWorkflow
-} from "../../../../../../workflows/remove-bundle-from-cart";
+  removeBundleFromCartWorkflow,
+} from "../../../../../../workflows/remove-bundle-from-cart"
 
 export async function DELETE(
   req: MedusaRequest,
@@ -2900,11 +2902,11 @@ export async function DELETE(
       input: {
         cart_id: req.params.id,
         bundle_id: req.params.bundle_id,
-      }
+      },
     })
 
   res.json({
-    cart
+    cart,
   })
 }
 ```

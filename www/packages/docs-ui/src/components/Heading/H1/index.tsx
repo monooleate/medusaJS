@@ -2,7 +2,7 @@ import clsx from "clsx"
 import React from "react"
 import { LlmDropdown } from "../../LlmDropdown"
 
-type H1Props = React.HTMLAttributes<HTMLHeadingElement> & {
+export type H1Props = React.HTMLAttributes<HTMLHeadingElement> & {
   id?: string
   hideLlmDropdown?: boolean
 }
