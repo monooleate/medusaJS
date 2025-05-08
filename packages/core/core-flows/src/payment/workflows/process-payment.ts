@@ -102,9 +102,7 @@ export const processPaymentWorkflow = createWorkflow(
     }).then(() => {
       completeCartWorkflow
         .runAsStep({
-          input: {
-            id: cartPaymentCollection.data[0].cart_id,
-          },
+          input: { id: cartPaymentCollection.data[0].cart_id },
         })
         .config({
           continueOnPermanentFailure: true, // Continue payment processing even if cart completion fails
