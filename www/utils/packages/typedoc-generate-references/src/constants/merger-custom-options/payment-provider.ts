@@ -11,6 +11,7 @@ const paymentProviderOptions: FormattingOptionsType = {
       slug: "/references/payment/provider",
       tags: ["payment", "server", "how to"],
       sidebar_label: "Create Payment Provider",
+      keywords: ["payment", "provider", "integration"],
     },
     reflectionTitle: {
       fullReplacement: "How to Create a Payment Module Provider",

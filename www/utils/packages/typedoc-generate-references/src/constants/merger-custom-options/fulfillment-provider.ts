@@ -11,6 +11,7 @@ const fulfillmentProviderOptions: FormattingOptionsType = {
       slug: "/references/fulfillment/provider",
       tags: ["fulfillment", "server", "how to"],
       sidebar_label: "Create Fulfillment Provider",
+      keywords: ["fulfillment", "shipping", "provider", "integration"],
     },
     reflectionTitle: {
       fullReplacement: "How to Create a Fulfillment Module Provider",

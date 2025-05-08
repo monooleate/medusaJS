@@ -11,6 +11,7 @@ const authProviderOptions: FormattingOptionsType = {
       slug: "/references/auth/provider",
       tags: ["auth", "server", "how to"],
       sidebar_label: "Create Auth Provider",
+      keywords: ["auth", "provider", "integration"],
     },
     reflectionTitle: {
       fullReplacement: "How to Create an Auth Module Provider",

@@ -10,6 +10,7 @@ const taxProviderOptions: FormattingOptionsType = {
       slug: "/references/tax/provider",
       tags: ["tax", "server", "how to"],
       sidebar_label: "Create Tax Provider",
+      keywords: ["tax", "provider", "integration"],
     },
     reflectionTitle: {
       fullReplacement: "How to Create a Tax Module Provider",
