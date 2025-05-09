@@ -193,7 +193,7 @@ export const generatedEditDates = {
   "app/commerce-modules/auth/_events/page.mdx": "2024-07-03T19:27:13+03:00",
   "app/commerce-modules/auth/auth-identity-and-actor-types/page.mdx": "2025-01-07T09:02:27.235Z",
   "app/commerce-modules/api-key/page.mdx": "2025-04-17T08:48:16.605Z",
-  "app/commerce-modules/auth/create-actor-type/page.mdx": "2024-12-25T13:26:27.176Z",
+  "app/commerce-modules/auth/create-actor-type/page.mdx": "2025-05-09T07:09:41.615Z",
   "app/infrastructure-modules/page.mdx": "2025-04-17T08:29:00.388Z",
   "app/infrastructure-modules/workflow-engine/redis/page.mdx": "2024-11-19T16:37:47.262Z",
   "app/infrastructure-modules/notification/sendgrid/page.mdx": "2025-03-27T17:39:10.840Z",

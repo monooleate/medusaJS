@@ -1305,6 +1305,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
                       "loaded": true,
                       "isPathHref": true,
                       "type": "ref",
+                      "title": "processPaymentWorkflow",
+                      "path": "https://docs.medusajs.com/resources/references/medusa-workflows/processPaymentWorkflow",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "ref",
                       "title": "refreshCartItemsWorkflow",
                       "path": "https://docs.medusajs.com/resources/references/medusa-workflows/refreshCartItemsWorkflow",
                       "children": []
@@ -5325,6 +5333,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
                       "type": "ref",
                       "title": "orderExchangeAddNewItemWorkflow",
                       "path": "https://docs.medusajs.com/resources/references/medusa-workflows/orderExchangeAddNewItemWorkflow",
+                      "children": []
+                    },
+                    {
+                      "loaded": true,
+                      "isPathHref": true,
+                      "type": "ref",
+                      "title": "processPaymentWorkflow",
+                      "path": "https://docs.medusajs.com/resources/references/medusa-workflows/processPaymentWorkflow",
                       "children": []
                     },
                     {
