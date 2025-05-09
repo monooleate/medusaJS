@@ -271,6 +271,7 @@ export const OrderEditWorkflowEvents = {
    * {
    *   order_id, // The ID of the order
    *   actions, // (array) The [actions](https://docs.medusajs.com/resources/references/fulfillment/interfaces/fulfillment.OrderChangeActionDTO) to edit the order
+   * }
    * ```
    */
   CONFIRMED: "order-edit.confirmed",
