@@ -254,6 +254,8 @@ export const OrderEditWorkflowEvents = {
   /**
    * Emitted when an order edit is requested.
    * 
+   * @version 2.8.0
+   * 
    * @eventPayload
    * ```ts
    * {
@@ -266,6 +268,8 @@ export const OrderEditWorkflowEvents = {
   /**
    * Emitted when an order edit request is confirmed.
    * 
+   * @version 2.8.0
+   * 
    * @eventPayload
    * ```ts
    * {
@@ -277,6 +281,8 @@ export const OrderEditWorkflowEvents = {
   CONFIRMED: "order-edit.confirmed",
   /**
    * Emitted when an order edit request is canceled.
+   * 
+   * @version 2.8.0
    * 
    * @eventPayload
    * ```ts
