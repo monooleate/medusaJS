@@ -23,6 +23,7 @@ export type Operation = OpenAPIV3.OperationObject<{
   "x-workflow"?: string
   "x-sidebar-summary"?: string
   "x-events"?: OasEvents[]
+  "x-version"?: string
 }>
 
 export type RequestObject = OpenAPIV3.RequestBodyObject & {

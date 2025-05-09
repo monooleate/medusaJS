@@ -92,8 +92,8 @@ const TagsOperationDescriptionSectionEvent = ({
     useCopy(snippet)
   return (
     <TabsContent value={event.name}>
-      <div className="my-1 flex flex-wrap justify-between items-center mb-1">
-        <div className="flex flex-wrap items-center gap-0.5">
+      <div className="my-1 flex flex-wrap justify-between items-start mb-1">
+        <div className="flex flex-wrap items-center gap-0.5 flex-1">
           <MarkdownContent
             allowedElements={["code", "p", "a"]}
             className={"[&_p:last-child]:!mb-0"}
