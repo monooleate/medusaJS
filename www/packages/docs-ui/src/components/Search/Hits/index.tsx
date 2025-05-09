@@ -126,6 +126,7 @@ export const SearchHits = ({
         "[&_mark]:bg-medusa-bg-highlight",
         "[&_mark]:text-medusa-fg-interactive"
       )}
+      data-group
     >
       {hits.map((item, index) => {
         const hierarchies = Object.values(item.hierarchy)
