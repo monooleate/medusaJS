@@ -86,7 +86,13 @@ export default ModuleProvider(Modules.PAYMENT, {
 })
 \`\`\`
 
-This exports the module provider's definition, indicating that the \`MyPaymentProviderService\` is the module provider's service.`,
+This exports the module provider's definition, indicating that the \`MyPaymentProviderService\` is the module provider's service.
+
+<Note title="Tip>
+
+A payment module provider can have export multiple provider services, where each are registered as a separate payment provider.
+
+</Note>`,
       `## 4. Use Module Provider
 
 To use your Payment Module Provider, add it to the \`providers\` array of the Payment Module in \`medusa-config.ts\`:

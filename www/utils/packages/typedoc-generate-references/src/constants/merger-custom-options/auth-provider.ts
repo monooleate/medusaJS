@@ -74,7 +74,13 @@ export default ModuleProvider(Modules.AUTH, {
 })
 \`\`\`
 
-This exports the module provider's definition, indicating that the \`MyAuthProviderService\` is the module provider's service.`,
+This exports the module provider's definition, indicating that the \`MyAuthProviderService\` is the module provider's service.
+
+<Note title="Tip>
+
+A auth module provider can have export multiple provider services, where each are registered as a separate auth provider.
+
+</Note>`,
       `## 4. Use Module Provider
 
 To use your Auth Module Provider, add it to the \`providers\` array of the Auth Module in \`medusa-config.ts\`:
