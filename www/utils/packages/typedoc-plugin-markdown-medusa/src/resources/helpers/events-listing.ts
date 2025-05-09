@@ -116,6 +116,21 @@ function formatEventsType(
       }
     }
 
+    const versionTag = event.comment?.blockTags.find(
+      (tag) => tag.tag === "@version"
+    )
+
+    if (versionTag) {
+      eventName += `\n`
+      const versionText = versionTag.content
+        .map((content) => content.text)
+        .join("")
+        .trim()
+      eventName += `<Tooltip text="This event was added in version v${versionText}">`
+      eventName += `<Badge variant="blue">v${versionText}</Badge>`
+      eventName += `</Tooltip>`
+    }
+
     content.push(`    <Table.Row>`)
     content.push(`      <Table.Cell>\n${eventName}\n</Table.Cell>`)
     content.push(`      <Table.Cell>\n${eventDescription}\n</Table.Cell>`)
@@ -152,6 +167,10 @@ function formatEventsType(
       .join("")
       .trim()
 
+    const versionTag = event.comment?.blockTags.find(
+      (tag) => tag.tag === "@version"
+    )
+
     content.push(
       getEventHeading({
         titleLevel: subtitleLevel,
@@ -159,6 +178,12 @@ function formatEventsType(
         payload: eventPayload || "",
         deprecated: !!deprecatedTag,
         deprecatedMessage,
+        version: versionTag
+          ? versionTag.content
+              .map((content) => content.text)
+              .join("")
+              .trim()
+          : undefined,
       })
     )
     content.push("")
@@ -191,12 +216,14 @@ function getEventHeading({
   payload,
   deprecated = false,
   deprecatedMessage,
+  version,
 }: {
   titleLevel: number
   eventName: string
   payload: string
   deprecated?: boolean
   deprecatedMessage?: string
+  version?: string
 }) {
   const heading = [eventName]
   if (deprecated) {
@@ -209,6 +236,14 @@ function getEventHeading({
     if (deprecatedMessage?.length) {
       heading.push(`</Tooltip>`)
     }
+  }
+  if (version) {
+    if (deprecated) {
+      heading.push(`\n`)
+    }
+    heading.push(`<Tooltip text="This event was added in version v${version}">`)
+    heading.push(`<Badge variant="blue">v${version}</Badge>`)
+    heading.push(`</Tooltip>`)
   }
   return `<EventHeader headerLvl="${titleLevel}" headerProps={{ id: "${getEventNameSlug(
     eventName

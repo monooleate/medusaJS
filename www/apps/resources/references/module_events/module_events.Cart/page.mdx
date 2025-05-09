@@ -41,14 +41,6 @@ Emitted when a cart's details are updated.
     </Table.Row>
     <Table.Row>
       <Table.Cell>
-[cart.customer_updated](#cartcustomer_updated)
-</Table.Cell>
-      <Table.Cell>
-Emitted when the customer in the cart is updated.
-</Table.Cell>
-    </Table.Row>
-    <Table.Row>
-      <Table.Cell>
 [cart.region_updated](#cartregion_updated)
 </Table.Cell>
       <Table.Cell>
@@ -107,30 +99,6 @@ The following workflows emit this event when they're executed. These workflows a
 - [updateCartWorkflow](/references/medusa-workflows/updateCartWorkflow)
 - [addToCartWorkflow](/references/medusa-workflows/addToCartWorkflow)
 - [addShippingMethodToCartWorkflow](/references/medusa-workflows/addShippingMethodToCartWorkflow)
-
----
-
-<EventHeader headerLvl="2" headerProps={{ id: "cartcustomer_updated", children: (<>cart.customer_updated</>), className: "flex flex-wrap justify-center gap-docs_0.25" }} eventName="cart.customer_updated" payload={`\`\`\`ts
-{
-  id, // The ID of the cart
-}
-\`\`\``} />
-
-Emitted when the customer in the cart is updated.
-
-### Payload
-
-```ts
-{
-  id, // The ID of the cart
-}
-```
-
-### Workflows Emitting this Event
-
-The following workflows emit this event when they're executed. These workflows are executed by Medusa's API routes. You can also view the events emitted by API routes in the [Store](https://docs.medusajs.com/api/store) and [Admin](https://docs.medusajs.com/api/admin) API references.
-
-- [updateCartWorkflow](/references/medusa-workflows/updateCartWorkflow)
 
 ---
 

@@ -46,7 +46,7 @@ export const EventHeader = ({
 
   return (
     <div className="flex items-center justify-between flex-wrap">
-      <Header {...headerProps}>{eventName}</Header>
+      <Header {...headerProps}>{headerProps.children ?? eventName}</Header>
       <DropdownMenu
         dropdownButtonContent={
           <>

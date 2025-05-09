@@ -41,10 +41,24 @@ export default function () {
         const eventPayloadFormatted = eventPayload
           .replace("```ts\n", "")
           .replace("\n```", "")
-        const isDeprecated = commentContent.length >= 4
+        const isDeprecatedOrHasVersion = commentContent.length >= 4
+        const deprecatedIndex = isDeprecatedOrHasVersion
+          ? commentContent.slice(3).findIndex((c) => c.trim() === "deprecated")
+          : -1
+        const isDeprecated = deprecatedIndex !== -1
+        const deprecatedText = (
+          isDeprecated ? commentContent[3 + deprecatedIndex] || "" : ""
+        ).trim()
+        const version = isDeprecatedOrHasVersion
+          ? commentContent
+              .slice(3)
+              .find((c) => c.trim().startsWith("version: "))
+          : undefined
+        const versionText = (
+          version ? version.replace("version: ", "") : ""
+        ).trim()
 
         if (isDeprecated) {
-          const deprecatedText = commentContent[4]?.trim()
           eventNameFormatted += `\n`
           if (deprecatedText) {
             eventNameFormatted += `<Tooltip text="${deprecatedText}">`
@@ -53,6 +67,13 @@ export default function () {
           if (deprecatedText) {
             eventNameFormatted += `</Tooltip>`
           }
+        }
+
+        if (versionText) {
+          eventNameFormatted += `\n\n`
+          eventNameFormatted += `<Tooltip text="This event was added in version v${versionText}">`
+          eventNameFormatted += `<Badge variant="blue">v${versionText}</Badge>`
+          eventNameFormatted += `</Tooltip>\n`
         }
 
         str += `    <Table.Row>\n`
