@@ -1668,8 +1668,8 @@ medusaIntegrationTestRunner({
                   is_custom_price: false,
                   quantity: 1,
                   requires_shipping: false, // product doesn't have a shipping profile nor inventory items that require shipping
-                  subtitle: "Test product",
-                  title: "Test variant",
+                  title: "Test product",
+                  subtitle: "Test variant",
                   unit_price: 3000,
                   updated_at: expect.any(Date),
                 }),
@@ -1719,8 +1719,8 @@ medusaIntegrationTestRunner({
                   is_custom_price: false,
                   quantity: 1,
                   requires_shipping: false,
-                  subtitle: "Test product",
-                  title: "Test variant",
+                  title: "Test product",
+                  subtitle: "Test variant",
                   unit_price: 2000,
                   updated_at: expect.any(Date),
                 }),
@@ -1841,7 +1841,8 @@ medusaIntegrationTestRunner({
                   unit_price: 3000,
                   is_tax_inclusive: true,
                   quantity: 1,
-                  title: "Test variant",
+                  title: "Test product",
+                  subtitle: "Test variant",
                 }),
               ]),
             })
@@ -2093,7 +2094,8 @@ medusaIntegrationTestRunner({
                   unit_price: 1500,
                   is_tax_inclusive: true,
                   quantity: 1,
-                  title: "Test variant",
+                  title: "Test product",
+                  subtitle: "Test variant",
                 }),
               ]),
             })
@@ -2322,7 +2324,7 @@ medusaIntegrationTestRunner({
                     unit_price: 3000,
                     is_tax_inclusive: true,
                     quantity: 1,
-                    title: "Test variant",
+                    title: "Test product",
                   }),
                 ]),
               })
@@ -2478,7 +2480,7 @@ medusaIntegrationTestRunner({
                     unit_price: 3000,
                     is_tax_inclusive: true,
                     quantity: 1,
-                    title: "Test variant",
+                    title: "Test product",
                   }),
                 ]),
               })
@@ -2566,7 +2568,7 @@ medusaIntegrationTestRunner({
                 quantity: 1,
                 unit_price: 5000,
                 is_custom_price: true,
-                title: "Test variant",
+                title: "Test product",
               },
             ],
           })
@@ -2600,7 +2602,7 @@ medusaIntegrationTestRunner({
               unit_price: 5000,
               is_custom_price: true,
               quantity: 2,
-              title: "Test variant",
+              title: "Test product",
             })
           )
         })
