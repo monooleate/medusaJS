@@ -112,21 +112,12 @@ export const completeCartWorkflow = createWorkflow(
       name: "cart-query",
     })
 
-    // this is only run when the cart is completed for the first time (same condition as below)
-    // but needs to be before the validation step
-    const paymentSessions = when(
-      "create-order-payment-compensation",
-      { orderId },
-      ({ orderId }) => !orderId
-    ).then(() => {
-      const paymentSessions = validateCartPaymentsStep({ cart })
-      // purpose of this step is to run compensation if cart completion fails
-      // and tries to cancel or refund the payment depending on the status.
-      compensatePaymentIfNeededStep({
-        payment_session_id: paymentSessions[0].id,
-      })
-
-      return paymentSessions
+    // this needs to be before the validation step
+    const paymentSessions = validateCartPaymentsStep({ cart })
+    // purpose of this step is to run compensation if cart completion fails
+    // and tries to refund the payment if captured
+    compensatePaymentIfNeededStep({
+      payment_session_id: paymentSessions[0].id,
     })
 
     const validate = createHook("validate", {
