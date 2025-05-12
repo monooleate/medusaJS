@@ -12,6 +12,7 @@ import { Feedback, Badge, Link, FeatureFlagNotice, H2, Tooltip } from "docs-ui"
 import { usePathname } from "next/navigation"
 import { TagsOperationDescriptionSectionWorkflowBadgeProps } from "./WorkflowBadge"
 import { TagsOperationDescriptionSectionEventsProps } from "./Events"
+import { TagsOperationDescriptionSectionDeprecationNoticeProps } from "./DeprecationNotice"
 
 const TagsOperationDescriptionSectionSecurity =
   dynamic<TagsOperationDescriptionSectionSecurityProps>(
@@ -38,6 +39,11 @@ const TagsOperationDescriptionSectionEvents =
     async () => import("./Events")
   ) as React.FC<TagsOperationDescriptionSectionEventsProps>
 
+const TagsOperationDescriptionSectionDeprecationNotice =
+  dynamic<TagsOperationDescriptionSectionDeprecationNoticeProps>(
+    async () => import("./DeprecationNotice")
+  ) as React.FC<TagsOperationDescriptionSectionDeprecationNoticeProps>
+
 type TagsOperationDescriptionSectionProps = {
   operation: OpenAPI.Operation
 }
@@ -52,9 +58,10 @@ const TagsOperationDescriptionSection = ({
       <H2>
         {operation.summary}
         {operation.deprecated && (
-          <Badge variant="orange" className="ml-0.5">
-            deprecated
-          </Badge>
+          <TagsOperationDescriptionSectionDeprecationNotice
+            deprecationMessage={operation["x-deprecated_message"]}
+            className="ml-0.5"
+          />
         )}
         {operation["x-featureFlag"] && (
           <FeatureFlagNotice
