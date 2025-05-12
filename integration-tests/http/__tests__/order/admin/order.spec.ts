@@ -1014,16 +1014,22 @@ medusaIntegrationTestRunner({
       let inventoryItemDesk
       let inventoryItemLeg
 
+      let region
+      let salesChannel
+      let stockLocation
+      let shippingOption
+      let storeHeaders
+
       beforeEach(async () => {
         const container = getContainer()
 
         const publishableKey = await generatePublishableKey(container)
 
-        const storeHeaders = generateStoreHeaders({
+        storeHeaders = generateStoreHeaders({
           publishableKey,
         })
 
-        const region = (
+        region = (
           await api.post(
             "/admin/regions",
             { name: "Test region", currency_code: "usd" },
@@ -1031,7 +1037,7 @@ medusaIntegrationTestRunner({
           )
         ).data.region
 
-        const salesChannel = (
+        salesChannel = (
           await api.post(
             "/admin/sales-channels",
             { name: "first channel", description: "channel" },
@@ -1039,7 +1045,7 @@ medusaIntegrationTestRunner({
           )
         ).data.sales_channel
 
-        const stockLocation = (
+        stockLocation = (
           await api.post(
             `/admin/stock-locations`,
             { name: "test location" },
@@ -1087,7 +1093,7 @@ medusaIntegrationTestRunner({
           adminHeaders
         )
 
-        const shippingProfile = (
+        shippingProfile = (
           await api.post(
             `/admin/shipping-profiles`,
             { name: `test-${stockLocation.id}`, type: "default" },
@@ -1160,7 +1166,7 @@ medusaIntegrationTestRunner({
           adminHeaders
         )
 
-        const shippingOption = (
+        shippingOption = (
           await api.post(
             `/admin/shipping-options`,
             {
@@ -1241,6 +1247,227 @@ medusaIntegrationTestRunner({
         ).data.order
       })
 
+      it("should create and cancel a fulfillment with reservations recreation multiple times", async () => {
+        const inventoryItemTablet = (
+          await api.post(
+            `/admin/inventory-items`,
+            { sku: "tablet" },
+            adminHeaders
+          )
+        ).data.inventory_item
+
+        await api.post(
+          `/admin/inventory-items/${inventoryItemTablet.id}/location-levels`,
+          {
+            location_id: stockLocation.id,
+            stocked_quantity: 10,
+          },
+          adminHeaders
+        )
+
+        const productTablet = (
+          await api.post(
+            "/admin/products",
+            {
+              title: `Tablet`,
+              shipping_profile_id: shippingProfile.id,
+              options: [{ title: "color", values: ["green"] }],
+              variants: [
+                {
+                  title: "Green tablet",
+                  sku: "green-tablet",
+                  inventory_items: [
+                    {
+                      inventory_item_id: inventoryItemTablet.id,
+                      required_quantity: 1,
+                    },
+                  ],
+                  prices: [
+                    {
+                      currency_code: "usd",
+                      amount: 1000,
+                    },
+                  ],
+                  options: {
+                    color: "green",
+                  },
+                },
+              ],
+            },
+            adminHeaders
+          )
+        ).data.product
+
+        const cartTablet = (
+          await api.post(
+            `/store/carts`,
+            {
+              currency_code: "usd",
+              email: "tony@stark-industries.com",
+              region_id: region.id,
+              shipping_address: {
+                address_1: "test address 1",
+                address_2: "test address 2",
+                city: "ny",
+                country_code: "us",
+                province: "ny",
+                postal_code: "94016",
+              },
+              billing_address: {
+                address_1: "test billing address 1",
+                address_2: "test billing address 2",
+                city: "ny",
+                country_code: "us",
+                province: "ny",
+                postal_code: "94016",
+              },
+              sales_channel_id: salesChannel.id,
+              items: [
+                { quantity: 1, variant_id: productTablet.variants[0].id },
+              ],
+            },
+            storeHeaders
+          )
+        ).data.cart
+
+        await api.post(
+          `/store/carts/${cartTablet.id}/shipping-methods`,
+          { option_id: shippingOption.id },
+          storeHeaders
+        )
+
+        const paymentCollectionTablet = (
+          await api.post(
+            `/store/payment-collections`,
+            {
+              cart_id: cartTablet.id,
+            },
+            storeHeaders
+          )
+        ).data.payment_collection
+
+        await api.post(
+          `/store/payment-collections/${paymentCollectionTablet.id}/payment-sessions`,
+          { provider_id: "pp_system_default" },
+          storeHeaders
+        )
+
+        const tabletOrder = (
+          await api.post(
+            `/store/carts/${cartTablet.id}/complete`,
+            {},
+            storeHeaders
+          )
+        ).data.order
+
+        const lineItemId = tabletOrder.items[0].id
+
+        let reservations = (await api.get(`/admin/reservations`, adminHeaders))
+          .data.reservations
+
+        expect(reservations).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              line_item_id: lineItemId,
+              inventory_item_id: inventoryItemTablet.id,
+              quantity: 1,
+            }),
+          ])
+        )
+
+        // create a fulfillment for the entiretablet order
+        const fulOrder = (
+          await api.post(
+            `/admin/orders/${tabletOrder.id}/fulfillments?fields=*fulfillments,*fulfillments.items`,
+            {
+              items: [{ id: tabletOrder.items[0].id, quantity: 1 }],
+            },
+            adminHeaders
+          )
+        ).data.order
+
+        reservations = (
+          await api.get(
+            `/admin/reservations?line_item_id[]=${lineItemId}`,
+            adminHeaders
+          )
+        ).data.reservations
+
+        // no more reservations since everything is fuliflled
+        expect(reservations).toEqual(expect.arrayContaining([]))
+
+        // cancel the fulfillment
+        await api.post(
+          `/admin/orders/${tabletOrder.id}/fulfillments/${fulOrder.fulfillments[0].id}/cancel`,
+          {},
+          adminHeaders
+        )
+
+        reservations = (
+          await api.get(
+            `/admin/reservations?line_item_id=${lineItemId}`,
+            adminHeaders
+          )
+        ).data.reservations
+
+        // reservations are recreated after the fulfillment is canceled
+        expect(reservations).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              line_item_id: lineItemId,
+              inventory_item_id: inventoryItemTablet.id,
+              quantity: 1,
+            }),
+          ])
+        )
+
+        // create a fulfillment for the entiretablet order again
+        const fulOrder2 = (
+          await api.post(
+            `/admin/orders/${tabletOrder.id}/fulfillments?fields=*fulfillments,*fulfillments.items`,
+            {
+              items: [{ id: tabletOrder.items[0].id, quantity: 1 }],
+            },
+            adminHeaders
+          )
+        ).data.order
+
+        reservations = (
+          await api.get(
+            `/admin/reservations?line_item_id[]=${lineItemId}`,
+            adminHeaders
+          )
+        ).data.reservations
+
+        // no more reservations since everything is fuliflled again
+        expect(reservations).toEqual(expect.arrayContaining([]))
+
+        // cancel the fulfillment
+        await api.post(
+          `/admin/orders/${tabletOrder.id}/fulfillments/${fulOrder2.fulfillments[0].id}/cancel`,
+          {},
+          adminHeaders
+        )
+
+        reservations = (
+          await api.get(
+            `/admin/reservations?line_item_id=${lineItemId}`,
+            adminHeaders
+          )
+        ).data.reservations
+
+        // reservations are recreated again
+        expect(reservations).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              line_item_id: lineItemId,
+              inventory_item_id: inventoryItemTablet.id,
+              quantity: 1,
+            }),
+          ])
+        )
+      })
+
       it("should correctly manage reservations when canceling a fulfillment (with inventory kit)", async () => {
         let reservations = (await api.get(`/admin/reservations`, adminHeaders))
           .data.reservations
@@ -1257,6 +1484,8 @@ medusaIntegrationTestRunner({
             }),
           ])
         )
+
+        const lineItemId = order.items[0].id
 
         // 1. create a partial fulfillment
         const fulOrder = (
@@ -1339,8 +1568,12 @@ medusaIntegrationTestRunner({
           )
         ).data.order
 
-        reservations = (await api.get(`/admin/reservations`, adminHeaders)).data
-          .reservations
+        reservations = (
+          await api.get(
+            `/admin/reservations?line_item_id[]=${lineItemId}`,
+            adminHeaders
+          )
+        ).data.reservations
 
         // 6. no more reservations since the entier quantity is fulfilled
         expect(reservations).toEqual([])
