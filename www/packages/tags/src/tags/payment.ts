@@ -4,6 +4,10 @@ export const payment = [
     "path": "https://docs.medusajs.com/user-guide/orders/payments"
   },
   {
+    "title": "Saved Payment Methods",
+    "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/saved-payment-methods"
+  },
+  {
     "title": "Customize the Stripe Integration in the Next.js Starter",
     "path": "https://docs.medusajs.com/resources/nextjs-starter/guides/customize-stripe"
   },

@@ -196,6 +196,10 @@ export const workflow = [
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/confirmDraftOrderEditWorkflow"
   },
   {
+    "title": "convertDraftOrderWorkflow",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/convertDraftOrderWorkflow"
+  },
+  {
     "title": "removeDraftOrderActionItemWorkflow",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/removeDraftOrderActionItemWorkflow"
   },

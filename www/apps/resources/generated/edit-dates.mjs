@@ -143,7 +143,7 @@ export const generatedEditDates = {
   "app/storefront-development/checkout/address/page.mdx": "2025-03-27T14:47:14.265Z",
   "app/storefront-development/checkout/complete-cart/page.mdx": "2025-03-27T14:47:14.277Z",
   "app/storefront-development/checkout/email/page.mdx": "2025-03-27T14:47:14.283Z",
-  "app/storefront-development/checkout/payment/stripe/page.mdx": "2025-03-27T14:47:14.276Z",
+  "app/storefront-development/checkout/payment/stripe/page.mdx": "2025-04-22T10:44:51.910Z",
   "app/storefront-development/checkout/payment/page.mdx": "2025-03-27T14:47:14.274Z",
   "app/storefront-development/checkout/shipping/page.mdx": "2025-03-27T14:47:14.270Z",
   "app/storefront-development/checkout/page.mdx": "2024-06-12T19:46:06+02:00",
@@ -6245,5 +6245,6 @@ export const generatedEditDates = {
   "references/events/events.Product/page.mdx": "2025-05-07T15:35:18.140Z",
   "references/events/events.Region/page.mdx": "2025-05-07T15:35:18.145Z",
   "references/events/events.Sales_Channel/page.mdx": "2025-05-07T15:35:18.138Z",
-  "references/events/events.User/page.mdx": "2025-05-07T15:35:18.135Z"
+  "references/events/events.User/page.mdx": "2025-05-07T15:35:18.135Z",
+  "app/how-to-tutorials/tutorials/saved-payment-methods/page.mdx": "2025-05-13T07:40:15.969Z"
 }

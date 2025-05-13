@@ -784,6 +784,25 @@ const generatedgeneratedToolsSidebarSidebar = {
                   "children": []
                 }
               ]
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "category",
+              "title": "Tutorials",
+              "autogenerate_tags": "nextjs+tutorial",
+              "autogenerate_as_ref": true,
+              "sort_sidebar": "alphabetize",
+              "children": [
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "ref",
+                  "title": "Saved Payment Methods",
+                  "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/saved-payment-methods",
+                  "children": []
+                }
+              ]
             }
           ]
         }

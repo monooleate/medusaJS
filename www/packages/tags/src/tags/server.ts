@@ -56,6 +56,10 @@ export const server = [
     "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/product-reviews"
   },
   {
+    "title": "Saved Payment Methods",
+    "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/saved-payment-methods"
+  },
+  {
     "title": "Create Cache Module",
     "path": "https://docs.medusajs.com/resources/infrastructure-modules/cache/create"
   },

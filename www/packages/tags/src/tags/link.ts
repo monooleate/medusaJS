@@ -152,6 +152,10 @@ export const link = [
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/markPaymentCollectionAsPaid"
   },
   {
+    "title": "processPaymentWorkflow",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/processPaymentWorkflow"
+  },
+  {
     "title": "createPaymentSessionsWorkflow",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/createPaymentSessionsWorkflow"
   },
@@ -172,6 +176,18 @@ export const link = [
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/createProductsWorkflow"
   },
   {
+    "title": "deleteCollectionsWorkflow",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/deleteCollectionsWorkflow"
+  },
+  {
+    "title": "deleteProductOptionsWorkflow",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/deleteProductOptionsWorkflow"
+  },
+  {
+    "title": "deleteProductTypesWorkflow",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/deleteProductTypesWorkflow"
+  },
+  {
     "title": "deleteProductVariantsWorkflow",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/deleteProductVariantsWorkflow"
   },
@@ -188,12 +204,20 @@ export const link = [
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/upsertVariantPricesWorkflow"
   },
   {
+    "title": "deleteProductCategoriesWorkflow",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/deleteProductCategoriesWorkflow"
+  },
+  {
     "title": "setRegionsPaymentProvidersStep",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/setRegionsPaymentProvidersStep"
   },
   {
     "title": "createRegionsWorkflow",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/createRegionsWorkflow"
+  },
+  {
+    "title": "deleteRegionsWorkflow",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/deleteRegionsWorkflow"
   },
   {
     "title": "updateRegionsWorkflow",
@@ -234,5 +258,13 @@ export const link = [
   {
     "title": "linkSalesChannelsToStockLocationWorkflow",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/linkSalesChannelsToStockLocationWorkflow"
+  },
+  {
+    "title": "deleteUsersWorkflow",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/deleteUsersWorkflow"
+  },
+  {
+    "title": "removeUserAccountWorkflow",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/removeUserAccountWorkflow"
   }
 ]

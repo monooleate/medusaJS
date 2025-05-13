@@ -36,6 +36,10 @@ export const tutorial = [
     "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/product-reviews"
   },
   {
+    "title": "Saved Payment Methods",
+    "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/saved-payment-methods"
+  },
+  {
     "title": "Integrate Contentful",
     "path": "https://docs.medusajs.com/resources/integrations/guides/contentful"
   },
