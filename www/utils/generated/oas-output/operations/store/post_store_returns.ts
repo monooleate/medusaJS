@@ -1,9 +1,18 @@
 /**
- * @oas [post] /store/return
- * operationId: PostReturn
+ * @oas [post] /store/returns
+ * operationId: PostReturns
  * summary: Create Return
  * description: Create a return for an order's items. The admin receives the return and process it from their side.
  * x-authenticated: false
+ * parameters:
+ *   - name: x-publishable-api-key
+ *     in: header
+ *     description: Publishable API Key created in the Medusa Admin.
+ *     required: true
+ *     schema:
+ *       type: string
+ *       externalDocs:
+ *         url: https://docs.medusajs.com/api/store#publishable-api-key
  * requestBody:
  *   content:
  *     application/json:
@@ -13,11 +22,11 @@
  *   - lang: Shell
  *     label: cURL
  *     source: |-
- *       curl -X POST '{backend_url}/store/return' \
- *       -H 'Content-Type: application/json' \
+ *       curl -X POST '{backend_url}/store/returns' \
  *       -H 'x-publishable-api-key: {your_publishable_api_key}' \
+ *       -H 'Content-Type: application/json' \
  *       --data-raw '{
- *         "order_id": "{value}",
+ *         "order_id": "order_123",
  *         "items": [
  *           {
  *             "id": "id_XbfptxUVo2io9EI",
@@ -34,7 +43,7 @@
  *         "location_id": "{value}"
  *       }'
  * tags:
- *   - Return
+ *   - Returns
  * responses:
  *   "200":
  *     description: OK
@@ -55,15 +64,28 @@
  *   "500":
  *     $ref: "#/components/responses/500_error"
  * x-workflow: createAndCompleteReturnOrderWorkflow
- * parameters:
- *   - name: x-publishable-api-key
- *     in: header
- *     description: Publishable API Key created in the Medusa Admin.
- *     required: true
- *     schema:
- *       type: string
- *       externalDocs:
- *         url: https://docs.medusajs.com/api/store#publishable-api-key
+ * x-events:
+ *   - name: order.return_requested
+ *     payload: |-
+ *       ```ts
+ *       {
+ *         order_id, // The ID of the order
+ *         return_id, // The ID of the return
+ *       }
+ *       ```
+ *     description: Emitted when a return request is confirmed.
+ *     deprecated: false
+ *   - name: order.return_received
+ *     payload: |-
+ *       ```ts
+ *       {
+ *         order_id, // The ID of the order
+ *         return_id, // The ID of the return
+ *       }
+ *       ```
+ *     description: Emitted when a return is marked as received.
+ *     deprecated: false
+ * x-version: 2.8.0
  * 
 */
 
