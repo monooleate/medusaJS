@@ -40,7 +40,7 @@ export const paymentSidebar = [
           {
             type: "link",
             path: "/commerce-modules/payment/payment-provider",
-            title: "Payment Provider Module",
+            title: "Payment Module Provider",
           },
           {
             type: "link",

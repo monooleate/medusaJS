@@ -616,6 +616,10 @@ export const filesMap = [
     "pathname": "/commerce-modules/tax/tax-calculation-with-provider"
   },
   {
+    "filePath": "/www/apps/resources/app/commerce-modules/tax/tax-provider/page.mdx",
+    "pathname": "/commerce-modules/tax/tax-provider"
+  },
+  {
     "filePath": "/www/apps/resources/app/commerce-modules/tax/tax-rates-and-rules/page.mdx",
     "pathname": "/commerce-modules/tax/tax-rates-and-rules"
   },

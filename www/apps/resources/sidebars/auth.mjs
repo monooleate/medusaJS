@@ -30,7 +30,7 @@ export const authSidebar = [
           {
             type: "link",
             path: "/commerce-modules/auth/auth-providers",
-            title: "Auth Providers",
+            title: "Auth Module Provider",
           },
           {
             type: "link",
@@ -66,7 +66,7 @@ export const authSidebar = [
           {
             type: "link",
             path: "/references/auth/provider",
-            title: "Create Auth Provider Module",
+            title: "Create Auth Provider",
           },
         ],
       },

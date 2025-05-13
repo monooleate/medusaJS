@@ -445,7 +445,7 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "isPathHref": true,
               "type": "link",
               "path": "/commerce-modules/auth/auth-providers",
-              "title": "Auth Providers",
+              "title": "Auth Module Provider",
               "children": []
             },
             {
@@ -489,7 +489,7 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "isPathHref": true,
               "type": "link",
               "path": "/references/auth/provider",
-              "title": "Create Auth Provider Module",
+              "title": "Create Auth Provider",
               "children": []
             },
             {
@@ -3323,7 +3323,7 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "isPathHref": true,
               "type": "link",
               "path": "/commerce-modules/fulfillment/fulfillment-provider",
-              "title": "Fulfillment Provider",
+              "title": "Fulfillment Module Provider",
               "children": []
             },
             {
@@ -3383,7 +3383,7 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "isPathHref": true,
               "type": "link",
               "path": "/references/fulfillment/provider",
-              "title": "Create Fulfillment Provider Module",
+              "title": "Create Fulfillment Provider",
               "children": []
             },
             {
@@ -9046,7 +9046,7 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "isPathHref": true,
               "type": "link",
               "path": "/commerce-modules/payment/payment-provider",
-              "title": "Payment Provider Module",
+              "title": "Payment Module Provider",
               "children": []
             },
             {
@@ -15854,8 +15854,16 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "loaded": true,
               "isPathHref": true,
               "type": "link",
+              "path": "/commerce-modules/tax/tax-provider",
+              "title": "Tax Module Providers",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
               "path": "/commerce-modules/tax/tax-calculation-with-provider",
-              "title": "Tax Calculation and Providers",
+              "title": "Tax Calculation",
               "children": []
             }
           ]
