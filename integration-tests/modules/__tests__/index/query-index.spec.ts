@@ -373,6 +373,39 @@ medusaIntegrationTestRunner({
           },
         ])
       })
+
+      it("should use query.index to get products by an array of handles", async () => {
+        await populateData(api)
+
+        const query = appContainer.resolve(
+          ContainerRegistrationKeys.QUERY
+        ) as RemoteQueryFunction
+
+        const resultset = await fetchAndRetry(
+          async () =>
+            await query.index({
+              entity: "product",
+              fields: ["id"],
+              filters: {
+                handle: ["extra-product", "test-product"],
+              },
+              pagination: {
+                take: 10,
+                skip: 0,
+                order: {
+                  "variants.prices.amount": "DESC",
+                },
+              },
+            }),
+          ({ data }) => data.length > 0,
+          {
+            retries: 3,
+            waitSeconds: 3,
+          }
+        )
+
+        expect(resultset.data.length).toEqual(2)
+      })
     })
   },
 })

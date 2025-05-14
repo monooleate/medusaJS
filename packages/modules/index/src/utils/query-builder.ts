@@ -308,6 +308,7 @@ export class QueryBuilder {
                     [targetField]: item === null ? null : item,
                   })
                 )
+
                 builder.whereRaw(
                   `${aliasMapping[attr]}.data${nested} @> ANY(ARRAY[${inPlaceholders}]::JSONB[])`,
                   jsonbValues
@@ -355,11 +356,13 @@ export class QueryBuilder {
               [...value]
             )
           } else {
+            const targetField = field[field.length - 1] as string
+
             const jsonbValues = value.map((item) =>
-              JSON.stringify({ [nested]: item === null ? null : item })
+              JSON.stringify({ [targetField]: item === null ? null : item })
             )
             builder.whereRaw(
-              `${aliasMapping[attr]}.data IN ANY(ARRAY[${inPlaceholders}]::JSONB[])`,
+              `${aliasMapping[attr]}.data${nested} @> ANY(ARRAY[${inPlaceholders}]::JSONB[])`,
               jsonbValues
             )
           }
