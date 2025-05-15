@@ -5005,6 +5005,15 @@ const generatedgeneratedReferencesSidebarSidebar = {
                   "loaded": true,
                   "isPathHref": true,
                   "type": "link",
+                  "path": "/references/medusa-workflows/steps/normalizeCsvStep",
+                  "title": "normalizeCsvStep",
+                  "description": "",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "link",
                   "path": "/references/medusa-workflows/steps/parseProductCsvStep",
                   "title": "parseProductCsvStep",
                   "description": "",

@@ -1,12 +1,12 @@
 {
-	"id": 44899,
+	"id": 44919,
 	"name": "search",
 	"variant": "project",
 	"kind": 1,
 	"flags": {},
 	"children": [
 		{
-			"id": 44900,
+			"id": 44920,
 			"name": "AbstractSearchService",
 			"variant": "declaration",
 			"kind": 128,
@@ -111,7 +111,7 @@
 			},
 			"children": [
 				{
-					"id": 44909,
+					"id": 44929,
 					"name": "isDefault",
 					"variant": "declaration",
 					"kind": 1024,
@@ -148,7 +148,7 @@
 							"fileName": "abstract-service.ts",
 							"line": 97,
 							"character": 20,
-							"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L97"
+							"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L97"
 						}
 					],
 					"type": {
@@ -157,7 +157,7 @@
 					}
 				},
 				{
-					"id": 44910,
+					"id": 44930,
 					"name": "options_",
 					"variant": "declaration",
 					"kind": 1024,
@@ -178,7 +178,7 @@
 							"fileName": "abstract-service.ts",
 							"line": 101,
 							"character": 21,
-							"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L101"
+							"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L101"
 						}
 					],
 					"type": {
@@ -202,7 +202,7 @@
 					}
 				},
 				{
-					"id": 44905,
+					"id": 44925,
 					"name": "constructor",
 					"variant": "declaration",
 					"kind": 512,
@@ -214,12 +214,12 @@
 							"fileName": "abstract-service.ts",
 							"line": 147,
 							"character": 2,
-							"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L147"
+							"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L147"
 						}
 					],
 					"signatures": [
 						{
-							"id": 44906,
+							"id": 44926,
 							"name": "AbstractSearchService",
 							"variant": "signature",
 							"kind": 16384,
@@ -264,12 +264,12 @@
 									"fileName": "abstract-service.ts",
 									"line": 147,
 									"character": 2,
-									"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L147"
+									"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L147"
 								}
 							],
 							"parameters": [
 								{
-									"id": 44907,
+									"id": 44927,
 									"name": "cradle",
 									"variant": "param",
 									"kind": 32768,
@@ -288,7 +288,7 @@
 									}
 								},
 								{
-									"id": 44908,
+									"id": 44928,
 									"name": "options",
 									"variant": "param",
 									"kind": 32768,
@@ -309,7 +309,7 @@
 							],
 							"type": {
 								"type": "reference",
-								"target": 44900,
+								"target": 44920,
 								"name": "AbstractSearchService",
 								"package": "@medusajs/utils"
 							}
@@ -317,7 +317,7 @@
 					]
 				},
 				{
-					"id": 44913,
+					"id": 44933,
 					"name": "createIndex",
 					"variant": "declaration",
 					"kind": 2048,
@@ -329,12 +329,12 @@
 							"fileName": "abstract-service.ts",
 							"line": 188,
 							"character": 11,
-							"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L188"
+							"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L188"
 						}
 					],
 					"signatures": [
 						{
-							"id": 44914,
+							"id": 44934,
 							"name": "createIndex",
 							"variant": "signature",
 							"kind": 4096,
@@ -400,12 +400,12 @@
 									"fileName": "abstract-service.ts",
 									"line": 188,
 									"character": 11,
-									"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L188"
+									"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L188"
 								}
 							],
 							"parameters": [
 								{
-									"id": 44915,
+									"id": 44935,
 									"name": "indexName",
 									"variant": "param",
 									"kind": 32768,
@@ -424,7 +424,7 @@
 									}
 								},
 								{
-									"id": 44916,
+									"id": 44936,
 									"name": "options",
 									"variant": "param",
 									"kind": 32768,
@@ -461,7 +461,7 @@
 					}
 				},
 				{
-					"id": 44917,
+					"id": 44937,
 					"name": "getIndex",
 					"variant": "declaration",
 					"kind": 2048,
@@ -473,12 +473,12 @@
 							"fileName": "abstract-service.ts",
 							"line": 205,
 							"character": 11,
-							"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L205"
+							"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L205"
 						}
 					],
 					"signatures": [
 						{
-							"id": 44918,
+							"id": 44938,
 							"name": "getIndex",
 							"variant": "signature",
 							"kind": 4096,
@@ -516,12 +516,12 @@
 									"fileName": "abstract-service.ts",
 									"line": 205,
 									"character": 11,
-									"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L205"
+									"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L205"
 								}
 							],
 							"parameters": [
 								{
-									"id": 44919,
+									"id": 44939,
 									"name": "indexName",
 									"variant": "param",
 									"kind": 32768,
@@ -558,7 +558,7 @@
 					}
 				},
 				{
-					"id": 44920,
+					"id": 44940,
 					"name": "addDocuments",
 					"variant": "declaration",
 					"kind": 2048,
@@ -570,12 +570,12 @@
 							"fileName": "abstract-service.ts",
 							"line": 232,
 							"character": 11,
-							"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L232"
+							"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L232"
 						}
 					],
 					"signatures": [
 						{
-							"id": 44921,
+							"id": 44941,
 							"name": "addDocuments",
 							"variant": "signature",
 							"kind": 4096,
@@ -613,12 +613,12 @@
 									"fileName": "abstract-service.ts",
 									"line": 232,
 									"character": 11,
-									"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L232"
+									"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L232"
 								}
 							],
 							"parameters": [
 								{
-									"id": 44922,
+									"id": 44942,
 									"name": "indexName",
 									"variant": "param",
 									"kind": 32768,
@@ -637,7 +637,7 @@
 									}
 								},
 								{
-									"id": 44923,
+									"id": 44943,
 									"name": "documents",
 									"variant": "param",
 									"kind": 32768,
@@ -665,7 +665,7 @@
 									}
 								},
 								{
-									"id": 44924,
+									"id": 44944,
 									"name": "type",
 									"variant": "param",
 									"kind": 32768,
@@ -710,7 +710,7 @@
 					}
 				},
 				{
-					"id": 44925,
+					"id": 44945,
 					"name": "replaceDocuments",
 					"variant": "declaration",
 					"kind": 2048,
@@ -722,12 +722,12 @@
 							"fileName": "abstract-service.ts",
 							"line": 263,
 							"character": 11,
-							"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L263"
+							"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L263"
 						}
 					],
 					"signatures": [
 						{
-							"id": 44926,
+							"id": 44946,
 							"name": "replaceDocuments",
 							"variant": "signature",
 							"kind": 4096,
@@ -765,12 +765,12 @@
 									"fileName": "abstract-service.ts",
 									"line": 263,
 									"character": 11,
-									"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L263"
+									"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L263"
 								}
 							],
 							"parameters": [
 								{
-									"id": 44927,
+									"id": 44947,
 									"name": "indexName",
 									"variant": "param",
 									"kind": 32768,
@@ -789,7 +789,7 @@
 									}
 								},
 								{
-									"id": 44928,
+									"id": 44948,
 									"name": "documents",
 									"variant": "param",
 									"kind": 32768,
@@ -817,7 +817,7 @@
 									}
 								},
 								{
-									"id": 44929,
+									"id": 44949,
 									"name": "type",
 									"variant": "param",
 									"kind": 32768,
@@ -862,7 +862,7 @@
 					}
 				},
 				{
-					"id": 44930,
+					"id": 44950,
 					"name": "deleteDocument",
 					"variant": "declaration",
 					"kind": 2048,
@@ -874,12 +874,12 @@
 							"fileName": "abstract-service.ts",
 							"line": 292,
 							"character": 11,
-							"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L292"
+							"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L292"
 						}
 					],
 					"signatures": [
 						{
-							"id": 44931,
+							"id": 44951,
 							"name": "deleteDocument",
 							"variant": "signature",
 							"kind": 4096,
@@ -917,12 +917,12 @@
 									"fileName": "abstract-service.ts",
 									"line": 292,
 									"character": 11,
-									"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L292"
+									"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L292"
 								}
 							],
 							"parameters": [
 								{
-									"id": 44932,
+									"id": 44952,
 									"name": "indexName",
 									"variant": "param",
 									"kind": 32768,
@@ -941,7 +941,7 @@
 									}
 								},
 								{
-									"id": 44933,
+									"id": 44953,
 									"name": "document_id",
 									"variant": "param",
 									"kind": 32768,
@@ -987,7 +987,7 @@
 					}
 				},
 				{
-					"id": 44934,
+					"id": 44954,
 					"name": "deleteAllDocuments",
 					"variant": "declaration",
 					"kind": 2048,
@@ -999,12 +999,12 @@
 							"fileName": "abstract-service.ts",
 							"line": 313,
 							"character": 11,
-							"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L313"
+							"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L313"
 						}
 					],
 					"signatures": [
 						{
-							"id": 44935,
+							"id": 44955,
 							"name": "deleteAllDocuments",
 							"variant": "signature",
 							"kind": 4096,
@@ -1042,12 +1042,12 @@
 									"fileName": "abstract-service.ts",
 									"line": 313,
 									"character": 11,
-									"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L313"
+									"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L313"
 								}
 							],
 							"parameters": [
 								{
-									"id": 44936,
+									"id": 44956,
 									"name": "indexName",
 									"variant": "param",
 									"kind": 32768,
@@ -1084,7 +1084,7 @@
 					}
 				},
 				{
-					"id": 44937,
+					"id": 44957,
 					"name": "search",
 					"variant": "declaration",
 					"kind": 2048,
@@ -1096,12 +1096,12 @@
 							"fileName": "abstract-service.ts",
 							"line": 350,
 							"character": 11,
-							"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L350"
+							"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L350"
 						}
 					],
 					"signatures": [
 						{
-							"id": 44938,
+							"id": 44958,
 							"name": "search",
 							"variant": "signature",
 							"kind": 4096,
@@ -1139,12 +1139,12 @@
 									"fileName": "abstract-service.ts",
 									"line": 350,
 									"character": 11,
-									"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L350"
+									"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L350"
 								}
 							],
 							"parameters": [
 								{
-									"id": 44939,
+									"id": 44959,
 									"name": "indexName",
 									"variant": "param",
 									"kind": 32768,
@@ -1171,7 +1171,7 @@
 									}
 								},
 								{
-									"id": 44940,
+									"id": 44960,
 									"name": "query",
 									"variant": "param",
 									"kind": 32768,
@@ -1199,7 +1199,7 @@
 									}
 								},
 								{
-									"id": 44941,
+									"id": 44961,
 									"name": "options",
 									"variant": "param",
 									"kind": 32768,
@@ -1276,7 +1276,7 @@
 					}
 				},
 				{
-					"id": 44942,
+					"id": 44962,
 					"name": "updateSettings",
 					"variant": "declaration",
 					"kind": 2048,
@@ -1288,12 +1288,12 @@
 							"fileName": "abstract-service.ts",
 							"line": 379,
 							"character": 11,
-							"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L379"
+							"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L379"
 						}
 					],
 					"signatures": [
 						{
-							"id": 44943,
+							"id": 44963,
 							"name": "updateSettings",
 							"variant": "signature",
 							"kind": 4096,
@@ -1331,12 +1331,12 @@
 									"fileName": "abstract-service.ts",
 									"line": 379,
 									"character": 11,
-									"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L379"
+									"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L379"
 								}
 							],
 							"parameters": [
 								{
-									"id": 44944,
+									"id": 44964,
 									"name": "indexName",
 									"variant": "param",
 									"kind": 32768,
@@ -1355,7 +1355,7 @@
 									}
 								},
 								{
-									"id": 44945,
+									"id": 44965,
 									"name": "settings",
 									"variant": "param",
 									"kind": 32768,
@@ -1396,27 +1396,27 @@
 				{
 					"title": "Constructors",
 					"children": [
-						44905
+						44925
 					]
 				},
 				{
 					"title": "Properties",
 					"children": [
-						44909,
-						44910
+						44929,
+						44930
 					]
 				},
 				{
 					"title": "Methods",
 					"children": [
-						44913,
-						44917,
-						44920,
-						44925,
-						44930,
-						44934,
+						44933,
 						44937,
-						44942
+						44940,
+						44945,
+						44950,
+						44954,
+						44957,
+						44962
 					]
 				}
 			],
@@ -1425,7 +1425,7 @@
 					"fileName": "abstract-service.ts",
 					"line": 79,
 					"character": 22,
-					"url": "https://github.com/medusajs/medusa/blob/e09fd61a8f649959a6c0819c1d867abf05ae0dc4/packages/core/utils/src/search/abstract-service.ts#L79"
+					"url": "https://github.com/medusajs/medusa/blob/3e617155977e9bfd2f5318a9ab5eedea24664e0c/packages/core/utils/src/search/abstract-service.ts#L79"
 				}
 			],
 			"implementedTypes": [
@@ -1445,147 +1445,67 @@
 		{
 			"title": "Classes",
 			"children": [
-				44900
+				44920
 			]
 		}
 	],
 	"packageName": "@medusajs/utils",
 	"symbolIdMap": {
-		"44899": {
+		"44919": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
 			"qualifiedName": ""
 		},
-		"44900": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService"
-		},
-		"44905": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.__constructor"
-		},
-		"44906": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService"
-		},
-		"44907": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "cradle"
-		},
-		"44908": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "options"
-		},
-		"44909": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.isDefault"
-		},
-		"44910": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.options_"
-		},
-		"44913": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.createIndex"
-		},
-		"44914": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.createIndex"
-		},
-		"44915": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "indexName"
-		},
-		"44916": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "options"
-		},
-		"44917": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.getIndex"
-		},
-		"44918": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.getIndex"
-		},
-		"44919": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "indexName"
-		},
 		"44920": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.addDocuments"
-		},
-		"44921": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.addDocuments"
-		},
-		"44922": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "indexName"
-		},
-		"44923": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "documents"
-		},
-		"44924": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "type"
+			"qualifiedName": "AbstractSearchService"
 		},
 		"44925": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.replaceDocuments"
+			"qualifiedName": "AbstractSearchService.__constructor"
 		},
 		"44926": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.replaceDocuments"
+			"qualifiedName": "AbstractSearchService"
 		},
 		"44927": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "indexName"
+			"qualifiedName": "cradle"
 		},
 		"44928": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "documents"
+			"qualifiedName": "options"
 		},
 		"44929": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "type"
+			"qualifiedName": "AbstractSearchService.isDefault"
 		},
 		"44930": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.deleteDocument"
-		},
-		"44931": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.deleteDocument"
-		},
-		"44932": {
-			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "indexName"
+			"qualifiedName": "AbstractSearchService.options_"
 		},
 		"44933": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "document_id"
+			"qualifiedName": "AbstractSearchService.createIndex"
 		},
 		"44934": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.deleteAllDocuments"
+			"qualifiedName": "AbstractSearchService.createIndex"
 		},
 		"44935": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.deleteAllDocuments"
+			"qualifiedName": "indexName"
 		},
 		"44936": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "indexName"
+			"qualifiedName": "options"
 		},
 		"44937": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.search"
+			"qualifiedName": "AbstractSearchService.getIndex"
 		},
 		"44938": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.search"
+			"qualifiedName": "AbstractSearchService.getIndex"
 		},
 		"44939": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
@@ -1593,25 +1513,105 @@
 		},
 		"44940": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "query"
+			"qualifiedName": "AbstractSearchService.addDocuments"
 		},
 		"44941": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "options"
+			"qualifiedName": "AbstractSearchService.addDocuments"
 		},
 		"44942": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.updateSettings"
+			"qualifiedName": "indexName"
 		},
 		"44943": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "AbstractSearchService.updateSettings"
+			"qualifiedName": "documents"
 		},
 		"44944": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
-			"qualifiedName": "indexName"
+			"qualifiedName": "type"
 		},
 		"44945": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "AbstractSearchService.replaceDocuments"
+		},
+		"44946": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "AbstractSearchService.replaceDocuments"
+		},
+		"44947": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "indexName"
+		},
+		"44948": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "documents"
+		},
+		"44949": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "type"
+		},
+		"44950": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "AbstractSearchService.deleteDocument"
+		},
+		"44951": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "AbstractSearchService.deleteDocument"
+		},
+		"44952": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "indexName"
+		},
+		"44953": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "document_id"
+		},
+		"44954": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "AbstractSearchService.deleteAllDocuments"
+		},
+		"44955": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "AbstractSearchService.deleteAllDocuments"
+		},
+		"44956": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "indexName"
+		},
+		"44957": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "AbstractSearchService.search"
+		},
+		"44958": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "AbstractSearchService.search"
+		},
+		"44959": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "indexName"
+		},
+		"44960": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "query"
+		},
+		"44961": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "options"
+		},
+		"44962": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "AbstractSearchService.updateSettings"
+		},
+		"44963": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "AbstractSearchService.updateSettings"
+		},
+		"44964": {
+			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
+			"qualifiedName": "indexName"
+		},
+		"44965": {
 			"sourceFileName": "../../../../packages/core/utils/src/search/abstract-service.ts",
 			"qualifiedName": "settings"
 		}
@@ -1621,7 +1621,7 @@
 			"1": "../../../../packages/core/utils/src/search/abstract-service.ts"
 		},
 		"reflections": {
-			"1": 44899
+			"1": 44919
 		}
 	}
 }
