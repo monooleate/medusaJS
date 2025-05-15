@@ -1,5 +1,14 @@
 # @medusajs/core-flows
 
+## 2.8.1
+
+### Patch Changes
+
+- [#12396](https://github.com/medusajs/medusa/pull/12396) [`4602163b568962f8115b83971d67a6c55c2b8a98`](https://github.com/medusajs/medusa/commit/4602163b568962f8115b83971d67a6c55c2b8a98) Thanks [@thetutlage](https://github.com/thetutlage)! - feat: create CSV normalizer to normalize a CSV file
+
+- Updated dependencies []:
+  - @medusajs/framework@2.8.1
+
 ## 2.8.0
 
 ### Minor Changes

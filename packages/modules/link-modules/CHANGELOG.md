@@ -1,5 +1,12 @@
 # @medusajs/link-modules
 
+## 2.8.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @medusajs/framework@2.8.1
+
 ## 2.8.0
 
 ### Patch Changes
