@@ -1012,11 +1012,13 @@ export function mikroOrmBaseRepositoryFactory<const T extends object>(
               { ctx: manager.getTransactionContext() }
             )
             .then((res) => {
-              performedActions.updated[entityName] ??= []
               const updatedRows = res.rows ?? []
-              performedActions.updated[entityName].push(
-                ...updatedRows.map((d) => ({ id: d.id }))
-              )
+              const updatedRowsMap = new Map(updatedRows.map((d) => [d.id, d]))
+
+              performedActions.updated[entityName] = toUpdate
+                .map((d) => updatedRowsMap.get(d.id))
+                .filter((row) => row !== undefined)
+                .map((d) => ({ id: d.id }))
             })
         )
       }
