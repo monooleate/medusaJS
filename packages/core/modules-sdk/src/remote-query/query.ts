@@ -159,6 +159,7 @@ export class Query {
       queryOptions,
       this.#remoteQuery.getEntitiesMap()
     )
+
     let response:
       | any[]
       | { rows: any[]; metadata: RemoteQueryFunctionReturnPagination }
