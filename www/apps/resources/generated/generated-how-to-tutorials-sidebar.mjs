@@ -468,6 +468,15 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
           "loaded": true,
           "isPathHref": true,
           "type": "link",
+          "title": "Re-Order",
+          "path": "/how-to-tutorials/tutorials/re-order",
+          "description": "Learn how to allow customers to re-order previous orders.",
+          "children": []
+        },
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "link",
           "title": "Saved Payment Methods",
           "path": "/how-to-tutorials/tutorials/saved-payment-methods",
           "description": "Learn how to implement saved payment methods in your Medusa store.",

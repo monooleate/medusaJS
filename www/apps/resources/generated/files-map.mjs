@@ -748,6 +748,10 @@ export const filesMap = [
     "pathname": "/how-to-tutorials/tutorials/product-reviews"
   },
   {
+    "filePath": "/www/apps/resources/app/how-to-tutorials/tutorials/re-order/page.mdx",
+    "pathname": "/how-to-tutorials/tutorials/re-order"
+  },
+  {
     "filePath": "/www/apps/resources/app/how-to-tutorials/tutorials/saved-payment-methods/page.mdx",
     "pathname": "/how-to-tutorials/tutorials/saved-payment-methods"
   },
