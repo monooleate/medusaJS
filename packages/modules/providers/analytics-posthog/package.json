@@ -34,7 +34,8 @@
     "typescript": "^5.6.2"
   },
   "peerDependencies": {
-    "@medusajs/framework": "2.8.2"
+    "@medusajs/framework": "2.8.2",
+    "posthog-node": "^4.17.1"
   },
   "keywords": [
     "medusa-plugin",

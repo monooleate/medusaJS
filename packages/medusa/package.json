@@ -140,6 +140,7 @@
     "@opentelemetry/sdk-trace-node": "^2.0.0",
     "@swc/core": "1.5.7",
     "awilix": "^8.0.1",
+    "posthog-node": "^4.17.1",
     "react-dom": "^18.0.0",
     "yalc": "1.0.0-pre.53"
   },
@@ -157,6 +158,9 @@
       "optional": true
     },
     "@swc/core": {
+      "optional": true
+    },
+    "posthog-node": {
       "optional": true
     },
     "react-dom": {
