@@ -6,6 +6,8 @@ import {
   buildQuery,
   DALUtils,
   MedusaError,
+  isPresent,
+  mergeMetadata,
 } from "@medusajs/framework/utils"
 import { SqlEntityManager, wrap } from "@mikro-orm/postgresql"
 
@@ -146,6 +148,10 @@ export class ProductRepository extends DALUtils.mikroOrmBaseRepositoryFactory(
             rank: index,
           })
         )
+      }
+
+      if (isPresent(productToUpdate.metadata)) {
+        productToUpdate.metadata = mergeMetadata(product.metadata ?? {}, productToUpdate.metadata)
       }
 
       wrappedProduct.assign(productToUpdate)
