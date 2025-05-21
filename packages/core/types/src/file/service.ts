@@ -8,7 +8,14 @@ import { CreateFileDTO, GetUploadFileUrlDTO } from "./mutations"
 
 export interface IFileModuleService extends IModuleService {
   /**
-   * Returns a reference to the file provider in use
+   * This method returns the service of the configured File Module Provider in `medusa-config.ts`. This is useful
+   * if you want to execute custom methods defined in the provider's service or you need direct access to it.
+   * 
+   * @returns {IFileProvider} An instance of the File Module Provider's service.
+   * 
+   * @example
+   * const s3ProviderService = fileModuleService.getProvider()
+   * // TODO: perform custom actions with the provider
    */
   getProvider(): IFileProvider
 
