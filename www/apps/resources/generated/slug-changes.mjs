@@ -1,5 +1,15 @@
 export const slugChanges = [
   {
+    "origSlug": "/references/analytics/interfaces/analytics.IAnalyticsModuleService",
+    "newSlug": "/references/analytics/service",
+    "filePath": "/www/apps/resources/references/analytics/interfaces/analytics.IAnalyticsModuleService/page.mdx"
+  },
+  {
+    "origSlug": "/references/analytics_provider/classes/analytics_provider.AbstractAnalyticsProviderService",
+    "newSlug": "/references/analytics/provider",
+    "filePath": "/www/apps/resources/references/analytics_provider/classes/analytics_provider.AbstractAnalyticsProviderService/page.mdx"
+  },
+  {
     "origSlug": "/references/api_key/IApiKeyModuleService/methods/api_key.IApiKeyModuleService.authenticate",
     "newSlug": "/references/api-key/authenticate",
     "filePath": "/www/apps/resources/references/api_key/IApiKeyModuleService/methods/api_key.IApiKeyModuleService.authenticate/page.mdx"

@@ -756,6 +756,18 @@ export const filesMap = [
     "pathname": "/how-to-tutorials/tutorials/saved-payment-methods"
   },
   {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/analytics/local/page.mdx",
+    "pathname": "/infrastructure-modules/analytics/local"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/analytics/page.mdx",
+    "pathname": "/infrastructure-modules/analytics"
+  },
+  {
+    "filePath": "/www/apps/resources/app/infrastructure-modules/analytics/posthog/page.mdx",
+    "pathname": "/infrastructure-modules/analytics/posthog"
+  },
+  {
     "filePath": "/www/apps/resources/app/infrastructure-modules/cache/create/page.mdx",
     "pathname": "/infrastructure-modules/cache/create"
   },
@@ -1398,6 +1410,14 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/app/troubleshooting/workflow-errors/when-then/page.mdx",
     "pathname": "/troubleshooting/workflow-errors/when-then"
+  },
+  {
+    "filePath": "/www/apps/resources/references/analytics/interfaces/analytics.IAnalyticsModuleService/page.mdx",
+    "pathname": "/references/analytics/interfaces/analytics.IAnalyticsModuleService"
+  },
+  {
+    "filePath": "/www/apps/resources/references/analytics_provider/classes/analytics_provider.AbstractAnalyticsProviderService/page.mdx",
+    "pathname": "/references/analytics_provider/classes/analytics_provider.AbstractAnalyticsProviderService"
   },
   {
     "filePath": "/www/apps/resources/references/api_key/IApiKeyModuleService/methods/api_key.IApiKeyModuleService.authenticate/page.mdx",
@@ -13600,6 +13620,14 @@ export const filesMap = [
     "pathname": "/references/module_events/module_events.User"
   },
   {
+    "filePath": "/www/apps/resources/references/modules/analytics/page.mdx",
+    "pathname": "/references/modules/analytics"
+  },
+  {
+    "filePath": "/www/apps/resources/references/modules/analytics_provider/page.mdx",
+    "pathname": "/references/modules/analytics_provider"
+  },
+  {
     "filePath": "/www/apps/resources/references/modules/api_key/page.mdx",
     "pathname": "/references/modules/api_key"
   },
@@ -23348,6 +23376,14 @@ export const filesMap = [
     "pathname": "/references/types/interfaces/types.GetUploadedFileType"
   },
   {
+    "filePath": "/www/apps/resources/references/types/interfaces/types.IAnalyticsModuleService/page.mdx",
+    "pathname": "/references/types/interfaces/types.IAnalyticsModuleService"
+  },
+  {
+    "filePath": "/www/apps/resources/references/types/interfaces/types.IAnalyticsProvider/page.mdx",
+    "pathname": "/references/types/interfaces/types.IAnalyticsProvider"
+  },
+  {
     "filePath": "/www/apps/resources/references/types/interfaces/types.IAuthProvider/page.mdx",
     "pathname": "/references/types/interfaces/types.IAuthProvider"
   },
@@ -23386,6 +23422,14 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/references/types/interfaces/types.ITaxProvider/page.mdx",
     "pathname": "/references/types/interfaces/types.ITaxProvider"
+  },
+  {
+    "filePath": "/www/apps/resources/references/types/interfaces/types.IdentifyActorDTO/page.mdx",
+    "pathname": "/references/types/interfaces/types.IdentifyActorDTO"
+  },
+  {
+    "filePath": "/www/apps/resources/references/types/interfaces/types.IdentifyGroupDTO/page.mdx",
+    "pathname": "/references/types/interfaces/types.IdentifyGroupDTO"
   },
   {
     "filePath": "/www/apps/resources/references/types/interfaces/types.InitiatePaymentInput/page.mdx",
@@ -23428,6 +23472,10 @@ export const filesMap = [
     "pathname": "/references/types/interfaces/types.ListShippingOptionsForCartWorkflowInputDTO"
   },
   {
+    "filePath": "/www/apps/resources/references/types/interfaces/types.LocalAnalyticsServiceOptions/page.mdx",
+    "pathname": "/references/types/interfaces/types.LocalAnalyticsServiceOptions"
+  },
+  {
     "filePath": "/www/apps/resources/references/types/interfaces/types.MessageAggregatorFormat/page.mdx",
     "pathname": "/references/types/interfaces/types.MessageAggregatorFormat"
   },
@@ -23446,6 +23494,10 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/references/types/interfaces/types.PaymentProviderOutput/page.mdx",
     "pathname": "/references/types/interfaces/types.PaymentProviderOutput"
+  },
+  {
+    "filePath": "/www/apps/resources/references/types/interfaces/types.PosthogAnalyticsServiceOptions/page.mdx",
+    "pathname": "/references/types/interfaces/types.PosthogAnalyticsServiceOptions"
   },
   {
     "filePath": "/www/apps/resources/references/types/interfaces/types.PricedShippingOptionDTO/page.mdx",
@@ -23510,6 +23562,10 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/references/types/interfaces/types.StoreCreateReturnShipping/page.mdx",
     "pathname": "/references/types/interfaces/types.StoreCreateReturnShipping"
+  },
+  {
+    "filePath": "/www/apps/resources/references/types/interfaces/types.TrackAnalyticsEventDTO/page.mdx",
+    "pathname": "/references/types/interfaces/types.TrackAnalyticsEventDTO"
   },
   {
     "filePath": "/www/apps/resources/references/types/interfaces/types.UpdateAccountHolderInput/page.mdx",
@@ -23732,6 +23788,10 @@ export const filesMap = [
     "pathname": "/references/types/types/types.FulfillmentStatus"
   },
   {
+    "filePath": "/www/apps/resources/references/types/types/types.IdentifyAnalyticsEventDTO/page.mdx",
+    "pathname": "/references/types/types/types.IdentifyAnalyticsEventDTO"
+  },
+  {
     "filePath": "/www/apps/resources/references/types/types/types.IncludesSeparator/page.mdx",
     "pathname": "/references/types/types/types.IncludesSeparator"
   },
@@ -23948,6 +24008,14 @@ export const filesMap = [
     "pathname": "/references/types/types/types.ProductVariant"
   },
   {
+    "filePath": "/www/apps/resources/references/types/types/types.ProviderIdentifyAnalyticsEventDTO/page.mdx",
+    "pathname": "/references/types/types/types.ProviderIdentifyAnalyticsEventDTO"
+  },
+  {
+    "filePath": "/www/apps/resources/references/types/types/types.ProviderTrackAnalyticsEventDTO/page.mdx",
+    "pathname": "/references/types/types/types.ProviderTrackAnalyticsEventDTO"
+  },
+  {
     "filePath": "/www/apps/resources/references/types/types/types.Query/page.mdx",
     "pathname": "/references/types/types/types.Query"
   },
@@ -24038,6 +24106,10 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/references/types/types.AdminTypes/page.mdx",
     "pathname": "/references/types/types.AdminTypes"
+  },
+  {
+    "filePath": "/www/apps/resources/references/types/types.AnalyticsTypes/page.mdx",
+    "pathname": "/references/types/types.AnalyticsTypes"
   },
   {
     "filePath": "/www/apps/resources/references/types/types.CacheTypes/page.mdx",
