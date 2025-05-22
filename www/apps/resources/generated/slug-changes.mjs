@@ -825,9 +825,19 @@ export const slugChanges = [
     "filePath": "/www/apps/resources/references/core_flows/Cart/Workflows_Cart/functions/core_flows.Cart.Workflows_Cart.validateExistingPaymentCollectionStep/page.mdx"
   },
   {
+    "origSlug": "/references/core_flows/Common/Steps_Common/functions/core_flows.Common.Steps_Common.createEntitiesStep",
+    "newSlug": "/references/medusa-workflows/steps/createEntitiesStep",
+    "filePath": "/www/apps/resources/references/core_flows/Common/Steps_Common/functions/core_flows.Common.Steps_Common.createEntitiesStep/page.mdx"
+  },
+  {
     "origSlug": "/references/core_flows/Common/Steps_Common/functions/core_flows.Common.Steps_Common.createRemoteLinkStep",
     "newSlug": "/references/medusa-workflows/steps/createRemoteLinkStep",
     "filePath": "/www/apps/resources/references/core_flows/Common/Steps_Common/functions/core_flows.Common.Steps_Common.createRemoteLinkStep/page.mdx"
+  },
+  {
+    "origSlug": "/references/core_flows/Common/Steps_Common/functions/core_flows.Common.Steps_Common.deleteEntitiesStep",
+    "newSlug": "/references/medusa-workflows/steps/deleteEntitiesStep",
+    "filePath": "/www/apps/resources/references/core_flows/Common/Steps_Common/functions/core_flows.Common.Steps_Common.deleteEntitiesStep/page.mdx"
   },
   {
     "origSlug": "/references/core_flows/Common/Steps_Common/functions/core_flows.Common.Steps_Common.dismissRemoteLinkStep",
@@ -2855,9 +2865,19 @@ export const slugChanges = [
     "filePath": "/www/apps/resources/references/core_flows/Product/Steps_Product/functions/core_flows.Product.Steps_Product.normalizeCsvStep/page.mdx"
   },
   {
+    "origSlug": "/references/core_flows/Product/Steps_Product/functions/core_flows.Product.Steps_Product.normalizeCsvToChunksStep",
+    "newSlug": "/references/medusa-workflows/steps/normalizeCsvToChunksStep",
+    "filePath": "/www/apps/resources/references/core_flows/Product/Steps_Product/functions/core_flows.Product.Steps_Product.normalizeCsvToChunksStep/page.mdx"
+  },
+  {
     "origSlug": "/references/core_flows/Product/Steps_Product/functions/core_flows.Product.Steps_Product.parseProductCsvStep",
     "newSlug": "/references/medusa-workflows/steps/parseProductCsvStep",
     "filePath": "/www/apps/resources/references/core_flows/Product/Steps_Product/functions/core_flows.Product.Steps_Product.parseProductCsvStep/page.mdx"
+  },
+  {
+    "origSlug": "/references/core_flows/Product/Steps_Product/functions/core_flows.Product.Steps_Product.processImportChunksStep",
+    "newSlug": "/references/medusa-workflows/steps/processImportChunksStep",
+    "filePath": "/www/apps/resources/references/core_flows/Product/Steps_Product/functions/core_flows.Product.Steps_Product.processImportChunksStep/page.mdx"
   },
   {
     "origSlug": "/references/core_flows/Product/Steps_Product/functions/core_flows.Product.Steps_Product.updateCollectionsStep",
@@ -2978,6 +2998,11 @@ export const slugChanges = [
     "origSlug": "/references/core_flows/Product/Workflows_Product/functions/core_flows.Product.Workflows_Product.exportProductsWorkflow",
     "newSlug": "/references/medusa-workflows/exportProductsWorkflow",
     "filePath": "/www/apps/resources/references/core_flows/Product/Workflows_Product/functions/core_flows.Product.Workflows_Product.exportProductsWorkflow/page.mdx"
+  },
+  {
+    "origSlug": "/references/core_flows/Product/Workflows_Product/functions/core_flows.Product.Workflows_Product.importProductsAsChunksWorkflow",
+    "newSlug": "/references/medusa-workflows/importProductsAsChunksWorkflow",
+    "filePath": "/www/apps/resources/references/core_flows/Product/Workflows_Product/functions/core_flows.Product.Workflows_Product.importProductsAsChunksWorkflow/page.mdx"
   },
   {
     "origSlug": "/references/core_flows/Product/Workflows_Product/functions/core_flows.Product.Workflows_Product.importProductsWorkflow",
@@ -4320,9 +4345,19 @@ export const slugChanges = [
     "filePath": "/www/apps/resources/references/fulfillment_provider/classes/fulfillment_provider.AbstractFulfillmentProviderService/page.mdx"
   },
   {
+    "origSlug": "/references/helper_steps/functions/helper_steps.createEntitiesStep",
+    "newSlug": "/references/helper-steps/createEntitiesStep",
+    "filePath": "/www/apps/resources/references/helper_steps/functions/helper_steps.createEntitiesStep/page.mdx"
+  },
+  {
     "origSlug": "/references/helper_steps/functions/helper_steps.createRemoteLinkStep",
     "newSlug": "/references/helper-steps/createRemoteLinkStep",
     "filePath": "/www/apps/resources/references/helper_steps/functions/helper_steps.createRemoteLinkStep/page.mdx"
+  },
+  {
+    "origSlug": "/references/helper_steps/functions/helper_steps.deleteEntitiesStep",
+    "newSlug": "/references/helper-steps/deleteEntitiesStep",
+    "filePath": "/www/apps/resources/references/helper_steps/functions/helper_steps.deleteEntitiesStep/page.mdx"
   },
   {
     "origSlug": "/references/helper_steps/functions/helper_steps.dismissRemoteLinkStep",
