@@ -185,6 +185,24 @@ medusaIntegrationTestRunner({
       })
     })
 
+    describe("DELETE /draft-orders/:id", () => {
+      it("should delete a draft order", async () => {
+        const response = await api.delete(
+          `/admin/draft-orders/${testDraftOrder.id}`,
+          adminHeaders
+        )
+
+        expect(response.status).toBe(200)
+        expect(response.data).toEqual(
+          expect.objectContaining({
+            id: testDraftOrder.id,
+            object: "draft-order",
+            deleted: true,
+          })
+        )
+      })
+    })
+
     describe("POST /draft-orders/:id/convert-to-order", () => {
       it("should convert a draft order to an order", async () => {
         const response = await api.post(
