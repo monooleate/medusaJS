@@ -52,6 +52,10 @@ export const tutorial = [
     "path": "https://docs.medusajs.com/resources/integrations/guides/contentful"
   },
   {
+    "title": "Integrate Segment",
+    "path": "https://docs.medusajs.com/resources/integrations/guides/segment"
+  },
+  {
     "title": "Build Wishlist Plugin",
     "path": "https://docs.medusajs.com/resources/plugins/guides/wishlist"
   },

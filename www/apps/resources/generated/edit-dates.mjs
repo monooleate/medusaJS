@@ -104,7 +104,7 @@ export const generatedEditDates = {
   "app/deployment/medusa-application/railway/page.mdx": "2025-04-17T08:28:58.981Z",
   "app/deployment/storefront/vercel/page.mdx": "2025-05-20T07:51:40.712Z",
   "app/deployment/page.mdx": "2025-05-20T07:51:40.711Z",
-  "app/integrations/page.mdx": "2025-05-22T07:07:05.676Z",
+  "app/integrations/page.mdx": "2025-05-26T14:47:43.842Z",
   "app/medusa-cli/page.mdx": "2024-08-28T11:25:32.382Z",
   "app/medusa-container-resources/page.mdx": "2025-04-17T08:48:10.255Z",
   "app/medusa-workflows-reference/page.mdx": "2025-01-20T08:21:29.962Z",
@@ -6486,7 +6486,7 @@ export const generatedEditDates = {
   "app/recipes/bundled-products/examples/standard/page.mdx": "2025-05-20T07:51:40.718Z",
   "app/recipes/bundled-products/page.mdx": "2025-05-20T07:51:40.718Z",
   "app/infrastructure-modules/analytics/local/page.mdx": "2025-05-21T14:09:53.772Z",
-  "app/infrastructure-modules/analytics/page.mdx": "2025-05-21T13:34:40.515Z",
+  "app/infrastructure-modules/analytics/page.mdx": "2025-05-26T14:48:25.803Z",
   "app/infrastructure-modules/analytics/posthog/page.mdx": "2025-05-21T14:09:59.162Z",
   "references/analytics/interfaces/analytics.IAnalyticsModuleService/page.mdx": "2025-05-21T14:21:59.325Z",
   "references/analytics_provider/classes/analytics_provider.AbstractAnalyticsProviderService/page.mdx": "2025-05-21T14:22:04.267Z",
@@ -6523,5 +6523,6 @@ export const generatedEditDates = {
   "references/helper_steps/variables/helper_steps.createEntitiesStepId/page.mdx": "2025-05-22T12:22:22.830Z",
   "references/helper_steps/variables/helper_steps.deleteEntitiesStepId/page.mdx": "2025-05-22T12:22:22.848Z",
   "references/js_sdk/admin/Upload/methods/js_sdk.admin.Upload.presignedUrl/page.mdx": "2025-05-22T12:22:45.318Z",
-  "references/types/types/types.CreateCartCreditLinesWorkflowInput/page.mdx": "2025-05-22T12:22:32.616Z"
+  "references/types/types/types.CreateCartCreditLinesWorkflowInput/page.mdx": "2025-05-22T12:22:32.616Z",
+  "app/integrations/guides/segment/page.mdx": "2025-05-26T14:46:22.757Z"
 }

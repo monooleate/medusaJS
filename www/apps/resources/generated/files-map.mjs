@@ -884,6 +884,10 @@ export const filesMap = [
     "pathname": "/integrations/guides/sanity"
   },
   {
+    "filePath": "/www/apps/resources/app/integrations/guides/segment/page.mdx",
+    "pathname": "/integrations/guides/segment"
+  },
+  {
     "filePath": "/www/apps/resources/app/integrations/guides/shipstation/page.mdx",
     "pathname": "/integrations/guides/shipstation"
   },

@@ -872,6 +872,10 @@ export const workflow = [
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/exportProductsWorkflow"
   },
   {
+    "title": "importProductsAsChunksWorkflow",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/importProductsAsChunksWorkflow"
+  },
+  {
     "title": "importProductsWorkflow",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/importProductsWorkflow"
   },

@@ -49,6 +49,14 @@ const generatedgeneratedInfrastructureModulesSidebarSidebar = {
               "path": "/infrastructure-modules/analytics/posthog",
               "title": "PostHog",
               "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "ref",
+              "path": "/integrations/guides/segment",
+              "title": "Segment",
+              "children": []
             }
           ]
         },

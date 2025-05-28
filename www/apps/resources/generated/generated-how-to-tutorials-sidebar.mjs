@@ -370,6 +370,15 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
           "loaded": true,
           "isPathHref": true,
           "type": "ref",
+          "title": "Analytics with Segment",
+          "path": "/integrations/guides/segment",
+          "description": "Learn how to integrate Segment with Medusa to track user interactions and events.",
+          "children": []
+        },
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "ref",
           "title": "Bundled Products",
           "path": "/recipes/bundled-products/examples/standard",
           "description": "Learn how to implement bundled products in your Medusa store.",

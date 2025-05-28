@@ -10,6 +10,23 @@ export const integrationsSidebar = [
   },
   {
     type: "category",
+    title: "Analytics",
+    initialOpen: true,
+    children: [
+      {
+        type: "ref",
+        path: "/infrastructure-modules/analytics/posthog",
+        title: "PostHog",
+      },
+      {
+        type: "link",
+        path: "/integrations/guides/segment",
+        title: "Segment",
+      },
+    ],
+  },
+  {
+    type: "category",
     title: "Auth",
     initialOpen: true,
     children: [

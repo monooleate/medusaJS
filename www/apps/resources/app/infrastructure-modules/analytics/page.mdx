@@ -55,7 +55,16 @@ You can also [create a custom Analytics Module Provider](/references/analytics/p
       }
     }
   ]}
-  className='mb-1'
+/>
+
+<Card 
+  title="Segment"
+  href="/integrations/guides/segment"
+  className="my-1"
+  badge={{
+    variant: "blue",
+    children: "Tutorial"
+  }}
 />
 
 To configure the Analytics Module and its provider, add it to the list of modules in your `medusa-config.ts` file. For example:
@@ -138,7 +147,7 @@ export const trackOrderCreatedWorkflow = createWorkflow(
       fields: [
         "*",
         "customer.*",
-        "items.*"
+        "items.*",
       ],
       filters: {
         id: order_id,

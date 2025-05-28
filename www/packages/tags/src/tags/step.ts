@@ -156,8 +156,16 @@ export const step = [
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/validateExistingPaymentCollectionStep"
   },
   {
+    "title": "createEntitiesStep",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/createEntitiesStep"
+  },
+  {
     "title": "createRemoteLinkStep",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/createRemoteLinkStep"
+  },
+  {
+    "title": "deleteEntitiesStep",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/deleteEntitiesStep"
   },
   {
     "title": "dismissRemoteLinkStep",
@@ -1034,6 +1042,14 @@ export const step = [
   {
     "title": "normalizeCsvStep",
     "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/normalizeCsvStep"
+  },
+  {
+    "title": "normalizeCsvToChunksStep",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/normalizeCsvToChunksStep"
+  },
+  {
+    "title": "processImportChunksStep",
+    "path": "https://docs.medusajs.com/resources/references/medusa-workflows/steps/processImportChunksStep"
   },
   {
     "title": "updateCollectionsStep",
