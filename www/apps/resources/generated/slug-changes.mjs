@@ -4940,6 +4940,11 @@ export const slugChanges = [
     "filePath": "/www/apps/resources/references/module_events/module_events.Order/page.mdx"
   },
   {
+    "origSlug": "/references/module_events/module_events.Payment",
+    "newSlug": "/references/payment/events",
+    "filePath": "/www/apps/resources/references/module_events/module_events.Payment/page.mdx"
+  },
+  {
     "origSlug": "/references/module_events/module_events.Product",
     "newSlug": "/references/product/events",
     "filePath": "/www/apps/resources/references/module_events/module_events.Product/page.mdx"

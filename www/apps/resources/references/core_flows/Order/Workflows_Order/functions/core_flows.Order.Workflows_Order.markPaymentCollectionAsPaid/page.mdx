@@ -146,3 +146,55 @@ const myWorkflow = createWorkflow(
 ## Output
 
 <TypeList types={[{"name":"null \\| PaymentDTO","type":"`null` \\| [PaymentDTO](../../../../../payment/interfaces/payment.PaymentDTO/page.mdx)","optional":false,"defaultValue":"","description":"","expandable":false,"children":[{"name":"null \\| PaymentDTO","type":"`null` \\| [PaymentDTO](../../../../../payment/interfaces/payment.PaymentDTO/page.mdx)","optional":false,"defaultValue":"","description":"","expandable":false,"children":[]}]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" openedLevel={1} sectionTitle="markPaymentCollectionAsPaid"/>
+
+## Emitted Events
+
+This section lists the events that are either triggered by the `emitEventStep` in the workflow, or by another workflow executed within this workflow.
+
+You can listen to these events in a subscriber, as explained in the [Subscribers](https://docs.medusajs.com/learn/fundamentals/events-and-subscribers) documentation.
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+Event
+</Table.HeaderCell>
+      <Table.HeaderCell>
+Description
+</Table.HeaderCell>
+      <Table.HeaderCell>
+Payload
+</Table.HeaderCell>
+      <Table.HeaderCell>
+Action
+</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+`payment.captured`
+</Table.Cell>
+      <Table.Cell>
+Emitted when a payment is captured.
+</Table.Cell>
+      <Table.Cell>
+```ts blockStyle="inline"
+{
+  id, // the ID of the payment
+}
+```
+</Table.Cell>
+      <Table.Cell>
+<CopyGeneratedSnippetButton tooltipText="Copy subscriber for event" type="subscriber" options={{
+        event: "payment.captured",
+        payload: `\`\`\`ts
+{
+  id, // the ID of the payment
+}
+\`\`\``
+        }}/>
+</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>

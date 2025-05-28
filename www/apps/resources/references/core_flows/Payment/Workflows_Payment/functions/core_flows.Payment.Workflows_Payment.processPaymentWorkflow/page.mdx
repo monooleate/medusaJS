@@ -210,5 +210,30 @@ order.
         }}/>
 </Table.Cell>
     </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+`payment.captured`
+</Table.Cell>
+      <Table.Cell>
+Emitted when a payment is captured.
+</Table.Cell>
+      <Table.Cell>
+```ts blockStyle="inline"
+{
+  id, // the ID of the payment
+}
+```
+</Table.Cell>
+      <Table.Cell>
+<CopyGeneratedSnippetButton tooltipText="Copy subscriber for event" type="subscriber" options={{
+        event: "payment.captured",
+        payload: `\`\`\`ts
+{
+  id, // the ID of the payment
+}
+\`\`\``
+        }}/>
+</Table.Cell>
+    </Table.Row>
   </Table.Body>
 </Table>
