@@ -13,14 +13,23 @@ export const processImportChunksStepId = "process-import-chunks"
  */
 export const processImportChunksStep = createStep(
   processImportChunksStepId,
-  async (input: { chunks: string[] }, { container }) => {
+  async (input: { chunks: { id: string }[] }, { container }) => {
     const file = container.resolve(Modules.FILE)
 
-    for (let chunk of input.chunks) {
-      const contents = await file.getAsBuffer(chunk)
-      await batchProductsWorkflow(container).run({
-        input: JSON.parse(contents.toString("utf-8")),
-      })
+    try {
+      for (let chunk of input.chunks) {
+        const contents = await file.getAsBuffer(chunk.id)
+        let products = JSON.parse(contents.toString("utf-8"))
+        await batchProductsWorkflow(container).run({
+          input: products,
+        })
+        products = undefined
+      }
+    } finally {
+      /**
+       * Delete chunks regardless of the import status
+       */
+      await file.deleteFiles(input.chunks.map((chunk) => chunk.id))
     }
 
     return new StepResponse({ completed: true })

@@ -10,16 +10,16 @@ async function loadFixtureFile(fileName: string) {
 
 describe("CSV processor", () => {
   it("should error when both Product Id and Handle are missing", async () => {
-    const processor = new CSVNormalizer([{}])
-
-    expect(() => processor.proccess()).toThrow(
-      "Row 1: Missing product id and handle. One of them are required to process the row"
+    expect(() => CSVNormalizer.preProcess({}, 1)).toThrow(
+      "Row 1: Missing product id and handle. One of these columns are required to process the row"
     )
   })
 
   it("should process a CSV row", async () => {
-    const csvData = await loadFixtureFile("single-row-create.json")
-    const processor = new CSVNormalizer(csvData)
+    const csvData: any[] = await loadFixtureFile("single-row-create.json")
+    const processor = new CSVNormalizer(
+      csvData.map((row, index) => CSVNormalizer.preProcess(row, index + 1))
+    )
 
     const products = processor.proccess()
     expect(products).toMatchInlineSnapshot(`
@@ -87,8 +87,12 @@ describe("CSV processor", () => {
   })
 
   it("should process multiple CSV rows for the same product", async () => {
-    const csvData = await loadFixtureFile("same-product-multiple-rows.json")
-    const processor = new CSVNormalizer(csvData)
+    const csvData: any[] = await loadFixtureFile(
+      "same-product-multiple-rows.json"
+    )
+    const processor = new CSVNormalizer(
+      csvData.map((row, index) => CSVNormalizer.preProcess(row, index + 1))
+    )
 
     const products = processor.proccess()
     expect(products).toMatchInlineSnapshot(`
@@ -200,10 +204,12 @@ describe("CSV processor", () => {
   })
 
   it("should process multiple CSV rows where each variant uses different options", async () => {
-    const csvData = await loadFixtureFile(
+    const csvData: any[] = await loadFixtureFile(
       "same-product-multiple-variant-options.json"
     )
-    const processor = new CSVNormalizer(csvData)
+    const processor = new CSVNormalizer(
+      csvData.map((row, index) => CSVNormalizer.preProcess(row, index + 1))
+    )
 
     const products = processor.proccess()
     expect(products).toMatchInlineSnapshot(`
@@ -325,10 +331,12 @@ describe("CSV processor", () => {
   })
 
   it("should process multiple CSV rows with multiple products and variants", async () => {
-    const csvData = await loadFixtureFile(
+    const csvData: any[] = await loadFixtureFile(
       "multiple-products-multiple-variants.json"
     )
-    const processor = new CSVNormalizer(csvData)
+    const processor = new CSVNormalizer(
+      csvData.map((row, index) => CSVNormalizer.preProcess(row, index + 1))
+    )
 
     const products = processor.proccess()
     expect(products).toMatchInlineSnapshot(`

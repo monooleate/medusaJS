@@ -3,6 +3,7 @@ import {
   tryConvertToNumber,
   tryConvertToBoolean,
   MedusaError,
+  normalizeCSVValue,
 } from "../common"
 import { AdminCreateProduct, AdminCreateProductVariant } from "@medusajs/types"
 
@@ -17,6 +18,20 @@ type ColumnProcessor<Output> = (
   output: Output
 ) => void
 
+type NormalizedRow =
+  | (Record<string, string | number | boolean> & {
+      "product id": string
+      "product handle": string
+    })
+  | {
+      "product id"?: string
+      "product handle": string
+    }
+  | {
+      "product id": string
+      "product handle"?: string
+    }
+
 /**
  * Creates an error with the CSV row number
  */
@@ -28,22 +43,11 @@ function createError(rowNumber: number, message: string) {
 }
 
 /**
- * Normalizes a CSV value by removing the leading "\r" from the
- * value.
- */
-function normalizeValue<T>(value: T): T {
-  if (typeof value === "string") {
-    return value.replace(/\\r$/, "").trim() as T
-  }
-  return value
-}
-
-/**
  * Parses different patterns to extract variant price iso
  * and the region name. The iso is converted to lowercase
  */
 function parseVariantPriceColumn(columnName: string, rowNumber: number) {
-  const normalizedValue = normalizeValue(columnName)
+  const normalizedValue = columnName
   const potentialRegion = /\[(.*)\]/g.exec(normalizedValue)?.[1]
   const iso = normalizedValue.split(" ").pop()
 
@@ -68,7 +72,7 @@ function processAsString<Output>(
   outputKey: keyof Output
 ): ColumnProcessor<Output> {
   return (csvRow, _, __, output) => {
-    const value = normalizeValue(csvRow[inputKey])
+    const value = csvRow[inputKey]
     if (isPresent(value)) {
       output[outputKey as any] = value
     }
@@ -83,7 +87,7 @@ function processAsBoolean<Output>(
   outputKey: keyof Output
 ): ColumnProcessor<Output> {
   return (csvRow, _, __, output) => {
-    const value = normalizeValue(csvRow[inputKey])
+    const value = csvRow[inputKey]
     if (isPresent(value)) {
       output[outputKey as any] = tryConvertToBoolean(value, value)
     }
@@ -99,7 +103,7 @@ function processAsNumber<Output>(
   options?: { asNumericString: boolean }
 ): ColumnProcessor<Output> {
   return (csvRow, _, rowNumber, output) => {
-    const value = normalizeValue(csvRow[inputKey])
+    const value = csvRow[inputKey]
     if (isPresent(value)) {
       const numericValue = tryConvertToNumber(value)
       if (numericValue === undefined) {
@@ -135,7 +139,7 @@ function processAsCounterValue<Output extends Record<string, any[]>>(
     rowColumns
       .filter((rowKey) => inputMatcher.test(rowKey))
       .forEach((rowKey) => {
-        const value = normalizeValue(csvRow[rowKey])
+        const value = csvRow[rowKey]
         if (!existingIds.includes(value) && isPresent(value)) {
           output[outputKey].push({ [arrayItemKey]: value })
         }
@@ -243,7 +247,7 @@ const variantStaticColumns: {
     "variant origin country",
     "origin_country"
   ),
-  "variant variant rank": processAsString(
+  "variant variant rank": processAsNumber(
     "variant variant rank",
     "variant_rank"
   ),
@@ -268,7 +272,7 @@ const variantWildcardColumns: {
 
     pricesColumns.forEach((columnName) => {
       const { iso } = parseVariantPriceColumn(columnName, rowNumber)
-      const value = normalizeValue(csvRow[columnName])
+      const value = csvRow[columnName]
 
       const numericValue = tryConvertToNumber(value)
       if (numericValue === undefined) {
@@ -298,13 +302,13 @@ const optionColumns: {
   "variant option": (csvRow, rowColumns, rowNumber, output) => {
     const matcher = /variant option \d+ name/
     const optionNameColumns = rowColumns.filter((rowKey) => {
-      return matcher.test(rowKey) && isPresent(normalizeValue(csvRow[rowKey]))
+      return matcher.test(rowKey) && isPresent(csvRow[rowKey])
     })
 
     output["options"] = optionNameColumns.map((columnName) => {
       const [, , counter] = columnName.split(" ")
-      const key = normalizeValue(csvRow[columnName])
-      const value = normalizeValue(csvRow[`variant option ${counter} value`])
+      const key = csvRow[columnName]
+      const value = csvRow[`variant option ${counter} value`]
 
       if (!isPresent(value)) {
         throw createError(rowNumber, `Missing option value for "${columnName}"`)
@@ -336,6 +340,52 @@ const knownWildcardColumns = Object.keys(productWildcardColumns)
  * the required fields in the normalized output.
  */
 export class CSVNormalizer {
+  /**
+   * Normalizes a row by converting all keys to lowercase and removing
+   * the leading "\r" from the keys and the values.
+   *
+   * Also, it values the row to contain unknown columns and must contain
+   * the "product id" or "product handle" columns.
+   */
+  static preProcess(
+    row: Record<string, string | boolean | number>,
+    rowNumber: number
+  ): NormalizedRow {
+    const unknownColumns: string[] = []
+
+    const normalized = Object.keys(row).reduce((result, key) => {
+      const lowerCaseKey = normalizeCSVValue(key).toLowerCase()
+
+      if (
+        !knownStaticColumns.includes(lowerCaseKey) &&
+        !knownWildcardColumns.some((column) => lowerCaseKey.startsWith(column))
+      ) {
+        unknownColumns.push(key)
+      }
+
+      result[lowerCaseKey] = normalizeCSVValue(row[key])
+      return result
+    }, {})
+
+    if (unknownColumns.length) {
+      throw new MedusaError(
+        MedusaError.Types.INVALID_DATA,
+        `Invalid column name(s) "${unknownColumns.join('","')}"`
+      )
+    }
+
+    const productId = normalized["product id"]
+    const productHandle = normalized["product handle"]
+    if (!isPresent(productId) && !isPresent(productHandle)) {
+      throw createError(
+        rowNumber,
+        "Missing product id and handle. One of these columns are required to process the row"
+      )
+    }
+
+    return normalized as NormalizedRow
+  }
+
   #rows: Record<string, string | boolean | number>[]
 
   #products: {
@@ -354,28 +404,8 @@ export class CSVNormalizer {
     toUpdate: {},
   }
 
-  constructor(rows: Record<string, string | boolean | number>[]) {
+  constructor(rows: NormalizedRow[]) {
     this.#rows = rows
-  }
-
-  /**
-   * Ensures atleast one of the product id or the handle is provided. Otherwise
-   * we cannot process the row
-   */
-  #ensureRowHasProductIdentifier(
-    row: Record<string, string | boolean | number>,
-    rowNumber: number
-  ) {
-    const productId = row["product id"]
-    const productHandle = row["product handle"]
-    if (!isPresent(productId) && !isPresent(productHandle)) {
-      throw createError(
-        rowNumber,
-        "Missing product id and handle. One of them are required to process the row"
-      )
-    }
-
-    return { productId, productHandle }
   }
 
   /**
@@ -401,37 +431,6 @@ export class CSVNormalizer {
   }
 
   /**
-   * Normalizes a row by converting all keys to lowercase and creating a
-   * new object
-   */
-  #normalizeRow(row: Record<string, any>) {
-    const unknownColumns: string[] = []
-
-    const normalized = Object.keys(row).reduce((result, key) => {
-      const lowerCaseKey = key.toLowerCase()
-      result[lowerCaseKey] = row[key]
-
-      if (
-        !knownStaticColumns.includes(lowerCaseKey) &&
-        !knownWildcardColumns.some((column) => lowerCaseKey.startsWith(column))
-      ) {
-        unknownColumns.push(key)
-      }
-
-      return result
-    }, {})
-
-    if (unknownColumns.length) {
-      throw new MedusaError(
-        MedusaError.Types.INVALID_DATA,
-        `Invalid column name(s) "${unknownColumns.join('","')}"`
-      )
-    }
-
-    return normalized
-  }
-
-  /**
    * Processes a given CSV row
    */
   #processRow(
@@ -439,10 +438,8 @@ export class CSVNormalizer {
     rowNumber: number
   ) {
     const rowColumns = Object.keys(row)
-    const { productHandle, productId } = this.#ensureRowHasProductIdentifier(
-      row,
-      rowNumber
-    )
+    const productId = row["product id"]
+    const productHandle = row["product handle"]
 
     /**
      * Create representation of a product by its id or handle and process
@@ -508,10 +505,11 @@ export class CSVNormalizer {
   /**
    * Process CSV rows. The return value is a tree of products
    */
-  proccess() {
+  proccess(resumingFromIndex: number = 0) {
     this.#rows.forEach((row, index) =>
-      this.#processRow(this.#normalizeRow(row), index + 1)
+      this.#processRow(row, resumingFromIndex + index + 1)
     )
+    this.#rows = []
     return this.#products
   }
 }
