@@ -3,5 +3,4 @@ export const baseGraphqlSchema = `
     scalar Date
     scalar Time
     scalar JSON
-    directive @enumValue(value: String) on ENUM_VALUE
 `
