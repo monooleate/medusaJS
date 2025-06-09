@@ -83,6 +83,8 @@ export const toGraphQLSchema = <T extends any[]>(entities: T): string => {
   })
 
   const defaultMedusaSchema = `
+    scalar DateTime
+    scalar JSON
     directive @enumValue(value: String) on ENUM_VALUE
   `
 
