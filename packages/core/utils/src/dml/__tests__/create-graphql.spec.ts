@@ -44,6 +44,9 @@ describe("GraphQL builder", () => {
     const toGql = toGraphQLSchema([tag, email, user, group])
 
     const expected = `
+      scalar DateTime
+      scalar JSON
+      directive @enumValue(value: String) on ENUM_VALUE
       type Tag {
         id: ID!
         value: String!
