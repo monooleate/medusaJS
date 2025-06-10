@@ -115,8 +115,8 @@ class MyFileProviderService extends AbstractFileProviderService {
 
 ### delete
 
-This method deletes the file from storage. It's used when an admin user deletes a product image,
-or other custom file deletions.
+This method deletes one or more files from the storage. It's used when an admin user
+deletes a product image, or other custom file deletions.
 
 #### Example
 
@@ -135,7 +135,7 @@ class MyFileProviderService extends AbstractFileProviderService {
 
 #### Parameters
 
-<TypeList types={[{"name":"file","type":"[ProviderDeleteFileDTO](../../../types/FileTypes/interfaces/types.FileTypes.ProviderDeleteFileDTO/page.mdx)","description":"The details of the file to delete.","optional":false,"defaultValue":"","expandable":false,"children":[{"name":"fileKey","type":"`string`","description":"The file's key. When uploading a file, the\nreturned key is used here.","optional":false,"defaultValue":"","expandable":false,"children":[]}]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" sectionTitle="delete"/>
+<TypeList types={[{"name":"files","type":"[ProviderDeleteFileDTO](../../../types/FileTypes/interfaces/types.FileTypes.ProviderDeleteFileDTO/page.mdx) \\| [ProviderDeleteFileDTO](../../../types/FileTypes/interfaces/types.FileTypes.ProviderDeleteFileDTO/page.mdx)[]","description":"The details of the file(s) to delete.","optional":false,"defaultValue":"","expandable":false,"children":[{"name":"fileKey","type":"`string`","description":"The file's key. When uploading a file, the\nreturned key is used here.","optional":false,"defaultValue":"","expandable":false,"children":[]}]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" sectionTitle="delete"/>
 
 #### Returns
 
