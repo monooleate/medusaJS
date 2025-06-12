@@ -19,8 +19,8 @@ export const sidebar = [
         children: [
           {
             type: "link",
-            title: "Organization",
-            path: "/organization",
+            title: "Organizations",
+            path: "/organizations",
           },
         ],
       },
