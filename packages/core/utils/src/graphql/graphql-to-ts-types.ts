@@ -157,6 +157,7 @@ export async function gqlSchemaToTypes({
       {
         typescript: {
           enumValues: getEnumValues(schema),
+          enumsAsTypes: true,
         },
       },
     ],

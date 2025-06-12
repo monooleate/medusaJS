@@ -44,10 +44,7 @@ describe("gqlSchemaToTypes", () => {
       Float: { input: number; output: number; }
     };
 
-    export enum Test {
-      TestA = 'test-a',
-      TestB = 'Test_B'
-    }
+    export type Test = | 'test-a' | 'Test_B';
 
     declare module '@medusajs/framework/types' {
       interface RemoteQueryEntryPoints {
