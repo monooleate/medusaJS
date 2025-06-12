@@ -3783,6 +3783,78 @@
     "orders": {
       "type": "object",
       "properties": {
+        "giftCardsStoreCreditLines": {
+          "type": "string"
+        },
+        "creditLines": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "total": {
+              "type": "string"
+            },
+            "creditOrDebit": {
+              "type": "string"
+            },
+            "createCreditLine": {
+              "type": "string"
+            },
+            "createCreditLineSuccess": {
+              "type": "string"
+            },
+            "createCreditLineError": {
+              "type": "string"
+            },
+            "createCreditLineDescription": {
+              "type": "string"
+            },
+            "operation": {
+              "type": "string"
+            },
+            "credit": {
+              "type": "string"
+            },
+            "debit": {
+              "type": "string"
+            },
+            "debitDescription": {
+              "type": "string"
+            },
+            "creditDescription": {
+              "type": "string"
+            }
+          }
+        },
+        "balanceSettlement": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "settlementType": {
+              "type": "string"
+            },
+            "settlementTypes": {
+              "type": "object",
+              "properties": {
+                "paymentMethod": {
+                  "type": "string"
+                },
+                "paymentMethodDescription": {
+                  "type": "string"
+                },
+                "creditLine": {
+                  "type": "string"
+                },
+                "creditLineDescription": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
         "domain": {
           "type": "string"
         },
@@ -3954,6 +4026,9 @@
             "totalPaidByCustomer": {
               "type": "string"
             },
+            "totalStoreCreditRefunds": {
+              "type": "string"
+            },
             "capture": {
               "type": "string"
             },
@@ -4055,6 +4130,7 @@
             "title",
             "isReadyToBeCaptured",
             "totalPaidByCustomer",
+            "totalStoreCreditRefunds",
             "capture",
             "capture_short",
             "refund",
@@ -10601,6 +10677,12 @@
         "amount": {
           "type": "string"
         },
+        "reference": {
+          "type": "string"
+        },
+        "reference_id": {
+          "type": "string"
+        },
         "refundAmount": {
           "type": "string"
         },
@@ -10857,6 +10939,9 @@
           "type": "string"
         },
         "paidTotal": {
+          "type": "string"
+        },
+        "creditTotal": {
           "type": "string"
         },
         "totalExclTax": {
