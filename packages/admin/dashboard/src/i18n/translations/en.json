@@ -1969,6 +1969,7 @@
       "allocation": "Allocation",
       "addCondition": "Add condition",
       "clearAll": "Clear all",
+      "taxInclusive": "Tax Inclusive",
       "amount": {
         "tooltip": "Select the currency code to enable setting the amount"
       },
@@ -2044,6 +2045,10 @@
           "title": "Without Campaign",
           "description": "Proceed without associating promotion with campaign"
         }
+      },
+      "taxInclusive": {
+        "title": "Does promotion include taxes?",
+        "description": "Whether the promotion will be applied before or after taxes"
       },
       "status": {
         "label": "Status",
