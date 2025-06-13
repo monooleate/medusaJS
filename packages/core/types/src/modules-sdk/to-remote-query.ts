@@ -45,6 +45,34 @@ type ExtractFiltersOperators<
     : never
 }
 
+type OperatorsOnlyFilters<
+  TEntry extends string,
+  RemoteQueryEntryPointsLevel = RemoteQueryEntryPoints,
+  Exclusion extends string[] = [],
+  Lim extends number = Depth[3]
+> = Lim extends number
+  ? {
+      $or?: RemoteQueryFilters<
+        TEntry,
+        RemoteQueryEntryPointsLevel,
+        Exclusion,
+        Depth[Lim]
+      >[]
+      $and?: RemoteQueryFilters<
+        TEntry,
+        RemoteQueryEntryPointsLevel,
+        Exclusion,
+        Depth[Lim]
+      >[]
+      $not?: RemoteQueryFilters<
+        TEntry,
+        RemoteQueryEntryPointsLevel,
+        Exclusion,
+        Depth[Lim]
+      >
+    }
+  : never
+
 /**
  * Extract all available filters from a remote entry point deeply
  */
@@ -53,7 +81,7 @@ export type RemoteQueryFilters<
   RemoteQueryEntryPointsLevel = RemoteQueryEntryPoints,
   Exclusion extends string[] = [],
   Lim extends number = Depth[3]
-> = Lim extends number
+> = (Lim extends number
   ? TEntry extends keyof RemoteQueryEntryPointsLevel
     ? TypeOnly<RemoteQueryEntryPointsLevel[TEntry]> extends Array<infer V>
       ? Prettify<
@@ -69,4 +97,5 @@ export type RemoteQueryFilters<
           >
         >
     : Record<string, any>
-  : never
+  : never) &
+  OperatorsOnlyFilters<TEntry, RemoteQueryEntryPointsLevel, Exclusion, Lim>
