@@ -22,6 +22,11 @@ export const sidebar = [
             title: "Organizations",
             path: "/organizations",
           },
+          {
+            type: "link",
+            title: "Projects",
+            path: "/projects",
+          },
         ],
       },
     ],

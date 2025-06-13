@@ -28,6 +28,14 @@ export const generatedSidebars = [
             "title": "Organizations",
             "path": "/organizations",
             "children": []
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Projects",
+            "path": "/projects",
+            "children": []
           }
         ]
       }
