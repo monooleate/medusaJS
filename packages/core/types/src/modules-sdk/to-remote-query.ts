@@ -50,28 +50,21 @@ type OperatorsOnlyFilters<
   RemoteQueryEntryPointsLevel = RemoteQueryEntryPoints,
   Exclusion extends string[] = [],
   Lim extends number = Depth[3]
-> = Lim extends number
-  ? {
-      $or?: RemoteQueryFilters<
-        TEntry,
-        RemoteQueryEntryPointsLevel,
-        Exclusion,
-        Depth[Lim]
-      >[]
-      $and?: RemoteQueryFilters<
-        TEntry,
-        RemoteQueryEntryPointsLevel,
-        Exclusion,
-        Depth[Lim]
-      >[]
-      $not?: RemoteQueryFilters<
-        TEntry,
-        RemoteQueryEntryPointsLevel,
-        Exclusion,
-        Depth[Lim]
-      >
-    }
-  : never
+> = {
+  $or?: RemoteQueryFilters<
+    TEntry,
+    RemoteQueryEntryPointsLevel,
+    Exclusion,
+    Lim
+  >[]
+  $and?: RemoteQueryFilters<
+    TEntry,
+    RemoteQueryEntryPointsLevel,
+    Exclusion,
+    Lim
+  >[]
+  $not?: RemoteQueryFilters<TEntry, RemoteQueryEntryPointsLevel, Exclusion, Lim>
+}
 
 /**
  * Extract all available filters from a remote entry point deeply
