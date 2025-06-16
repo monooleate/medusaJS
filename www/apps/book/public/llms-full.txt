@@ -1136,7 +1136,7 @@ You define the middlewares using the `defineMiddlewares` function and export its
 
 In the middleware object, you define three properties:
 
-- `matcher`: a string or regular expression indicating the API route path to apply the middleware on. You pass the create brand's route `/admin/brand`.
+- `matcher`: a string or regular expression indicating the API route path to apply the middleware on. You pass the create brand's route `/admin/brands`.
 - `method`: The HTTP method to restrict the middleware to, which is `POST`.
 - `middlewares`: An array of middlewares to apply on the route. You pass the `validateAndTransformBody` middleware, passing it the Zod schema you created earlier.
 
@@ -3397,12 +3397,12 @@ export function register() {
 
 In the `instrumentation.ts` file, you export a `register` function that uses Medusa's `registerOtel` utility function. You also initialize an instance of the exporter, such as Zipkin, and pass it to the `registerOtel` function.
 
-`registerOtel` accepts an object where you can pass any [NodeSDKConfiguration](https://open-telemetry.github.io/opentelemetry-js/interfaces/_opentelemetry_sdk_node.NodeSDKConfiguration.html) property along with the following properties:
+`registerOtel` accepts an object where you can pass any [NodeSDKConfiguration](https://open-telemetry.github.io/opentelemetry-js/interfaces/_opentelemetry_sdk-node.NodeSDKConfiguration.html) property along with the following properties:
 
 The `NodeSDKConfiguration` properties are accepted since Medusa v2.5.1.
 
 - serviceName: (\`string\`) The name of the service traced.
-- exporter: (\[SpanExporter]\(https://open-telemetry.github.io/opentelemetry-js/interfaces/\_opentelemetry\_sdk\_trace\_base.SpanExporter.html)) An instance of an exporter, such as Zipkin.
+- exporter: (\[SpanExporter]\(https://open-telemetry.github.io/opentelemetry-js/interfaces/\_opentelemetry\_sdk-node.node.SpanExporter.html)) An instance of an exporter, such as Zipkin.
 - instrument: (\`object\`) Options specifying what to trace.
 
   - http: (\`boolean\`) Whether to trace HTTP requests.
@@ -14231,6 +14231,21 @@ Loaders are also useful to only load a module if a certain condition is met. For
 ### Loaders Executed with Migrations
 
 Loaders are also executed when you run [migrations](https://docs.medusajs.com/learn/fundamentals/data-models/write-migration/index.html.md). This can be useful if you need to run some task before the migrations, or you want to migrate some data to an integrated third-party system as part of the migration process.
+
+***
+
+## Avoid Heavy Operations in Loaders
+
+Since loaders are executed when the Medusa application starts, heavy operations will increase the startup time of the application.
+
+So, avoid operations that take a long time to complete, such as fetching a large amount of data from an external API or database, in loaders.
+
+### Alternative Solutions
+
+Instead of performing heavy operations in loaders, consider one of the following solutions:
+
+- Use a [scheduled job](https://docs.medusajs.com/learn/fundamentals/scheduled-jobs/index.html.md) to perform the operation at specified intervals. This way, the operation is performed asynchronously and doesn't block the application startup.
+- [Emit custom events](https://docs.medusajs.com/learn/fundamentals/events-and-subscribers/emit-event/index.html.md) in an [API route](https://docs.medusajs.com/learn/fundamentals/api-routes/index.html.md), then handle the event in a [subscriber](https://docs.medusajs.com/learn/fundamentals/events-and-subscribers/index.html.md) to perform the operation asynchronously. You can then send a request to the API route to trigger the operation when needed.
 
 ***
 
