@@ -262,11 +262,27 @@ You can rename the file to `.env` and use it in your local development.
 
 ---
 
-## Manage Environment's Deployment Rules
+## Change Environment's Branch
+
+<Note>
+
+You can't change the branch of preview environments. This section only applies to long-lived environments, such as Production or Staging.
+
+</Note>
 
 In an environment's "Settings" tab, you can manage the deployment rules for the environment. Deployment rules allow you to control how and when deployments are triggered for the environment.
 
-Learn more in the [Deployments](#) guide.
+To change the branch associated with an environment using deployment rules:
+
+1. In the [environment's dashboard](#open-environment-dashboard), click on the "Settings" tab.
+2. In the "Deployment rules" section, click the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon at the right side of the `branch` rule.
+3. Choose "Edit" from the dropdown menu.
+4. In the side window that opens, you can change the branch associated with the environment.
+5. Once you're done, click the "Save" button.
+
+Changes will take effect the next time you push a commit to the new branch. The environment will be redeployed with the latest changes from the new branch.
+
+![Change environment branch in the environment's settings tab](https://res.cloudinary.com/dza7lstvk/image/upload/v1750170517/Cloud/CleanShot_2025-06-17_at_17.28.25_2x_nfx79a.png)
 
 ---
 
@@ -323,7 +339,7 @@ To open a preview environment's dashboard:
 1. Go to its [project's dashboard](../projects/page.mdx#open-project-dashboard).
 2. In the "Previews" card, click on the preview environment you want to view.
 
-Then, you can manage the preview environment just like any other long-lived environment, as mentioned throughout this guide. You can [manage its environment variables](#manage-environment-variables), [deployment rules](#manage-environments-deployment-rules), and [import/export its database dump](#import-and-export-environments-database-dump).
+Then, you can manage the preview environment just like any other long-lived environment, as mentioned throughout this guide. You can [manage its environment variables](#manage-environment-variables) and [import/export its database dump](#import-and-export-environments-database-dump).
 
 ![Preview environment dashboard](https://res.cloudinary.com/dza7lstvk/image/upload/v1749817815/Cloud/CleanShot_2025-06-13_at_15.29.58_2x_h9vn34.png)
 

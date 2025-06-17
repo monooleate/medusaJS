@@ -1,4 +1,5 @@
-import { Table } from "docs-ui"
+import { Table, InlineIcon } from "docs-ui"
+import { EllipsisHorizontal } from "@medusajs/icons"
 
 export const metadata = {
   title: `Deployments`,
@@ -274,3 +275,31 @@ To redeploy a deployment:
 This will trigger the redeployment process for the selected deployment. The deployment will go through [the same lifecycle](#deployment-statuses-and-lifecycle) as a new deployment.
 
 Once the redeployment is complete, the deployment's status will change to "Live" and it will become the new live version of the environment.
+
+---
+
+## Change Deployment Rules
+
+For each environment, you can change the rules that trigger a new deployment. For example, you can change the branch that the environment is connected to, which changes when a new deployment is created.
+
+<Note>
+
+Changing the branch associted with an environment only works for long-lived environments.
+
+</Note>
+
+To change the deployment rules for an environment:
+
+1. [Go to the environment's dashboard](#find-environment-deployments).
+2. Click on the "Settings" tab.
+3. Scroll down to the "Deployment rules" section. You'll find a `branch` rule in this section.
+
+![Deployment rules section in the environment's settings tab](https://res.cloudinary.com/dza7lstvk/image/upload/v1750171235/Cloud/CleanShot_2025-06-17_at_17.40.13_2x_v0vn1k.png)
+
+4. You can edit it by clicking the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon and choosing "Edit" from the dropdown.
+5. In the side window that opens, you can change the branch that the environment is connected to. For example, you can change it from `main` to `staging` to create a new deployment every time you push a commit to the `staging` branch.
+6. Click "Save" to apply the changes.
+
+The deployment rules will take effect for next deployments. For example, if you change the branch to `staging`, the next deployment will be created from the latest commit in the `staging` branch.
+
+![Change environment branch in the environment's settings tab](https://res.cloudinary.com/dza7lstvk/image/upload/v1750170517/Cloud/CleanShot_2025-06-17_at_17.28.25_2x_nfx79a.png)

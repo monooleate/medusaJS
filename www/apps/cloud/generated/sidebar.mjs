@@ -59,6 +59,23 @@ export const generatedSidebars = [
         "loaded": true,
         "isPathHref": true,
         "type": "category",
+        "title": "Resources",
+        "initialOpen": true,
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Database",
+            "path": "/database",
+            "children": []
+          }
+        ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "category",
         "title": "Monitoring & Support",
         "initialOpen": true,
         "children": [

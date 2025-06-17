@@ -41,6 +41,18 @@ export const sidebar = [
       },
       {
         type: "category",
+        title: "Resources",
+        initialOpen: true,
+        children: [
+          {
+            type: "link",
+            title: "Database",
+            path: "/database",
+          },
+        ],
+      },
+      {
+        type: "category",
         title: "Monitoring & Support",
         initialOpen: true,
         children: [
