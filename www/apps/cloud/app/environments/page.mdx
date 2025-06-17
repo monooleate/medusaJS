@@ -120,25 +120,15 @@ After adding the environment variables, you need to redeploy the environment for
 
 ![Redeploy button at the top right of the environment's dashboard](https://res.cloudinary.com/dza7lstvk/image/upload/v1750081204/Cloud/CleanShot_2025-06-16_at_16.39.44_2x_d3yij6.png)
 
-Then, wait for the deployment to finish. You can check its status in the "Deployments" section. Once it's deployed, you can [access the Medusa Admin](#access-medusa-admin).
+Then, wait for the deployment to finish. You can check its status in the "Deployments" section. Once it's deployed, you can [access the environment](#access-deployed-environment) using its URL.
 
 ---
 
-## Access Medusa Admin
+## Access Deployed Environment
 
-To access the Medusa Admin of an environment, click on the environment's URL in the environment's card or [dashboard](#open-environment-dashboard).
+Once an environment is deployed, you can access it through its URL.
 
-You can then login using the email and password [set in the environment variables](#create-medusa-admin-user-in-environment).
-
-![URL of environment in its dashboard under the environment's name](https://res.cloudinary.com/dza7lstvk/image/upload/v1750081257/Cloud/CleanShot_2025-06-16_at_16.40.37_2x_vxupew.png)
-
----
-
-## Access Environment Server through SSH
-
-Cloud doesn't support SSH access to the server instance of an environment. However, you can still access the server's [runtime and build logs](#) to debug issues in your application.
-
-If this isn't sufficient for your use case, you can [contact support](#) to discuss alternatives.
+Learn more about how to access an environment's deployment in the [Deployments](../deployments/page.mdx#access-live-deployment) guide.
 
 ---
 
@@ -314,7 +304,15 @@ You can also view the preview deployment and its status in the comment made on y
 
 ### Access Deployed Preview Environment
 
-Once the preview environment has finished deploying, you can access its Medusa Admin either through the comment in the PR or by clicking the "Preview" button in the project's dashboard.
+Once the preview environment has finished deploying, you can access its Medusa Admin either through the comment in the PR or by clicking the "Preview" button in the [project's dashboard](../projects/page.mdx#open-project-dashboard).
+
+![Preview button in the project's dashboard](https://res.cloudinary.com/dza7lstvk/image/upload/v1750158423/Cloud/CleanShot_2025-06-17_at_14.06.41_2x_yaw699.png)
+
+This will open the preview environment's Medusa Admin in a new tab, where you can test the changes made in the PR.
+
+To log into the Medusa Admin of the preview environment, use the admin credentials of the Production environment. If you [configured the shared previews settings](#manage-shared-previews-settings) to use a different environment's database, you can log in with the admin credentials of that environment instead.
+
+You can also [send requests to the preview deployment's API](../deployments/page.mdx#send-requests-to-the-deployment).
 
 ### Open Preview Environment Dashboard
 

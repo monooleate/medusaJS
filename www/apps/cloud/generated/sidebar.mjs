@@ -44,6 +44,14 @@ export const generatedSidebars = [
             "title": "Environments",
             "path": "/environments",
             "children": []
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Deployments",
+            "path": "/deployments",
+            "children": []
           }
         ]
       }

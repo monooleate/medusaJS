@@ -32,6 +32,11 @@ export const sidebar = [
             title: "Environments",
             path: "/environments",
           },
+          {
+            type: "link",
+            title: "Deployments",
+            path: "/deployments",
+          },
         ],
       },
     ],

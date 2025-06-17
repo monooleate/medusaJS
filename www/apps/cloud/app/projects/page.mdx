@@ -113,31 +113,11 @@ If you encounter any issues while creating a project:
 
 ---
 
-## Open Deployed Medusa Admin
+## Access Deployed Project
 
-To open the deployed Medusa Admin of a project:
+To access the deployed project, you can access the URL of its Production environment.
 
-1. Make sure you're viewing the [correct organization's dashboard in Cloud](../organizations/page.mdx#switch-organization).
-2. Open the project's dashboard by clicking on the project card in the organization's dashboard.
-3. Click on the URL in the "Production" card of the project's dashboard. It will open the Medusa Admin in a new tab.
-
-![The project dashboard with the production deployment URL highlighted](https://res.cloudinary.com/dza7lstvk/image/upload/v1749743331/Cloud/CleanShot_2025-06-12_at_18.48.24_2x_zgo8ws.png)
-
-You can then log in using the email and password you set during the project creation.
-
-<Note>
-
-Lost your Medusa Admin email or password? You can [contact support](#) or [reset your password in the Medusa Admin](!user-guide!/reset-password) if your Medusa project has a Notification Module Provider configured.
-
-</Note>
-
----
-
-## Access Server through SSH
-
-Cloud doesn't support SSH access to the server instances of a project. However, you can still access the server's [runtime and build logs](#) to debug issues in your project.
-
-If this isn't sufficient for your use case, you can [contact support](#) to discuss alternatives.
+Learn more in the [Deployments](../deployments/page.mdx#access-live-deployment) guide.
 
 ---
 
@@ -164,7 +144,7 @@ On the project's dashboard, you can view the following details:
     - The Previews environments are created whenever you create a pull request in the linked GitHub repository. They allow you to preview changes before merging them into the main branch.
 3. **Production URL**: The URL of the project's production deployment. You'll find it in the "Production" card under the title. Clicking it will open the production Medusa Admin in a new tab.
 4. **Repository**: The GitHub repository linked to the project. You'll find it as a "Repository" button at the top right of the project's dashboard. Clicking it will open the repository in a new tab.
-5. **Project Status**: The status of the project, which may be "Live", "Building", or "Failed". The status for the production deployment is shown in the "Production" card of the project's dashboard.
+5. **Production Status**: The status of the project's environment, which may be "Live" or "Building". Learn more in the [Deployments](../deployments/page.mdx#deployment-statuses-and-lifecycle) guide.
 
 ### Switch Projects
 
