@@ -54,6 +54,23 @@ export const generatedSidebars = [
             "children": []
           }
         ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "category",
+        "title": "Monitoring & Support",
+        "initialOpen": true,
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Notifications",
+            "path": "/notifications",
+            "children": []
+          }
+        ]
       }
     ]
   }

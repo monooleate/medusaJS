@@ -39,6 +39,18 @@ export const sidebar = [
           },
         ],
       },
+      {
+        type: "category",
+        title: "Monitoring & Support",
+        initialOpen: true,
+        children: [
+          {
+            type: "link",
+            title: "Notifications",
+            path: "/notifications",
+          },
+        ],
+      },
     ],
   },
 ]

@@ -4,5 +4,6 @@ export const generatedEditDates = {
   "app/projects/page.mdx": "2025-06-17T11:20:16.174Z",
   "app/environments/page.mdx": "2025-06-17T11:12:50.824Z",
   "app/deployments/page.mdx": "2025-06-17T11:17:03.236Z",
-  "app/organizations/page.mdx": "2025-06-17T10:48:50.969Z"
+  "app/organizations/page.mdx": "2025-06-17T10:48:50.969Z",
+  "app/notifications/page.mdx": "2025-06-17T12:29:18.819Z"
 }
