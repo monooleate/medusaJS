@@ -77,6 +77,14 @@ export const generatedSidebars = [
             "title": "Redis",
             "path": "/redis",
             "children": []
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "S3",
+            "path": "/s3",
+            "children": []
           }
         ]
       },
