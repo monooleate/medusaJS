@@ -40,8 +40,6 @@ const OrderBalanceSettlementSchema = zod.object({
   credit_line: zod
     .object({
       amount: zod.string().or(zod.number()).optional(),
-      reference: zod.string().optional(),
-      reference_id: zod.string().optional(),
       note: zod.string().optional(),
     })
     .optional(),
@@ -84,8 +82,6 @@ export const OrderBalanceSettlementForm = ({
       await createCreditLine(
         {
           amount: parseFloat(data.credit_line!.amount! as string) * -1,
-          reference: data.credit_line!.reference ?? "order",
-          reference_id: data.credit_line!.reference_id ?? order.id,
         },
         {
           onSuccess: () => {
@@ -325,42 +321,6 @@ export const OrderBalanceSettlementForm = ({
                             }
                             autoFocus
                           />
-                        </Form.Control>
-
-                        <Form.ErrorMessage />
-                      </Form.Item>
-                    )
-                  }}
-                />
-
-                <Form.Field
-                  control={form.control}
-                  name="credit_line.reference"
-                  render={({ field }) => {
-                    return (
-                      <Form.Item>
-                        <Form.Label>{t("fields.reference")}</Form.Label>
-
-                        <Form.Control>
-                          <Input {...field} />
-                        </Form.Control>
-
-                        <Form.ErrorMessage />
-                      </Form.Item>
-                    )
-                  }}
-                />
-
-                <Form.Field
-                  control={form.control}
-                  name="credit_line.reference_id"
-                  render={({ field }) => {
-                    return (
-                      <Form.Item>
-                        <Form.Label>{t("fields.reference_id")}</Form.Label>
-
-                        <Form.Control>
-                          <Input {...field} />
                         </Form.Control>
 
                         <Form.ErrorMessage />
