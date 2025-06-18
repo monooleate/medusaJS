@@ -46,9 +46,9 @@ type ExtractFiltersOperators<
 }
 
 type RemoteQueryFilterOperators<T> = {
-  $or?: T[]
-  $and?: T[]
-  $not?: T
+  $or?: (T & RemoteQueryFilterOperators<T>)[]
+  $and?: (T & RemoteQueryFilterOperators<T>)[]
+  $not?: T & RemoteQueryFilterOperators<T>
 }
 
 /**
