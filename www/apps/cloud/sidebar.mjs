@@ -63,6 +63,23 @@ export const sidebar = [
       },
       {
         type: "category",
+        title: "Plugins",
+        initialOpen: true,
+        children: [
+          {
+            type: "link",
+            title: "Loyalty",
+            path: "/loyalty-plugin",
+          },
+          {
+            type: "link",
+            title: "Draft Orders",
+            path: "/draft-order-plugin",
+          },
+        ],
+      },
+      {
+        type: "category",
         title: "Monitoring & Support",
         initialOpen: true,
         children: [

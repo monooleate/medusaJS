@@ -92,6 +92,31 @@ export const generatedSidebars = [
         "loaded": true,
         "isPathHref": true,
         "type": "category",
+        "title": "Plugins",
+        "initialOpen": true,
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Loyalty",
+            "path": "/loyalty-plugin",
+            "children": []
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Draft Orders",
+            "path": "/draft-order-plugin",
+            "children": []
+          }
+        ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "category",
         "title": "Monitoring & Support",
         "initialOpen": true,
         "children": [
