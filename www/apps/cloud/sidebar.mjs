@@ -49,6 +49,11 @@ export const sidebar = [
             title: "Database",
             path: "/database",
           },
+          {
+            type: "link",
+            title: "Redis",
+            path: "/redis",
+          },
         ],
       },
       {

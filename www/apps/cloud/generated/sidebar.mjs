@@ -69,6 +69,14 @@ export const generatedSidebars = [
             "title": "Database",
             "path": "/database",
             "children": []
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Redis",
+            "path": "/redis",
+            "children": []
           }
         ]
       },
