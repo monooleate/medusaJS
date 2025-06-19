@@ -2074,7 +2074,7 @@
       },
       "taxInclusive": {
         "title": "Does promotion include taxes?",
-        "description": "Whether the promotion will be applied before or after taxes"
+        "description": "Enable this field to apply the promotion after taxes. If disabled, the promotion will be applied before taxes."
       },
       "status": {
         "label": "Status",
