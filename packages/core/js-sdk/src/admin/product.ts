@@ -66,12 +66,7 @@ export class Product {
    * [Create Product Import](https://docs.medusajs.com/api/admin#products_postproductsimports)
    * API route.
    *
-   * @version 2.8.0
-   * @ignore
-   * @privateRemarks
-   * The ignore tag to be removed once the feature is ready.
-   * Also, the version indicates the version where the method was added.
-   * Maybe we should change the version once the feature is ready.
+   * @version 2.8.5
    *
    * @param body - The import's details.
    * @param query - Query parameters to pass to the request.
