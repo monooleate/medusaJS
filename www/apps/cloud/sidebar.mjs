@@ -105,6 +105,11 @@ export const sidebar = [
             title: "Notifications",
             path: "/notifications",
           },
+          {
+            type: "link",
+            title: "Support",
+            path: "/support",
+          },
         ],
       },
     ],

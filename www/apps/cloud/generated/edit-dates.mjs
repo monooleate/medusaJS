@@ -12,5 +12,6 @@ export const generatedEditDates = {
   "app/draft-order-plugin/page.mdx": "2025-06-18T08:32:21.263Z",
   "app/loyalty-plugin/page.mdx": "2025-06-18T08:28:51.756Z",
   "app/billing-usage/page.mdx": "2025-06-18T10:35:56.993Z",
-  "app/logs/page.mdx": "2025-06-19T07:44:38.336Z"
+  "app/logs/page.mdx": "2025-06-19T07:44:38.336Z",
+  "app/support/page.mdx": "2025-06-19T10:29:01.693Z"
 }

@@ -152,6 +152,14 @@ export const generatedSidebars = [
             "title": "Notifications",
             "path": "/notifications",
             "children": []
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Support",
+            "path": "/support",
+            "children": []
           }
         ]
       }
