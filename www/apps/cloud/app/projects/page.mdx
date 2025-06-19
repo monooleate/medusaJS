@@ -14,7 +14,7 @@ A project is the collection of resources, environments, deployments, and setting
 
 To deploy a Medusa application to the Cloud, you create a project for it. Cloud will automatically set up and configure the necessary resources in the project to run the application, such as PostgreSQL, Redis, and S3.
 
-Each project can have multiple environments, such as production and staging. These environments allow you to test changes before pushing them live to users. You can learn more in the [Environments documentation](#).
+Each project can have multiple environments, such as production and staging. These environments allow you to test changes before pushing them live to users. You can learn more in the [Environments documentation](../environments/page.mdx).
 
 ---
 
@@ -29,7 +29,7 @@ Before creating a project, ensure you have:
 - A Medusa application whose codebase is hosted in a GitHub repository.
     - If you don't have a Medusa application yet, refer to the [Installation](!docs!/learn/installation) guide to set up a new Medusa application.
 - A Cloud account with a valid plan that allows creating more projects.
-    - If you've exceeded the number of projects limit for your plan, you can [contact support to upgrade your plan](#).
+    - If you've exceeded the number of projects limit for your plan, you can [contact support](../support/page.mdx) to upgrade your plan.
 
 #### Medusa Application Configurations
 
@@ -70,7 +70,7 @@ To create a project:
 
 7. You can optionally change the "Build and project" settings by expanding its section:
     - Select a region to deploy the project. For better performance, choose a region that's closer to your target users. The region can't be changed later.
-        - If you don't find the region you need, you can [contact support](#) to request it.
+        - If you don't find the region you need, you can [contact support](../support/page.mdx) to request it.
     - If your project is in a monorepo, you can specify the path to the Medusa project in the repository. Otherwise, leave it empty.
     - You can change the email and password for the admin user created for the project. These are the credentials you'll use to access the Medusa Admin.
 
@@ -106,10 +106,8 @@ Once the project is created and deployed, you'll receive a notification in the C
 
 If you encounter any issues while creating a project:
 
-{/* TODO: add links */}
-
-- [Check the build and runtime logs of the project's production deployment](#).
-- [Contact support for help](#).
+- [Check the build and runtime logs of the project's production deployment](../logs/page.mdx).
+- [Contact support for help](../support/page.mdx).
 
 ---
 
@@ -139,7 +137,7 @@ On the project's dashboard, you can view the following details:
 ![The project dashboard with the details of a project](https://res.cloudinary.com/dza7lstvk/image/upload/v1749743078/Cloud/CleanShot_2025-06-12_at_18.42.54_2x_rin0pw.png)
 
 1. **Region**: The region where the project is deployed. You'll find it below the project name.
-2. **Environments**: The environments for the project are shown as cards. By default, you'll find Production and Previews environments. You can learn more about environments in the [Environments documentation](#).
+2. **Environments**: The environments for the project are shown as cards. By default, you'll find Production and Previews environments. You can learn more about environments in the [Environments](../environments/page.mdx) guide.
     - The Production environment is the live environment where your Medusa application is deployed and clients connect to.
     - The Previews environments are created whenever you create a pull request in the linked GitHub repository. They allow you to preview changes before merging them into the main branch.
 3. **Production URL**: The URL of the project's production deployment. You'll find it in the "Production" card under the title. Clicking it will open the production Medusa Admin in a new tab.
@@ -165,7 +163,7 @@ This will change the view to the selected project, and you'll see its details, e
 
 To view the deployments of a project, click on the "Deployments" tab in the project's dashboard. This will show you a list of all deployments for the project, including their status, environment, and how long the deployment took.
 
-Learn more in the [Deployments documentation](#).
+Learn more in the [Deployments](../deployments/page.mdx) guide.
 
 ---
 
@@ -187,7 +185,7 @@ To edit a project's general details:
 
 You can also edit the "Previews" settings of a project from the "Settings" tab, which are general settings related to Previews environments.
 
-Learn more in the [Environments documentation](#).
+Learn more in the [Environments](../environments/page.mdx) guide.
 
 ---
 

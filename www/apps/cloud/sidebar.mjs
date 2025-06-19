@@ -122,6 +122,11 @@ export const sidebar = [
             title: "Update Medusa",
             path: "/update-medusa",
           },
+          {
+            type: "link",
+            title: "Connect Storefront",
+            path: "/connect-storefront",
+          },
         ],
       },
     ],

@@ -25,9 +25,26 @@ For short-lived preview environments, Cloud creates a new environment and deploy
 
 ---
 
+## Find Project Deployments
+
+You can find the deployments for a project in its dashboard.
+
+To find the deployments for a project:
+
+1. Make sure you're viewing the [correct organization's dashboard in Cloud](../organizations/page.mdx#switch-organization).
+2. Click on the project you want to view its deployments.
+3. Click on the "Deployments" tab in the project's dashboard.
+
+You'll find all deployments for the project's environments in the "Deployments" tab, sorted in descending order. For each deployment, you can see its branch, environment, status, and more.
+
+![Deployments tab in the project's dashboard](https://res.cloudinary.com/dza7lstvk/image/upload/v1750343899/Cloud/CleanShot_2025-06-19_at_17.37.45_2x_dwimzq.png)
+
+---
+
+
 ## Find Environment Deployments
 
-You can find the deployments for a project and its environments in the project and environment dashboards.
+You can find the deployments for an environment in the project and environment dashboards.
 
 For example, to find the deployments for the Production environment:
 
@@ -68,7 +85,7 @@ On the deployment details page, you'll find:
 1. **Commit**: The commit that the deployment was created from.
 2. **Status**: The current [status](#deployment-statuses-and-lifecycle) of the deployment. For example, "Live" or "Build Failed".
 3. **Author**: The GitHub user who pushed the commit that created the deployment.
-4. **Build Logs**: The logs from the build process. They are useful to understand why a deployment failed. Learn more in the [Logs](#) guide.
+4. **Build Logs**: The logs from the build process. They are useful to understand why a deployment failed. Learn more in the [Logs](../logs/page.mdx) guide.
 
 ### Switch Between Deployments
 
@@ -136,9 +153,9 @@ Where `my-project` is the subdomain you set either when [creating the project](.
 
 ### Access Deployment's Server through SSH
 
-Cloud doesn't support SSH access to the server instance of a deployment. However, you can still access the server's [runtime and build logs](#) to debug issues in your application.
+Cloud doesn't support SSH access to the server instance of a deployment. However, you can still access the server's [runtime and build logs](../logs/page.mdx) to debug issues in your application.
 
-If this isn't sufficient for your use case, you can [contact support](#) to discuss alternatives.
+If this isn't sufficient for your use case, you can [contact support](../support/page.mdx) to discuss alternatives.
 
 ---
 
@@ -179,7 +196,7 @@ A deployment can have one of the following statuses:
         Build failed
       </Table.Cell>
       <Table.Cell>
-        The build process failed due to a build error. You can check the [build logs](#) to troubleshoot the issue.
+        The build process failed due to a build error. You can check the [build logs](../logs/page.mdx) to troubleshoot the issue.
       </Table.Cell>
     </Table.Row>
     <Table.Row>
@@ -203,7 +220,7 @@ A deployment can have one of the following statuses:
         Deploy failed
       </Table.Cell>
       <Table.Cell>
-        The deployment failed during the deployment process. You can check the [Runtime Logs](#) to troubleshoot the issue.
+        The deployment failed during the deployment process. You can check the [Runtime Logs](../logs/page.mdx) to troubleshoot the issue.
       </Table.Cell>
     </Table.Row>
     <Table.Row>
@@ -229,7 +246,7 @@ So, the lifecycle of a successful deployment is Building → Awaiting deployment
 
 <Note>
 
-If a deployment is stuck at a status like "Building" or "Deploying" for a long time, [contact support](#) for assistance.
+If a deployment is stuck at a status like "Building" or "Deploying" for a long time, [contact support](../support/page.mdx) for assistance.
 
 </Note>
 
@@ -241,15 +258,15 @@ If a deployment is stuck at a status like "Building" or "Deploying" for a long t
 
 ### Troubleshooting Build Failures
 
-If a deployment's status is "Build failed", you can check the [build logs](#) to understand why it failed. The build logs will show you the errors that occurred during the build process, which can help you fix the issue in your code.
+If a deployment's status is "Build failed", you can check the [build logs](../logs/page.mdx) to understand why it failed. The build logs will show you the errors that occurred during the build process, which can help you fix the issue in your code.
 
-You can also [contact support](#) for help with the issue, if necessary.
+You can also [contact support](../support/page.mdx) for help with the issue, if necessary.
 
 ### Troubleshooting Deployment Failures
 
-If a deployment's status is "Deploy failed", you can check the [runtime logs](#) to understand why it failed. The runtime logs will show you the errors that occurred during the deployment process, which can help you fix the issue in your code.
+If a deployment's status is "Deploy failed", you can check the [runtime logs](../logs/page.mdx) to understand why it failed. The runtime logs will show you the errors that occurred during the deployment process, which can help you fix the issue in your code.
 
-You can also [contact support](#) for help with the issue, if necessary.
+You can also [contact support](../support/page.mdx) for help with the issue, if necessary.
 
 ---
 
@@ -261,7 +278,7 @@ By redeploying a previous deployment, you revert or rollback the live version of
 
 <Note title="Important">
 
-Redeploying a deployment will not revert database changes made in the latest deployment. If you need to revert database changes, [contact support](#) for assistance based on your use case.
+Redeploying a deployment will not revert database changes made in the latest deployment. If you need to revert database changes, [contact support](../support/page.mdx) for assistance based on your use case.
 
 </Note>
 

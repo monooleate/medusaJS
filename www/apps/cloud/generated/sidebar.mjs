@@ -177,6 +177,14 @@ export const generatedSidebars = [
             "title": "Update Medusa",
             "path": "/update-medusa",
             "children": []
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Connect Storefront",
+            "path": "/connect-storefront",
+            "children": []
           }
         ]
       }
