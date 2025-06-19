@@ -162,6 +162,23 @@ export const generatedSidebars = [
             "children": []
           }
         ]
+      },
+      {
+        "loaded": true,
+        "isPathHref": true,
+        "type": "category",
+        "title": "Best Practices",
+        "initialOpen": true,
+        "children": [
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "title": "Update Medusa",
+            "path": "/update-medusa",
+            "children": []
+          }
+        ]
       }
     ]
   }

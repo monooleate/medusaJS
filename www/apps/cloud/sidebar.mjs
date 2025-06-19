@@ -112,6 +112,18 @@ export const sidebar = [
           },
         ],
       },
+      {
+        type: "category",
+        title: "Best Practices",
+        initialOpen: true,
+        children: [
+          {
+            type: "link",
+            title: "Update Medusa",
+            path: "/update-medusa",
+          },
+        ],
+      },
     ],
   },
 ]
