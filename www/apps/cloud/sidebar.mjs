@@ -97,6 +97,11 @@ export const sidebar = [
         children: [
           {
             type: "link",
+            title: "Logs",
+            path: "/logs",
+          },
+          {
+            type: "link",
             title: "Notifications",
             path: "/notifications",
           },
