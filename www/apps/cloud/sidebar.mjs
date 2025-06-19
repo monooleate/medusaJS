@@ -80,6 +80,18 @@ export const sidebar = [
       },
       {
         type: "category",
+        title: "Billing",
+        initialOpen: true,
+        children: [
+          {
+            type: "link",
+            title: "Billing & Usage",
+            path: "/billing-usage",
+          },
+        ],
+      },
+      {
+        type: "category",
         title: "Monitoring & Support",
         initialOpen: true,
         children: [
