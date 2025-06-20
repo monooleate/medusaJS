@@ -1,5 +1,5 @@
 export const generatedEditDates = {
-  "app/page.mdx": "2025-06-19T14:17:00.893Z",
+  "app/page.mdx": "2025-06-20T07:56:00.893Z",
   "app/organization/page.mdx": "2025-06-12T14:43:20.772Z",
   "app/projects/page.mdx": "2025-06-19T14:17:06.679Z",
   "app/environments/page.mdx": "2025-06-19T14:15:00.389Z",
@@ -15,5 +15,6 @@ export const generatedEditDates = {
   "app/logs/page.mdx": "2025-06-19T07:44:38.336Z",
   "app/support/page.mdx": "2025-06-19T11:18:37.253Z",
   "app/update-medusa/page.mdx": "2025-06-19T11:18:42.545Z",
-  "app/connect-storefront/page.mdx": "2025-06-19T14:13:06.812Z"
+  "app/connect-storefront/page.mdx": "2025-06-19T14:13:06.812Z",
+  "app/infrastructure/page.mdx": "2025-06-20T07:16:54.699Z"
 }

@@ -46,6 +46,11 @@ export const sidebar = [
         children: [
           {
             type: "link",
+            title: "Infrastructure",
+            path: "/infrastructure",
+          },
+          {
+            type: "link",
             title: "Database",
             path: "/database",
           },
