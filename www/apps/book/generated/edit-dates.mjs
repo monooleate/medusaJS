@@ -1,7 +1,7 @@
 export const generatedEditDates = {
   "app/learn/fundamentals/scheduled-jobs/page.mdx": "2024-12-09T10:51:40.570Z",
   "app/learn/fundamentals/workflows/page.mdx": "2024-12-09T14:45:17.837Z",
-  "app/learn/deployment/page.mdx": "2025-03-11T14:53:25.540Z",
+  "app/learn/deployment/page.mdx": "2025-06-20T08:36:29.097Z",
   "app/learn/page.mdx": "2025-05-01T15:30:08.238Z",
   "app/learn/fundamentals/modules/commerce-modules/page.mdx": "2025-04-17T08:51:32.723Z",
   "app/learn/fundamentals/workflows/retry-failed-steps/page.mdx": "2025-03-28T07:15:19.388Z",
@@ -95,7 +95,7 @@ export const generatedEditDates = {
   "app/learn/fundamentals/custom-cli-scripts/seed-data/page.mdx": "2024-12-09T14:38:06.385Z",
   "app/learn/fundamentals/environment-variables/page.mdx": "2025-05-26T15:06:07.800Z",
   "app/learn/build/page.mdx": "2025-04-25T12:34:33.914Z",
-  "app/learn/deployment/general/page.mdx": "2025-04-17T08:29:09.878Z",
+  "app/learn/deployment/general/page.mdx": "2025-06-20T08:36:05.063Z",
   "app/learn/fundamentals/workflows/multiple-step-usage/page.mdx": "2024-11-25T16:19:32.169Z",
   "app/learn/installation/page.mdx": "2025-05-16T13:44:27.118Z",
   "app/learn/fundamentals/data-models/check-constraints/page.mdx": "2024-12-06T14:34:50.384Z",

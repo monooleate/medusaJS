@@ -33,11 +33,11 @@ const SearchProvider = ({ children }: SearchProviderProps) => {
           {
             title: "Search Suggestions",
             items: [
-              // TODO: Add more suggestions
               "Manage Organizations",
               "Create Project",
               "Manage Environments",
               "View Logs",
+              "Contact Support",
             ],
           },
         ],

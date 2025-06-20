@@ -4658,7 +4658,7 @@ In this document, you'll learn the general steps to deploy your Medusa applicati
 
 Find how-to guides for specific platforms in [this documentation](https://docs.medusajs.com/resources/deployment/index.html.md).
 
-Want Medusa to manage and maintain your infrastructure? [Sign up and learn more about Cloud](https://medusajs.com/pricing)
+Want Medusa to manage and maintain your infrastructure? [Sign up and learn more about Cloud](https://docs.medusajs.com/cloud/index.html.md)
 
 Cloud is our managed services offering that makes deploying and operating Medusa applications possible without having to worry about configuring, scaling, and maintaining infrastructure. Cloud hosts your server, Admin dashboard, database, and Redis instance.
 
@@ -5013,7 +5013,7 @@ With Cloud, you maintain full customization control as you deploy your own modul
 - Preview environments for new PRs.
 - Test on production-like data.
 
-[Sign up and learn more about Cloud](https://medusajs.com/pricing)
+[Sign up and learn more about Cloud](https://docs.medusajs.com/cloud/index.html.md)
 
 To self-host Medusa, the [next chapter](https://docs.medusajs.com/learn/deployment/general/index.html.md) explains the general steps to deploy your Medusa application. Refer to [this reference](https://docs.medusajs.com/resources/deployment/index.html.md) to find how-to deployment guides for general and specific hosting providers.
 
@@ -32356,6 +32356,8 @@ Medusa provides the following Cache Modules. You can use one of them, or [Create
 
 The Redis Cache Module uses Redis to cache data in your store. In production, it's recommended to use this module.
 
+Our Cloud offering automatically provisions a Redis instance and configures the Redis Cache Module for you. Learn more in the [Redis](https://docs.medusajs.com/cloud/redis/index.html.md) Cloud documentation.
+
 ***
 
 ## Register the Redis Cache Module
@@ -32763,6 +32765,8 @@ It's powered by BullMQ and `io-redis`. BullMQ is responsible for the message que
 
 In production, it's recommended to use this module.
 
+Our Cloud offering automatically provisions a Redis instance and configures the Redis Event Module for you. Learn more in the [Redis](https://docs.medusajs.com/cloud/redis/index.html.md) Cloud documentation.
+
 ***
 
 ## Register the Redis Event Module
@@ -32950,7 +32954,7 @@ This is useful for development. However, for production, it’s highly recommend
 
 The S3 File Module Provider integrates Amazon S3 and services following a compatible API (such as MinIO or DigitalOcean Spaces) to store files uploaded to your Medusa application.
 
-Cloud offers a managed file storage solution with AWS S3 for your Medusa application. Contact the [sales team](https://medusajs.com/pricing/) to learn more.
+Cloud offers a managed file storage solution with AWS S3 for your Medusa application. Refer to the [S3](https://docs.medusajs.com/cloud/s3/index.html.md) Cloud documentation for more details.
 
 ## Prerequisites
 
@@ -33312,6 +33316,8 @@ const step1 = createStep(
 The Redis Locking Module Provider uses Redis to manage locks across multiple instances of Medusa. Redis ensures that locks are globally available, which is ideal for distributed environments.
 
 This provider is recommended for production environments where Medusa is running in a multi-instance setup.
+
+Our Cloud offering automatically provisions a Redis instance and configures the Redis Locking Module Provider for you. Learn more in the [Redis](https://docs.medusajs.com/cloud/redis/index.html.md) Cloud documentation.
 
 ***
 
@@ -34322,6 +34328,8 @@ Medusa provides the following Workflow Engine Modules.
 # Redis Workflow Engine Module
 
 The Redis Workflow Engine Module uses Redis to track workflow executions and handle their subscribers. In production, it's recommended to use this module.
+
+Our Cloud offering automatically provisions a Redis instance and configures the Redis Workflow Engine Module for you. Learn more in the [Redis](https://docs.medusajs.com/cloud/redis/index.html.md) Cloud documentation.
 
 ***
 
@@ -47032,7 +47040,7 @@ To learn more about the commerce features that Medusa provides, check out Medusa
 
 In this tutorial, you'll learn how to implement a loyalty points system in Medusa.
 
-Cloud provides a beta Store Credits feature that facilitates building a loyalty point system. [Get in touch](https://medusajs.com/contact) for early access.
+Cloud provides a beta Loyalty Plugin feature that facilitates building a loyalty point system. Refer to the [Cloud Loyalty Plugin](https://docs.medusajs.com/cloud/loyalty-plugin/index.html.md) documentation to learn more.
 
 When you install a Medusa application, you get a fully-fledged commerce platform with a Framework for customization. The Medusa application's commerce features are built around [Commerce Modules](https://docs.medusajs.com/Users/shahednasser/medusa/www/apps/resources/app/commerce-modules/index.html.md), which are available out-of-the-box. These features include management capabilities related to carts, orders, promotions, and more.
 

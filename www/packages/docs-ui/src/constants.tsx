@@ -359,6 +359,11 @@ export const navDropdownItems: NavigationItem[] = [
     title: "User Guide",
     link: "/user-guide",
   },
+  {
+    type: "link",
+    title: "Cloud",
+    link: "/cloud",
+  },
 ]
 
 export const products: Product[] = [
