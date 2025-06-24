@@ -121,6 +121,13 @@ While tutorials show you a specific use case, they also help you understand how 
         description: "Learn how to migrate data from Magento to Medusa.",
       },
       {
+        type: "ref",
+        title: "Newsletter with Mailchimp",
+        path: "/integrations/guides/mailchimp",
+        description:
+          "Learn how to integrate Mailchimp with Medusa to manage and automate newsletters.",
+      },
+      {
         type: "link",
         title: "Phone Authentication",
         path: "/how-to-tutorials/tutorials/phone-auth",

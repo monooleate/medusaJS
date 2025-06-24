@@ -184,6 +184,14 @@ const generatedgeneratedIntegrationsSidebarSidebar = {
           "loaded": true,
           "isPathHref": true,
           "type": "link",
+          "path": "/integrations/guides/mailchimp",
+          "title": "Mailchimp",
+          "children": []
+        },
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "link",
           "path": "/integrations/guides/resend",
           "title": "Resend",
           "children": []

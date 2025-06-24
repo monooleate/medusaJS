@@ -6483,7 +6483,7 @@ export const generatedEditDates = {
   "references/types/interfaces/types.WebhookActionResult/page.mdx": "2025-05-20T07:51:41.086Z",
   "references/types/interfaces/types.WebhookActionData/page.mdx": "2025-05-20T07:51:41.086Z",
   "app/commerce-modules/tax/tax-provider/page.mdx": "2025-05-20T07:51:40.711Z",
-  "app/recipes/bundled-products/examples/standard/page.mdx": "2025-05-20T07:51:40.718Z",
+  "app/recipes/bundled-products/examples/standard/page.mdx": "2025-06-23T15:54:25.807Z",
   "app/recipes/bundled-products/page.mdx": "2025-05-20T07:51:40.718Z",
   "app/infrastructure-modules/analytics/local/page.mdx": "2025-05-29T07:08:55.749Z",
   "app/infrastructure-modules/analytics/page.mdx": "2025-05-26T14:48:25.803Z",
@@ -6546,5 +6546,6 @@ export const generatedEditDates = {
   "references/utils/types/utils.NormalizedRow/page.mdx": "2025-06-05T19:05:53.365Z",
   "references/utils/utils.Payment/page.mdx": "2025-06-05T19:05:53.489Z",
   "app/integrations/guides/slack/page.mdx": "2025-06-03T09:37:42.528Z",
-  "app/integrations/guides/sentry/page.mdx": "2025-06-16T10:11:29.955Z"
+  "app/integrations/guides/sentry/page.mdx": "2025-06-16T10:11:29.955Z",
+  "app/integrations/guides/mailchimp/page.mdx": "2025-06-24T08:08:35.034Z"
 }

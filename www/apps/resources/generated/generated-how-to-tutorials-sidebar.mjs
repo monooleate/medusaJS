@@ -466,6 +466,15 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
         {
           "loaded": true,
           "isPathHref": true,
+          "type": "ref",
+          "title": "Newsletter with Mailchimp",
+          "path": "/integrations/guides/mailchimp",
+          "description": "Learn how to integrate Mailchimp with Medusa to manage and automate newsletters.",
+          "children": []
+        },
+        {
+          "loaded": true,
+          "isPathHref": true,
           "type": "link",
           "title": "Phone Authentication",
           "path": "/how-to-tutorials/tutorials/phone-auth",
