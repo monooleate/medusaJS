@@ -1,19 +1,22 @@
 import {
+  AccountHolderDTO,
   BigNumberInput,
   CaptureDTO,
   Context,
+  CreateAccountHolderDTO,
+  CreateAccountHolderOutput,
   CreateCaptureDTO,
   CreatePaymentCollectionDTO,
   CreatePaymentMethodDTO,
   CreatePaymentSessionDTO,
   CreateRefundDTO,
-  AccountHolderDTO,
   DAL,
   FilterablePaymentCollectionProps,
   FilterablePaymentMethodProps,
   FilterablePaymentProviderProps,
   FindConfig,
   InferEntityType,
+  InitiatePaymentOutput,
   InternalModuleDeclaration,
   IPaymentModuleService,
   Logger,
@@ -28,16 +31,13 @@ import {
   ProviderWebhookPayload,
   RefundDTO,
   RefundReasonDTO,
+  UpdateAccountHolderDTO,
+  UpdateAccountHolderOutput,
   UpdatePaymentCollectionDTO,
   UpdatePaymentDTO,
   UpdatePaymentSessionDTO,
-  CreateAccountHolderDTO,
   UpsertPaymentCollectionDTO,
   WebhookActionResult,
-  CreateAccountHolderOutput,
-  InitiatePaymentOutput,
-  UpdateAccountHolderDTO,
-  UpdateAccountHolderOutput,
 } from "@medusajs/framework/types"
 import {
   BigNumber,
@@ -150,6 +150,25 @@ export default class PaymentModuleService
 
   __joinerConfig(): ModuleJoinerConfig {
     return joinerConfig
+  }
+
+  protected roundToCurrencyPrecision(
+    amount: BigNumberInput,
+    currencyCode: string
+  ): BigNumberInput {
+    let precision: number | undefined = undefined
+    try {
+      const formatted = Intl.NumberFormat(undefined, {
+        style: "currency",
+        currency: currencyCode,
+      }).format(0.1111111)
+
+      precision = formatted.split(".")[1].length
+    } catch {
+      // Unknown currency, keep the full precision
+    }
+
+    return MathBN.convert(amount, precision)
   }
 
   // @ts-expect-error
@@ -627,6 +646,7 @@ export default class PaymentModuleService
           "payment_collection_id",
           "amount",
           "raw_amount",
+          "currency_code",
           "captured_at",
           "canceled_at",
         ],
@@ -698,7 +718,12 @@ export default class PaymentModuleService
     const newCaptureAmount = new BigNumber(data.amount)
     const remainingToCapture = MathBN.sub(authorizedAmount, capturedAmount)
 
-    if (MathBN.gt(newCaptureAmount, remainingToCapture)) {
+    if (
+      MathBN.gt(
+        this.roundToCurrencyPrecision(newCaptureAmount, payment.currency_code),
+        this.roundToCurrencyPrecision(remainingToCapture, payment.currency_code)
+      )
+    ) {
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA,
         `You cannot capture more than the authorized amount substracted by what is already captured.`
@@ -709,7 +734,10 @@ export default class PaymentModuleService
     const totalCaptured = MathBN.convert(
       MathBN.add(capturedAmount, newCaptureAmount)
     )
-    const isFullyCaptured = MathBN.gte(totalCaptured, authorizedAmount)
+    const isFullyCaptured = MathBN.gte(
+      this.roundToCurrencyPrecision(totalCaptured, payment.currency_code),
+      this.roundToCurrencyPrecision(authorizedAmount, payment.currency_code)
+    )
 
     const capture = await this.captureService_.create(
       {
@@ -892,7 +920,7 @@ export default class PaymentModuleService
     const paymentCollection = await this.paymentCollectionService_.retrieve(
       paymentCollectionId,
       {
-        select: ["amount", "raw_amount", "status"],
+        select: ["amount", "raw_amount", "status", "currency_code"],
         relations: [
           "payment_sessions.amount",
           "payment_sessions.raw_amount",
@@ -938,12 +966,32 @@ export default class PaymentModuleService
         : PaymentCollectionStatus.AWAITING
 
     if (MathBN.gt(authorizedAmount, 0)) {
-      status = MathBN.gte(authorizedAmount, paymentCollection.amount)
+      status = MathBN.gte(
+        this.roundToCurrencyPrecision(
+          authorizedAmount,
+          paymentCollection.currency_code
+        ),
+        this.roundToCurrencyPrecision(
+          paymentCollection.amount,
+          paymentCollection.currency_code
+        )
+      )
         ? PaymentCollectionStatus.AUTHORIZED
         : PaymentCollectionStatus.PARTIALLY_AUTHORIZED
     }
 
-    if (MathBN.eq(paymentCollection.amount, capturedAmount)) {
+    if (
+      MathBN.gte(
+        this.roundToCurrencyPrecision(
+          capturedAmount,
+          paymentCollection.currency_code
+        ),
+        this.roundToCurrencyPrecision(
+          paymentCollection.amount,
+          paymentCollection.currency_code
+        )
+      )
+    ) {
       status = PaymentCollectionStatus.COMPLETED
       completedAt = new Date()
     }
