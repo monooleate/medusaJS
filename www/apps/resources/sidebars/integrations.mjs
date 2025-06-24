@@ -97,6 +97,18 @@ export const integrationsSidebar = [
   },
   {
     type: "category",
+    title: "Instrumentation",
+    initialOpen: true,
+    children: [
+      {
+        type: "link",
+        path: "/integrations/guides/sentry",
+        title: "Sentry",
+      },
+    ],
+  },
+  {
+    type: "category",
     title: "Migration",
     initialOpen: true,
     children: [

@@ -593,6 +593,13 @@ export const sidebars = [
             type: "link",
             path: "/learn/debugging-and-testing/instrumentation",
             title: "Instrumentation",
+            children: [
+              {
+                type: "ref",
+                path: "/resources/integrations/guides/sentry",
+                title: "Guide: Sentry",
+              },
+            ],
           },
           {
             type: "link",

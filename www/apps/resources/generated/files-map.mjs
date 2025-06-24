@@ -888,6 +888,10 @@ export const filesMap = [
     "pathname": "/integrations/guides/segment"
   },
   {
+    "filePath": "/www/apps/resources/app/integrations/guides/sentry/page.mdx",
+    "pathname": "/integrations/guides/sentry"
+  },
+  {
     "filePath": "/www/apps/resources/app/integrations/guides/shipstation/page.mdx",
     "pathname": "/integrations/guides/shipstation"
   },

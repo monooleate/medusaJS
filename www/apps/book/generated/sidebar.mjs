@@ -1128,7 +1128,18 @@ export const generatedSidebars = [
             "type": "link",
             "path": "/learn/debugging-and-testing/instrumentation",
             "title": "Instrumentation",
-            "children": [],
+            "children": [
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "ref",
+                "path": "/resources/integrations/guides/sentry",
+                "title": "Guide: Sentry",
+                "children": [],
+                "chapterTitle": "7.4.1. Guide: Sentry",
+                "number": "7.4.1."
+              }
+            ],
             "chapterTitle": "7.4. Instrumentation",
             "number": "7.4."
           },
