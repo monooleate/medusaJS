@@ -64,7 +64,7 @@ To create a project:
 
 6. In the next step, configure the project's settings:
     - Enter the name of the project.
-    - Enter a custom subdomain for the project. All projects are subdomains of `medusajs.app`. For example, if you enter `my-project`, the project will be accessible at `my-project.medusajs.app`.
+    - Enter a custom subdomain for the project. All projects are subdomains of `medusajs.app`. For example, if you enter `my-project`, the project will be accessible at `my-project.medusajs.app`. Refer to the [subdomain restrictions](#subdomain-restrictions) section for more details.
 
 ![The project settings step in the project creation flow with the settings filled in](https://res.cloudinary.com/dza7lstvk/image/upload/v1749741990/Cloud/CleanShot_2025-06-12_at_18.26.15_2x_kyxggl.png)
 
@@ -108,6 +108,18 @@ If you encounter any issues while creating a project:
 
 - [Check the build and runtime logs of the project's production deployment](../logs/page.mdx).
 - [Contact support for help](../support/page.mdx).
+
+### Subdomain Restrictions
+
+When you choose a subdomain for your project, it must be at least five characters long. It also can't be one of the following reserved subdomains:
+
+- `medusa`
+- `admin`
+- `staging`
+- `production`
+- `preview`
+- `development`
+- `proxy`.
 
 ---
 

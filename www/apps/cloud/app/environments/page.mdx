@@ -68,6 +68,7 @@ To create a long-lived environment:
     - Select the branch you want to associate with this environment. For example, `staging`.
         - If you don't see the branch you want to use, refresh the page to load the latest branches from your repository.
     - Set the custom subdomain for the environment. All environments are subdomains of `medusajs.app`. So, if you set the subdomain to `staging-my-project`, the environment's URL will be `staging-my-project.medusajs.app`.
+        - Refer to the [Subdomain Restrictions](../projects/page.mdx#subdomain-restrictions) guide for reserved subdomains and restrictions.
 3. Once you're done, click the "Create" button.
 
 ![Side window with the form to create an environment](https://res.cloudinary.com/dza7lstvk/image/upload/v1749812846/Cloud/CleanShot_2025-06-13_at_14.04.53_2x_apb634.png)
@@ -185,6 +186,32 @@ Learn more in the [Logs guide](../logs/page.mdx).
 ## Manage Environment Variables
 
 In an environment's "Settings" tab, you can manage the environment's variables.
+
+### Restricted Environment Variable Names
+
+The following environment variable names are reserved by Cloud and you can't use them in your environment:
+
+- `NODE_ENV`
+- `EXECUTION_CONTEXT`
+- `DATABASE_URL`
+- `REDIS_URL`
+- `MEDUSA_WORKER_MODE`
+- `PORT`
+- `K_SERVICE`
+- `K_CONFIGURATION`
+- `K_REVISION`
+- `K_CONTAINER_NAME`
+- `K_INTERNAL_POD_NAME`
+- `K_INTERNAL_POD_NAMESPACE`
+- `K_LOCAL_ADDR`
+- `K_PROTOCOL`
+- `SESSION_STORE`
+- `DYNAMO_DB_SESSIONS_TABLE`
+- `DYNAMO_DB_SESSIONS_HASH_KEY`
+- `DYNAMO_DB_SESSIONS_PREFIX`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_REGION`
 
 ### Add Environment Variables
 
