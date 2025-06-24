@@ -23,7 +23,7 @@ describe("Entity builder", () => {
       name: "created_at",
       fieldName: "created_at",
       nullable: false,
-      onCreate: expect.any(Function),
+
       kind: "scalar",
       setter: false,
       type: "date",
@@ -45,8 +45,6 @@ describe("Entity builder", () => {
       name: "updated_at",
       fieldName: "updated_at",
       nullable: false,
-      onCreate: expect.any(Function),
-      onUpdate: expect.any(Function),
       kind: "scalar",
       setter: false,
       type: "date",
@@ -148,7 +146,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -191,8 +189,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -292,7 +289,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -326,8 +323,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -427,7 +423,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -461,8 +457,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -575,7 +570,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -587,8 +582,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -721,7 +715,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -733,8 +727,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -868,7 +861,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -880,8 +873,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -981,7 +973,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -993,8 +985,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1103,7 +1094,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1115,8 +1106,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1227,7 +1217,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1239,8 +1229,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1363,7 +1352,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1375,8 +1364,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1459,7 +1447,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1482,8 +1470,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1563,7 +1550,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1575,8 +1562,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1670,7 +1656,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1682,8 +1668,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1783,7 +1768,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1795,8 +1780,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1896,7 +1880,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -1908,8 +1892,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2011,7 +1994,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2023,8 +2006,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2168,7 +2150,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2180,8 +2162,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2288,7 +2269,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2300,8 +2281,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2407,7 +2387,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2419,8 +2399,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2506,7 +2485,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2518,8 +2497,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2600,7 +2578,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2612,8 +2590,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2687,7 +2664,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2699,8 +2676,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2774,7 +2750,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2786,8 +2762,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2867,7 +2842,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2879,8 +2854,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2929,7 +2903,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -2941,8 +2915,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3029,7 +3002,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3041,8 +3014,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3114,7 +3086,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3126,8 +3098,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3229,7 +3200,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3241,8 +3212,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3342,7 +3312,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3354,8 +3324,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3446,7 +3415,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3458,8 +3427,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3554,7 +3522,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3566,8 +3534,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3616,7 +3583,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3628,8 +3595,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3732,7 +3698,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3744,8 +3710,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3817,7 +3782,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -3829,8 +3794,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4202,7 +4166,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4214,8 +4178,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4293,7 +4256,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4305,8 +4268,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4386,7 +4348,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4398,8 +4360,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4481,7 +4442,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4493,8 +4454,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4560,7 +4520,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4572,8 +4532,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4683,7 +4642,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4695,8 +4654,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4766,7 +4724,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4778,8 +4736,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4898,7 +4855,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4910,8 +4867,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4981,7 +4937,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -4993,8 +4949,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5092,7 +5047,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5104,8 +5059,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5170,7 +5124,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5182,8 +5136,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5281,7 +5234,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5293,8 +5246,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5359,7 +5311,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5371,8 +5323,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5517,7 +5468,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5529,8 +5480,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5601,7 +5551,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5613,8 +5563,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5718,7 +5667,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5730,8 +5679,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5802,7 +5750,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5814,8 +5762,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5916,7 +5863,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -5928,8 +5875,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6033,7 +5979,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6045,8 +5991,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6149,7 +6094,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6161,8 +6106,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6218,7 +6162,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6230,8 +6174,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6330,7 +6273,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6342,8 +6285,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6399,7 +6341,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6411,8 +6353,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6625,7 +6566,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6637,8 +6578,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6694,7 +6634,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6706,8 +6646,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6806,7 +6745,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6818,8 +6757,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6875,7 +6813,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -6887,8 +6825,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7013,7 +6950,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7025,8 +6962,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7090,7 +7026,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7102,8 +7038,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7205,7 +7140,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7217,8 +7152,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7275,7 +7209,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7287,8 +7221,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7363,7 +7296,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7375,8 +7308,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7432,7 +7364,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7444,8 +7376,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7547,7 +7478,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7559,8 +7490,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7616,7 +7546,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7628,8 +7558,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7754,7 +7683,7 @@ describe("Entity builder", () => {
           columnType: "timestamptz",
           type: "date",
           nullable: false,
-          onCreate: expect.any(Function),
+
           defaultRaw: "now()",
           name: "created_at",
           fieldName: "created_at",
@@ -7766,8 +7695,7 @@ describe("Entity builder", () => {
           columnType: "timestamptz",
           type: "date",
           nullable: false,
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           defaultRaw: "now()",
           name: "updated_at",
           fieldName: "updated_at",
@@ -7825,7 +7753,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7837,8 +7765,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7894,7 +7821,7 @@ describe("Entity builder", () => {
           name: "created_at",
           fieldName: "created_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
@@ -7906,8 +7833,7 @@ describe("Entity builder", () => {
           name: "updated_at",
           fieldName: "updated_at",
           defaultRaw: "now()",
-          onCreate: expect.any(Function),
-          onUpdate: expect.any(Function),
+
           nullable: false,
           getter: false,
           setter: false,
