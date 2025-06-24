@@ -10,7 +10,7 @@ export const generatedEditDates = {
   "app/redis/page.mdx": "2025-06-19T14:16:06.488Z",
   "app/s3/page.mdx": "2025-06-19T14:16:11.227Z",
   "app/draft-order-plugin/page.mdx": "2025-06-19T14:14:49.500Z",
-  "app/loyalty-plugin/page.mdx": "2025-06-19T14:15:04.352Z",
+  "app/loyalty-plugin/page.mdx": "2025-06-24T13:00:52.953Z",
   "app/billing-usage/page.mdx": "2025-06-19T14:13:29.533Z",
   "app/logs/page.mdx": "2025-06-19T07:44:38.336Z",
   "app/support/page.mdx": "2025-06-19T11:18:37.253Z",

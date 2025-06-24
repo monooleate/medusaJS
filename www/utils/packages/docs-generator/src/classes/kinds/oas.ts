@@ -121,6 +121,14 @@ class OasKindGenerator extends FunctionKindGenerator {
       requiresAuthentication: true,
       allowedAuthTypes: ["cookie_auth", "jwt_token"],
     },
+    {
+      startsWith: "store/gift-card",
+      requiresAuthentication: true,
+    },
+    {
+      startsWith: "store/store-credit-accounts",
+      requiresAuthentication: true,
+    },
   ]
   readonly RESPONSE_TYPE_NAMES = ["MedusaResponse"]
   readonly FIELD_QUERY_PARAMS = ["fields", "expand"]
