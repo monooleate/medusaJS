@@ -7223,6 +7223,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@medusajs/types@workspace:packages/core/types"
   dependencies:
+    "@types/jsonwebtoken": ^8.5.9
     awilix: ^8.0.1
     bignumber.js: ^9.1.2
     expect-type: ^0.20.0
