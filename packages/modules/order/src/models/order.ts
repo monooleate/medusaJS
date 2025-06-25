@@ -27,12 +27,14 @@ const _Order = model
         mappedBy: undefined,
         foreignKey: true,
       })
+      .searchable()
       .nullable(),
     billing_address: model
       .hasOne<any>(() => OrderAddress, {
         mappedBy: undefined,
         foreignKey: true,
       })
+      .searchable()
       .nullable(),
     summary: model.hasMany<any>(() => OrderSummary, {
       mappedBy: "order",
