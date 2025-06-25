@@ -2840,6 +2840,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       x-codeSamples:
         - lang: JavaScript
           label: JS SDK
@@ -3094,6 +3102,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       x-codeSamples:
         - lang: Shell
           label: cURL
@@ -3591,6 +3607,14 @@ paths:
             type: string
             title: q
             description: Search term to filter the address's searchable properties.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - cookie_auth: []
         - jwt_token: []
@@ -4787,6 +4811,14 @@ paths:
                     - completed
                     - draft
                     - archived
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       x-codeSamples:
         - lang: JavaScript
           label: JS SDK
@@ -5582,6 +5614,14 @@ paths:
             type: string
             title: region_id
             description: Filter by a region ID.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       x-codeSamples:
         - lang: JavaScript
           label: JS SDK
@@ -6291,6 +6331,14 @@ paths:
                   type: string
                   title: name
                   description: A product category name.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       x-codeSamples:
         - lang: JavaScript
           label: JS SDK
@@ -7013,6 +7061,14 @@ paths:
                 type: boolean
                 title: $exists
                 description: Filter by whether a value for this parameter exists (not `null`).
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       x-codeSamples:
         - lang: Shell
           label: cURL
@@ -7677,6 +7733,14 @@ paths:
                 type: boolean
                 title: $exists
                 description: Filter by whether a value for this parameter exists (not `null`).
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       x-codeSamples:
         - lang: Shell
           label: cURL
@@ -8851,6 +8915,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       x-codeSamples:
         - lang: JavaScript
           label: JS SDK
@@ -9064,6 +9136,14 @@ paths:
             type: string
             title: order
             description: The field to sort the data by. By default, the sort order is ascending. To change the order to descending, prefix the field name with `-`.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       x-codeSamples:
         - lang: Shell
           label: cURL
@@ -13539,6 +13619,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         payment_collections:
           type: array
@@ -13747,6 +13828,10 @@ components:
           description: The draft order's credit lines.
           items:
             $ref: '#/components/schemas/OrderCreditLine'
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The draft order's credit line total.
     AdminDraftOrderListResponse:
       type: object
       description: The list of draft orders with pagination fields.
@@ -13822,6 +13907,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         return_requested_total:
           type: number
@@ -14409,6 +14495,10 @@ components:
           description: The order preview's credit lines.
           items:
             $ref: '#/components/schemas/OrderCreditLine'
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The draft order preview's credit line total.
     AdminDraftOrderPreviewResponse:
       type: object
       description: The details of the preview on the draft order.
@@ -15393,6 +15483,39 @@ components:
               type: number
               title: toUpdate
               description: The number of products that will be updated by this import.
+    AdminImportProducts:
+      type: object
+      description: The details of the product's import file.
+      x-schemaName: AdminImportProducts
+      required:
+        - file_key
+        - originalname
+        - extension
+        - size
+        - mime_type
+      properties:
+        file_key:
+          type: string
+          title: file_key
+          description: The name of the file as stored in the configured File Module Provider.
+        originalname:
+          type: string
+          title: originalname
+          description: The file's original name.
+        extension:
+          type: string
+          title: extension
+          description: The file's extension.
+          example: csv
+        size:
+          type: number
+          title: size
+          description: The file's size in bytes.
+        mime_type:
+          type: string
+          title: mime_type
+          description: The file's mime type.
+          example: text/csv
     AdminInventoryItem:
       type: object
       description: The inventory item's details.
@@ -15759,6 +15882,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         payment_collections:
           type: array
@@ -15966,6 +16090,10 @@ components:
           description: The order's credit lines.
           items:
             $ref: '#/components/schemas/OrderCreditLine'
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The order's credit line total.
     AdminOrderAddress:
       type: object
       description: An order address.
@@ -16697,6 +16825,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         return_requested_total:
           type: number
@@ -17284,6 +17413,10 @@ components:
           description: The order preview's credit lines.
           items:
             $ref: '#/components/schemas/OrderCreditLine'
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The order preview's credit line total.
     AdminOrderPreviewResponse:
       type: object
       description: The preview of an order.
@@ -19988,6 +20121,10 @@ components:
             - draft
             - active
             - inactive
+        is_tax_inclusive:
+          type: boolean
+          title: is_tax_inclusive
+          description: Whether the promotion is tax inclusive. If enabled, the promotion is applied after tax is calculated.
     AdminPromotionResponse:
       type: object
       description: The promotion's details.
@@ -23065,6 +23202,72 @@ components:
           type: number
           title: required_quantity
           description: The number of units a single quantity is equivalent to. For example, if a customer orders one quantity of the variant, Medusa checks the availability of the quantity multiplied by the value set for `required_quantity`. When the customer orders the quantity, Medusa reserves the ordered quantity multiplied by the value set for `required_quantity`.
+    AdminUploadPreSignedUrl:
+      type: object
+      description: The details of the file to upload.
+      x-schemaName: AdminUploadPreSignedUrl
+      required:
+        - originalname
+        - size
+        - mime_type
+      properties:
+        originalname:
+          type: string
+          title: originalname
+          description: The file's original name.
+        size:
+          type: number
+          title: size
+          description: The file's size in bytes.
+        mime_type:
+          type: string
+          title: mime_type
+          description: The file's mime type.
+          example: text/csv
+        access:
+          type: string
+          description: The access level of the file. If `private`, the file will not be publicly accessible. The default value depends on the configured File Module Provider.
+          enum:
+            - public
+            - private
+    AdminUploadPreSignedUrlResponse:
+      type: object
+      description: The result of the pre-signed URL upload request.
+      x-schemaName: AdminUploadPreSignedUrlResponse
+      required:
+        - url
+        - filename
+        - originalname
+        - mime_type
+        - extension
+        - size
+      properties:
+        url:
+          type: string
+          title: url
+          description: The file's pre-signed upload URL.
+        filename:
+          type: string
+          title: filename
+          description: The file's filename.
+        originalname:
+          type: string
+          title: originalname
+          description: The file's orignal name.
+        mime_type:
+          type: string
+          title: mime_type
+          description: The file's mime type.
+          example: text/csv
+        extension:
+          type: string
+          title: extension
+          description: The file's extension.
+          example: csv
+        size:
+          type: number
+          title: size
+          description: The file's size in bytes.
     AdminUpsertStockLocationAddress:
       type: object
       description: The details of the stock location address to create.
@@ -24463,6 +24666,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         payment_collections:
           type: array
@@ -24659,6 +24863,10 @@ components:
           type: string
           title: status
           description: The order's status.
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The order's credit line total.
     BaseOrderAddress:
       type: object
       description: An order address.
@@ -27289,6 +27497,7 @@ components:
         - discount_subtotal
         - discount_total
         - discount_tax_total
+        - credit_line_total
         - gift_card_total
         - gift_card_tax_total
         - shipping_total
@@ -27564,6 +27773,10 @@ components:
           format: date-time
           title: deleted_at
           description: The date the order was deleted.
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The order's credit line total.
     OrderAddress:
       type: object
       description: The address's details.
@@ -31000,6 +31213,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         id:
           type: string
@@ -31195,6 +31409,10 @@ components:
           type: string
           title: status
           description: The order's status.
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The order's credit line total.
     StoreOrderAddress:
       type: object
       description: An order address
@@ -38005,10 +38223,10 @@ components:
         - deleted_at
         - sku
         - barcode
+        - manage_inventory
+        - allow_backorder
         - ean
         - upc
-        - allow_backorder
-        - manage_inventory
     StoreRegion:
       type: object
       description: The region's details.

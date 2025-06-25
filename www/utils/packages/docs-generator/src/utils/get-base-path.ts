@@ -5,5 +5,9 @@
  * @returns The path without the relative part.
  */
 export default function getBasePath(fileName: string) {
-  return fileName.substring(fileName.lastIndexOf("../") + 3)
+  let index = fileName.indexOf("packages/")
+  if (index === -1) {
+    index = fileName.indexOf("src/")
+  }
+  return fileName.substring(index)
 }

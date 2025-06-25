@@ -1571,6 +1571,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -2176,6 +2184,14 @@ paths:
             type: string
             title: order
             description: The field to sort the data by. By default, the sort order is ascending. To change the order to descending, prefix the field name with `-`.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -3613,6 +3629,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -6119,6 +6143,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -6717,6 +6749,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -7659,6 +7699,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -11477,6 +11525,14 @@ paths:
             type: boolean
             title: has_account
             description: Filter by whether the customer is registered.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -12138,6 +12194,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -14282,6 +14346,14 @@ paths:
                   type: string
                   title: customer_id
                   description: The customer id's details.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -16857,6 +16929,14 @@ paths:
                 type: boolean
                 title: $exists
                 description: Filter by whether a value for this parameter exists (not `null`).
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -18380,6 +18460,14 @@ paths:
                   type: string
                   title: stock_location_id
                   description: A stock location's ID.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -20557,6 +20645,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -21186,6 +21282,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -22082,6 +22186,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       x-codeSamples:
         - lang: JavaScript
           label: JS SDK
@@ -22723,6 +22835,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -24246,6 +24366,14 @@ paths:
                   type: string
                   title: customer_id
                   description: The customer id's details.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -26615,6 +26743,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -26777,6 +26913,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -27522,6 +27666,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -28243,6 +28395,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -29108,6 +29268,14 @@ paths:
                   type: string
                   title: name
                   description: The name's details.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -30082,6 +30250,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -30916,6 +31092,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -31754,6 +31938,56 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
+        - name: ean
+          in: query
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                title: ean
+                description: The product variant's ean.
+              - type: array
+                description: The product variant's ean.
+                items:
+                  type: string
+                  title: ean
+                  description: The ean's details.
+        - name: upc
+          in: query
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                title: upc
+                description: The product variant's upc.
+              - type: array
+                description: The product variant's upc.
+                items:
+                  type: string
+                  title: upc
+                  description: The upc's details.
+        - name: barcode
+          in: query
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                title: barcode
+                description: The product variant's barcode.
+              - type: array
+                description: The product variant's barcode.
+                items:
+                  type: string
+                  title: barcode
+                  description: The barcode's details.
       security:
         - api_token: []
         - cookie_auth: []
@@ -32419,10 +32653,6 @@ paths:
             description: Filter the retrieved products' variants.
             x-schemaName: AdminProductVariantParams
             properties:
-              q:
-                type: string
-                title: q
-                description: Search term to apply on the variant's searchable properties.
               id:
                 oneOf:
                   - type: string
@@ -32815,6 +33045,39 @@ paths:
                 items:
                   type: object
                 title: $or
+              ean:
+                oneOf:
+                  - type: string
+                    title: ean
+                    description: The variant's ean.
+                  - type: array
+                    description: The variant's ean.
+                    items:
+                      type: string
+                      title: ean
+                      description: The ean's details.
+              upc:
+                oneOf:
+                  - type: string
+                    title: upc
+                    description: The variant's upc.
+                  - type: array
+                    description: The variant's upc.
+                    items:
+                      type: string
+                      title: upc
+                      description: The upc's details.
+              barcode:
+                oneOf:
+                  - type: string
+                    title: barcode
+                    description: The variant's barcode.
+                  - type: array
+                    description: The variant's barcode.
+                    items:
+                      type: string
+                      title: barcode
+                      description: The barcode's details.
       security:
         - api_token: []
         - cookie_auth: []
@@ -33322,6 +33585,8 @@ paths:
             ```
           description: Emitted when products are deleted.
           deprecated: false
+      deprecated: true
+      x-deprecated_message: use `POST /admin/products/imports` instead.
   /admin/products/import/{transaction_id}/confirm:
     post:
       operationId: PostProductsImportTransaction_idConfirm
@@ -33379,6 +33644,138 @@ paths:
           $ref: '#/components/responses/invalid_request_error'
         '500':
           $ref: '#/components/responses/500_error'
+      deprecated: true
+      x-deprecated_message: use `POST /admin/products/imports/:transaction_id/confirm` instead.
+  /admin/products/imports:
+    post:
+      operationId: PostProductsImports
+      summary: Create Product Import
+      description: Create a new product import process. The products aren't imported until the import is confirmed with the `/admin/products/:transaction-id/imports` API route.
+      x-authenticated: true
+      security:
+        - api_token: []
+        - cookie_auth: []
+        - jwt_token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminImportProducts'
+      x-codeSamples:
+        - lang: JavaScript
+          label: JS SDK
+          source: |-
+            import Medusa from "@medusajs/js-sdk"
+
+            export const sdk = new Medusa({
+              baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
+              debug: import.meta.env.DEV,
+              auth: {
+                type: "session",
+              },
+            })
+
+            sdk.admin.product.createImport({
+              file // uploaded File instance
+            })
+            .then(({ transaction_id }) => {
+              console.log(transaction_id)
+            })
+        - lang: Shell
+          label: cURL
+          source: |-
+            curl -X POST '{backend_url}/admin/products/imports' \
+            -H 'Authorization: Bearer {access_token}' \
+            -H 'Content-Type: application/json' \
+            --data-raw '{
+              "file_key": "{value}",
+              "originalname": "{value}",
+              "extension": "{value}",
+              "size": 38,
+              "mime_type": "{value}"
+            }'
+      tags:
+        - Products
+      responses:
+        '202':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminImportProductResponse'
+        '400':
+          $ref: '#/components/responses/400_error'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found_error'
+        '409':
+          $ref: '#/components/responses/invalid_state_error'
+        '422':
+          $ref: '#/components/responses/invalid_request_error'
+        '500':
+          $ref: '#/components/responses/500_error'
+      x-workflow: importProductsAsChunksWorkflow
+      x-events: []
+      x-version: 2.8.5
+  /admin/products/imports/{transaction_id}/confirm:
+    post:
+      operationId: PostProductsImportsTransaction_idConfirm
+      summary: Confirm Product Import
+      description: Confirm that a created product import should start importing the products into Medusa.
+      x-authenticated: true
+      parameters:
+        - name: transaction_id
+          in: path
+          description: The product's transaction id.
+          required: true
+          schema:
+            type: string
+      security:
+        - api_token: []
+        - cookie_auth: []
+        - jwt_token: []
+      x-codeSamples:
+        - lang: JavaScript
+          label: JS SDK
+          source: |-
+            import Medusa from "@medusajs/js-sdk"
+
+            export const sdk = new Medusa({
+              baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
+              debug: import.meta.env.DEV,
+              auth: {
+                type: "session",
+              },
+            })
+
+            sdk.admin.product.confirmImport("transaction_123")
+            .then(() => {
+              console.log("Import confirmed")
+            })
+        - lang: Shell
+          label: cURL
+          source: |-
+            curl -X POST '{backend_url}/admin/products/imports/{transaction_id}/confirm' \
+            -H 'Authorization: Bearer {access_token}'
+      tags:
+        - Products
+      responses:
+        '202':
+          description: OK
+        '400':
+          $ref: '#/components/responses/400_error'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found_error'
+        '409':
+          $ref: '#/components/responses/invalid_state_error'
+        '422':
+          $ref: '#/components/responses/invalid_request_error'
+        '500':
+          $ref: '#/components/responses/500_error'
+      x-version: 2.8.5
   /admin/products/{id}:
     get:
       operationId: GetProductsId
@@ -33725,6 +34122,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -34656,6 +35061,56 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
+        - name: ean
+          in: query
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                title: ean
+                description: The product's ean.
+              - type: array
+                description: The product's ean.
+                items:
+                  type: string
+                  title: ean
+                  description: The ean's details.
+        - name: upc
+          in: query
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                title: upc
+                description: The product's upc.
+              - type: array
+                description: The product's upc.
+                items:
+                  type: string
+                  title: upc
+                  description: The upc's details.
+        - name: barcode
+          in: query
+          required: false
+          schema:
+            oneOf:
+              - type: string
+                title: barcode
+                description: The product's barcode.
+              - type: array
+                description: The product's barcode.
+                items:
+                  type: string
+                  title: barcode
+                  description: The barcode's details.
       security:
         - api_token: []
         - cookie_auth: []
@@ -36124,6 +36579,14 @@ paths:
                   type: string
                   title: application_method_type
                   description: An application method type.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -36759,6 +37222,14 @@ paths:
             enum:
               - fixed
               - percentage
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -37707,6 +38178,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -38505,6 +38984,14 @@ paths:
                   type: string
                   title: currency_code
                   description: The currency code's details.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -39470,6 +39957,14 @@ paths:
                 type: boolean
                 title: $exists
                 description: Filter by whether a value for this parameter exists (not `null`).
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -40384,6 +40879,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -41327,6 +41830,14 @@ paths:
                   type: string
                   title: customer_id
                   description: The customer id's details.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -43675,6 +44186,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -44686,6 +45205,14 @@ paths:
             type: boolean
             title: admin_only
             description: Filter by whether the shipping option is used by admin users only.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -45829,6 +46356,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -46698,6 +47233,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -48710,6 +49253,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -49008,6 +49559,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -49619,6 +50178,14 @@ paths:
             type: string
             title: shipping_option_type_id
             description: Filter by a shipping option type's ID to retrieve its associated tax rates.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -51139,6 +51706,14 @@ paths:
             items:
               type: object
             title: $or
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -52023,6 +52598,72 @@ paths:
           $ref: '#/components/responses/500_error'
       x-workflow: uploadFilesWorkflow
       x-events: []
+  /admin/uploads/presigned-urls:
+    post:
+      operationId: PostUploadsPresignedUrls
+      summary: Get Presigned Upload URL
+      description: Get a presigned URL for uploading a file to the configured File Module Provider. The presigned URL can be used to upload files directly to the third-party provider. This only works if your configured provider supports presigned URLs, such as the S3 provider.
+      x-authenticated: true
+      security:
+        - api_token: []
+        - cookie_auth: []
+        - jwt_token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUploadPreSignedUrl'
+      x-codeSamples:
+        - lang: JavaScript
+          label: JS SDK
+          source: |-
+            import Medusa from "@medusajs/js-sdk"
+
+            export const sdk = new Medusa({
+              baseUrl: import.meta.env.VITE_BACKEND_URL || "/",
+              debug: import.meta.env.DEV,
+              auth: {
+                type: "session",
+              },
+            })
+
+            sdk.admin.upload.presignedUrl({
+              name: "test.txt",
+              size: 1000,
+              type: "text/plain",
+            }))
+        - lang: Shell
+          label: cURL
+          source: |-
+            curl -X POST '{backend_url}/admin/uploads/presigned-urls' \
+            -H 'Authorization: Bearer {access_token}' \
+            -H 'Content-Type: application/json' \
+            --data-raw '{
+              "originalname": "{value}",
+              "size": 43,
+              "mime_type": "{value}"
+            }'
+      tags:
+        - Uploads
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUploadPreSignedUrlResponse'
+        '400':
+          $ref: '#/components/responses/400_error'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found_error'
+        '409':
+          $ref: '#/components/responses/invalid_state_error'
+        '422':
+          $ref: '#/components/responses/invalid_request_error'
+        '500':
+          $ref: '#/components/responses/500_error'
   /admin/uploads/{id}:
     get:
       operationId: GetUploadsId
@@ -52624,6 +53265,14 @@ paths:
                 type: boolean
                 title: $exists
                 description: Filter by whether a value for this parameter exists (not `null`).
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       x-codeSamples:
         - lang: JavaScript
           label: JS SDK
@@ -53041,6 +53690,14 @@ paths:
             type: string
             title: q
             description: Search query to filter by a workflow execution's searchable fields.
+        - name: with_deleted
+          in: query
+          description: Whether to include deleted records in the result.
+          required: false
+          schema:
+            type: boolean
+            title: with_deleted
+            description: Whether to include deleted records in the result.
       security:
         - api_token: []
         - cookie_auth: []
@@ -57779,6 +58436,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         payment_collections:
           type: array
@@ -57987,6 +58645,10 @@ components:
           description: The draft order's credit lines.
           items:
             $ref: '#/components/schemas/OrderCreditLine'
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The draft order's credit line total.
     AdminDraftOrderListResponse:
       type: object
       description: The list of draft orders with pagination fields.
@@ -58062,6 +58724,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         return_requested_total:
           type: number
@@ -58649,6 +59312,10 @@ components:
           description: The order preview's credit lines.
           items:
             $ref: '#/components/schemas/OrderCreditLine'
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The draft order preview's credit line total.
     AdminDraftOrderPreviewResponse:
       type: object
       description: The details of the preview on the draft order.
@@ -59633,6 +60300,39 @@ components:
               type: number
               title: toUpdate
               description: The number of products that will be updated by this import.
+    AdminImportProducts:
+      type: object
+      description: The details of the product's import file.
+      x-schemaName: AdminImportProducts
+      required:
+        - file_key
+        - originalname
+        - extension
+        - size
+        - mime_type
+      properties:
+        file_key:
+          type: string
+          title: file_key
+          description: The name of the file as stored in the configured File Module Provider.
+        originalname:
+          type: string
+          title: originalname
+          description: The file's original name.
+        extension:
+          type: string
+          title: extension
+          description: The file's extension.
+          example: csv
+        size:
+          type: number
+          title: size
+          description: The file's size in bytes.
+        mime_type:
+          type: string
+          title: mime_type
+          description: The file's mime type.
+          example: text/csv
     AdminInventoryItem:
       type: object
       description: The inventory item's details.
@@ -59999,6 +60699,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         payment_collections:
           type: array
@@ -60206,6 +60907,10 @@ components:
           description: The order's credit lines.
           items:
             $ref: '#/components/schemas/OrderCreditLine'
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The order's credit line total.
     AdminOrderAddress:
       type: object
       description: An order address.
@@ -60937,6 +61642,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         return_requested_total:
           type: number
@@ -61524,6 +62230,10 @@ components:
           description: The order preview's credit lines.
           items:
             $ref: '#/components/schemas/OrderCreditLine'
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The order preview's credit line total.
     AdminOrderPreviewResponse:
       type: object
       description: The preview of an order.
@@ -64228,6 +64938,10 @@ components:
             - draft
             - active
             - inactive
+        is_tax_inclusive:
+          type: boolean
+          title: is_tax_inclusive
+          description: Whether the promotion is tax inclusive. If enabled, the promotion is applied after tax is calculated.
     AdminPromotionResponse:
       type: object
       description: The promotion's details.
@@ -67305,6 +68019,72 @@ components:
           type: number
           title: required_quantity
           description: The number of units a single quantity is equivalent to. For example, if a customer orders one quantity of the variant, Medusa checks the availability of the quantity multiplied by the value set for `required_quantity`. When the customer orders the quantity, Medusa reserves the ordered quantity multiplied by the value set for `required_quantity`.
+    AdminUploadPreSignedUrl:
+      type: object
+      description: The details of the file to upload.
+      x-schemaName: AdminUploadPreSignedUrl
+      required:
+        - originalname
+        - size
+        - mime_type
+      properties:
+        originalname:
+          type: string
+          title: originalname
+          description: The file's original name.
+        size:
+          type: number
+          title: size
+          description: The file's size in bytes.
+        mime_type:
+          type: string
+          title: mime_type
+          description: The file's mime type.
+          example: text/csv
+        access:
+          type: string
+          description: The access level of the file. If `private`, the file will not be publicly accessible. The default value depends on the configured File Module Provider.
+          enum:
+            - public
+            - private
+    AdminUploadPreSignedUrlResponse:
+      type: object
+      description: The result of the pre-signed URL upload request.
+      x-schemaName: AdminUploadPreSignedUrlResponse
+      required:
+        - url
+        - filename
+        - originalname
+        - mime_type
+        - extension
+        - size
+      properties:
+        url:
+          type: string
+          title: url
+          description: The file's pre-signed upload URL.
+        filename:
+          type: string
+          title: filename
+          description: The file's filename.
+        originalname:
+          type: string
+          title: originalname
+          description: The file's orignal name.
+        mime_type:
+          type: string
+          title: mime_type
+          description: The file's mime type.
+          example: text/csv
+        extension:
+          type: string
+          title: extension
+          description: The file's extension.
+          example: csv
+        size:
+          type: number
+          title: size
+          description: The file's size in bytes.
     AdminUpsertStockLocationAddress:
       type: object
       description: The details of the stock location address to create.
@@ -68703,6 +69483,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         payment_collections:
           type: array
@@ -68899,6 +69680,10 @@ components:
           type: string
           title: status
           description: The order's status.
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The order's credit line total.
     BaseOrderAddress:
       type: object
       description: An order address.
@@ -71529,6 +72314,7 @@ components:
         - discount_subtotal
         - discount_total
         - discount_tax_total
+        - credit_line_total
         - gift_card_total
         - gift_card_tax_total
         - shipping_total
@@ -71804,6 +72590,10 @@ components:
           format: date-time
           title: deleted_at
           description: The date the order was deleted.
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The order's credit line total.
     OrderAddress:
       type: object
       description: The address's details.
@@ -75240,6 +76030,7 @@ components:
         - original_shipping_total
         - original_shipping_subtotal
         - original_shipping_tax_total
+        - credit_line_total
       properties:
         id:
           type: string
@@ -75435,6 +76226,10 @@ components:
           type: string
           title: status
           description: The order's status.
+        credit_line_total:
+          type: number
+          title: credit_line_total
+          description: The order's credit line total.
     StoreOrderAddress:
       type: object
       description: An order address
@@ -82245,10 +83040,10 @@ components:
         - deleted_at
         - sku
         - barcode
+        - manage_inventory
+        - allow_backorder
         - ean
         - upc
-        - allow_backorder
-        - manage_inventory
     StoreRegion:
       type: object
       description: The region's details.

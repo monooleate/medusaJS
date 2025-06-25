@@ -981,6 +981,10 @@ paths:
     $ref: paths/admin_products_import.yaml
   /admin/products/import/{transaction_id}/confirm:
     $ref: paths/admin_products_import_{transaction_id}_confirm.yaml
+  /admin/products/imports:
+    $ref: paths/admin_products_imports.yaml
+  /admin/products/imports/{transaction_id}/confirm:
+    $ref: paths/admin_products_imports_{transaction_id}_confirm.yaml
   /admin/products/{id}:
     $ref: paths/admin_products_{id}.yaml
   /admin/products/{id}/options:
@@ -1115,6 +1119,8 @@ paths:
     $ref: paths/admin_transaction-groups.yaml
   /admin/uploads:
     $ref: paths/admin_uploads.yaml
+  /admin/uploads/presigned-urls:
+    $ref: paths/admin_uploads_presigned-urls.yaml
   /admin/uploads/{id}:
     $ref: paths/admin_uploads_{id}.yaml
   /admin/users:

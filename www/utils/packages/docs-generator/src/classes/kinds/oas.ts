@@ -132,7 +132,12 @@ class OasKindGenerator extends FunctionKindGenerator {
   ]
   readonly RESPONSE_TYPE_NAMES = ["MedusaResponse"]
   readonly FIELD_QUERY_PARAMS = ["fields", "expand"]
-  readonly PAGINATION_QUERY_PARAMS = ["limit", "offset", "order"]
+  readonly PAGINATION_QUERY_PARAMS = [
+    "limit",
+    "offset",
+    "order",
+    "with_deleted",
+  ]
 
   /**
    * This map collects tags of all the generated OAS, then, once the generation process finishes,
