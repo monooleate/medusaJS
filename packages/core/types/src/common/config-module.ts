@@ -172,6 +172,22 @@ export type SessionOptions = {
 /**
  * @interface
  *
+ * Options to pass to `express-session`.
+ */
+export type CookieOptions = Record<string, any> & {
+  secure?: boolean
+  sameSite?: "lax" | "strict" | "none"
+  maxAge?: number
+  httpOnly?: boolean
+  priority?: "low" | "medium" | "high"
+  domain?: string
+  path?: string
+  signed?: boolean
+}
+
+/**
+ * @interface
+ *
  * HTTP compression configurations.
  */
 export type HttpCompressionOptions = {
@@ -412,6 +428,8 @@ export type ProjectConfigOptions = {
    * ```
    */
   sessionOptions?: SessionOptions
+
+  cookieOptions?: CookieOptions
 
   /**
    * Configure the number of staged jobs that are polled from the database. Default is `1000`.
