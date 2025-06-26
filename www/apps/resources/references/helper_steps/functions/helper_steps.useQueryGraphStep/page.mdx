@@ -9,14 +9,83 @@ import { TypeList } from "docs-ui"
 
 This documentation provides a reference to the `useQueryGraphStep` step. It belongs to the `@medusajs/medusa/core-flows` package.
 
-## Type Parameters
+This step fetches data across modules using the Query.
 
-<TypeList types={[{"name":"TEntry","type":"`string`","description":"","optional":true,"defaultValue":"","expandable":false,"children":[]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" sectionTitle="useQueryGraphStep"/>
+Learn more in the [Query documentation](https://docs.medusajs.com/learn/fundamentals/module-links/query).
 
-## Parameters
+## Example
 
-<TypeList types={[{"name":"input","type":"[UseQueryGraphStepInput](../../types/helper_steps.UseQueryGraphStepInput/page.mdx)&#60;TEntry&#62;","description":"","optional":false,"defaultValue":"","expandable":false,"children":[{"name":"options","type":"[RemoteJoinerOptions](../../../types/interfaces/types.RemoteJoinerOptions/page.mdx)","description":"","optional":true,"defaultValue":"","expandable":false,"children":[]}]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" sectionTitle="useQueryGraphStep"/>
+To retrieve a list of records of a data model:
 
-## Returns
+```ts
+const { data: products } = useQueryGraphStep({
+  entity: "product",
+  fields: [
+    "*",
+    "variants.*"
+  ]
+})
+```
 
-<TypeList types={[{"name":"ReturnType","type":"ReturnType&#60;[StepFunction](../../../workflows/types/workflows.StepFunction/page.mdx)&#60;[UseQueryGraphStepInput](../../types/helper_steps.UseQueryGraphStepInput/page.mdx)&#60;TEntry&#62;, [GraphResultSet](../../../types/ModulesSdkTypes/types/types.ModulesSdkTypes.GraphResultSet/page.mdx)&#60;TEntry&#62;&#62;&#62;","optional":false,"defaultValue":"","description":"","expandable":false,"children":[]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" sectionTitle="useQueryGraphStep"/>
+To retrieve a single item instead of a an array:
+
+```ts
+const { data: products } = useQueryGraphStep({
+  entity: "product",
+  fields: [
+    "*",
+    "variants.*"
+  ],
+  filters: {
+    id: "123"
+  }
+})
+```
+
+To throw an error if a record isn't found matching the specified ID:
+
+```ts
+const { data: products } = useQueryGraphStep({
+  entity: "product",
+  fields: [
+    "*",
+    "variants.*"
+  ],
+  filters: {
+    id: "123"
+  },
+  options: {
+    throwIfKeyNotFound: true
+  }
+})
+```
+
+To set pagination configurations:
+
+```ts
+const { data: products } = useQueryGraphStep({
+  entity: "product",
+  fields: [
+    "*",
+    "variants.*"
+  ],
+  filters: {
+    id: "123"
+  },
+  pagination: {
+    take: 10,
+    skip: 10,
+    order: {
+      created_at: "DESC"
+    }
+  }
+})
+```
+
+## Input
+
+<TypeList types={[{"name":"UseQueryGraphStepInput","type":"[UseQueryGraphStepInput](../../types/helper_steps.UseQueryGraphStepInput/page.mdx)&#60;TEntry&#62;","optional":false,"defaultValue":"","description":"","expandable":false,"children":[]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" openedLevel={1} sectionTitle="useQueryGraphStep"/>
+
+## Output
+
+<TypeList types={[{"name":"GraphResultSet","type":"[GraphResultSet](../../../types/ModulesSdkTypes/types/types.ModulesSdkTypes.GraphResultSet/page.mdx)&#60;TEntry&#62;","optional":false,"defaultValue":"","description":"","expandable":false,"children":[]}]} expandUrl="https://docs.medusajs.com/learn/fundamentals/data-models/manage-relationships#retrieve-records-of-relation" openedLevel={1} sectionTitle="useQueryGraphStep"/>
