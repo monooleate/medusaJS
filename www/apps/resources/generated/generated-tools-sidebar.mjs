@@ -807,6 +807,14 @@ const generatedgeneratedToolsSidebarSidebar = {
                   "loaded": true,
                   "isPathHref": true,
                   "type": "ref",
+                  "title": "Add Gift Message",
+                  "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/gift-message",
+                  "children": []
+                },
+                {
+                  "loaded": true,
+                  "isPathHref": true,
+                  "type": "ref",
                   "title": "First-Purchase Discount",
                   "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/first-purchase-discounts",
                   "children": []

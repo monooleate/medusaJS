@@ -1172,9 +1172,9 @@ You'll create a workflow that retrieves the latest products added to your Medusa
 Create the file `src/workflows/send-newsletter.ts` with the following content:
 
 export const workflowHighlights = [
-  ["15", "useQueryGraphStep", "Retrieve the products created in the last 7 days."],
-  ["32", "when", "Check whether there are new products."],
-  ["34", "sendNotificationsStep", "Create a notification with the new products data."],
+  ["14", "useQueryGraphStep", "Retrieve the products created in the last 7 days."],
+  ["31", "when", "Check whether there are new products."],
+  ["33", "sendNotificationsStep", "Create a notification with the new products data."],
 ]
 
 ```ts title="src/workflows/send-newsletter.ts" highlights={workflowHighlights}
@@ -1191,7 +1191,6 @@ import {
 export const sendNewProductsNewsletter = createWorkflow(
   "send-new-products-newsletter", 
   (input) => {
-    // @ts-ignore
     const { data: products } = useQueryGraphStep({
       entity: "product",
       fields: [

@@ -1082,6 +1082,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
             {
               "loaded": true,
               "isPathHref": true,
+              "type": "ref",
+              "title": "Add Gift Message",
+              "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/gift-message",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
               "type": "link",
               "path": "/commerce-modules/cart/extend",
               "title": "Extend Module",

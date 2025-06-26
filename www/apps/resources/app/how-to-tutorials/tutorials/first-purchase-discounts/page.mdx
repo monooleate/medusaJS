@@ -202,12 +202,12 @@ To create the workflow, create the file `src/workflows/apply-first-purchase-prom
 
 export const workflowHighlights = [
   ["7", "cart_id", "Receive cart ID as input."],
-  ["14", "carts", "Retrieve the cart's details."],
-  ["23", "promotions", "Retrieve the first-purchase promotion's details."],
-  ["32", "when", "Check if the first-purchase promotion can be applied."],
-  ["42", "updateCartPromotionsStep", "Add the first-purchase promotion to the cart."],
-  ["51", "updatedCarts", "Retrieve the updated cart's details."],
-  ["59", "WorkflowResponse", "Return the updated cart's details."]
+  ["13", "carts", "Retrieve the cart's details."],
+  ["21", "promotions", "Retrieve the first-purchase promotion's details."],
+  ["29", "when", "Check if the first-purchase promotion can be applied."],
+  ["39", "updateCartPromotionsStep", "Add the first-purchase promotion to the cart."],
+  ["47", "updatedCarts", "Retrieve the updated cart's details."],
+  ["55", "WorkflowResponse", "Return the updated cart's details."]
 ]
 
 ```ts title="src/workflows/apply-first-purchase-promo.ts" highlights={workflowHighlights}
@@ -223,7 +223,6 @@ type WorkflowInput = {
 export const applyFirstPurchasePromoWorkflow = createWorkflow(
   "apply-first-purchase-promo",
   (input: WorkflowInput) => {
-    // @ts-ignore
     const { data: carts } = useQueryGraphStep({
       entity: "cart",
       fields: ["promotions.*", "customer.*", "customer.orders.*"],
@@ -232,12 +231,10 @@ export const applyFirstPurchasePromoWorkflow = createWorkflow(
       }
     })
 
-    // @ts-ignore
     const { data: promotions } = useQueryGraphStep({
       entity: "promotion",
       fields: ["code"],
       filters: {
-        // @ts-ignore
         code: FIRST_PURCHASE_PROMOTION_CODE
       }
     }).config({ name: "retrieve-promotions" })
@@ -260,7 +257,6 @@ export const applyFirstPurchasePromoWorkflow = createWorkflow(
     })
 
     // retrieve updated cart
-    // @ts-ignore
     const { data: updatedCarts } = useQueryGraphStep({
       entity: "cart",
       fields: ["*", "promotions.*"],
