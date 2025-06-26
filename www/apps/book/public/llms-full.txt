@@ -12181,6 +12181,35 @@ The method returns an object that has a `data` property, which holds an array of
 }
 ```
 
+### Query Usage in Workflows
+
+To retrieve data with Query in a [workflow](https://docs.medusajs.com/learn/fundamentals/workflows/index.html.md), use the [useQueryGraphStep](https://docs.medusajs.com/resources/references/helper-steps/useQueryGraphStep/index.html.md).
+
+For example:
+
+```ts title="src/workflows/query.ts"
+import { createWorkflow, WorkflowResponse } from "@medusajs/framework/workflows-sdk"
+import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+
+const myWorkflow = createWorkflow(
+  "my-workflow",
+  () => {
+    const { data: posts } = useQueryGraphStep({
+      entity: "post",
+      fields: ["id", "title"],
+    })
+
+    return new WorkflowResponse({
+      posts,
+    })
+  }
+)
+```
+
+You can learn more about this step in the [useQueryGraphStep](https://docs.medusajs.com/resources/references/helper-steps/useQueryGraphStep/index.html.md) reference.
+
+The rest of this chapter uses the `graph` method to explain the different usages of Query, but the same principles apply to `useQueryGraphStep`.
+
 ***
 
 ## Querying the Graph
@@ -12208,7 +12237,7 @@ const { data: posts } = await query.graph({
 })
 ```
 
-`.*` means that all of data model's properties should be retrieved. You can also retrieve specific properties by replacing the `*` with the property name, for each property.
+`.*` means that all of the data model's properties should be retrieved. You can also retrieve specific properties by replacing the `*` with the property name for each property.
 
 For example:
 
@@ -12247,7 +12276,7 @@ In the example above, you retrieve all products linked to a post.
 
 ### Apply Filters and Pagination on Linked Records
 
-Consider you want to apply filters or pagination configurations on the product(s) linked to `post`. To do that, you must query the module link's table instead.
+Consider that you want to apply filters or pagination configurations on the product(s) linked to a `post`. To do that, you must query the module link's table instead.
 
 As mentioned in the [Module Link](https://docs.medusajs.com/learn/fundamentals/module-links/index.html.md) documentation, Medusa creates a table for your module link. So, not only can you retrieve linked records, but you can also retrieve the records in a module link's table.
 
@@ -12273,7 +12302,7 @@ const { data: productCustoms } = await query.graph({
 In the object passed to the `graph` method:
 
 - You pass the `entryPoint` property of the link definition as the value for `entity`. So, Query will retrieve records from the module link's table.
-- You pass three items to the `field` property:
+- You pass three items to the `fields` property:
   - `*` to retrieve the link table's fields. This is useful if the link table has [custom columns](https://docs.medusajs.com/learn/fundamentals/module-links/custom-columns/index.html.md).
   - `product.*` to retrieve the fields of a product record linked to a `Post` record.
   - `post.*` to retrieve the fields of a `Post` record linked to a product record.
@@ -12342,7 +12371,7 @@ Under the hood, Query uses one of the following methods from the data model's mo
 - `listX` if you don't pass [pagination parameters](#apply-pagination). For example, `listPosts`.
 - `listAndCountX` if you pass pagination parameters. For example, `listAndCountPosts`.
 
-Both methods accepts a filter object that can be used to filter records.
+Both methods accept a filter object that can be used to filter records.
 
 Those filters don't just allow you to filter by exact values. You can also filter by properties that don't match a value, match multiple values, and other filter types.
 
@@ -12495,9 +12524,48 @@ The `order` property is an object whose keys are property names, and values are 
 
 ***
 
+## Retrieve Deleted Records
+
+By default, Query doesn't retrieve deleted records. To retrieve all records including deleted records, you can pass the `withDeleted` property to the `query.graph` method.
+
+The `withDeleted` property is available from [Medusa v2.8.5](https://github.com/medusajs/medusa/releases/tag/v2.8.5).
+
+For example:
+
+```ts highlights={[["4", "withDeleted", "Include deleted posts in the results."]]}
+const { data: posts } = await query.graph({
+  entity: "post",
+  fields: ["id", "title"],
+  withDeleted: true,
+})
+```
+
+In the example above, you retrieve all posts, including deleted ones.
+
+### Retrieve Only Deleted Records
+
+To retrieve only deleted records, you can add a `deleted_at` filter and set its value to not `null`. For example:
+
+```ts highlights={withDeletedHighlights}
+const { data: posts } = await query.graph({
+  entity: "post",
+  fields: ["id", "title"],
+  filters: {
+    deleted_at: {
+      $ne: null,
+    },
+  },
+  withDeleted: true,
+})
+```
+
+In the example above, you retrieve only deleted posts by enabling the `withDeleted` property and adding a filter to only retrieve records where the `deleted_at` property is not `null`.
+
+***
+
 ## Configure Query to Throw Errors
 
-By default, if Query doesn't find records matching your query, it returns an empty array. You can add option to configure Query to throw an error when no records are found.
+By default, if Query doesn't find records matching your query, it returns an empty array. You can add an option to configure Query to throw an error when no records are found.
 
 The `query.graph` method accepts as a second parameter an object that can have a `throwIfKeyNotFound` property. Its value is a boolean indicating whether to throw an error if no record is found when filtering by IDs. By default, it's `false`.
 
@@ -12536,7 +12604,7 @@ const { data: posts } = await query.graph({
 })
 ```
 
-In the example above, Query throws an error either if no post is found with the ID `post_123` or if its found but its author ID isn't `author_123`.
+In the example above, Query throws an error either if no post is found with the ID `post_123` or if it's found but its author ID isn't `author_123`.
 
 In the above example, it's assumed that a post belongs to an author, so it has an `author_id` property. However, this also works in the opposite case, where an author has many posts.
 
@@ -12615,7 +12683,7 @@ The `validateAndTransformQuery` accepts two parameters:
    4. `order`: The fields to order the returned items by in ascending or descending order.
 2. A Query configuration object. It accepts the following properties:
    1. `defaults`: An array of default fields and relations to retrieve in each resource.
-   2. `isList`: A boolean indicating whether a list of items are returned in the response.
+   2. `isList`: A boolean indicating whether a list of items is returned in the response.
    3. `allowed`: An array of fields and relations allowed to be passed in the `fields` query parameter.
    4. `defaultLimit`: A number indicating the default limit to use if no limit is provided. By default, it's `50`.
 
@@ -12627,7 +12695,7 @@ The middleware transforms these parameters to configurations that you can pass t
 
 As of [Medusa v2.2.0](https://github.com/medusajs/medusa/releases/tag/v2.2.0), `remoteQueryConfig` has been deprecated in favor of `queryConfig`. Their usage is still the same, only the property name has changed.
 
-For example, Create the file `src/api/customs/route.ts` with the following content:
+For example, create the file `src/api/customs/route.ts` with the following content:
 
 ```ts title="src/api/customs/route.ts"
 import {
@@ -12659,7 +12727,7 @@ In the API route, you pass `req.queryConfig` to `query.graph`. `queryConfig` has
 
 ### Test it Out
 
-To test it out, start your Medusa application and send a `GET` request to the `/customs` API route. A list of records are retrieved with the specified fields in the middleware.
+To test it out, start your Medusa application and send a `GET` request to the `/customs` API route. A list of records is retrieved with the specified fields in the middleware.
 
 ```json title="Returned Data"
 {
@@ -12674,7 +12742,7 @@ To test it out, start your Medusa application and send a `GET` request to the `/
 
 Try passing one of the Query configuration parameters, like `fields` or `limit`, and you'll see its impact on the returned result.
 
-Learn more about [specifing fields and relations](https://docs.medusajs.com/api/store#select-fields-and-relations) and [pagination](https://docs.medusajs.com/api/store#pagination) in the API reference.
+Learn more about [specifying fields and relations](https://docs.medusajs.com/api/store#select-fields-and-relations) and [pagination](https://docs.medusajs.com/api/store#pagination) in the API reference.
 
 
 # Read-Only Module Link
@@ -72664,8 +72732,8 @@ Download this reference as an OpenApi YAML file. You can import this file to too
 - [POST /admin/gift-cards](https://docs.medusajs.com/api/admin#gift-cards_postgiftcards)
 - [GET /admin/gift-cards/{id}](https://docs.medusajs.com/api/admin#gift-cards_getgiftcardsid)
 - [POST /admin/gift-cards/{id}](https://docs.medusajs.com/api/admin#gift-cards_postgiftcardsid)
+- [GET /admin/gift-cards/{id}/orders](https://docs.medusajs.com/api/admin#gift-cards_getgiftcardsidorders)
 - [POST /admin/gift-cards/{id}/redeem](https://docs.medusajs.com/api/admin#gift-cards_postgiftcardsidredeem)
-- [POST /admin/gift-cards/{id}/transfer](https://docs.medusajs.com/api/admin#gift-cards_postgiftcardsidtransfer)
 - [GET /admin/inventory-items](https://docs.medusajs.com/api/admin#inventory-items_getinventoryitems)
 - [POST /admin/inventory-items](https://docs.medusajs.com/api/admin#inventory-items_postinventoryitems)
 - [POST /admin/inventory-items/location-levels/batch](https://docs.medusajs.com/api/admin#inventory-items_postinventoryitemslocationlevelsbatch)
@@ -72939,12 +73007,8 @@ Download this reference as an OpenApi YAML file. You can import this file to too
 - [GET /store/customers/me/addresses/{address_id}](https://docs.medusajs.com/api/store#customers_getcustomersmeaddressesaddress_id)
 - [POST /store/customers/me/addresses/{address_id}](https://docs.medusajs.com/api/store#customers_postcustomersmeaddressesaddress_id)
 - [DELETE /store/customers/me/addresses/{address_id}](https://docs.medusajs.com/api/store#customers_deletecustomersmeaddressesaddress_id)
-- [POST /store/gift-card-invitations/{code}/accept](https://docs.medusajs.com/api/store#gift-card-invitations_postgiftcardinvitationscodeaccept)
-- [POST /store/gift-card-invitations/{code}/reject](https://docs.medusajs.com/api/store#gift-card-invitations_postgiftcardinvitationscodereject)
-- [GET /store/gift-cards](https://docs.medusajs.com/api/store#gift-cards_getgiftcards)
-- [GET /store/gift-cards/{id}](https://docs.medusajs.com/api/store#gift-cards_getgiftcardsid)
-- [POST /store/gift-cards/{id}/invitation](https://docs.medusajs.com/api/store#gift-cards_postgiftcardsidinvitation)
-- [POST /store/gift-cards/{id}/redeem](https://docs.medusajs.com/api/store#gift-cards_postgiftcardsidredeem)
+- [GET /store/gift-cards/{idOrCode}](https://docs.medusajs.com/api/store#gift-cards_getgiftcardsidorcode)
+- [POST /store/gift-cards/{idOrCode}/redeem](https://docs.medusajs.com/api/store#gift-cards_postgiftcardsidorcoderedeem)
 - [GET /store/orders](https://docs.medusajs.com/api/store#orders_getorders)
 - [GET /store/orders/{id}](https://docs.medusajs.com/api/store#orders_getordersid)
 - [POST /store/orders/{id}/transfer/accept](https://docs.medusajs.com/api/store#orders_postordersidtransferaccept)
