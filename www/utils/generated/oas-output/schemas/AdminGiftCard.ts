@@ -6,7 +6,6 @@
  * required:
  *   - line_item
  *   - customer
- *   - invitation
  *   - id
  *   - code
  *   - status
@@ -67,8 +66,6 @@
  *     type: string
  *     title: expires_at
  *     description: The date the gift card expires at.
- *   invitation:
- *     $ref: "#/components/schemas/AdminGiftCardInvitation"
  *   created_at:
  *     type: string
  *     format: date-time

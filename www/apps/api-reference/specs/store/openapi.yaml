@@ -73,22 +73,6 @@ tags:
       url: https://docs.medusajs.com/resources/storefront-development/customers
     x-associatedSchema:
       $ref: ./components/schemas/StoreCustomer.yaml
-  - name: Gift Card Invitations
-    description: >
-      A gift card invitation is a way to send a gift card to a customer. They
-      can be sent from one customer to another.
-
-      These API routes allow logged-in customers to create and manage gift card
-      invitations.
-
-      <Note>
-
-      Gift Card Invitations are only available for Cloud users using the
-      [Loyalty Plugin](https://docs.medusajs.com/cloud/loyalty-plugin).
-
-      </Note>
-    x-associatedSchema:
-      $ref: ./components/schemas/StoreGiftCardInvitation.yaml
   - name: Gift Cards
     description: >
       A gift card is a prepaid card that customers can use to purchase products
@@ -298,18 +282,10 @@ paths:
     $ref: paths/store_customers_me_addresses.yaml
   /store/customers/me/addresses/{address_id}:
     $ref: paths/store_customers_me_addresses_{address_id}.yaml
-  /store/gift-card-invitations/{code}/accept:
-    $ref: paths/store_gift-card-invitations_{code}_accept.yaml
-  /store/gift-card-invitations/{code}/reject:
-    $ref: paths/store_gift-card-invitations_{code}_reject.yaml
-  /store/gift-cards:
-    $ref: paths/store_gift-cards.yaml
-  /store/gift-cards/{id}:
-    $ref: paths/store_gift-cards_{id}.yaml
-  /store/gift-cards/{id}/invitation:
-    $ref: paths/store_gift-cards_{id}_invitation.yaml
-  /store/gift-cards/{id}/redeem:
-    $ref: paths/store_gift-cards_{id}_redeem.yaml
+  /store/gift-cards/{idOrCode}:
+    $ref: paths/store_gift-cards_{idOrCode}.yaml
+  /store/gift-cards/{idOrCode}/redeem:
+    $ref: paths/store_gift-cards_{idOrCode}_redeem.yaml
   /store/orders:
     $ref: paths/store_orders.yaml
   /store/orders/{id}:

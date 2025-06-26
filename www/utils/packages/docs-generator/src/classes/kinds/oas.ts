@@ -122,7 +122,7 @@ class OasKindGenerator extends FunctionKindGenerator {
       allowedAuthTypes: ["cookie_auth", "jwt_token"],
     },
     {
-      startsWith: "store/gift-card",
+      exact: "store/gift-cards/[idOrCode]/redeem",
       requiresAuthentication: true,
     },
     {

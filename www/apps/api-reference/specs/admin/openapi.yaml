@@ -848,10 +848,10 @@ paths:
     $ref: paths/admin_gift-cards.yaml
   /admin/gift-cards/{id}:
     $ref: paths/admin_gift-cards_{id}.yaml
+  /admin/gift-cards/{id}/orders:
+    $ref: paths/admin_gift-cards_{id}_orders.yaml
   /admin/gift-cards/{id}/redeem:
     $ref: paths/admin_gift-cards_{id}_redeem.yaml
-  /admin/gift-cards/{id}/transfer:
-    $ref: paths/admin_gift-cards_{id}_transfer.yaml
   /admin/inventory-items:
     $ref: paths/admin_inventory-items.yaml
   /admin/inventory-items/location-levels/batch:

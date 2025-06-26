@@ -65,20 +65,6 @@ tags:
       url: https://docs.medusajs.com/resources/storefront-development/customers
     x-associatedSchema:
       $ref: "#/components/schemas/StoreCustomer"
-  - name: Gift Card Invitations
-    description: >
-      A gift card invitation is a way to send a gift card to a customer. They
-      can be sent from one customer to another.
-
-      These API routes allow logged-in customers to create and manage gift card invitations.
-
-      <Note>
-
-      Gift Card Invitations are only available for Cloud users using the [Loyalty Plugin](https://docs.medusajs.com/cloud/loyalty-plugin).
-
-      </Note>
-    x-associatedSchema:
-      $ref: "#/components/schemas/StoreGiftCardInvitation"
   - name: Gift Cards
     description: >
       A gift card is a prepaid card that customers can use to purchase products

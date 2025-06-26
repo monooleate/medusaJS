@@ -134,24 +134,6 @@ const generatedgeneratedStoreSidebarSidebar = {
     },
     {
       "type": "category",
-      "title": "Gift Card Invitations",
-      "children": [
-        {
-          "type": "link",
-          "path": "gift-card-invitations_giftcardinvitation_schema",
-          "title": "GiftCardInvitation Object",
-          "loaded": true,
-          "badge": {
-            "variant": "neutral",
-            "text": "Schema"
-          }
-        }
-      ],
-      "loaded": false,
-      "showLoadingIfEmpty": true
-    },
-    {
-      "type": "category",
       "title": "Gift Cards",
       "children": [
         {

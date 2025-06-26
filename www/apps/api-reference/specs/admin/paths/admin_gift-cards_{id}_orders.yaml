@@ -1,10 +1,8 @@
 get:
-  operationId: GetGiftCardsId
-  summary: Get Customer's Gift Card
-  x-sidebar-summary: Get Gift Card
-  description: >-
-    Retrieve the logged-in customer's gift card by its ID. You can expand the
-    gift card's relations or select the fields that should be returned.
+  operationId: GetGiftCardsIdOrders
+  summary: List Gift Card's Orders
+  x-sidebar-summary: List Orders
+  description: Retrieve the list of orders that a gift card was used in.
   x-authenticated: true
   x-ignoreCleanup: true
   parameters:
@@ -14,23 +12,12 @@ get:
       required: true
       schema:
         type: string
-    - name: x-publishable-api-key
-      in: header
-      description: Publishable API Key created in the Medusa Admin.
-      required: true
-      schema:
-        type: string
-        externalDocs:
-          url: https://docs.medusajs.com/api/store#publishable-api-key
     - name: fields
       in: query
-      description: >-
+      description: |-
         Comma-separated fields that should be included in the returned data.
-
-        if a field is prefixed with `+` it will be added to the default fields,
-        using `-` will remove it from the default fields.
-
-        without prefix it will replace the entire default fields.
+         if a field is prefixed with `+` it will be added to the default fields, using `-` will remove it from the default fields.
+         without prefix it will replace the entire default fields.
       required: false
       schema:
         type: string
@@ -42,11 +29,15 @@ get:
           prefix it will replace the entire default fields.
         externalDocs:
           url: '#select-fields-and-relations'
+  security:
+    - api_token: []
+    - cookie_auth: []
+    - jwt_token: []
   x-codeSamples:
     - lang: Shell
       label: cURL
       source:
-        $ref: ../code_samples/Shell/store_gift-cards_{id}/get.sh
+        $ref: ../code_samples/Shell/admin_gift-cards_{id}_orders/get.sh
   tags:
     - Gift Cards
   responses:
@@ -64,9 +55,6 @@ get:
       $ref: ../components/responses/invalid_request_error.yaml
     '500':
       $ref: ../components/responses/500_error.yaml
-  security:
-    - cookie_auth: []
-    - jwt_token: []
   x-badges:
     - text: Cloud
       description: >

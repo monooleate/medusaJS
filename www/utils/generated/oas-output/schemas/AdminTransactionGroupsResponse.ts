@@ -26,6 +26,11 @@
  *     description: The list of transaction groups.
  *     items:
  *       $ref: "#/components/schemas/AdminTransactionGroup"
+ *   estimate_count:
+ *     type: number
+ *     title: estimate_count
+ *     description: The transaction group's estimate count.
+ *     x-featureFlag: index_engine
  * 
 */
 

@@ -1,8 +1,9 @@
 /**
- * @oas [post] /admin/gift-cards/{id}/transfer
- * operationId: PostGiftCardsIdTransfer
- * summary: Transfer Gift Card
- * description: Transfer a gift card to another customer.
+ * @oas [get] /admin/gift-cards/{id}/orders
+ * operationId: GetGiftCardsIdOrders
+ * summary: List Gift Card's Orders
+ * x-sidebar-summary: List Orders
+ * description: Retrieve the list of orders that a gift card was used in.
  * x-authenticated: true
  * x-ignoreCleanup: true
  * parameters:
@@ -16,8 +17,8 @@
  *     in: query
  *     description: |-
  *       Comma-separated fields that should be included in the returned data.
- *       if a field is prefixed with `+` it will be added to the default fields, using `-` will remove it from the default fields.
- *       without prefix it will replace the entire default fields.
+ *        if a field is prefixed with `+` it will be added to the default fields, using `-` will remove it from the default fields.
+ *        without prefix it will replace the entire default fields.
  *     required: false
  *     schema:
  *       type: string
@@ -30,30 +31,17 @@
  *   - api_token: []
  *   - cookie_auth: []
  *   - jwt_token: []
- * requestBody:
- *   content:
- *     application/json:
- *       schema:
- *         $ref: "#/components/schemas/AdminTransferGiftCard"
  * x-codeSamples:
  *   - lang: Shell
  *     label: cURL
  *     source: |-
- *       curl -X POST '{backend_url}/admin/gift-cards/{id}/transfer' \
- *       -H 'Authorization: Bearer {access_token}' \
- *       -H 'Content-Type: application/json' \
- *       --data-raw '{
- *         "customer_id": "{value}"
- *       }'
+ *       curl '{backend_url}/admin/gift-cards/{id}/orders' \
+ *       -H 'Authorization: Bearer {access_token}'
  * tags:
  *   - Gift Cards
  * responses:
  *   "200":
  *     description: OK
- *     content:
- *       application/json:
- *         schema:
- *           $ref: "#/components/schemas/AdminGiftCardResponse"
  *   "400":
  *     $ref: "#/components/responses/400_error"
  *   "401":
@@ -66,10 +54,9 @@
  *     $ref: "#/components/responses/invalid_request_error"
  *   "500":
  *     $ref: "#/components/responses/500_error"
- * 
  * x-badges:
- *    - text: "Cloud"
- *      description: > 
- *        This API route is only available in [Medusa Cloud](https://docs.medusajs.com/cloud/loyalty-plugin).
+ *   - text: Cloud
+ *     description: |
+ *       This API route is only available in [Medusa Cloud](https://docs.medusajs.com/cloud/loyalty-plugin).
 */
 

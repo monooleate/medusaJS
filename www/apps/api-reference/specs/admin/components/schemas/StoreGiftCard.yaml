@@ -4,7 +4,6 @@ x-schemaName: StoreGiftCard
 required:
   - customer
   - line_item
-  - invitation
   - id
   - code
   - status
@@ -20,6 +19,12 @@ required:
 properties:
   customer:
     $ref: ./StoreCustomer.yaml
+  line_item:
+    $ref: ./StoreOrderLineItem.yaml
+  id:
+    type: string
+    title: id
+    description: The gift card's ID.
   code:
     type: string
     title: code
@@ -34,22 +39,32 @@ properties:
     type: number
     title: value
     description: The gift card's amount.
+  currency_code:
+    type: string
+    title: currency_code
+    description: The gift card's currency code.
+    example: usd
   customer_id:
     type: string
     title: customer_id
     description: The ID of the customer that the gift card belongs to.
-  id:
-    type: string
-    title: id
-    description: The gift card's ID.
   reference_id:
     type: string
     title: reference_id
     description: The gift card's reference ID.
+  note:
+    type: string
+    title: note
+    description: A note with more information about the gift card.
   reference:
     type: string
     title: reference
     description: The gift card's reference.
+  expires_at:
+    type: string
+    title: expires_at
+    description: The date the gift card expires.
+    format: date-time
   created_at:
     type: string
     format: date-time
@@ -60,20 +75,3 @@ properties:
     format: date-time
     title: updated_at
     description: The date the gift card was updated.
-  currency_code:
-    type: string
-    title: currency_code
-    description: The gift card's currency code.
-    example: usd
-  note:
-    type: string
-    title: note
-    description: The gift card's note.
-  expires_at:
-    type: string
-    title: expires_at
-    description: The date the gift card expires.
-  invitation:
-    type: object
-  line_item:
-    $ref: ./StoreOrderLineItem.yaml

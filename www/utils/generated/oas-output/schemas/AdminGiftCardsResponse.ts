@@ -26,6 +26,11 @@
  *     description: The list of gift cards.
  *     items:
  *       $ref: "#/components/schemas/AdminGiftCard"
+ *   estimate_count:
+ *     type: number
+ *     title: estimate_count
+ *     description: The gift card's estimate count.
+ *     x-featureFlag: index_engine
  * 
 */
 

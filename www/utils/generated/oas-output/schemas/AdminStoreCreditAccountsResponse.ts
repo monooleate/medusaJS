@@ -26,6 +26,11 @@
  *     description: The list of store credit accounts.
  *     items:
  *       $ref: "#/components/schemas/AdminStoreCreditAccount"
+ *   estimate_count:
+ *     type: number
+ *     title: estimate_count
+ *     description: The store credit account's estimate count.
+ *     x-featureFlag: index_engine
  * 
 */
 

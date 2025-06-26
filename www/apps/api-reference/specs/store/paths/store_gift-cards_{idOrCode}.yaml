@@ -1,25 +1,33 @@
-post:
-  operationId: PostGiftCardsIdTransfer
-  summary: Transfer Gift Card
-  description: Transfer a gift card to another customer.
-  x-authenticated: true
+get:
+  operationId: GetGiftCardsIdorcode
+  summary: Get a Gift Card
+  x-sidebar-summary: Get Gift Card
+  description: >-
+    Retrieve a gift card by its ID or code. You can expand the gift card's
+    relations or select the fields that should be returned.
+  x-authenticated: false
   x-ignoreCleanup: true
   parameters:
-    - name: id
+    - name: idOrCode
       in: path
-      description: The gift card's ID.
+      description: The gift card's ID or code.
       required: true
       schema:
         type: string
+    - name: x-publishable-api-key
+      in: header
+      description: Publishable API Key created in the Medusa Admin.
+      required: true
+      schema:
+        type: string
+        externalDocs:
+          url: https://docs.medusajs.com/api/store#publishable-api-key
     - name: fields
       in: query
-      description: >-
+      description: |-
         Comma-separated fields that should be included in the returned data.
-
-        if a field is prefixed with `+` it will be added to the default fields,
-        using `-` will remove it from the default fields.
-
-        without prefix it will replace the entire default fields.
+         if a field is prefixed with `+` it will be added to the default fields, using `-` will remove it from the default fields.
+         without prefix it will replace the entire default fields.
       required: false
       schema:
         type: string
@@ -31,29 +39,16 @@ post:
           prefix it will replace the entire default fields.
         externalDocs:
           url: '#select-fields-and-relations'
-  security:
-    - api_token: []
-    - cookie_auth: []
-    - jwt_token: []
-  requestBody:
-    content:
-      application/json:
-        schema:
-          $ref: ../components/schemas/AdminTransferGiftCard.yaml
   x-codeSamples:
     - lang: Shell
       label: cURL
       source:
-        $ref: ../code_samples/Shell/admin_gift-cards_{id}_transfer/post.sh
+        $ref: ../code_samples/Shell/store_gift-cards_{idOrCode}/get.sh
   tags:
     - Gift Cards
   responses:
     '200':
       description: OK
-      content:
-        application/json:
-          schema:
-            $ref: ../components/schemas/AdminGiftCardResponse.yaml
     '400':
       $ref: ../components/responses/400_error.yaml
     '401':
