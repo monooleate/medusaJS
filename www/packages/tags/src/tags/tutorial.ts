@@ -28,6 +28,10 @@ export const tutorial = [
     "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/abandoned-cart"
   },
   {
+    "title": "First-Purchase Discount",
+    "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/first-purchase-discounts"
+  },
+  {
     "title": "Loyalty Points",
     "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/loyalty-points"
   },
@@ -50,6 +54,10 @@ export const tutorial = [
   {
     "title": "Integrate Contentful",
     "path": "https://docs.medusajs.com/resources/integrations/guides/contentful"
+  },
+  {
+    "title": "Integrate Mailchimp",
+    "path": "https://docs.medusajs.com/resources/integrations/guides/mailchimp"
   },
   {
     "title": "Integrate Segment",
