@@ -6546,6 +6546,8 @@ export const generatedEditDates = {
   "references/utils/utils.Payment/page.mdx": "2025-06-05T19:05:53.489Z",
   "app/integrations/guides/slack/page.mdx": "2025-06-26T12:57:20.880Z",
   "app/integrations/guides/sentry/page.mdx": "2025-06-16T10:11:29.955Z",
+  "app/integrations/guides/mailchimp/page.mdx": "2025-06-24T08:08:35.034Z",
+  "app/how-to-tutorials/tutorials/first-purchase-discounts/page.mdx": "2025-06-26T09:13:19.296Z",
   "app/integrations/guides/mailchimp/page.mdx": "2025-06-26T11:59:15.303Z",
   "app/how-to-tutorials/tutorials/first-purchase-discounts/page.mdx": "2025-06-26T11:55:27.175Z",
   "references/types/CommonTypes/interfaces/types.CommonTypes.CookieOptions/page.mdx": "2025-06-25T10:11:37.088Z",
@@ -6554,5 +6556,6 @@ export const generatedEditDates = {
   "references/workflows/IDistributedTransactionStorage/methods/workflows.IDistributedTransactionStorage.clearExpiredExecutions/page.mdx": "2025-06-25T10:11:44.945Z",
   "references/types/interfaces/types.InitiatePaymentOutput/page.mdx": "2025-06-25T10:11:39.942Z",
   "references/types/interfaces/types.UpdatePaymentOutput/page.mdx": "2025-06-25T10:11:39.945Z",
+  "app/how-to-tutorials/tutorials/gift-message/page.mdx": "2025-06-26T09:13:19.296Z",
   "app/how-to-tutorials/tutorials/re-order/page.mdx": "2025-06-26T12:38:24.308Z"
 }
