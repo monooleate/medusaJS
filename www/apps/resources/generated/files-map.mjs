@@ -508,6 +508,10 @@ export const filesMap = [
     "pathname": "/commerce-modules/promotion"
   },
   {
+    "filePath": "/www/apps/resources/app/commerce-modules/promotion/promotion-taxes/page.mdx",
+    "pathname": "/commerce-modules/promotion/promotion-taxes"
+  },
+  {
     "filePath": "/www/apps/resources/app/commerce-modules/promotion/workflows/page.mdx",
     "pathname": "/commerce-modules/promotion/workflows"
   },
@@ -1128,10 +1132,6 @@ export const filesMap = [
     "pathname": "/storefront-development/cart/manage-items"
   },
   {
-    "filePath": "/www/apps/resources/app/storefront-development/cart/page.mdx",
-    "pathname": "/storefront-development/cart"
-  },
-  {
     "filePath": "/www/apps/resources/app/storefront-development/cart/retrieve/page.mdx",
     "pathname": "/storefront-development/cart/retrieve"
   },
@@ -1192,10 +1192,6 @@ export const filesMap = [
     "pathname": "/storefront-development/customers/login"
   },
   {
-    "filePath": "/www/apps/resources/app/storefront-development/customers/page.mdx",
-    "pathname": "/storefront-development/customers"
-  },
-  {
     "filePath": "/www/apps/resources/app/storefront-development/customers/profile/page.mdx",
     "pathname": "/storefront-development/customers/profile"
   },
@@ -1232,10 +1228,6 @@ export const filesMap = [
     "pathname": "/storefront-development/products/categories/nested-categories"
   },
   {
-    "filePath": "/www/apps/resources/app/storefront-development/products/categories/page.mdx",
-    "pathname": "/storefront-development/products/categories"
-  },
-  {
     "filePath": "/www/apps/resources/app/storefront-development/products/categories/products/page.mdx",
     "pathname": "/storefront-development/products/categories/products"
   },
@@ -1246,10 +1238,6 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/app/storefront-development/products/collections/list/page.mdx",
     "pathname": "/storefront-development/products/collections/list"
-  },
-  {
-    "filePath": "/www/apps/resources/app/storefront-development/products/collections/page.mdx",
-    "pathname": "/storefront-development/products/collections"
   },
   {
     "filePath": "/www/apps/resources/app/storefront-development/products/collections/products/page.mdx",
@@ -1266,10 +1254,6 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/app/storefront-development/products/list/page.mdx",
     "pathname": "/storefront-development/products/list"
-  },
-  {
-    "filePath": "/www/apps/resources/app/storefront-development/products/page.mdx",
-    "pathname": "/storefront-development/products"
   },
   {
     "filePath": "/www/apps/resources/app/storefront-development/products/price/examples/sale-price/page.mdx",

@@ -58,7 +58,7 @@ export const generatedEditDates = {
   "app/commerce-modules/pricing/concepts/page.mdx": "2024-10-09T13:37:25.678Z",
   "app/commerce-modules/pricing/price-calculation/page.mdx": "2025-05-20T07:51:40.710Z",
   "app/commerce-modules/pricing/price-rules/page.mdx": "2025-05-20T07:51:40.710Z",
-  "app/commerce-modules/pricing/tax-inclusive-pricing/page.mdx": "2024-10-09T13:48:23.261Z",
+  "app/commerce-modules/pricing/tax-inclusive-pricing/page.mdx": "2025-06-27T15:43:35.193Z",
   "app/commerce-modules/pricing/page.mdx": "2025-05-20T07:51:40.710Z",
   "app/commerce-modules/product/_events/_events-table/page.mdx": "2024-07-03T19:27:13+03:00",
   "app/commerce-modules/product/_events/page.mdx": "2024-07-03T19:27:13+03:00",
@@ -67,7 +67,7 @@ export const generatedEditDates = {
   "app/commerce-modules/product/page.mdx": "2025-05-20T07:51:40.711Z",
   "app/commerce-modules/promotion/_events/_events-table/page.mdx": "2024-07-03T19:27:13+03:00",
   "app/commerce-modules/promotion/_events/page.mdx": "2024-07-03T19:27:13+03:00",
-  "app/commerce-modules/promotion/actions/page.mdx": "2024-10-09T14:49:01.645Z",
+  "app/commerce-modules/promotion/actions/page.mdx": "2025-06-27T15:42:19.142Z",
   "app/commerce-modules/promotion/application-method/page.mdx": "2024-06-26T07:55:59+00:00",
   "app/commerce-modules/promotion/campaign/page.mdx": "2025-02-26T11:32:24.484Z",
   "app/commerce-modules/promotion/concepts/page.mdx": "2025-02-26T11:31:54.391Z",
@@ -6546,8 +6546,6 @@ export const generatedEditDates = {
   "references/utils/utils.Payment/page.mdx": "2025-06-05T19:05:53.489Z",
   "app/integrations/guides/slack/page.mdx": "2025-06-26T12:57:20.880Z",
   "app/integrations/guides/sentry/page.mdx": "2025-06-16T10:11:29.955Z",
-  "app/integrations/guides/mailchimp/page.mdx": "2025-06-24T08:08:35.034Z",
-  "app/how-to-tutorials/tutorials/first-purchase-discounts/page.mdx": "2025-06-26T09:13:19.296Z",
   "app/integrations/guides/mailchimp/page.mdx": "2025-06-26T11:59:15.303Z",
   "app/how-to-tutorials/tutorials/first-purchase-discounts/page.mdx": "2025-06-26T11:55:27.175Z",
   "references/types/CommonTypes/interfaces/types.CommonTypes.CookieOptions/page.mdx": "2025-06-25T10:11:37.088Z",
@@ -6557,5 +6555,6 @@ export const generatedEditDates = {
   "references/types/interfaces/types.InitiatePaymentOutput/page.mdx": "2025-06-25T10:11:39.942Z",
   "references/types/interfaces/types.UpdatePaymentOutput/page.mdx": "2025-06-25T10:11:39.945Z",
   "app/how-to-tutorials/tutorials/gift-message/page.mdx": "2025-06-26T09:13:19.296Z",
-  "app/how-to-tutorials/tutorials/re-order/page.mdx": "2025-06-26T12:38:24.308Z"
+  "app/how-to-tutorials/tutorials/re-order/page.mdx": "2025-06-26T12:38:24.308Z",
+  "app/commerce-modules/promotion/promotion-taxes/page.mdx": "2025-06-27T15:44:46.638Z"
 }
