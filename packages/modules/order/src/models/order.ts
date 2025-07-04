@@ -56,7 +56,13 @@ const _Order = model
     }),
   })
   .cascades({
-    delete: ["summary", "items", "shipping_methods", "transactions"],
+    delete: [
+      "summary",
+      "items",
+      "shipping_methods",
+      "transactions",
+      "credit_lines",
+    ],
   })
   .indexes([
     {

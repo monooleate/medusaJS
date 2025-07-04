@@ -1,12 +1,12 @@
 import { CreateOrderDTO, IOrderModuleService } from "@medusajs/framework/types"
-import { Modules } from "@medusajs/framework/utils"
+import { Modules, promiseAll } from "@medusajs/framework/utils"
 import { moduleIntegrationTestRunner } from "@medusajs/test-utils"
 
 jest.setTimeout(100000)
 
 moduleIntegrationTestRunner<IOrderModuleService>({
   moduleName: Modules.ORDER,
-  testSuite: ({ service }) => {
+  testSuite: ({ service, MikroOrmWrapper }) => {
     describe("Order Module Service", () => {
       const input = {
         email: "foo@bar.com",
@@ -305,6 +305,107 @@ moduleIntegrationTestRunner<IOrderModuleService>({
             pending_difference: 70,
           })
         )
+      })
+
+      it("should delete entirely an order, shipping method and items. Including taxes and adjustments associated with them and credit lines", async function () {
+        const inpCopy = JSON.parse(JSON.stringify(input)) as CreateOrderDTO
+        inpCopy.transactions!.push({
+          amount: 10,
+          currency_code: "USD",
+        })
+        const created = await service.createOrders(inpCopy)
+
+        await service.createOrderCreditLines([
+          {
+            order_id: created.id,
+            amount: 10,
+            reference_id: "credit_line_1",
+          },
+        ])
+
+        await service.addOrderTransactions([
+          {
+            order_id: created.id,
+            amount: -20,
+            currency_code: "USD",
+          },
+        ])
+
+        async function findAllOrderRelatedEntities(orderId: string) {
+          const orderIdClause = { order_id: orderId }
+          const manager = MikroOrmWrapper.forkManager()
+          const [
+            order,
+            orderItems,
+            orderSummary,
+            orderShippingMethods,
+            orderTransactions,
+            orderCreditLines,
+            orderShippingAddress,
+            orderBillingAddress,
+            orderChange,
+            orderChangeAction,
+          ] = await promiseAll([
+            manager.findOne("Order", {
+              id: created.id,
+            }),
+            manager.findOne("OrderItem", orderIdClause),
+            manager.findOne("OrderSummary", orderIdClause),
+            manager.findOne("OrderShipping", orderIdClause),
+            manager.findOne("OrderTransaction", orderIdClause),
+            manager.findOne("OrderCreditLine", orderIdClause),
+            manager.findOne("OrderAddress", {
+              first_name: "Test",
+              last_name: "Test",
+              address_1: "Test",
+              city: "Test",
+              country_code: "US",
+              postal_code: "12345",
+              phone: "12345",
+            }),
+            manager.findOne("OrderAddress", {
+              first_name: "Test",
+              last_name: "Test",
+              address_1: "Test",
+              city: "Test",
+              country_code: "US",
+              postal_code: "12345",
+            }),
+          ])
+
+          return {
+            order,
+            orderItems,
+            orderSummary,
+            orderShippingMethods,
+            orderTransactions,
+            orderCreditLines,
+            orderShippingAddress,
+            orderBillingAddress,
+          }
+        }
+
+        let orderRelatedEntities = await findAllOrderRelatedEntities(created.id)
+        expect(orderRelatedEntities.order).not.toBeNull()
+        expect(orderRelatedEntities.orderItems).not.toBeNull()
+        expect(orderRelatedEntities.orderSummary).not.toBeNull()
+        expect(orderRelatedEntities.orderShippingMethods).not.toBeNull()
+        expect(orderRelatedEntities.orderTransactions).not.toBeNull()
+        expect(orderRelatedEntities.orderCreditLines).not.toBeNull()
+        expect(orderRelatedEntities.orderShippingAddress).not.toBeNull()
+        expect(orderRelatedEntities.orderBillingAddress).not.toBeNull()
+
+        await service.deleteOrders([created.id])
+
+        orderRelatedEntities = await findAllOrderRelatedEntities(created.id)
+        expect(orderRelatedEntities.order).toBeNull()
+        expect(orderRelatedEntities.orderItems).toBeNull()
+        expect(orderRelatedEntities.orderSummary).toBeNull()
+        expect(orderRelatedEntities.orderShippingMethods).toBeNull()
+        expect(orderRelatedEntities.orderTransactions).toBeNull()
+        expect(orderRelatedEntities.orderCreditLines).toBeNull()
+        expect(orderRelatedEntities.orderShippingAddress).toBeNull()
+        expect(orderRelatedEntities.orderBillingAddress).toBeNull()
       })
 
       it("should transform requested fields and relations to match the db schema and return the order", async function () {
