@@ -18576,6 +18576,8 @@ npx create-medusa-app@latest my-medusa-store
 
 Where `my-medusa-store` is the name of the project's directory and PostgreSQL database created for the project. When you run the command, you'll be asked whether you want to install the Next.js Starter Storefront.
 
+To customize the default installation behavior, such as specify a database URL, refer to the [create-medusa-app reference](https://docs.medusajs.com/resources/create-medusa-app/index.html.md).
+
 After answering the prompts, the command installs the Medusa application in a directory with your project name, and sets up a PostgreSQL database that the application connects to.
 
 If you chose to install the storefront with the Medusa application, the storefront is installed in a separate directory named `{project-name}-storefront`.
@@ -94142,6 +94144,8 @@ const createVendorOrdersWorkflow = createWorkflow(
           "shipping_address.*",
           "billing_address.*",
           "shipping_methods.*",
+          "shipping_methods.tax_lines.*",
+          "shipping_methods.adjustments.*",
         ],
       },
     })
