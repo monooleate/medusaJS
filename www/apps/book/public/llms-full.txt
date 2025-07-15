@@ -29714,7 +29714,7 @@ export async function POST(
           // ...
           is_tax_inclusive: true,
         }],
-      }
+      },
     })
 
   res.send(result)
@@ -47485,8 +47485,8 @@ export const applyFirstPurchasePromoWorkflow = createWorkflow(
       entity: "promotion",
       fields: ["code"],
       filters: {
-        code: FIRST_PURCHASE_PROMOTION_CODE
-      }
+        code: FIRST_PURCHASE_PROMOTION_CODE,
+      },
     }).config({ name: "retrieve-promotions" })
 
     when({ 
