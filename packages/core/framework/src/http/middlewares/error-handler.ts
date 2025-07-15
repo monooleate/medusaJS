@@ -83,6 +83,8 @@ export function errorHandler() {
 
     if (statusCode >= 500) {
       logger.error(err)
+    } else {
+      logger.info(err.message)
     }
 
     if ("issues" in err && Array.isArray(err.issues)) {
