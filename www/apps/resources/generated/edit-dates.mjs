@@ -143,8 +143,8 @@ export const generatedEditDates = {
   "app/storefront-development/checkout/address/page.mdx": "2025-03-27T14:47:14.265Z",
   "app/storefront-development/checkout/complete-cart/page.mdx": "2025-03-27T14:47:14.277Z",
   "app/storefront-development/checkout/email/page.mdx": "2025-03-27T14:47:14.283Z",
-  "app/storefront-development/checkout/payment/stripe/page.mdx": "2025-05-20T07:51:40.724Z",
-  "app/storefront-development/checkout/payment/page.mdx": "2025-03-27T14:47:14.274Z",
+  "app/storefront-development/checkout/payment/stripe/page.mdx": "2025-07-16T10:18:44.916Z",
+  "app/storefront-development/checkout/payment/page.mdx": "2025-07-16T10:18:47.607Z",
   "app/storefront-development/checkout/shipping/page.mdx": "2025-03-27T14:47:14.270Z",
   "app/storefront-development/checkout/page.mdx": "2024-06-12T19:46:06+02:00",
   "app/storefront-development/customers/addresses/page.mdx": "2025-03-27T14:47:14.252Z",
@@ -6556,5 +6556,6 @@ export const generatedEditDates = {
   "references/types/interfaces/types.UpdatePaymentOutput/page.mdx": "2025-06-25T10:11:39.945Z",
   "app/how-to-tutorials/tutorials/gift-message/page.mdx": "2025-06-26T09:13:19.296Z",
   "app/how-to-tutorials/tutorials/re-order/page.mdx": "2025-06-26T12:38:24.308Z",
-  "app/commerce-modules/promotion/promotion-taxes/page.mdx": "2025-06-27T15:44:46.638Z"
+  "app/commerce-modules/promotion/promotion-taxes/page.mdx": "2025-06-27T15:44:46.638Z",
+  "app/troubleshooting/payment/page.mdx": "2025-07-16T10:20:24.799Z"
 }
