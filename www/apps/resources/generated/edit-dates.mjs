@@ -5904,7 +5904,7 @@ export const generatedEditDates = {
   "references/utils/enums/utils.PaymentCollectionStatus/page.mdx": "2025-04-11T09:04:53.005Z",
   "app/recipes/erp/page.mdx": "2025-05-20T07:51:40.720Z",
   "app/recipes/erp/odoo/page.mdx": "2025-05-20T07:51:40.720Z",
-  "app/commerce-modules/product/selling-products/page.mdx": "2025-02-13T13:27:09.270Z",
+  "app/commerce-modules/product/selling-products/page.mdx": "2025-07-18T08:56:24.231Z",
   "references/js_sdk/admin/Admin/properties/js_sdk.admin.Admin.draftOrder/page.mdx": "2025-06-25T10:11:46.807Z",
   "references/js_sdk/admin/Client/methods/js_sdk.admin.Client.throwError_/page.mdx": "2025-02-24T10:48:47.018Z",
   "references/js_sdk/admin/CustomStorage/methods/js_sdk.admin.CustomStorage.getItem/page.mdx": "2025-02-24T10:48:47.069Z",
