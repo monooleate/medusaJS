@@ -995,17 +995,30 @@ npx medusa db:migrate
 
 # Using TypeScript Aliases
 
-By default, Medusa doesn't support TypeScript aliases in production.
+In this chapter, you'll learn how to use TypeScript aliases in your Medusa application.
 
-If you prefer using TypeScript aliases, install following development dependencies:
+## Support for TypeScript Aliases
+
+By default, Medusa doesn't support TypeScript aliases in production. That means you may get build errors in production if you use them in your development.
+
+If you prefer using TypeScript aliases, this section will guide you through the steps to enable them in your Medusa application.
+
+### Step 1: Install Required Dependencies
+
+Start by installing the following development dependencies:
 
 ```bash npm2yarn
 npm install --save-dev tsc-alias rimraf
 ```
 
-Where `tsc-alias` is a package that resolves TypeScript aliases, and `rimraf` is a package that removes files and directories.
+Where:
 
-Then, add a new `resolve:aliases` script to your `package.json` and update the `build` script:
+- `tsc-alias` resolves TypeScript aliases.
+- `rimraf` removes files and directories.
+
+### Step 2: Update `package.json`
+
+Then, add a new `resolve:aliases` script to your `package.json` and update the existing `build` script:
 
 ```json title="package.json"
 {
@@ -1017,7 +1030,11 @@ Then, add a new `resolve:aliases` script to your `package.json` and update the `
 }
 ```
 
-You can now use TypeScript aliases in your Medusa application. For example, add the following in `tsconfig.json`:
+### Step 3: Update `tsconfig.json`
+
+Next, configure the TypeScript aliases you want to use in your `tsconfig.json` file by adding a `paths` property under `compilerOptions`.
+
+For example, to import anything under the `src` directory using type aliases, add the following in `tsconfig.json`:
 
 ```json title="tsconfig.json"
 {
@@ -1030,10 +1047,108 @@ You can now use TypeScript aliases in your Medusa application. For example, add 
 }
 ```
 
-Now, you can import modules, for example, using TypeScript aliases:
+### Step 4: Use TypeScript Aliases
+
+Then, you can use the `@` alias in your application code.
+
+For example, if you have a service in `src/modules/brand/service.ts`, you can import it like this:
 
 ```ts
 import { BrandModuleService } from "@/modules/brand/service"
+```
+
+***
+
+## Support TypeScript Aliases for Admin Customizations
+
+Medusa also doesn't support TypeScript aliases in the admin customizations by default. However, you can also configure your Medusa application to use TypeScript aliases in your admin customizations.
+
+### Step 1: Update `src/admin/tsconfig.json`
+
+Update `src/admin/tsconfig.json` to include `baseUrl` and `paths` configuration:
+
+```json title="src/admin/tsconfig.json"
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"] 
+    }
+
+    // other options...
+  }
+}
+```
+
+The `baseUrl` option sets the base directory to `src/admin`, and the `paths` option defines the `@` alias to allow importing files from the `src/admin` directory using aliases.
+
+### Step 2: Update `medusa-config.ts`
+
+Next, update the `vite` configuration in `medusa-config.ts` to include the `resolve.alias` configuration:
+
+```ts title="medusa-config.ts"
+import path from 'path'
+
+module.exports = defineConfig({
+  // ...
+  admin: {
+    vite: () => ({
+      resolve: {
+        alias: {
+          "@": path.resolve(__dirname, "./src/admin"),
+        },
+      },
+    }),
+  },
+})
+```
+
+Learn more about the `vite` configuration in the [Medusa configuration](https://docs.medusajs.com/learn/configurations/medusa-config/index.html.md) chapter.
+
+### Step 3: Use TypeScript Aliases in Admin Customizations
+
+You can now use the `@` alias in your admin customizations, just like you do in your main application code.
+
+For example, if you have a component in `src/admin/components/Container.tsx`, you can import it in a widget like this:
+
+```ts
+import Container from "@/components/Container"
+```
+
+### Match TSConfig and Vite Alias Configuration
+
+Make sure that the `@` alias points to the same path as in your `src/admin/tsconfig.json`.
+
+For example, if you set the `@/*` alias to point to `./components/*`:
+
+```json title="src/admin/tsconfig.json"
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./components/*"]
+    }
+  }
+}
+```
+
+Then, the `vite` alias configuration would be:
+
+```ts title="medusa-config.ts"
+import path from 'path'
+
+module.exports = defineConfig({
+  // ...
+  admin: {
+    vite: () => ({
+      resolve: {
+        alias: {
+          "@": path.resolve(__dirname, "./src/admin/components"),
+        },
+      },
+    }),
+  },
+})
 ```
 
 
@@ -4423,16 +4538,16 @@ In this chapter, you'll learn about `moduleIntegrationTestRunner` from Medusa's 
 
 ## moduleIntegrationTestRunner Utility
 
-`moduleIntegrationTestRunner` creates integration tests for a module. The integration tests run on a test Medusa application with only the specified module enabled.
+`moduleIntegrationTestRunner` creates integration tests for a module's service. The integration tests run on a test Medusa application with only the specified module enabled.
 
 For example, consider a Blog Module with a `BlogModuleService` that has a `getMessage` method:
 
 ```ts title="src/modules/blog/service.ts"
 import { MedusaService } from "@medusajs/framework/utils"
-import MyCustom from "./models/my-custom"
+import Post from "./models/post"
 
 class BlogModuleService extends MedusaService({
-  MyCustom,
+  Post,
 }){
   async getMessage(): Promise<string> {
     return "Hello, World!"
@@ -4455,7 +4570,13 @@ moduleIntegrationTestRunner<BlogModuleService>({
   moduleModels: [Post],
   resolve: "./src/modules/blog",
   testSuite: ({ service }) => {
-    // TODO write tests
+    describe("BlogModuleService", () => {
+      it("says hello world", () => {
+        const message = service.getMessage()
+
+        expect(message).toEqual("Hello, World!")
+      })
+    })
   },
 })
 
@@ -4464,10 +4585,10 @@ jest.setTimeout(60 * 1000)
 
 The `moduleIntegrationTestRunner` function accepts as a parameter an object with the following properties:
 
-- `moduleName`: The name of the module.
+- `moduleName`: The registration name of the module.
 - `moduleModels`: An array of models in the module. Refer to [this section](#write-tests-for-modules-without-data-models) if your module doesn't have data models.
 - `resolve`: The path to the module's directory.
-- `testSuite`: A function that defines the tests to run.
+- `testSuite`: A function that defines [Jest](https://jestjs.io/) tests to run.
 
 The `testSuite` function accepts as a parameter an object having the `service` property, which is an instance of the module's main service.
 
@@ -4540,11 +4661,9 @@ jest.setTimeout(60 * 1000)
 
 ## Inject Dependencies in Module Tests
 
-Some modules have injected dependencies, such as the [Event Module's service](https://docs.medusajs.com/resources/infrastructure-modules/event/index.html.md).
+Some modules have injected dependencies, such as the [Event Module's service](https://docs.medusajs.com/resources/infrastructure-modules/event/index.html.md). When writing tests for those modules, you need to inject the dependencies that the module's service requires to avoid errors.
 
-When writing tests for these modules, you need to inject the dependencies that the module's service requires to avoid errors. You can inject them as mock dependencies.
-
-For example, if your module's service depends on the Event Module or a module that connects to a third-party service, you can inject a mock service that simulates the behavior of the original service.
+You can inject dependencies as mock dependencies that simulate the behavior of the original service. This way you avoid unexpected behavior or results, such as sending real events or making real API calls.
 
 To inject dependencies, pass the `injectedDependencies` property to the `moduleIntegrationTestRunner` function.
 
@@ -4554,12 +4673,12 @@ For example:
 import { MockEventBusService, moduleIntegrationTestRunner } from "@medusajs/test-utils"
 import { BLOG_MODULE } from ".."
 import BlogModuleService from "../service"
-import MyCustom from "../models/my-custom"
+import Post from "../models/post"
 import { Modules } from "@medusajs/framework/utils"
 
 moduleIntegrationTestRunner<BlogModuleService>({
   moduleName: BLOG_MODULE,
-  moduleModels: [MyCustom],
+  moduleModels: [Post],
   resolve: "./src/modules/blog",
   injectedDependencies: {
     [Modules.EVENT_BUS]: new MockEventBusService()
@@ -4580,9 +4699,9 @@ jest.setTimeout(60 * 1000)
 
 `injectedDependencies`'s value is an object whose keys are registration names of the dependencies you want to inject, and the values are the mock services.
 
-In this example, you inject a mock Event Module service into the `BlogModuleService`. Medusa exposes a `MockEventBusService` class that you can use to mock the Event Module service.
+In this example, you inject a mock Event Module service into the `BlogModuleService`. Medusa exposes a `MockEventBusService` class that you can use to mock the Event Module's service.
 
-For custom services, you can create a mock service that implements the same interface as the original service. Make sure to use the same registration name as the original service when injecting it.
+For other modules, you can create a mock service that implements the same interface as the original service. Make sure to use the same registration name as the original service when injecting it.
 
 ***
 
