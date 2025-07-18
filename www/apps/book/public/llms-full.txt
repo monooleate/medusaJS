@@ -4413,76 +4413,6 @@ The `errors` property contains an array of errors thrown during the execution of
 If you threw a `MedusaError`, then you can check the error message in `errors[0].error.message`.
 
 
-# Example: Integration Tests for a Module
-
-In this chapter, find an example of writing an integration test for a module using [moduleIntegrationTestRunner](https://docs.medusajs.com/learn/debugging-and-testing/testing-tools/modules-tests/index.html.md) from Medusa's Testing Framework.
-
-### Prerequisites
-
-- [Testing Tools Setup](https://docs.medusajs.com/learn/debugging-and-testing/testing-tools/index.html.md)
-
-## Write Integration Test for Module
-
-Consider a `blog` module with a `BlogModuleService` that has a `getMessage` method:
-
-```ts title="src/modules/blog/service.ts"
-import { MedusaService } from "@medusajs/framework/utils"
-import MyCustom from "./models/my-custom"
-
-class BlogModuleService extends MedusaService({
-  MyCustom,
-}){
-  getMessage(): string {
-    return "Hello, World!"
-  }
-}
-
-export default BlogModuleService
-```
-
-To create an integration test for the method, create the file `src/modules/blog/__tests__/service.spec.ts` with the following content:
-
-```ts title="src/modules/blog/__tests__/service.spec.ts"
-import { moduleIntegrationTestRunner } from "@medusajs/test-utils"
-import { BLOG_MODULE } from ".."
-import BlogModuleService from "../service"
-import MyCustom from "../models/my-custom"
-
-moduleIntegrationTestRunner<BlogModuleService>({
-  moduleName: BLOG_MODULE,
-  moduleModels: [MyCustom],
-  resolve: "./src/modules/blog",
-  testSuite: ({ service }) => {
-    describe("BlogModuleService", () => {
-      it("says hello world", () => {
-        const message = service.getMessage()
-
-        expect(message).toEqual("Hello, World!")
-      })
-    })
-  },
-})
-
-jest.setTimeout(60 * 1000)
-```
-
-You use the `moduleIntegrationTestRunner` function to add tests for the `blog` module. You have one test that passes if the `getMessage` method returns the `"Hello, World!"` string.
-
-***
-
-## Run Test
-
-Run the following command to run your module integration tests:
-
-```bash npm2yarn
-npm run test:integration:modules
-```
-
-If you don't have a `test:integration:modules` script in `package.json`, refer to the [Medusa Testing Tools chapter](https://docs.medusajs.com/learn/debugging-and-testing/testing-tools#add-test-commands/index.html.md).
-
-This runs your Medusa application and runs the tests available in any `__tests__` directory under the `src/modules` directory.
-
-
 # Write Tests for Modules
 
 In this chapter, you'll learn about `moduleIntegrationTestRunner` from Medusa's Testing Framework and how to use it to write integration tests for a module's main service.
@@ -4495,7 +4425,24 @@ In this chapter, you'll learn about `moduleIntegrationTestRunner` from Medusa's 
 
 `moduleIntegrationTestRunner` creates integration tests for a module. The integration tests run on a test Medusa application with only the specified module enabled.
 
-For example, assuming you have a `blog` module, create a test file at `src/modules/blog/__tests__/service.spec.ts`:
+For example, consider a Blog Module with a `BlogModuleService` that has a `getMessage` method:
+
+```ts title="src/modules/blog/service.ts"
+import { MedusaService } from "@medusajs/framework/utils"
+import MyCustom from "./models/my-custom"
+
+class BlogModuleService extends MedusaService({
+  MyCustom,
+}){
+  async getMessage(): Promise<string> {
+    return "Hello, World!"
+  }
+}
+
+export default BlogModuleService
+```
+
+To create an integration test for the module's service, create the file `src/modules/blog/__tests__/service.spec.ts` with the following content:
 
 ```ts title="src/modules/blog/__tests__/service.spec.ts"
 import { moduleIntegrationTestRunner } from "@medusajs/test-utils"
@@ -4562,6 +4509,8 @@ moduleIntegrationTestRunner<BlogModuleService>({
 })
 ```
 
+`moduleOptions` is an object of key-value pair options that your module's service receives in its constructor.
+
 ***
 
 ## Write Tests for Modules without Data Models
@@ -4586,6 +4535,54 @@ moduleIntegrationTestRunner<BlogModuleService>({
 
 jest.setTimeout(60 * 1000)
 ```
+
+***
+
+## Inject Dependencies in Module Tests
+
+Some modules have injected dependencies, such as the [Event Module's service](https://docs.medusajs.com/resources/infrastructure-modules/event/index.html.md).
+
+When writing tests for these modules, you need to inject the dependencies that the module's service requires to avoid errors. You can inject them as mock dependencies.
+
+For example, if your module's service depends on the Event Module or a module that connects to a third-party service, you can inject a mock service that simulates the behavior of the original service.
+
+To inject dependencies, pass the `injectedDependencies` property to the `moduleIntegrationTestRunner` function.
+
+For example:
+
+```ts title="src/modules/blog/__tests__/service.spec.ts" highlights={mockDependenciesHighlights}
+import { MockEventBusService, moduleIntegrationTestRunner } from "@medusajs/test-utils"
+import { BLOG_MODULE } from ".."
+import BlogModuleService from "../service"
+import MyCustom from "../models/my-custom"
+import { Modules } from "@medusajs/framework/utils"
+
+moduleIntegrationTestRunner<BlogModuleService>({
+  moduleName: BLOG_MODULE,
+  moduleModels: [MyCustom],
+  resolve: "./src/modules/blog",
+  injectedDependencies: {
+    [Modules.EVENT_BUS]: new MockEventBusService()
+  },
+  testSuite: ({ service }) => {
+    describe("BlogModuleService", () => {
+      it("says hello world", async () => {
+        const message = await service.getMessage()
+
+        expect(message).toEqual("Hello, World!")
+      })
+    })
+  },
+})
+
+jest.setTimeout(60 * 1000)
+```
+
+`injectedDependencies`'s value is an object whose keys are registration names of the dependencies you want to inject, and the values are the mock services.
+
+In this example, you inject a mock Event Module service into the `BlogModuleService`. Medusa exposes a `MockEventBusService` class that you can use to mock the Event Module service.
+
+For custom services, you can create a mock service that implements the same interface as the original service. Make sure to use the same registration name as the original service when injecting it.
 
 ***
 
@@ -4678,7 +4675,7 @@ Finally, add the following scripts to `package.json`:
 "scripts": {
   // ...
   "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
-  "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit",
+  "test:integration:modules": "TEST_TYPE=integration:modules NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
   "test:unit": "TEST_TYPE=unit NODE_OPTIONS=--experimental-vm-modules jest --silent --runInBand --forceExit"
 },
 ```
