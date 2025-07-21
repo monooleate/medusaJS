@@ -1524,7 +1524,7 @@ In the upcoming chapters, you'll follow step-by-step guides to build custom feat
 
 By following these guides, you'll add brands to the Medusa application that you can associate with products.
 
-To build a custom feature in Medusa, you need three main tools:
+To build a custom feature in Medusa, you need three main [Framework](https://docs.medusajs.com/learn/fundamentals/framework/index.html.md) tools:
 
 - [Module](https://docs.medusajs.com/learn/fundamentals/modules/index.html.md): a package with commerce logic for a single domain. It defines new tables to add to the database, and a class of methods to manage these tables.
 - [Workflow](https://docs.medusajs.com/learn/fundamentals/workflows/index.html.md): a tool to perform an operation comprising multiple steps with built-in rollback and retry mechanisms.
@@ -1687,10 +1687,10 @@ In the previous chapters, you've customized your Medusa application to [add bran
 
 After customizing and extending your application with new features, you may need to provide an interface for admin users to utilize these features. The Medusa Admin dashboard is extendable, allowing you to:
 
-- Insert components, called [widgets](https://docs.medusajs.com/learn/fundamentals/admin/widgets/index.html.md), on existing pages.
-- Add new pages, called [UI Routes](https://docs.medusajs.com/learn/fundamentals/admin/ui-routes/index.html.md).
+- Insert components, called [widgets](https://docs.medusajs.com/learn/fundamentals/admin/widgets/index.html.md), into existing pages. For example, you can add a widget to the product details page that shows the product's brand.
+- Add new pages, called [UI Routes](https://docs.medusajs.com/learn/fundamentals/admin/ui-routes/index.html.md). For example, you can create a new page in the dashboard that lists all brands in the store.
 
-From these customizations, you can send requests to custom API routes, allowing admin users to manage custom resources on the dashboard
+Within these customizations, you can send requests to custom API routes, allowing admin users to view and manage custom resources on the dashboard.
 
 ***
 
@@ -4757,6 +4757,7 @@ module.exports = {
       {
         jsc: {
           parser: { syntax: "typescript", decorators: true },
+          target: "es2021"
         },
       },
     ],
@@ -5194,11 +5195,11 @@ Refer to [this reference](https://docs.medusajs.com/resources/deployment/index.h
 
 # Admin Development Constraints
 
-This chapter lists some constraints of admin widgets and UI routes.
+This chapter lists some development constraints of admin widgets and UI routes.
 
 ## Arrow Functions
 
-Widget and UI route components must be created as arrow functions.
+Widget and UI route components must be created as arrow functions. Otherwise, Medusa doesn't register them correctly.
 
 ```ts highlights={arrowHighlights}
 // Don't
@@ -5216,7 +5217,7 @@ const ProductWidget = () => {
 
 ## Widget Zone
 
-A widget zone's value must be wrapped in double or single quotes. It can't be a template literal or a variable.
+A widget zone's value must be wrapped in double or single quotes. It can't be a template literal or a variable. Otherwise, Medusa doesn't register the widget correctly.
 
 ```ts highlights={zoneHighlights}
 // Don't
