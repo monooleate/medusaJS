@@ -5358,7 +5358,7 @@ In this chapter, you'll learn about the Medusa Admin dashboard and the possible 
 
 ## What is the Medusa Admin?
 
-The Medusa Admin is an intuitive dashboard that allows merchants to manage their ecommerce store. It provides management featuers related to products, orders, customers, and more.
+The Medusa Admin is an intuitive dashboard that allows merchants to manage their ecommerce store. It provides management features related to products, orders, customers, and more.
 
 To explore more what you can do with the Medusa Admin, check out the [User Guide](https://docs.medusajs.com/user-guide/index.html.md). These user guides are designed for merchants and provide the steps to perform any task within the Medusa Admin.
 
@@ -19061,7 +19061,7 @@ Medusa ships with three main tools:
 2. A [Framework](https://docs.medusajs.com/learn/fundamentals/framework/index.html.md) for building custom functionalities specific to your business, product, or industry. This includes tools for introducing custom API endpoints, business logic, and data models; building workflows and automations; and integrating with third-party services.
 3. A customizable admin dashboard for merchants to configure and operate their store.
 
-When you install Medusa, you get a fully fledged commerce platform with all the features you need to get off the ground. However, unlike other platforms, Medusa is built with customization in mind. You don't need to build hacky workarounds that are difficult to maintain and scale. Your efforts go into building features that brings your business's vision to life.
+When you install Medusa, you get a fully fledged commerce platform with all the features you need to get off the ground. However, unlike other platforms, Medusa is built with customization in mind. You don't need to build hacky workarounds that are difficult to maintain and scale. Your efforts go into building features that bring your business's vision to life.
 
 ***
 
@@ -81370,7 +81370,7 @@ Medusa’s Commerce Modules, including [Sales Channel](https://docs.medusajs.com
 - **Customer**: Use customer groups to organize your customers into different groups. Then, you can apply different prices for each group.
 - **Pricing**: Use price lists to set different prices for each B2B customer group, among other conditions.
 
-In addition, Medusa’s extensible architecture and Framework for customization allow you to scope existing and custom featuers to specific customer groups or sales channels.
+In addition, Medusa’s extensible architecture and Framework for customization allow you to scope existing and custom features to specific customer groups or sales channels.
 
 [Visionary: Frictionless B2B ecommerce with Medusa](https://medusajs.com/blog/visionary/)
 
@@ -81378,9 +81378,9 @@ In addition, Medusa’s extensible architecture and Framework for customization 
 
 ## Create B2B Sales Channel
 
-Sales channls allow you to set product availability per channel. For B2B use cases, you can create a B2B sales channel that includes only B2B products.
+Sales channels allow you to set product availability per channel. For B2B use cases, you can create a B2B sales channel that includes only B2B products.
 
-Then, on the storefront, your retrieve only the B2B products for B2B customers, which is explained more in the next section.
+Then, on the storefront, you retrieve only the B2B products for B2B customers, which is explained more in the next section.
 
 You can create a sales channel through the Medusa Admin or Admin REST APIs.
 
@@ -81495,7 +81495,7 @@ The Medusa Admin is an extensible application within your Medusa application. Yo
 
 ## Customize or Build Storefront
 
-Medusa provides a Next.js Starter Storefront to use with your application. You can customize it to for your B2B use case, such as adding a login page for B2B customers or expanding the profile page to show the company associated with the customer.
+Medusa provides a Next.js Starter Storefront to use with your application. You can customize it for your B2B use case, such as adding a login page for B2B customers or expanding the profile page to show the company associated with the customer.
 
 Alternatively, you can build your own storefront using the Medusa APIs. This headless approach gives you the flexibility to build a custom storefront without limitations on which tech stack you use, or the design of the storefront.
 
@@ -95299,7 +95299,7 @@ In that case, you can build a custom dashboard for vendors that allows them to m
 
 ## Customize or Build Storefront
 
-Medusa provides a Next.js Starter Storefront to use with your application. You can customize it to for your marketplace use case, such as showing products by vendor.
+Medusa provides a Next.js Starter Storefront to use with your application. You can customize it for your marketplace use case, such as showing products by vendor.
 
 Alternatively, you can build your own storefront using the Medusa APIs. This headless approach gives you the flexibility to build a custom storefront without limitations on which tech stack you use, or the design of the storefront.
 
@@ -98284,7 +98284,7 @@ The Medusa Admin is an extensible application within your Medusa application. Yo
 
 ## Customize or Build Storefront
 
-Medusa provides a Next.js Starter Storefront to use with your application. You can customize it to for your subscription use case, such as allowing customers to manage their subscriptions.
+Medusa provides a Next.js Starter Storefront to use with your application. You can customize it for your subscription use case, such as allowing customers to manage their subscriptions.
 
 Alternatively, you can build your own storefront using the Medusa APIs. This headless approach gives you the flexibility to build a custom storefront without limitations on which tech stack you use, or the design of the storefront.
 
