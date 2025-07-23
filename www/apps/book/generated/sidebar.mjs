@@ -25,7 +25,18 @@ export const generatedSidebars = [
             "type": "link",
             "path": "/learn/installation",
             "title": "Installation",
-            "children": [],
+            "children": [
+              {
+                "loaded": true,
+                "isPathHref": true,
+                "type": "link",
+                "path": "/learn/installation/docker",
+                "title": "Install with Docker",
+                "children": [],
+                "chapterTitle": "1.2.1. Install with Docker",
+                "number": "1.2.1."
+              }
+            ],
             "chapterTitle": "1.2. Installation",
             "number": "1.2."
           },

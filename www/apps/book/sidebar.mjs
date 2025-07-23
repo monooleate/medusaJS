@@ -17,6 +17,13 @@ export const sidebars = [
             type: "link",
             path: "/learn/installation",
             title: "Installation",
+            children: [
+              {
+                type: "link",
+                path: "/learn/installation/docker",
+                title: "Install with Docker",
+              },
+            ],
           },
           {
             type: "link",
