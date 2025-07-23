@@ -6557,5 +6557,6 @@ export const generatedEditDates = {
   "app/how-to-tutorials/tutorials/gift-message/page.mdx": "2025-06-26T09:13:19.296Z",
   "app/how-to-tutorials/tutorials/re-order/page.mdx": "2025-06-26T12:38:24.308Z",
   "app/commerce-modules/promotion/promotion-taxes/page.mdx": "2025-06-27T15:44:46.638Z",
-  "app/troubleshooting/payment/page.mdx": "2025-07-16T10:20:24.799Z"
+  "app/troubleshooting/payment/page.mdx": "2025-07-16T10:20:24.799Z",
+  "app/how-to-tutorials/tutorials/preorder/page.mdx": "2025-07-18T06:57:19.943Z"
 }

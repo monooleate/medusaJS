@@ -503,6 +503,15 @@ const generatedgeneratedHowToTutorialsSidebarSidebar = {
           "loaded": true,
           "isPathHref": true,
           "type": "link",
+          "title": "Pre-Order Products",
+          "path": "/how-to-tutorials/tutorials/preorder",
+          "description": "Learn how to implement pre-order functionality for products in your Medusa store.",
+          "children": []
+        },
+        {
+          "loaded": true,
+          "isPathHref": true,
+          "type": "link",
           "title": "Product Reviews",
           "path": "/how-to-tutorials/tutorials/product-reviews",
           "description": "Learn how to implement product reviews in your Medusa store.",
