@@ -119,7 +119,7 @@ export const generatedEditDates = {
   "app/recipes/multi-region-store/page.mdx": "2025-05-20T07:51:40.721Z",
   "app/recipes/omnichannel/page.mdx": "2025-05-20T07:51:40.722Z",
   "app/recipes/oms/page.mdx": "2025-05-20T07:51:40.722Z",
-  "app/recipes/personalized-products/page.mdx": "2025-05-20T07:51:40.723Z",
+  "app/recipes/personalized-products/page.mdx": "2025-07-22T06:52:29.419Z",
   "app/recipes/pos/page.mdx": "2025-05-20T07:51:40.723Z",
   "app/recipes/subscriptions/examples/standard/page.mdx": "2025-05-20T07:51:40.723Z",
   "app/recipes/subscriptions/page.mdx": "2025-05-20T07:51:40.723Z",
@@ -6558,5 +6558,6 @@ export const generatedEditDates = {
   "app/how-to-tutorials/tutorials/re-order/page.mdx": "2025-06-26T12:38:24.308Z",
   "app/commerce-modules/promotion/promotion-taxes/page.mdx": "2025-06-27T15:44:46.638Z",
   "app/troubleshooting/payment/page.mdx": "2025-07-16T10:20:24.799Z",
+  "app/recipes/personalized-products/example/page.mdx": "2025-07-22T08:53:58.182Z",
   "app/how-to-tutorials/tutorials/preorder/page.mdx": "2025-07-18T06:57:19.943Z"
 }

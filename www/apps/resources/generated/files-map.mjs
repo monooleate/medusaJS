@@ -1064,6 +1064,10 @@ export const filesMap = [
     "pathname": "/recipes"
   },
   {
+    "filePath": "/www/apps/resources/app/recipes/personalized-products/example/page.mdx",
+    "pathname": "/recipes/personalized-products/example"
+  },
+  {
     "filePath": "/www/apps/resources/app/recipes/personalized-products/page.mdx",
     "pathname": "/recipes/personalized-products"
   },

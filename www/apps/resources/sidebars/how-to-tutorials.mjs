@@ -142,6 +142,13 @@ While tutorials show you a specific use case, they also help you understand how 
           "Learn how to integrate Mailchimp with Medusa to manage and automate newsletters.",
       },
       {
+        type: "ref",
+        title: "Personalized Products",
+        path: "/recipes/personalized-products/example",
+        description:
+          "Learn how to implement personalized products in your Medusa store.",
+      },
+      {
         type: "link",
         title: "Phone Authentication",
         path: "/how-to-tutorials/tutorials/phone-auth",
