@@ -6106,6 +6106,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "loaded": true,
               "isPathHref": true,
               "type": "ref",
+              "title": "Implement Pre-Orders",
+              "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/preorder",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "ref",
               "title": "Implement Quote Management",
               "path": "https://docs.medusajs.com/resources/examples/guides/quote-management",
               "children": []
@@ -11483,6 +11491,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "type": "ref",
               "title": "Implement Personalized Products",
               "path": "https://docs.medusajs.com/resources/recipes/personalized-products/example",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "ref",
+              "title": "Implement Pre-Order Products",
+              "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/preorder",
               "children": []
             },
             {
