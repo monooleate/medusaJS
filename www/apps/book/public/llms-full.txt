@@ -5356,13 +5356,13 @@ export default ProductWidget
 
 In this chapter, you'll learn about the Medusa Admin dashboard and the possible ways to customize it.
 
+To explore the Medusa Admin's commerce features, check out the [User Guide](https://docs.medusajs.com/user-guide/index.html.md). These user guides are designed for merchants and provide the steps to perform any task within the Medusa Admin.
+
 ## What is the Medusa Admin?
 
 The Medusa Admin is an intuitive dashboard that allows merchants to manage their ecommerce store. It provides management features related to products, orders, customers, and more.
 
-To explore more what you can do with the Medusa Admin, check out the [User Guide](https://docs.medusajs.com/user-guide/index.html.md). These user guides are designed for merchants and provide the steps to perform any task within the Medusa Admin.
-
-The Medusa Admin is built with [Vite](https://vite.dev/). When you [install the Medusa application](https://docs.medusajs.com/learn/installation/index.html.md), you also install the Medusa Admin. Then, when you start the Medusa application, you can access the Medusa Admin at `http://localhost:9000/app`.
+The Medusa Admin is built with [Vite v5](https://v5.vite.dev/). When you [install the Medusa application](https://docs.medusajs.com/learn/installation/index.html.md), you also install the Medusa Admin. Then, when you start the Medusa application, you can access the Medusa Admin at `http://localhost:9000/app`.
 
 If you don't have an admin user, use the [Medusa CLI](https://docs.medusajs.com/resources/medusa-cli/commands/user/index.html.md) to create one.
 
@@ -5379,7 +5379,7 @@ The next chapters will cover these two topics in detail.
 
 ### What You Can't Customize in the Medusa Admin
 
-You can't customize the admin dashboard's layout, design, or the content of the existing pages (aside from injecting widgets).
+You can't customize the admin dashboard's layout, design, or the content of the existing pages (aside from injecting widgets). You also can't customize the login page, the authentication flow, or change the Medusa logo used in the admin dashboard.
 
 If your use case requires heavy customization of the admin dashboard, you can build a custom admin dashboard using Medusa's [Admin API routes](https://docs.medusajs.com/api/admin).
 
@@ -6179,6 +6179,51 @@ Refer to [this reference](https://docs.medusajs.com/resources/admin-widget-injec
 ## Admin Components List
 
 To build admin customizations that match the Medusa Admin's designs and layouts, refer to [this guide](https://docs.medusajs.com/resources/admin-components/index.html.md) to find common components.
+
+***
+
+## Show Widgets Conditionally
+
+In some cases, you may want to show a widget only if certain conditions are met. For example, you may want to show a widget only if the product has a brand.
+
+To disable the widget from showing, return an empty fragment from the widget component:
+
+```tsx title="src/admin/widgets/product-widget.tsx"
+import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { Container, Heading } from "@medusajs/ui"
+import { 
+  DetailWidgetProps, 
+  AdminProduct,
+} from "@medusajs/framework/types"
+
+// The widget
+const ProductWidget = ({ 
+  data,
+}: DetailWidgetProps<AdminProduct>) => {
+  if (!data.metadata?.brand) {
+    return <></> // Don't show the widget if the product has no brand
+  }
+
+  return (
+    <Container className="divide-y p-0">
+      <div className="flex items-center justify-between px-6 py-4">
+        <Heading level="h2">
+          Brand: {data.metadata.brand}
+        </Heading>
+      </div>
+    </Container>
+  )
+}
+
+// The widget's configurations
+export const config = defineWidgetConfig({
+  zone: "product.details.before",
+})
+
+export default ProductWidget
+```
+
+In the above example, you return an empty fragment if the product has no brand. Otherwise, you show the brand name in the widget.
 
 
 # Pass Additional Data to Medusa's API Route
@@ -22232,6 +22277,215 @@ The page shows the user password fields to enter their new password, then submit
 - [Storefront Guide: Reset Customer Password](https://docs.medusajs.com/Users/shahednasser/medusa/www/apps/resources/app/storefront-development/customers/reset-password/index.html.md)
 
 
+# Retrieve Cart Totals using Query
+
+In this guide, you'll learn how to retrieve cart totals in your Medusa application using [Query](https://docs.medusajs.com/docs/learn/fundamentals/module-links/query/index.html.md).
+
+You may need to retrieve cart totals in your Medusa customizations, such as workflows or custom API routes, to perform custom actions with them. The ideal way to retrieve totals is with Query.
+
+Refer to the [Retrieve Cart Totals in Storefront](https://docs.medusajs.com/Users/shahednasser/medusa/www/apps/resources/app/storefront-development/cart/totals/index.html.md) guide for a storefront-specific approach.
+
+## How to Retrieve Cart Totals with Query
+
+To retrieve cart totals, pass the `total` field within the `fields` option of Query. For example:
+
+Use `useQueryGraphStep` in workflows, and `query.graph` in custom API routes, scheduled jobs, and subscribers.
+
+### useQueryGraphStep
+
+```ts highlights={[["12"]]}
+import { createWorkflow } from "@medusajs/framework/workflows-sdk"
+import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+
+export const myWorkflow = createWorkflow(
+  "my-workflow",
+  () => {
+    const { data: carts } = useQueryGraphStep({
+      entity: "cart",
+      fields: [
+        "id",
+        "currency_code",
+        "total",
+        "items.*",
+        "shipping_methods.*",
+      ],
+      filters: {
+        id: "cart_123", // Specify the cart ID
+      },
+    })
+  }
+)
+```
+
+### query.graph
+
+```ts highlights={[["8"]]}
+const query = container.resolve("query") // or req.scope.resolve in API routes
+
+const { data: [cart] } = await query.graph({
+  entity: "cart",
+  fields: [
+    "id",
+    "currency_code",
+    "total",
+    "items.*",
+    "shipping_methods.*",
+  ],
+  filters: {
+    id: "cart_123", // Specify the cart ID
+  }
+})
+```
+
+By specifying the `total` field, you retrieve totals related to the cart, line items, and shipping methods. The returned `cart` object will look like this:
+
+```json
+{
+  "id": "cart_123",
+  "currency_code": "usd",
+  "total": 10,
+  "items": [
+    {
+      "id": "cali_123",
+      // ...
+      "unit_price": 10,
+      "subtotal": 10,
+      "total": 0,
+      "original_total": 10,
+      "discount_total": 10,
+      "discount_subtotal": 10,
+      "discount_tax_total": 0,
+      "tax_total": 0,
+      "original_tax_total": 0,
+    }
+  ],
+  "shipping_methods": [
+    {
+      "id": "casm_01K10AYZDKZGQXE8WXW3QP9T22",
+      // ...
+      "amount": 10,
+      "subtotal": 10,
+      "total": 10,
+      "original_total": 10,
+      "discount_total": 0,
+      "discount_subtotal": 0,
+      "discount_tax_total": 0,
+      "tax_total": 0,
+      "original_tax_total": 0,
+    }
+  ]
+}
+```
+
+### Cart Grand Total
+
+The cart's grand total is the `total` field in the `cart` object. It represents the total amount of the cart, including all line items, shipping methods, taxes, and discounts.
+
+### Cart Line Item Totals
+
+The `items` array in the `cart` object contains total fields for each line item:
+
+- `unit_price`: The price of a single unit of the line item. This field is not calculated and is stored in the database.
+- `subtotal`: The total price of the line item before any discounts or taxes.
+- `total`: The total price of the line item after applying discounts and taxes.
+- `original_total`: The total price of the line item before any discounts.
+- `discount_total`: The total amount of discounts applied to the line item.
+- `discount_subtotal`: The total amount of discounts applied to the line item's subtotal.
+- `discount_tax_total`: The total amount of discounts applied to the line item's tax.
+- `tax_total`: The total tax amount applied to the line item.
+- `original_tax_total`: The total tax amount applied to the line item before any discounts.
+
+### Cart Shipping Method Totals
+
+The `shipping_methods` array in the `cart` object contains total fields for each shipping method:
+
+- `amount`: The amount charged for the shipping method. This field is not calculated and is stored in the database.
+- `subtotal`: The total price of the shipping method before any discounts or taxes.
+- `total`: The total price of the shipping method after applying discounts and taxes.
+- `original_total`: The total price of the shipping method before any discounts.
+- `discount_total`: The total amount of discounts applied to the shipping method.
+- `discount_subtotal`: The total amount of discounts applied to the shipping method's subtotal.
+- `discount_tax_total`: The total amount of discounts applied to the shipping method's tax.
+- `tax_total`: The total tax amount applied to the shipping method.
+- `original_tax_total`: The total tax amount applied to the shipping method before any discounts.
+
+***
+
+## Caveats of Retrieving Cart Totals
+
+### Using Astrisk (\*) in Cart's Query
+
+Cart totals are calculated based on the cart's line items, shipping methods, taxes, and any discounts applied. They are not stored in the `Cart` data model.
+
+For that reason, you cannot retrieve cart totals by passing `*` to the Query's fields. For example, the following query will not return cart totals:
+
+### useQueryGraphStep
+
+```ts
+const { data: carts } = useQueryGraphStep({
+  entity: "cart",
+  fields: ["*"],
+  filters: {
+    id: "cart_123",
+  },
+})
+
+// carts don't include cart totals
+```
+
+### query.graph
+
+```ts
+const { data: [cart] } = await query.graph({
+  entity: "cart",
+  fields: ["*"],
+  filters: {
+    id: "cart_123",
+  }
+})
+
+// cart doesn't include cart totals
+```
+
+This will return the cart data stored in the database, but not the calculated totals.
+
+You also can't pass `*` along with `total` in the Query's fields option. Passing `*` will override the `total` field, and you will not retrieve cart totals. For example, the following query will not return cart totals:
+
+### useQueryGraphStep
+
+```ts
+const { data: carts } = useQueryGraphStep({
+  entity: "cart",
+  fields: ["*", "total"],
+  filters: {
+    id: "cart_123",
+  },
+})
+
+// carts don't include cart totals
+```
+
+### query.graph
+
+```ts
+const { data: [cart] } = await query.graph({
+  entity: "cart",
+  fields: ["*", "total"],
+  filters: {
+    id: "cart_123",
+  }
+})
+
+// cart doesn't include cart totals
+```
+
+Instead, when you need to retrieve cart totals, explicitly pass the `total` field in the Query's fields option, as shown in [the previous section](#how-to-retrieve-cart-totals-with-query). You can also include other fields and relations you need, such as `email` and `items.*`.
+
+### Applying Filters on Cart Totals
+
+You can't apply filters directly on the cart totals, as they are not stored in the `Cart` data model. You can still filter the cart based on its properties, such as `id`, `email`, or `currency_code`, but not on the calculated totals.
+
+
 # Cart Concepts
 
 In this document, you’ll get an overview of the main concepts of a cart.
@@ -25996,6 +26250,232 @@ The following table lists the possible `action` values that Medusa uses and what
 |\`SHIPPING\_ADD\`|Add a shipping method for new or returned items.|No details added. The ID to the shipping method is added in the |
 |\`SHIPPING\_ADD\`|Add a shipping method for new or returned items.|No details added. The ID to the shipping method is added in the |
 |\`WRITE\_OFF\_ITEM\`|Remove an item's quantity as part of the claim, without adding the quantity back to the item variant's inventory.|\`details\`|
+
+
+# Retrieve Order Totals Using Query
+
+In this guide, you'll learn how to retrieve order totals in your Medusa application using [Query](https://docs.medusajs.com/docs/learn/fundamentals/module-links/query/index.html.md).
+
+You may need to retrieve order totals in your Medusa customizations, such as workflows or custom API routes, to perform custom actions with them. The ideal way to retrieve totals is with Query.
+
+Refer to the [Order Confirmation in Storefront](https://docs.medusajs.com/Users/shahednasser/medusa/www/apps/resources/app/storefront-development/checkout/order-confirmation#show-order-totals/index.html.md) guide for a storefront-specific approach.
+
+## How to Retrieve Order Totals with Query
+
+To retrieve order totals, pass the `total` field within the `fields` option of the Query. For example:
+
+Use `useQueryGraphStep` in workflows, and `query.graph` in custom API routes, scheduled jobs, and subscribers.
+
+### useQueryGraphStep
+
+```ts highlights={[["12"]]}
+import { createWorkflow } from "@medusajs/framework/workflows-sdk"
+import { useQueryGraphStep } from "@medusajs/medusa/core-flows"
+
+export const myWorkflow = createWorkflow(
+  "my-workflow",
+  () => {
+    const { data: orders } = useQueryGraphStep({
+      entity: "order",
+      fields: [
+        "id",
+        "currency_code",
+        "total",
+        "items.*",
+        "shipping_methods.*",
+      ],
+      filters: {
+        id: "order_123", // Specify the order ID
+      },
+    })
+  }
+)
+```
+
+### query.graph
+
+```ts highlights={[["8"]]}
+const query = container.resolve("query") // or req.scope.resolve in API routes
+
+const { data: [order] } = await query.graph({
+  entity: "order",
+  fields: [
+    "id",
+    "currency_code",
+    "total",
+    "items.*",
+    "shipping_methods.*",
+  ],
+  filters: {
+    id: "order_123", // Specify the order ID
+  }
+})
+```
+
+By specifying the `total` field, you retrieve totals related to the order, line items, and shipping methods. The returned `order` object will look like this:
+
+```json
+{
+  "id": "order_123",
+  "currency_code": "usd",
+  "total": 28,
+  "items": [
+    {
+      "id": "ordli_01K10AZQZ0F86MSTT4FKFNNN8X",
+      // ...
+      "unit_price": 10,
+      "subtotal": 10,
+      "total": 0,
+      "original_total": 10,
+      "discount_total": 10,
+      "discount_subtotal": 10,
+      "discount_tax_total": 0,
+      "tax_total": 0,
+      "original_tax_total": 0,
+      "refundable_total_per_unit": 0,
+      "refundable_total": 0,
+      "fulfilled_total": 0,
+      "shipped_total": 0,
+      "return_requested_total": 0,
+      "return_received_total": 0,
+      "return_dismissed_total": 0,
+      "write_off_total": 0,
+    }
+  ],
+  "shipping_methods": [
+    {
+      "id": "ordsm_01K10AZQYZ1PVCX0DPEAY1G9B9",
+      // ...
+      "subtotal": 10,
+      "total": 10,
+      "original_total": 10,
+      "discount_total": 0,
+      "discount_subtotal": 0,
+      "discount_tax_total": 0,
+      "tax_total": 0,
+      "original_tax_total": 0,
+    }
+  ]
+}
+```
+
+### Order Grand Total
+
+The order's grand total is the `total` field in the `order` object. It represents the total amount of the order, including all line items, shipping methods, taxes, and discounts.
+
+### Order Line Item Totals
+
+The `items` array in the `order` object contains total fields for each line item:
+
+- `unit_price`: The price of a single unit of the line item. This field is not calculated and is stored in the database.
+- `subtotal`: The total price of the line item before any discounts or taxes.
+- `total`: The total price of the line item after applying discounts and taxes.
+- `original_total`: The total price of the line item before any discounts.
+- `discount_total`: The total amount of discounts applied to the line item.
+- `discount_subtotal`: The total amount of discounts applied to the line item's subtotal.
+- `discount_tax_total`: The total amount of discounts applied to the line item's tax.
+- `tax_total`: The total tax amount applied to the line item.
+- `original_tax_total`: The total tax amount applied to the line item before any discounts.
+- `refundable_total_per_unit`: The total amount that can be refunded per unit of the line item.
+- `refundable_total`: The total amount that can be refunded for the line item.
+- `fulfilled_total`: The total amount of the line item that has been fulfilled.
+- `shipped_total`: The total amount of the line item that has been shipped.
+- `return_requested_total`: The total amount of the line item that has been requested for return.
+- `return_received_total`: The total amount of the line item that has been received from a return.
+- `return_dismissed_total`: The total amount of the line item that has been dismissed by a return.
+  - These items are considered damaged and are not returned to the inventory.
+- `write_off_total`: The total amount of the line item that has been written off.
+  - For example, if the order is edited and the line item is removed or its quantity has changed.
+
+### Order Shipping Method Totals
+
+The `shipping_methods` array in the `order` object contains total fields for each shipping method:
+
+- `amount`: The amount charged for the shipping method. This field is not calculated and is stored in the database.
+- `subtotal`: The total price of the shipping method before any discounts or taxes.
+- `total`: The total price of the shipping method after applying discounts and taxes.
+- `original_total`: The total price of the shipping method before any discounts.
+- `discount_total`: The total amount of discounts applied to the shipping method.
+- `discount_subtotal`: The total amount of discounts applied to the shipping method's subtotal.
+- `discount_tax_total`: The total amount of discounts applied to the shipping method's tax.
+- `tax_total`: The total tax amount applied to the shipping method.
+- `original_tax_total`: The total tax amount applied to the shipping method before any discounts.
+
+***
+
+## Caveats of Retrieving Order Totals
+
+### Using Asterisk (\*) in Order's Query
+
+Order totals are calculated based on the order's line items, shipping methods, taxes, and any discounts applied. They are not stored in the `Order` data model.
+
+For that reason, you cannot retrieve order totals by passing `*` to the Query's fields. For example, the following query will not return order totals:
+
+### useQueryGraphStep
+
+```ts
+const { data: orders } = useQueryGraphStep({
+  entity: "order",
+  fields: ["*"],
+  filters: {
+    id: "order_123",
+  },
+})
+
+// orders don't include order totals
+```
+
+### query.graph
+
+```ts
+const { data: [order] } = await query.graph({
+  entity: "order",
+  fields: ["*"],
+  filters: {
+    id: "order_123",
+  }
+})
+
+// order doesn't include order totals
+```
+
+This will return the order data stored in the database, but not the calculated totals.
+
+You also can't pass `*` along with `total` in the Query's fields option. Passing `*` will override the `total` field, and you will not retrieve order totals. For example, the following query will not return order totals:
+
+### useQueryGraphStep
+
+```ts
+const { data: orders } = useQueryGraphStep({
+  entity: "order",
+  fields: ["*", "total"],
+  filters: {
+    id: "order_123",
+  },
+})
+
+// orders don't include order totals
+```
+
+### query.graph
+
+```ts
+const { data: [order] } = await query.graph({
+  entity: "order",
+  fields: ["*", "total"],
+  filters: {
+    id: "order_123",
+  }
+})
+
+// order doesn't include order totals
+```
+
+Instead, when you need to retrieve order totals, explicitly pass the `total` field in the Query's fields option, as shown in [the previous section](#how-to-retrieve-order-totals-with-query). You can also include other fields and relations you need, such as `email` and `items.*`.
+
+### Applying Filters on Order Totals
+
+You can't apply filters directly on the order totals, as they are not stored in the `Order` data model. You can still filter the order based on its properties, such as `id`, `email`, or `currency_code`, but not on the calculated totals.
 
 
 # Order Versioning

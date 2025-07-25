@@ -139,3 +139,48 @@ Refer to [this reference](!resources!/admin-widget-injection-zones) for the full
 ## Admin Components List
 
 To build admin customizations that match the Medusa Admin's designs and layouts, refer to [this guide](!resources!/admin-components) to find common components.
+
+---
+
+## Show Widgets Conditionally
+
+In some cases, you may want to show a widget only if certain conditions are met. For example, you may want to show a widget only if the product has a brand.
+
+To disable the widget from showing, return an empty fragment from the widget component:
+
+```tsx title="src/admin/widgets/product-widget.tsx"
+import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import { Container, Heading } from "@medusajs/ui"
+import { 
+  DetailWidgetProps, 
+  AdminProduct,
+} from "@medusajs/framework/types"
+
+// The widget
+const ProductWidget = ({ 
+  data,
+}: DetailWidgetProps<AdminProduct>) => {
+  if (!data.metadata?.brand) {
+    return <></> // Don't show the widget if the product has no brand
+  }
+
+  return (
+    <Container className="divide-y p-0">
+      <div className="flex items-center justify-between px-6 py-4">
+        <Heading level="h2">
+          Brand: {data.metadata.brand}
+        </Heading>
+      </div>
+    </Container>
+  )
+}
+
+// The widget's configurations
+export const config = defineWidgetConfig({
+  zone: "product.details.before",
+})
+
+export default ProductWidget
+```
+
+In the above example, you return an empty fragment if the product has no brand. Otherwise, you show the brand name in the widget.
