@@ -8561,6 +8561,68 @@ npx medusa db:migrate
 
 The first command generates the migration under the `migrations` directory of your module's directory, and the second reflects it on the database.
 
+***
+
+## Examples
+
+This section covers common use cases where check constraints are particularly useful.
+
+### 1. Enforce Text Length
+
+Ensure that text properties meet minimum or maximum length requirements:
+
+```ts
+const User = model.define("user", {
+  username: model.text(),
+  password: model.text(),
+})
+.checks([
+  {
+    name: "password_length_check", 
+    expression: (columns) => `LENGTH(${columns.password}) >= 8`,
+  },
+])
+```
+
+In the above example, the check constraint fails if the `password` property is less than 8 characters long.
+
+### 2. Validate Email Format
+
+Ensure email addresses contain the `@` symbol:
+
+```ts
+const Customer = model.define("customer", {
+  email: model.text(),
+})
+.checks([
+  {
+    name: "email_format_check",
+    expression: (columns) => `${columns.email} LIKE '%@%'`,
+  },
+])
+```
+
+In the above example, the check constraint fails if the `email` property does not contain the `@` symbol.
+
+### 3. Enforce Date Ranges
+
+Ensure dates fall within valid ranges:
+
+```ts
+const Event = model.define("event", {
+  start_date: model.dateTime(),
+  end_date: model.dateTime(),
+})
+.checks([
+  {
+    name: "date_order_check",
+    expression: (columns) => `${columns.end_date} >= ${columns.start_date}`,
+  },
+])
+```
+
+In the above example, the check constraint fails if the `end_date` is earlier than the `start_date`.
+
 
 # Data Model Database Index
 
@@ -9089,6 +9151,28 @@ const Post = model.define("post", {
 
 export default Post
 ```
+
+#### Limit Text Length
+
+To limit the allowed length of a `text` property, use the [checks method](https://docs.medusajs.com/learn/fundamentals/data-models/check-constraints/index.html.md).
+
+For example, to limit the `name` property to a maximum of 50 characters:
+
+```ts highlights={textLengthHighlights}
+import { model } from "@medusajs/framework/utils"
+
+const Post = model.define("post", {
+  name: model.text(),
+  // ...
+})
+.checks([
+  (columns) => `${columns.name.length} <= 50`,
+])
+
+export default Post
+```
+
+This will add a database check constraint that ensures the `name` property of a record does not exceed 50 characters. If a record with a longer `name` is attempted to be inserted, an error will be thrown.
 
 ### number
 
@@ -9733,7 +9817,7 @@ You can also write migrations manually. To do that, create a file in the `migrat
 
 For example:
 
-```ts title="src/modules/blog/migrations/Migration202507021059.ts"
+```ts title="src/modules/blog/migrations/Migration202507021059_create_author.ts"
 import { Migration } from "@mikro-orm/migrations"
 
 export class Migration202507021059 extends Migration {
@@ -9754,6 +9838,12 @@ The migration class in the file extends the `Migration` class imported from `@mi
 In the example above, the `up` method creates the table `author`, and the `down` method drops the table if the migration is reverted.
 
 Refer to [MikroORM's documentation](https://mikro-orm.io/docs/migrations#migration-class) for more details on writing migrations.
+
+### Migration File Naming
+
+Migrations are executed in the ascending order of their file names. So, it's recommended to prefix the migration file name with the timestamp of when the migration was created. This ensures that migrations are executed in the order they were created.
+
+For example, if you create a migration on July 2, 2025, at 10:59 AM, the file name should be `Migration202507021059_create_brand.ts`. This way, the migration will be executed after any previous migrations that were created before this date and time.
 
 ***
 
