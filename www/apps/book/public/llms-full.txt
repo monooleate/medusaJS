@@ -5400,9 +5400,9 @@ To build admin customizations that match the Medusa Admin's designs and layouts,
 
 # Admin Routing Customizations
 
-The Medusa Admin dashboard uses [React Router](https://reactrouter.com) under the hood to manage routing. So, you can have more flexibility in routing-related customizations using some of React Router's utilities, hooks, and components.
+The Medusa Admin dashboard uses [React Router](https://reactrouter.com) under the hood to manage routing. This gives you more flexibility in routing-related customizations using React Router's utilities, hooks, and components.
 
-In this chapter, you'll learn about routing-related customizations that you can use in your admin customizations using React Router.
+In this chapter, you'll learn about routing-related customizations that you can use in your widgets, UI routes, and settings pages using React Router.
 
 `react-router-dom` is available in your project by default through the Medusa packages. You don't need to install it separately.
 
@@ -5436,13 +5436,20 @@ This adds a widget to a product's details page with a link to the Orders page. T
 
 ***
 
-## Admin Route Loader
+## Fetch Data with Route Loaders
 
 Route loaders are available starting from Medusa v2.5.1.
 
-In your UI route or any other custom admin route, you may need to retrieve data to use it in your route component. For example, you may want to fetch a list of products to display on a custom page.
+In your UI routes and settings pages, you may need to retrieve data to use in your route component. For example, you may want to fetch a list of products to display on a custom page.
 
-To do that, you can export a `loader` function in the route file, which is a [React Router loader](https://reactrouter.com/6.29.0/route/loader#loader). In this function, you can fetch and return data asynchronously. Then, in your route component, you can use the [useLoaderData](https://reactrouter.com/6.29.0/hooks/use-loader-data#useloaderdata) hook from React Router to access the data.
+The recommended approach is to fetch data within the UI route component asynchronously using the JS SDK with Tanstack (React) Query as explained in [this chapter](https://docs.medusajs.com/learn/fundamentals/admin/tips#send-requests-to-api-routes/index.html.md).
+
+However, if you need the data to be fetched before the route is rendered, such as if you're [setting breadcrumbs dynamically](https://docs.medusajs.com/learn/fundamentals/admin/ui-routes#set-breadcrumbs-dynamically/index.html.md), you can use a route loader.
+
+To fetch data with a route loader:
+
+1. Define and export a [React Router loader](https://reactrouter.com/6.29.0/route/loader#loader) function in the UI route's file. In this function, you can fetch and return data asynchronously.
+2. In your UI route's component, you can use the [useLoaderData hook from React Router](https://reactrouter.com/6.29.0/hooks/use-loader-data#useloaderdata) to access the data returned by the `loader` function.
 
 For example, consider the following UI route created at `src/admin/routes/custom/page.tsx`:
 
@@ -5481,9 +5488,17 @@ In this example, you first export a `loader` function that can be used to fetch 
 
 Then, in the `CustomPage` route component, you use the `useLoaderData` hook from React Router to access the data returned by the `loader` function. You can then use the data in your component.
 
-### Route Parameters
+### Route Loaders Block Rendering
 
-You can also access route params in the loader function. For example, consider the following UI route created at `src/admin/routes/custom/[id]/page.tsx`:
+Route loaders block the rendering of your UI route until the data is fetched, which may negatively impact the user experience. So, only use route loaders when the route component needs essential data before rendering, or if you're preparing data that doesn't require sending API requests.
+
+Otherwise, use the JS SDK with Tanstack (React) Query in the UI route component as explained in the [Tips](https://docs.medusajs.com/learn/fundamentals/admin/tips#send-requests-to-api-routes/index.html.md) chapter to fetch data asynchronously and update the UI when the data is available.
+
+![Timeline comparison of a UI route with and without a route loader](https://res.cloudinary.com/dza7lstvk/image/upload/v1753428567/Medusa%20Book/ui-route-loading_vycev8.jpg)
+
+### Access Route Parameters in Loader
+
+You can access route parameters in the loader function. For example, consider the following UI route created at `src/admin/routes/custom/[id]/page.tsx`:
 
 ```tsx title="src/admin/routes/custom/[id]/page.tsx" highlights={loaderParamHighlights}
 import { Container, Heading } from "@medusajs/ui"
@@ -5518,15 +5533,9 @@ const CustomPage = () => {
 export default CustomPage
 ```
 
-Because the UI route has a route parameter `[id]`, you can access the `id` parameter in the `loader` function. The loader function accepts as a parameter an object of type `LoaderFunctionArgs` from React Router. This object has a `params` property that contains the route parameters.
+Because the UI route has a route parameter `[id]`, you can access the `id` parameter in the `loader` function. The loader function accepts as a parameter an object that has a `params` property containing the route parameters.
 
 In the loader, you can fetch data asynchronously using the route parameter and return it. Then, in the route component, you can access the data using the `useLoaderData` hook.
-
-### When to Use Route Loaders
-
-A route loader is executed before the route is loaded. So, it will block navigation until the loader function is resolved.
-
-Only use route loaders when the route component needs data essential before rendering. Otherwise, use the JS SDK with Tanstack (React) Query as explained in [this chapter](https://docs.medusajs.com/learn/fundamentals/admin/tips#send-requests-to-api-routes/index.html.md). This way, you can fetch data asynchronously and update the UI when the data is available. You can also use a loader to prepare some initial data that's used in the route component before the data is retrieved.
 
 ***
 
@@ -5545,6 +5554,8 @@ export const handle = {
   sandbox: true,
 }
 ```
+
+You can also use the `handle` object to define a breadcrumb for the route. Learn more in the [UI Route](https://docs.medusajs.com/learn/fundamentals/admin/ui-routes/index.html.md) chapter.
 
 ### React Router Components and Hooks
 
@@ -5703,7 +5714,7 @@ In this chapter, you’ll learn how to create a UI route in the admin dashboard.
 
 ## What is a UI Route?
 
-The Medusa Admin dashboard is customizable, allowing you to add new pages, called UI routes. You create a UI route as a React component showing custom content that allow admin users to perform custom actions.
+The Medusa Admin dashboard is customizable, allowing you to add new pages, called UI routes. You create a UI route as a React component showing custom content that allows admin users to perform custom actions.
 
 For example, you can add a new page to show and manage product reviews, which aren't available natively in Medusa.
 
@@ -5791,7 +5802,7 @@ The above example adds a new sidebar item with the label `Custom Route` and an i
 
 ### Nested UI Routes
 
-Consider that along the UI route above at `src/admin/routes/custom/page.tsx` you create a nested UI route at `src/admin/routes/custom/nested/page.tsx` that also exports route configurations:
+Consider that alongside the UI route above at `src/admin/routes/custom/page.tsx` you create a nested UI route at `src/admin/routes/custom/nested/page.tsx` that also exports route configurations:
 
 ![Example of nested UI route file in the application's directory structure](https://res.cloudinary.com/dza7lstvk/image/upload/v1732867243/Medusa%20Book/ui-route-dir-overview_tgju25.jpg)
 
@@ -5823,8 +5834,8 @@ This UI route is shown in the sidebar as an item nested in the parent "Custom Ro
 Some caveats for nested UI routes in the sidebar:
 
 - Nested dynamic UI routes, such as one created at `src/admin/routes/custom/[id]/page.tsx` aren't added to the sidebar as it's not possible to link to a dynamic route. If the dynamic route exports route configurations, a warning is logged in the browser's console.
-- Nested routes in setting pages aren't shown in the sidebar to follow the admin's design conventions.
-- The `icon` configuration is ignored for the sidebar item of nested UI route to follow the admin's design conventions.
+- Nested routes in settings pages aren't shown in the sidebar to follow the admin's design conventions.
+- The `icon` configuration is ignored for the sidebar item of nested UI routes to follow the admin's design conventions.
 
 ### Route Under Existing Admin Route
 
@@ -5918,7 +5929,125 @@ export default CustomPage
 
 You access the passed parameter using `react-router-dom`'s [useParams hook](https://reactrouter.com/en/main/hooks/use-params).
 
-If you run the Medusa application and go to `localhost:9000/app/custom/123`, you'll see `123` printed in the page.
+If you run the Medusa application and go to `http://localhost:9000/app/custom/123`, you'll see `123` printed in the page.
+
+***
+
+## Set UI Route Breadcrumbs
+
+The Medusa Admin dashboard shows breadcrumbs at the top of each page, if specified. This allows users to navigate through your custom UI routes.
+
+To set the breadcrumbs of a UI route, export a `handle` object with a `breadcrumb` property in the UI route's file:
+
+```tsx title="src/admin/routes/custom/page.tsx" highlights={[["16", "breadcrumb", "Set the breadcrumbs of the UI route."]]}
+import { Container, Heading } from "@medusajs/ui"
+
+const CustomPage = () => {
+  return (
+    <Container className="divide-y p-0">
+      <div className="flex items-center justify-between px-6 py-4">
+        <Heading level="h2">This is my custom route</Heading>
+      </div>
+    </Container>
+  )
+}
+
+export default CustomPage
+
+export const handle = {
+  breadcrumb: () => "Custom Route",
+}
+```
+
+The `breadcrumb`'s value is a function that returns the breadcrumb label as a string, or a React JSX element.
+
+### Set Breadcrumbs for Nested UI Routes
+
+If you set a breadcrumb for a nested UI route, and you open the route in the Medusa Admin, you'll see the breadcrumbs starting from its parent route to the nested route.
+
+For example, if you have the following UI route at `src/admin/routes/custom/nested/page.tsx` that's nested under the previous one:
+
+```tsx title="src/admin/routes/custom/nested/page.tsx" highlights={[["16", "breadcrumb", "Set the breadcrumbs of the nested UI route."]]}
+import { Container, Heading } from "@medusajs/ui"
+
+const NestedCustomPage = () => {
+  return (
+    <Container className="divide-y p-0">
+      <div className="flex items-center justify-between px-6 py-4">
+        <Heading level="h2">This is my nested custom route</Heading>
+      </div>
+    </Container>
+  )
+}
+
+export default NestedCustomPage
+
+export const handle = {
+  breadcrumb: () => "Nested Custom Route",
+}
+```
+
+Then, when you open the nested route at `http://localhost:9000/app/custom/nested`, you'll see the breadcrumbs as `Custom Route > Nested Custom Route`. Each breadcrumb is clickable, allowing users to navigate back to the parent route.
+
+### Set Breadcrumbs Dynamically
+
+In some use cases, you may want to show a dynamic breadcrumb for a UI route. For example, if you have a UI route that displays a brand's details, you can set the breadcrumb to show the brand's name dynamically.
+
+To do that, you can:
+
+1. Define and export a `loader` function in the UI route file that fetches the data needed for the breadcrumb.
+2. Receive the data in the `breadcrumb` function and return the dynamic label.
+
+For example, create a UI route at `src/admin/routes/brands/[id]/page.tsx` with the following content:
+
+```tsx title="src/admin/routes/brands/[id]/page.tsx" highlights={dynamicBreadcrumbsHighlights}
+import { Container, Heading } from "@medusajs/ui"
+import { LoaderFunctionArgs, UIMatch, useLoaderData } from "react-router-dom"
+import { sdk } from "../../../lib/sdk"
+
+type BrandResponse = {
+  brand: {
+    name: string
+  }
+}
+
+const BrandPage = () => {
+  const { brand } = useLoaderData() as Awaited<BrandResponse>
+
+  return (
+    <Container className="divide-y p-0">
+      <div className="flex items-center justify-between px-6 py-4">
+        <Heading level="h2">{brand.name}</Heading>
+      </div>
+    </Container>
+  )
+}
+
+export default BrandPage
+
+export async function loader({ params }: LoaderFunctionArgs) {
+  const { id } = params
+  const { brand } = await sdk.client.fetch<BrandResponse>(`/admin/brands/${id}`)
+
+  return {
+    brand,
+  }
+}
+
+export const handle = {
+  breadcrumb: (
+    { data }: UIMatch<BrandResponse>
+  ) => data.brand.name || "Brand",
+}
+```
+
+In the `loader` function, you retrieve the brands from a custom API route and return them.
+
+Then, in the `handle.breadcrumb` function, you receive `data` prop containing the brand information returned by the `loader` function. You can use this data to return a dynamic breadcrumb label.
+
+When you open the UI route at `http://localhost:9000/app/brands/123`, the breadcrumb will show the brand's name, such as `Acme`.
+
+You also use the `useLoaderData` hook to access the data returned by the `loader` function in the UI route component. Learn more in the [Routing Customizations](https://docs.medusajs.com/learn/fundamentals/admin/routing#fetch-data-with-route-loaders/index.html.md) chapter.
 
 ***
 
@@ -19129,7 +19258,7 @@ Once you see the following message, the Medusa server and admin are ready:
 info:    Admin URL → http://localhost:9000/app
 ```
 
-You can now access the Medusa server at `http://localhost:9000` and the Medusa admin dashboard at `http://localhost:9000/app`.
+You can now access the Medusa server at `http://localhost:9000` and the Medusa Admin dashboard at `http://localhost:9000/app`.
 
 ***
 
@@ -19143,7 +19272,7 @@ docker compose run --rm medusa npx medusa user -e admin@example.com -p supersecr
 
 Make sure to replace `admin@example.com` and `supersecret` with your desired email and password.
 
-You can now log in to the Medusa admin dashboard at `http://localhost:9000/app` using the email and password you just created.
+You can now log in to the Medusa Admin dashboard at `http://localhost:9000/app` using the email and password you just created.
 
 ***
 
@@ -74485,9 +74614,11 @@ To learn more about the commerce features that Medusa provides, check out Medusa
 - [retrieve](https://docs.medusajs.com/references/js_sdk/admin/Invite/methods/js_sdk.admin.Invite.retrieve/index.html.md)
 - [list](https://docs.medusajs.com/references/js_sdk/admin/Notification/methods/js_sdk.admin.Notification.list/index.html.md)
 - [retrieve](https://docs.medusajs.com/references/js_sdk/admin/Notification/methods/js_sdk.admin.Notification.retrieve/index.html.md)
+- [archive](https://docs.medusajs.com/references/js_sdk/admin/Order/methods/js_sdk.admin.Order.archive/index.html.md)
 - [cancel](https://docs.medusajs.com/references/js_sdk/admin/Order/methods/js_sdk.admin.Order.cancel/index.html.md)
 - [cancelFulfillment](https://docs.medusajs.com/references/js_sdk/admin/Order/methods/js_sdk.admin.Order.cancelFulfillment/index.html.md)
 - [cancelTransfer](https://docs.medusajs.com/references/js_sdk/admin/Order/methods/js_sdk.admin.Order.cancelTransfer/index.html.md)
+- [complete](https://docs.medusajs.com/references/js_sdk/admin/Order/methods/js_sdk.admin.Order.complete/index.html.md)
 - [createCreditLine](https://docs.medusajs.com/references/js_sdk/admin/Order/methods/js_sdk.admin.Order.createCreditLine/index.html.md)
 - [createFulfillment](https://docs.medusajs.com/references/js_sdk/admin/Order/methods/js_sdk.admin.Order.createFulfillment/index.html.md)
 - [createShipment](https://docs.medusajs.com/references/js_sdk/admin/Order/methods/js_sdk.admin.Order.createShipment/index.html.md)
