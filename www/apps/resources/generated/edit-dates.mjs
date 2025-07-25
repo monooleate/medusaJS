@@ -16,7 +16,7 @@ export const generatedEditDates = {
   "app/commerce-modules/currency/page.mdx": "2025-04-17T08:48:30.550Z",
   "app/commerce-modules/customer/_events/_events-table/page.mdx": "2024-07-03T19:27:13+03:00",
   "app/commerce-modules/customer/_events/page.mdx": "2024-07-03T19:27:13+03:00",
-  "app/commerce-modules/customer/customer-accounts/page.mdx": "2025-02-26T11:17:42.327Z",
+  "app/commerce-modules/customer/customer-accounts/page.mdx": "2025-07-25T12:03:05.017Z",
   "app/commerce-modules/customer/page.mdx": "2025-04-17T08:48:31.918Z",
   "app/commerce-modules/fulfillment/_events/_events-table/page.mdx": "2024-07-03T19:27:13+03:00",
   "app/commerce-modules/fulfillment/_events/page.mdx": "2024-07-03T19:27:13+03:00",
