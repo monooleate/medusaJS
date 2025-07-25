@@ -12,7 +12,7 @@ export const generatedEditDates = {
   "app/learn/fundamentals/admin-customizations/page.mdx": "2024-10-07T12:41:39.218Z",
   "app/learn/fundamentals/workflows/workflow-timeout/page.mdx": "2025-04-24T13:15:14.472Z",
   "app/learn/fundamentals/workflows/parallel-steps/page.mdx": "2025-03-24T06:53:36.918Z",
-  "app/learn/fundamentals/medusa-container/page.mdx": "2024-12-09T11:02:38.225Z",
+  "app/learn/fundamentals/medusa-container/page.mdx": "2025-07-25T13:18:36.859Z",
   "app/learn/fundamentals/api-routes/page.mdx": "2024-12-04T11:02:57.134Z",
   "app/learn/fundamentals/modules/modules-directory-structure/page.mdx": "2024-12-09T10:32:46.839Z",
   "app/learn/fundamentals/events-and-subscribers/page.mdx": "2025-05-16T13:40:16.111Z",
@@ -123,5 +123,6 @@ export const generatedEditDates = {
   "app/learn/fundamentals/module-links/index/page.mdx": "2025-05-23T07:57:58.958Z",
   "app/learn/fundamentals/module-links/index-module/page.mdx": "2025-06-19T16:02:05.665Z",
   "app/learn/introduction/build-with-llms-ai/page.mdx": "2025-07-22T16:19:11.668Z",
-  "app/learn/installation/docker/page.mdx": "2025-07-23T15:34:18.530Z"
+  "app/learn/installation/docker/page.mdx": "2025-07-23T15:34:18.530Z",
+  "app/learn/fundamentals/generated-types/page.mdx": "2025-07-25T13:17:35.319Z"
 }

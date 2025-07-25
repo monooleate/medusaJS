@@ -932,6 +932,16 @@ export const generatedSidebars = [
             ],
             "chapterTitle": "3.11. Custom CLI Scripts",
             "number": "3.11."
+          },
+          {
+            "loaded": true,
+            "isPathHref": true,
+            "type": "link",
+            "path": "/learn/fundamentals/generated-types",
+            "title": "Auto-Generated Types",
+            "children": [],
+            "chapterTitle": "3.12. Auto-Generated Types",
+            "number": "3.12."
           }
         ],
         "chapterTitle": "3. Framework",

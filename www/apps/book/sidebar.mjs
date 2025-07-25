@@ -493,6 +493,11 @@ export const sidebars = [
               },
             ],
           },
+          {
+            type: "link",
+            path: "/learn/fundamentals/generated-types",
+            title: "Auto-Generated Types",
+          },
         ],
       },
       {
