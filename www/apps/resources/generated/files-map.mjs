@@ -128,6 +128,10 @@ export const filesMap = [
     "pathname": "/commerce-modules/auth/workflows"
   },
   {
+    "filePath": "/www/apps/resources/app/commerce-modules/cart/cart-totals/page.mdx",
+    "pathname": "/commerce-modules/cart/cart-totals"
+  },
+  {
     "filePath": "/www/apps/resources/app/commerce-modules/cart/concepts/page.mdx",
     "pathname": "/commerce-modules/cart/concepts"
   },
@@ -302,6 +306,10 @@ export const filesMap = [
   {
     "filePath": "/www/apps/resources/app/commerce-modules/order/order-change/page.mdx",
     "pathname": "/commerce-modules/order/order-change"
+  },
+  {
+    "filePath": "/www/apps/resources/app/commerce-modules/order/order-totals/page.mdx",
+    "pathname": "/commerce-modules/order/order-totals"
   },
   {
     "filePath": "/www/apps/resources/app/commerce-modules/order/order-versioning/page.mdx",

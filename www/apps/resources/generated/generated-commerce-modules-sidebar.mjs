@@ -1138,6 +1138,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
             {
               "loaded": true,
               "isPathHref": true,
+              "type": "link",
+              "path": "/commerce-modules/cart/cart-totals",
+              "title": "Retrieve Cart Totals",
+              "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
               "type": "ref",
               "title": "Send Abandoned Cart Notification",
               "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/abandoned-cart",
@@ -6125,6 +6133,14 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
               "title": "Implement Re-Order",
               "path": "https://docs.medusajs.com/resources/how-to-tutorials/tutorials/re-order",
               "children": []
+            },
+            {
+              "loaded": true,
+              "isPathHref": true,
+              "type": "link",
+              "path": "/commerce-modules/order/order-totals",
+              "title": "Retrieve Order Totals",
+              "children": []
             }
           ]
         },
@@ -6758,14 +6774,6 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
                       "type": "ref",
                       "title": "orderExchangeRequestItemReturnWorkflow",
                       "path": "https://docs.medusajs.com/resources/references/medusa-workflows/orderExchangeRequestItemReturnWorkflow",
-                      "children": []
-                    },
-                    {
-                      "loaded": true,
-                      "isPathHref": true,
-                      "type": "ref",
-                      "title": "processPaymentWorkflow",
-                      "path": "https://docs.medusajs.com/resources/references/medusa-workflows/processPaymentWorkflow",
                       "children": []
                     },
                     {
@@ -9477,14 +9485,6 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
                       "type": "ref",
                       "title": "markPaymentCollectionAsPaid",
                       "path": "https://docs.medusajs.com/resources/references/medusa-workflows/markPaymentCollectionAsPaid",
-                      "children": []
-                    },
-                    {
-                      "loaded": true,
-                      "isPathHref": true,
-                      "type": "ref",
-                      "title": "processPaymentWorkflow",
-                      "path": "https://docs.medusajs.com/resources/references/medusa-workflows/processPaymentWorkflow",
                       "children": []
                     },
                     {
@@ -16206,14 +16206,6 @@ const generatedgeneratedCommerceModulesSidebarSidebar = {
                       "type": "ref",
                       "title": "refreshCartItemsWorkflow",
                       "path": "https://docs.medusajs.com/resources/references/medusa-workflows/refreshCartItemsWorkflow",
-                      "children": []
-                    },
-                    {
-                      "loaded": true,
-                      "isPathHref": true,
-                      "type": "ref",
-                      "title": "removeDraftOrderShippingMethodWorkflow",
-                      "path": "https://docs.medusajs.com/resources/references/medusa-workflows/removeDraftOrderShippingMethodWorkflow",
                       "children": []
                     },
                     {

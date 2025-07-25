@@ -6561,5 +6561,7 @@ export const generatedEditDates = {
   "app/recipes/personalized-products/example/page.mdx": "2025-07-22T08:53:58.182Z",
   "app/how-to-tutorials/tutorials/preorder/page.mdx": "2025-07-18T06:57:19.943Z",
   "references/js_sdk/admin/Order/methods/js_sdk.admin.Order.archive/page.mdx": "2025-07-24T08:20:57.709Z",
-  "references/js_sdk/admin/Order/methods/js_sdk.admin.Order.complete/page.mdx": "2025-07-24T08:20:57.714Z"
+  "references/js_sdk/admin/Order/methods/js_sdk.admin.Order.complete/page.mdx": "2025-07-24T08:20:57.714Z",
+  "app/commerce-modules/cart/cart-totals/page.mdx": "2025-07-25T10:23:59.783Z",
+  "app/commerce-modules/order/order-totals/page.mdx": "2025-07-25T10:23:55.842Z"
 }
