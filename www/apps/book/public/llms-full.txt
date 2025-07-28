@@ -6064,13 +6064,13 @@ For more customizations related to routes, refer to the [Routing Customizations 
 
 # Admin Widgets
 
-In this chapter, you’ll learn more about widgets and how to use them.
+In this chapter, you’ll learn about widgets and how to use them.
 
 ## What is an Admin Widget?
 
-The Medusa Admin dashboard's pages are customizable to insert widgets of custom content in pre-defined injection zones. You create these widgets as React components that allow admin users to perform custom actions.
+The Medusa Admin's pages are customizable for inserting widgets of custom content in pre-defined injection zones. For example, you can add a widget on the product details page that allows admin users to sync products to a third-party service.
 
-For example, you can add a widget on the product details page that allow admin users to sync products to a third-party service.
+You create these widgets as React components that render the content and functionality of the widget.
 
 ***
 
@@ -6080,7 +6080,10 @@ For example, you can add a widget on the product details page that allow admin u
 
 - [Medusa application installed](https://docs.medusajs.com/learn/installation/index.html.md)
 
-You create a widget in a `.tsx` file under the `src/admin/widgets` directory. The file’s default export must be the widget, which is the React component that renders the custom content. The file must also export the widget’s configurations indicating where to insert the widget.
+You create a widget in a `.tsx` file under the `src/admin/widgets` directory. The file must export:
+
+1. A React component that renders the widget. This will be the file's default export.
+2. The widget’s configurations indicating where to insert the widget.
 
 For example, create the file `src/admin/widgets/product-widget.tsx` with the following content:
 
@@ -6109,11 +6112,11 @@ export const config = defineWidgetConfig({
 export default ProductWidget
 ```
 
-You export the `ProductWidget` component, which shows the heading `Product Widget`. In the widget, you use [Medusa UI](https://docs.medusajs.com/ui/index.html.md), a package that Medusa maintains to allow you to customize the dashboard with the same components used to build it.
-
-To export the widget's configurations, you use `defineWidgetConfig` from the Admin Extension SDK. It accepts as a parameter an object with the `zone` property, whose value is a string or an array of strings, each being the name of the zone to inject the widget into.
-
 In the example above, the widget is injected at the top of a product’s details.
+
+You export the `ProductWidget` component, which displays the heading `Product Widget`. In the widget, you use [Medusa UI](https://docs.medusajs.com/ui/index.html.md) to customize the dashboard with the same components used to build it.
+
+To export the widget's configuration, you use `defineWidgetConfig` from the Admin Extension SDK. It accepts an object as a parameter with the `zone` property, whose value is a string or an array of strings, each being the name of the zone to inject the widget into.
 
 The widget component must be created as an arrow function.
 
@@ -6129,9 +6132,9 @@ Then, open a product’s details page. You’ll find your custom widget at the t
 
 ***
 
-## Props Passed in Detail Pages
+## Props Passed to Widgets on Detail Pages
 
-Widgets that are injected into a details page receive a `data` prop, which is the main data of the details page.
+Widgets that are injected into a detail page receive a `data` prop, which is the main data of the details page.
 
 For example, a widget injected into the `product.details.before` zone receives the product's details in the `data` prop:
 
@@ -6170,15 +6173,17 @@ The props type is `DetailWidgetProps`, and it accepts as a type argument the exp
 
 ***
 
-## Injection Zone
+## Injection Zones List
 
-Refer to [this reference](https://docs.medusajs.com/resources/admin-widget-injection-zones/index.html.md) for the full list of injection zones and their props.
+Refer to the [Admin Widget Injection Zones](https://docs.medusajs.com/resources/admin-widget-injection-zones/index.html.md) reference for the full list of injection zones and their props.
 
 ***
 
 ## Admin Components List
 
-To build admin customizations that match the Medusa Admin's designs and layouts, refer to [this guide](https://docs.medusajs.com/resources/admin-components/index.html.md) to find common components.
+While the Medusa Admin uses the [Medusa UI](https://docs.medusajs.com/ui/index.html.md) components, it also expands on them for styling and design purposes.
+
+To build admin customizations that match the Medusa Admin's designs and layouts, refer to the [Admin Components](https://docs.medusajs.com/resources/admin-components/index.html.md) guide. You'll find components like `Header`, `JSON View`, and more that match the Medusa Admin's design.
 
 ***
 
@@ -6186,7 +6191,7 @@ To build admin customizations that match the Medusa Admin's designs and layouts,
 
 In some cases, you may want to show a widget only if certain conditions are met. For example, you may want to show a widget only if the product has a brand.
 
-To disable the widget from showing, return an empty fragment from the widget component:
+To prevent the widget from showing, return an empty fragment from the widget component:
 
 ```tsx title="src/admin/widgets/product-widget.tsx"
 import { defineWidgetConfig } from "@medusajs/admin-sdk"
@@ -6690,7 +6695,7 @@ In this chapter, you'll learn about how to add new API routes for each HTTP meth
 
 ## HTTP Method Handler
 
-An API route is created for every HTTP method you export a handler function for in a route file.
+An API route is created for every HTTP method you export a handler function for in a `route.ts` or `route.js` file.
 
 Allowed HTTP methods are: `GET`, `POST`, `DELETE`, `PUT`, `PATCH`, `OPTIONS`, and `HEAD`.
 
@@ -6721,10 +6726,10 @@ export const POST = async (
 }
 ```
 
-This adds two API Routes:
+This file adds two API Routes:
 
-- A `GET` route at `http://localhost:9000/hello-world`.
-- A `POST` route at `http://localhost:9000/hello-world`.
+- A `GET` API route at `http://localhost:9000/hello-world`.
+- A `POST` API route at `http://localhost:9000/hello-world`.
 
 
 # Middlewares
@@ -7160,25 +7165,25 @@ Some examples of when you might want to replicate an API route include:
 
 # API Routes
 
-In this chapter, you’ll learn what API Routes are and how to create them.
+In this chapter, you’ll learn what API routes are and how to create them.
 
 ## What is an API Route?
 
-An API Route is an endpoint. It exposes commerce features to external applications, such as storefronts, the admin dashboard, or third-party systems.
+An API route is a REST endpoint that exposes commerce features to external applications, such as storefronts, the admin dashboard, or third-party systems.
 
-The Medusa core application provides a set of admin and store API routes out-of-the-box. You can also create custom API routes to expose your custom functionalities.
+The Medusa core application provides a set of [admin](https://docs.medusajs.com/api/admin) and [store](https://docs.medusajs.com/api/store) API routes out-of-the-box. You can also create custom API routes to expose your custom functionalities.
 
 ***
 
 ## How to Create an API Route?
 
-An API Route is created in a TypeScript or JavaScript file under the `src/api` directory of your Medusa application. The file’s name must be `route.ts` or `route.js`.
+You can create an API route in a TypeScript or JavaScript file under the `src/api` directory of your Medusa application. The file’s name must be `route.ts` or `route.js`.
 
 ![Example of API route in the application's directory structure](https://res.cloudinary.com/dza7lstvk/image/upload/v1732808645/Medusa%20Book/route-dir-overview_dqgzmk.jpg)
 
-Each file exports API Route handler functions for at least one HTTP method (`GET`, `POST`, `DELETE`, etc…).
+Each file exports API route handler functions for at least one HTTP method (`GET`, `POST`, `DELETE`, etc…).
 
-For example, to create a `GET` API Route at `/hello-world`, create the file `src/api/hello-world/route.ts` with the following content:
+For example, to create a `GET` API route at `/hello-world`, create the file `src/api/hello-world/route.ts` with the following content:
 
 ```ts title="src/api/hello-world/route.ts"
 import type {
@@ -7196,7 +7201,7 @@ export const GET = (
 }
 ```
 
-### Test API Route
+### Test the API Route
 
 To test the API route above, start the Medusa application:
 
@@ -7204,17 +7209,25 @@ To test the API route above, start the Medusa application:
 npm run dev
 ```
 
-Then, send a `GET` request to the `/hello-world` API Route:
+Then, send a `GET` request to the `/hello-world` API route:
 
 ```bash
 curl http://localhost:9000/hello-world
 ```
 
+You should receive the following response:
+
+```json
+{
+  "message": "[GET] Hello world!"
+}
+```
+
 ***
 
-## When to Use API Routes
+## Next Chapters: Learn More About API Routes
 
-You're exposing custom functionality to be used by a storefront, admin dashboard, or any external application.
+Follow the next chapters to learn about the different HTTP methods you can use in API routes, parameters and validation, protecting routes, and more.
 
 
 # API Route Parameters
@@ -7804,7 +7817,7 @@ In this chapter, you'll learn how to send a response in your API route.
 
 ## Send a JSON Response
 
-To send a JSON response, use the `json` method of the `MedusaResponse` object passed as the second parameter of your API route handler.
+To send a JSON response, use the `json` method of the `MedusaResponse` object that is passed as the second parameter of your API route handler.
 
 For example:
 
@@ -7888,10 +7901,10 @@ export const GET = async (
 
 The `writeHead` method accepts two parameters:
 
-1. The first one is the response's status code.
-2. The second is an object of key-value pairs to set the headers of the response.
+1. The first parameter is the response's status code.
+2. The second parameter is an object of key-value pairs to set the response headers.
 
-This API route opens a stream by setting the `Content-Type` in the header to `text/event-stream`. It then simulates a stream by creating an interval that writes the stream data every three seconds.
+This API route opens a stream by setting the `Content-Type` to `text/event-stream`. It then simulates a stream by creating an interval that writes the stream data every three seconds.
 
 ***
 
@@ -8234,17 +8247,22 @@ To see different examples and learn more about creating a validation schema, ref
 
 # Custom CLI Scripts
 
-In this chapter, you'll learn how to create and execute custom scripts from Medusa's CLI tool.
+In this chapter, you'll learn how to create and execute custom scripts using Medusa's CLI tool.
 
 ## What is a Custom CLI Script?
 
-A custom CLI script is a function to execute through Medusa's CLI tool. This is useful when creating custom Medusa tooling to run through the CLI.
+A custom CLI script is a function that you can execute using Medusa's CLI tool. It is useful when you need a script that has access to the [Medusa container](https://docs.medusajs.com/learn/fundamentals/medusa-container/index.html.md) and can be executed using Medusa's CLI.
+
+For example, you can create a custom CLI script that:
+
+- [Seeds data into the database](https://docs.medusajs.com/learn/fundamentals/custom-cli-scripts/seed-data/index.html.md).
+- Runs a script before starting the Medusa application.
 
 ***
 
 ## How to Create a Custom CLI Script?
 
-To create a custom CLI script, create a TypeScript or JavaScript file under the `src/scripts` directory. The file must default export a function.
+To create a custom CLI script, create a TypeScript or JavaScript file under the `src/scripts` directory. The file must export a function by default.
 
 For example, create the file `src/scripts/my-script.ts` with the following content:
 
@@ -8267,13 +8285,13 @@ export default async function myScript({ container }: ExecArgs) {
 }
 ```
 
-The function receives as a parameter an object having a `container` property, which is an instance of the Medusa Container. Use it to resolve resources in your Medusa application.
+The function receives as a parameter an object with a `container` property, which is an instance of the Medusa Container. Use it to resolve resources in your Medusa application.
 
 ***
 
-## How to Run Custom CLI Script?
+## How to Run a Custom CLI Script?
 
-To run the custom CLI script, run the Medusa CLI's `exec` command:
+To run a custom CLI script, run the Medusa CLI's `exec` command:
 
 ```bash
 npx medusa exec ./src/scripts/my-script.ts
@@ -8285,7 +8303,7 @@ npx medusa exec ./src/scripts/my-script.ts
 
 Your script can accept arguments from the command line. Arguments are passed to the function's object parameter in the `args` property.
 
-For example:
+For example, create the following CLI script that logs the command line arguments:
 
 ```ts
 import { ExecArgs } from "@medusajs/framework/types"
@@ -8295,11 +8313,35 @@ export default async function myScript({ args }: ExecArgs) {
 }
 ```
 
-Then, pass the arguments in the `exec` command after the file path:
+Then, run the script with the `exec` command and pass arguments after the script's path.
 
 ```bash
 npx medusa exec ./src/scripts/my-script.ts arg1 arg2
 ```
+
+***
+
+## Run Custom Script on Application Startup
+
+In some cases, you may need to perform an action when the Medusa application starts.
+
+If the action is related to a module, you should use a [loader](https://docs.medusajs.com/learn/fundamentals/modules/loaders/index.html.md). Otherwise, you can create a custom CLI script and run it before starting the Medusa application.
+
+To run a custom script on application startup, modify the `dev` and `start` commands in `package.json` to execute your script first.
+
+For example:
+
+```json title="package.json"
+{
+  "scripts": {
+    "startup": "medusa exec ./src/scripts/startup.ts",
+    "dev": "npm run startup && medusa develop",
+    "start": "npm run startup && medusa start"
+  }
+}
+```
+
+The `startup` script will run every time you run the Medusa application.
 
 
 # Seed Data with Custom CLI Script
@@ -11140,12 +11182,12 @@ In this chapter, you'll learn about the types Medusa automatically generates und
 
 Medusa automatically generates TypeScript types for:
 
-![Diagram showcasing the directory structure of the .medusa directory, highlighting the types folder and its contents.](https://res.cloudinary.com/dza7lstvk/image/upload/v1753448927/Medusa%20Book/generated-types-dir_bmvdts.jpg)
-
 1. Data models collected in the [Query's graph](https://docs.medusajs.com/learn/fundamentals/module-links/query#querying-the-graph/index.html.md). These types provide you with auto-completion and type checking when using Query.
    - Generated data model types are located in the `.medusa/types/query-entry-points.d.ts` file.
 2. Modules registered in the [Medusa container](https://docs.medusajs.com/learn/fundamentals/medusa-container/index.html.md). These types provide you with auto-completion and type checking when resolving modules from the container.
    - Generated module registration names are located in the `.medusa/types/modules-bindings.d.ts` file.
+
+![Diagram showcasing the directory structure of the .medusa directory, highlighting the types folder and its contents.](https://res.cloudinary.com/dza7lstvk/image/upload/v1753448927/Medusa%20Book/generated-types-dir_bmvdts.jpg)
 
 ***
 
@@ -15105,29 +15147,29 @@ You can now resolve the MongoDB Module's main service in your customizations to 
 
 # Modules Directory Structure
 
-In this document, you'll learn about the expected files and directories in your module.
+In this chapter, you'll learn about the expected files and directories in your module.
 
 ![Module Directory Structure Example](https://res.cloudinary.com/dza7lstvk/image/upload/v1714379976/Medusa%20Book/modules-dir-overview_nqq7ne.jpg)
 
 ## index.ts
 
-The `index.ts` file in the root of your module's directory is the only required file. It must export the module's definition as explained in a [previous chapter](https://docs.medusajs.com/learn/fundamentals/modules/index.html.md).
+The `index.ts` file is in the root of your module's directory and exports the module's definition as explained in the [Modules](https://docs.medusajs.com/learn/fundamentals/modules/index.html.md) chapter.
 
 ***
 
 ## service.ts
 
-A module must have a main service. It's created in the `service.ts` file at the root of your module directory as explained in a [previous chapter](https://docs.medusajs.com/learn/fundamentals/modules/index.html.md).
+A module must have a main service that contains the module's business logic. It's created in the `service.ts` file at the root of your module directory as explained in the [Modules](https://docs.medusajs.com/learn/fundamentals/modules/index.html.md) chapter.
 
 ***
 
 ## Other Directories
 
-The following directories are optional and their content are explained more in the following chapters:
+The following directories are optional and you can choose to create them based on your module's functionality:
 
-- `models`: Holds the data models representing tables in the database.
-- `migrations`: Holds the migration files used to reflect changes on the database.
-- `loaders`: Holds the scripts to run on the Medusa application's start-up.
+- `models`: Holds the [data models](https://docs.medusajs.com/learn/fundamentals/data-models/index.html.md) representing tables in the database.
+- `migrations`: Holds the [migration](https://docs.medusajs.com/learn/fundamentals/data-models/write-migration/index.html.md) files used to reflect changes on the database.
+- `loaders`: Holds the [script files to run on the application's startup](https://docs.medusajs.com/learn/fundamentals/modules/loaders/index.html.md) when Medusa loads the module.
 
 
 # Multiple Services in a Module
@@ -16408,19 +16450,25 @@ For example, in a plugin, you can define a module that integrates a third-party 
 The next chapter explains how you can create and publish a plugin.
 
 
-# Scheduled Jobs Number of Executions
+# Scheduled Job Number of Executions
 
 In this chapter, you'll learn how to set a limit on the number of times a scheduled job is executed.
 
-## numberOfExecutions Option
+## Default Number of Scheduled Job Executions
 
-The export configuration object of the scheduled job accepts an optional property `numberOfExecutions`. Its value is a number indicating how many times the scheduled job can be executed during the Medusa application's runtime.
+By default, a scheduled job is executed whenever it matches its specified pattern. For example, if you set a scheduled job to run every five minutes, it will run every five minutes until you stop the Medusa application.
+
+***
+
+## Configure Number of Scheduled Job Executions
+
+To execute a scheduled job a specific number of times only, you can configure it with the `numberOfExecutions` option. Its value is the number of times the scheduled job can be executed during the Medusa application's runtime.
 
 For example:
 
 ```ts highlights={highlights}
 export default async function myCustomJob() {
-  console.log("I'll be executed three times only.")
+  console.log("I'll be executed only three times.")
 }
 
 export const config = {
@@ -16433,9 +16481,13 @@ export const config = {
 
 The above scheduled job has the `numberOfExecutions` configuration set to `3`.
 
-So, it'll only execute 3 times, each every minute, then it won't be executed anymore.
+So, Medusa will execute this job only 3 times, once every minute, and then it won't be executed anymore during the current runtime.
 
-If you restart the Medusa application, the scheduled job will be executed again until reaching the number of executions specified.
+### Configuration is Per Application Runtime
+
+Medusa tracks the number of executions for a scheduled job during its current runtime. Once the application stops, the next time you start it, the counter will be reset to `0`.
+
+So, if you restart the Medusa application, the scheduled job will be executed again until it reaches the number of executions specified.
 
 
 # Scheduled Jobs
@@ -16446,12 +16498,12 @@ In this chapter, you’ll learn about scheduled jobs and how to use them.
 
 When building your commerce application, you may need to automate tasks and run them repeatedly at a specific schedule. For example, you need to automatically sync products to a third-party service once a day.
 
-In other commerce platforms, this feature isn't natively supported. Instead, you have to setup a separate application to execute cron jobs, which adds complexity as to how you expose this task to be executed in a cron job, or how do you debug it when it's not running within the platform's tooling.
+In other commerce platforms, this feature isn't natively supported. Instead, you have to setup a separate application to execute cron jobs, which adds complexity as to how you expose this task to be executed in a cron job, or how you debug it when it's not running within the platform's tooling.
 
 Medusa removes this overhead by supporting this feature natively with scheduled jobs. A scheduled job is an asynchronous function that the Medusa application runs at the interval you specify during the Medusa application's runtime. Your efforts are only spent on implementing the functionality performed by the job, such as syncing products to an ERP.
 
-- You want the action to execute at a specified schedule while the Medusa application **isn't** running. Instead, use the operating system's equivalent of a cron job.
-- You want to execute the action once when the application loads. Use [loaders](https://docs.medusajs.com/learn/fundamentals/modules/loaders/index.html.md) instead.
+- You want the action to execute at a specified schedule while the Medusa application **isn't** running. Instead, create a [custom CLI script](https://docs.medusajs.com/learn/fundamentals/custom-cli-scripts/index.html.md) and execute it using the operating system's equivalent of a cron job.
+- You want to execute the action once when the application loads. Use [loaders](https://docs.medusajs.com/learn/fundamentals/modules/loaders/index.html.md) or [custom CLI scripts](https://docs.medusajs.com/learn/fundamentals/custom-cli-scripts#run-custom-script-on-application-startup/index.html.md) instead.
 - You want to execute the action if an event occurs. Use [subscribers](https://docs.medusajs.com/learn/fundamentals/events-and-subscribers/index.html.md) instead.
 
 ***
@@ -16486,7 +16538,7 @@ You also export a `config` object that has the following properties:
 - `name`: A unique name for the job.
 - `schedule`: A string that holds a [cron expression](https://crontab.guru/) indicating the schedule to run the job.
 
-This scheduled job executes every minute and logs into the terminal `Greeting!`.
+This scheduled job executes every minute and logs into the terminal the message `Greeting!`.
 
 ### Test the Scheduled Job
 
@@ -16506,11 +16558,11 @@ info:    Greeting!
 
 ## Example: Sync Products Once a Day
 
-In this section, you'll find a brief example of how you use a scheduled job to sync products to a third-party service.
+In a realistic scenario like syncing products to an ERP once a day, you should create a [workflow](https://docs.medusajs.com/learn/fundamentals/workflows/index.html.md) and execute it in a scheduled job.
 
-When implementing flows spanning across systems or [modules](https://docs.medusajs.com/learn/fundamentals/modules/index.html.md), you use [workflows](https://docs.medusajs.com/learn/fundamentals/workflows/index.html.md). A workflow is a task made up of a series of steps, and you construct it like you would a regular function, but it's a special function that supports rollback mechanism in case of errors, background execution, and more.
+A workflow is a task made up of a series of steps, and you construct it like you would a regular function, but it's a special function that supports rollback mechanism in case of errors, background execution, and more.
 
-You can learn how to create a workflow in [this chapter](https://docs.medusajs.com/learn/fundamentals/workflows/index.html.md), but this example assumes you already have a `syncProductToErpWorkflow` implemented. To execute this workflow once a day, create a scheduled job at `src/jobs/sync-products.ts` with the following content:
+You can learn how to create a workflow in the [Workflows](https://docs.medusajs.com/learn/fundamentals/workflows/index.html.md) chapter, but this example assumes you already have a `syncProductToErpWorkflow` implemented. To execute this workflow once a day, create a scheduled job at `src/jobs/sync-products.ts` with the following content:
 
 ```ts title="src/jobs/sync-products.ts"
 import { MedusaContainer } from "@medusajs/framework/types"
