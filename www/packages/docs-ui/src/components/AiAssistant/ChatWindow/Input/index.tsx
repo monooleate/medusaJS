@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useMemo, useRef } from "react"
 import clsx from "clsx"
 import { ArrowUpCircleSolid } from "@medusajs/icons"
-import { useAiAssistant } from "../../../../providers"
+import { useAiAssistant, useIsBrowser } from "../../../../providers"
 import { useChat } from "@kapaai/react-sdk"
 import { useAiAssistantChatNavigation } from "../../../../hooks"
 
@@ -12,8 +12,20 @@ type AiAssistantChatWindowInputProps = {
 export const AiAssistantChatWindowInput = ({
   chatWindowRef,
 }: AiAssistantChatWindowInputProps) => {
-  const { chatOpened, inputRef, loading } = useAiAssistant()
+  const { chatOpened, inputRef, loading, setChatOpened } = useAiAssistant()
   const { submitQuery, conversation } = useChat()
+  const { isBrowser } = useIsBrowser()
+  const { searchQuery, searchQueryType } = useMemo(() => {
+    if (!isBrowser) {
+      return {}
+    }
+    const searchParams = new URLSearchParams(location.search)
+
+    return {
+      searchQuery: searchParams.get("query"),
+      searchQueryType: searchParams.get("queryType"),
+    }
+  }, [isBrowser])
   const [question, setQuestion] = React.useState("")
   const formRef = useRef<HTMLFormElement | null>(null)
 
@@ -96,6 +108,21 @@ export const AiAssistantChatWindowInput = ({
       }),
     question,
   })
+
+  useEffect(() => {
+    if (searchQueryType === "submit") {
+      onSubmit()
+    }
+  }, [searchQueryType])
+
+  useEffect(() => {
+    if (!searchQuery) {
+      return
+    }
+
+    setQuestion(searchQuery)
+    setChatOpened(true)
+  }, [searchQuery])
 
   return (
     <div
