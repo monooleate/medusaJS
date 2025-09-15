@@ -6573,6 +6573,7 @@ export const generatedEditDates = {
   "app/troubleshooting/scheduled-job-not-running/page.mdx": "2025-08-29T11:32:54.117Z",
   "app/troubleshooting/pnpm/page.mdx": "2025-08-29T12:21:24.692Z",
   "app/how-to-tutorials/tutorials/product-feed/page.mdx": "2025-09-01T13:19:59.335Z",
+  "app/storefront-development/cart/manage-promotions/page.mdx": "2025-09-11T14:11:40.904Z",
   "app/recipes/ticket-booking/examples/page.mdx": "2025-09-10T14:11:55.063Z",
   "app/recipes/ticket-booking/examples/storefront/page.mdx": "2025-09-10T14:14:44.005Z",
   "app/recipes/ticket-booking/example/page.mdx": "2025-09-10T15:13:15.604Z",

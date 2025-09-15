@@ -1184,6 +1184,10 @@ export const filesMap = [
     "pathname": "/storefront-development/cart/manage-items"
   },
   {
+    "filePath": "/www/apps/resources/app/storefront-development/cart/manage-promotions/page.mdx",
+    "pathname": "/storefront-development/cart/manage-promotions"
+  },
+  {
     "filePath": "/www/apps/resources/app/storefront-development/cart/retrieve/page.mdx",
     "pathname": "/storefront-development/cart/retrieve"
   },
